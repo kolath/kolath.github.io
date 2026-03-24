@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── Menus table tooltip data ──
-  const menusData = {
+  const menusData = window._tooltipMenuData = {
     'All Day Menu': {
       categories: ['Drinks', 'Desserts', 'Sides', 'Breakfast plate', 'Breakfast tacos'],
       items: Object.keys(itemData),

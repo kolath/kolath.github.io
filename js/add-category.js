@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
     resetForm();
     if (itemData) {
       prefillFromItem(itemData);
+      if (takeoverNavTitle) takeoverNavTitle.textContent = 'Edit category';
     }
     appShell.style.display = 'none';
     takeover.classList.add('takeover--visible');
@@ -456,4 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
       closeTakeover();
     }
   });
+
+  // Expose for use by edit-menu.js
+  window.openCatTakeover = openTakeover;
 });

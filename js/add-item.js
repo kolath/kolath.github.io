@@ -2453,4 +2453,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Expose for use by edit-menu.js
+  window.openAddItemFlow = function () { openSkuModal('add'); };
 });

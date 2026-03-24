@@ -21,7 +21,26 @@
       "Bash(python3 -c \"from PIL import Image; img = Image.open\\(''/Users/ya.gao/Desktop/Menu prototype/assets/top nav.png''\\); print\\(f''{img.width}x{img.height}''\\)\")",
       "Bash(sips -g pixelWidth -g pixelHeight \"/Users/ya.gao/Desktop/Menu prototype/assets/top nav.png\")",
       "Bash(curl -sL -o bacon.jpg \"https://images.unsplash.com/photo-1528607929212-2636ec44253e?w=80&h=80&fit=crop&crop=center&auto=format&q=80\")",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(gh repo edit --visibility public)",
+      "Bash(gh repo edit --visibility public --accept-visibility-change-consequences)",
+      "Bash(gh api repos/gaoyaxx/menu-prototype/pages -X POST -f \"build_type=legacy\" -f \"source[branch]=master\" -f \"source[path]=/\")",
+      "Bash(git add css/add-item.css css/components.css css/reset.css index.html js/add-item.js js/table.js)",
+      "Bash(git commit:*)",
+      "WebFetch(domain:figma.com)",
+      "Bash(git add css/components.css index.html js/tabs.js js/tooltips.js js/menus-table.js js/mg-table.js)",
+      "Bash(npx --yes localtunnel --version)",
+      "Bash(git add css/components.css index.html js/sticky-header.js js/tooltips.js js/mi-table.js)",
+      "Bash(git push -u origin master)",
+      "Bash(gh api repos/gaoyaxx/menu-prototype/pages)",
+      "Bash(git add css/components.css index.html js/tooltips.js)",
+      "Bash(git push origin master)",
+      "Bash(gh api repos/gaoyaxx/menu-prototype/pages --jq '.status, .html_url')",
+      "Bash(gh api repos/gaoyaxx/menu-prototype/pages --jq '.status')",
+      "Bash(gh api repos/gaoyaxx/menu-prototype/pages/builds --jq '.[0] | {status, created_at, commit: .commit}')",
+      "Bash(grep -l \"cat-data-table\\\\|categories\" \"/Users/ya.gao/Desktop/Menu prototype/js\"/*.js)",
+      "WebSearch",
+      "WebFetch(domain:helpdesk.tryotter.com)"
     ]
   }
 }

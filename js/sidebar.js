@@ -36,13 +36,31 @@ document.addEventListener('DOMContentLoaded', () => {
       if (parentItem) {
         parentItem.classList.add('sidebar-item--selected');
 
-        // Update page header title if a brand menu item is selected
-        if (parentItem.classList.contains('sidebar-item--nested')) {
-          const brandName = item.querySelector('.sidebar-item__label').textContent.trim();
+        const label = item.querySelector('.sidebar-item__label').textContent.trim();
+
+        // Page switching: SKU library vs Brand menus
+        const brandMenusPage = document.getElementById('page-brand-menus');
+        const skuLibraryPage = document.getElementById('page-sku-library');
+
+        if (label === 'SKU library') {
+          if (brandMenusPage) brandMenusPage.style.display = 'none';
+          if (skuLibraryPage) {
+            skuLibraryPage.style.display = '';
+            if (window.lucide) lucide.createIcons();
+          }
+        } else if (parentItem.classList.contains('sidebar-item--nested')) {
+          // Brand menu item selected
+          if (skuLibraryPage) skuLibraryPage.style.display = 'none';
+          if (brandMenusPage) brandMenusPage.style.display = '';
+          const brandName = label;
           const pageTitle = document.querySelector('.page-header__title');
           if (pageTitle) {
             pageTitle.textContent = brandName + ' menus';
           }
+        } else {
+          // Other sidebar items - show brand menus page by default
+          if (skuLibraryPage) skuLibraryPage.style.display = 'none';
+          if (brandMenusPage) brandMenusPage.style.display = '';
         }
       }
     });

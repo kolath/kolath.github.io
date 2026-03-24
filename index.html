@@ -10,8 +10,9 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/reset.css?v=102">
   <link rel="stylesheet" href="css/layout.css?v=5">
-  <link rel="stylesheet" href="css/components.css?v=12">
+  <link rel="stylesheet" href="css/components.css?v=13">
   <link rel="stylesheet" href="css/add-item.css?v=15">
+  <link rel="stylesheet" href="css/edit-menu.css?v=7">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
@@ -106,6 +107,9 @@
       <!-- ===== PAGE CONTAINER ===== -->
       <main class="page-container">
 
+        <!-- ===== BRAND MENUS PAGE ===== -->
+        <div id="page-brand-menus">
+
         <!-- Page Nav Section -->
         <div class="page-nav">
 
@@ -153,8 +157,8 @@
 
           <!-- TEMPLATE: Pill Tab Bar -->
           <div class="pill-tabs">
-            <button class="pill-tab pill-tab--default" data-tab="menus">Menus</button>
-            <button class="pill-tab pill-tab--selected" data-tab="menu-items">Menu items</button>
+            <button class="pill-tab pill-tab--selected" data-tab="menus">Menus</button>
+            <button class="pill-tab pill-tab--default" data-tab="menu-items">Menu items</button>
             <button class="pill-tab pill-tab--default" data-tab="modifier-items">Modifier items</button>
             <button class="pill-tab pill-tab--default" data-tab="categories">Categories</button>
             <button class="pill-tab pill-tab--default" data-tab="modifier-groups">Modifier groups</button>
@@ -304,7 +308,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -344,7 +348,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -384,7 +388,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -424,7 +428,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -464,7 +468,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -504,7 +508,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -544,7 +548,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -584,7 +588,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -624,7 +628,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -664,7 +668,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -704,7 +708,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -744,7 +748,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -784,7 +788,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -824,7 +828,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -864,7 +868,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -904,7 +908,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -944,7 +948,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -984,7 +988,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -1024,7 +1028,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -1064,7 +1068,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -1104,7 +1108,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -1144,7 +1148,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -1184,7 +1188,7 @@
                 <td class="col-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button>
@@ -1920,7 +1924,7 @@
                 <td class="col-cat-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate category</span></button>
@@ -1941,7 +1945,7 @@
                 <td class="col-cat-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate category</span></button>
@@ -1962,7 +1966,7 @@
                 <td class="col-cat-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate category</span></button>
@@ -1983,7 +1987,7 @@
                 <td class="col-cat-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate category</span></button>
@@ -2004,7 +2008,7 @@
                 <td class="col-cat-actions">
                   <div class="row-action">
                     <button class="row-action__trigger" aria-label="Row actions">
-                      <i data-lucide="ellipsis" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                      <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                     </button>
                     <div class="row-action__menu">
                       <button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate category</span></button>
@@ -2268,6 +2272,884 @@
 
         </div><!-- /tab-modifier-groups -->
 
+        </div><!-- /page-brand-menus -->
+
+        <!-- ===== SKU LIBRARY PAGE ===== -->
+        <div id="page-sku-library" style="display:none">
+
+          <!-- SKU Library Header -->
+          <div class="sku-page-header">
+            <h1 class="sku-page-header__title">SKU library</h1>
+            <div class="sku-page-header__actions">
+              <button class="btn btn--secondary">
+                <span class="btn__icon btn__icon--leading">
+                  <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
+                </span>
+                <span>Add item SKU</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Info Banner -->
+          <div class="info-banner">
+            <div class="info-banner__illustration">
+              <img src="assets/menu icon.png" alt="SKU library illustration">
+            </div>
+            <div class="info-banner__content">
+              <div class="info-banner__text">
+                <p class="info-banner__title">Item SKU let you link the same item across multiple menus.</p>
+                <p class="info-banner__subtitle">This makes it easy to share and manage information like dietary, nutrition, and product tags in one place.</p>
+              </div>
+              <div class="info-banner__actions">
+                <button class="btn btn--secondary">
+                  <span>Learn more</span>
+                  <span class="btn__icon btn__icon--trailing">
+                    <i data-lucide="external-link" class="lucide-icon" style="width:14px;height:14px"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filter Bar -->
+          <div class="filter-bar">
+            <div class="filter-bar__filters">
+              <button class="filter-btn">
+                <span class="filter-btn__icon">
+                  <i data-lucide="sliders-horizontal" class="lucide-icon" style="width:14px;height:14px"></i>
+                </span>
+                <span>All Filters</span>
+              </button>
+              <button class="filter-btn">
+                <span>Brand</span>
+                <span class="filter-btn__arrow">
+                  <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                </span>
+              </button>
+              <button class="filter-btn">
+                <span>Locations</span>
+                <span class="filter-btn__arrow">
+                  <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                </span>
+              </button>
+            </div>
+            <div class="filter-bar__search-area">
+              <div class="search-input">
+                <i data-lucide="search" class="lucide-icon search-input__icon" style="width:14px;height:14px;color:var(--color-text-weak)"></i>
+                <input class="search-input__field" type="text" placeholder="Search...">
+              </div>
+              <div class="column-toggle" id="sku-column-toggle">
+                <button class="btn btn--icon-only column-toggle__trigger" id="sku-column-toggle-btn" aria-label="Toggle columns">
+                  <i data-lucide="columns-3" class="lucide-icon" style="width:16px;height:16px"></i>
+                </button>
+                <div class="column-toggle__dropdown" id="sku-column-toggle-dropdown">
+                  <div class="column-toggle__header">
+                    <span class="column-toggle__title">Columns</span>
+                  </div>
+                  <div class="column-toggle__list" id="sku-column-toggle-list">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SKU Library Data Table -->
+          <div class="data-table-wrapper">
+            <table class="data-table" id="sku-table">
+              <thead>
+                <tr>
+                  <th class="col-checkbox"><input type="checkbox" class="table-checkbox" id="sku-select-all"></th>
+                  <th class="col-sku-name">Name</th>
+                  <th class="col-sku-code">SKU Code</th>
+                  <th class="col-price">Price</th>
+                  <th class="col-items-linked">Items linked</th>
+                  <th class="col-brands">Brands</th>
+                  <th class="col-locations">Locations</th>
+                  <th class="col-actions"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Row 1: coke-can -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/cola.jpg" alt="Coke Can"></div>
+                      <span class="cell-name-text">Coke Can</span>
+                    </div>
+                  </td>
+                  <td>COK-001</td>
+                  <td>$2.99</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 2: sprite-can -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/sprite.jpg" alt="Sprite Can"></div>
+                      <span class="cell-name-text">Sprite Can</span>
+                    </div>
+                  </td>
+                  <td>SPR-001</td>
+                  <td>$2.99</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 3: kool-aid -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/juice.jpg" alt="Kool-Aid"></div>
+                      <span class="cell-name-text">Kool-Aid</span>
+                    </div>
+                  </td>
+                  <td>KOO-001</td>
+                  <td>$3.99</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 4: cakes -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/cake.jpg" alt="Cakes"></div>
+                      <span class="cell-name-text">Cakes</span>
+                    </div>
+                  </td>
+                  <td>CAK-001</td>
+                  <td>$5.49</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 5: salsa -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/salsa.jpg" alt="Salsa"></div>
+                      <span class="cell-name-text">Salsa</span>
+                    </div>
+                  </td>
+                  <td>SAL-001</td>
+                  <td>$0.49</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 6: toast-two -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/toast.jpg" alt="Toast (Two)"></div>
+                      <span class="cell-name-text">Toast (Two)</span>
+                    </div>
+                  </td>
+                  <td>TST-002</td>
+                  <td>$1.49</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 7: hash-brown -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/hashbrown.jpg" alt="Hash Brown"></div>
+                      <span class="cell-name-text">Hash Brown</span>
+                    </div>
+                  </td>
+                  <td>HSH-001</td>
+                  <td>$2.99</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 8: bacon-two -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/bacon.jpg" alt="Bacon (Two)"></div>
+                      <span class="cell-name-text">Bacon (Two)</span>
+                    </div>
+                  </td>
+                  <td>BAC-002</td>
+                  <td>$2.99</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 9: sausage -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/sausage.jpg" alt="Sausage"></div>
+                      <span class="cell-name-text">Sausage</span>
+                    </div>
+                  </td>
+                  <td>SAU-001</td>
+                  <td>$2.99</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 10: pancake -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/pancake.jpg" alt="Pancake"></div>
+                      <span class="cell-name-text">Pancake</span>
+                    </div>
+                  </td>
+                  <td>PAN-001</td>
+                  <td>$3.49</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 11: waffle -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/waffle.jpg" alt="Waffle"></div>
+                      <span class="cell-name-text">Waffle</span>
+                    </div>
+                  </td>
+                  <td>WAF-001</td>
+                  <td>$3.49</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 12: french-toast -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/french-toast.jpg" alt="French Toast"></div>
+                      <span class="cell-name-text">French Toast</span>
+                    </div>
+                  </td>
+                  <td>FRT-001</td>
+                  <td>$3.49</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 13: waffle-brkfst -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/waffle.jpg" alt="Waffle Breakfast Plate"></div>
+                      <span class="cell-name-text">Waffle Breakfast Plate</span>
+                    </div>
+                  </td>
+                  <td>WBP-001</td>
+                  <td>$15.49</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 14: chkn-waffles -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/waffle.jpg" alt="Chicken and Waffles Plate"></div>
+                      <span class="cell-name-text">Chicken and Waffles Plate</span>
+                    </div>
+                  </td>
+                  <td>CWP-001</td>
+                  <td>$15.49</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 15: pancake-brkfst -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/pancake.jpg" alt="Pancake Breakfast Plate"></div>
+                      <span class="cell-name-text">Pancake Breakfast Plate</span>
+                    </div>
+                  </td>
+                  <td>PBP-001</td>
+                  <td>$15.49</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 16: big-brkfst -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/breakfast-plate.jpg" alt="Big Breakfast Plate"></div>
+                      <span class="cell-name-text">Big Breakfast Plate</span>
+                    </div>
+                  </td>
+                  <td>BBP-001</td>
+                  <td>$15.49</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 17: fr-toast-plate -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/french-toast.jpg" alt="French Toast Plate"></div>
+                      <span class="cell-name-text">French Toast Plate</span>
+                    </div>
+                  </td>
+                  <td>FTP-001</td>
+                  <td>$15.49</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 18: eggy-taco -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/taco.jpg" alt="Eggy Taco"></div>
+                      <span class="cell-name-text">Eggy Taco</span>
+                    </div>
+                  </td>
+                  <td>EGT-001</td>
+                  <td>$4.99</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 19: hammy-eggy -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/taco.jpg" alt="Hammy Eggy Taco"></div>
+                      <span class="cell-name-text">Hammy Eggy Taco</span>
+                    </div>
+                  </td>
+                  <td>HET-001</td>
+                  <td>$4.99</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 20: porky-eggy -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/taco.jpg" alt="Porky Eggy Taco"></div>
+                      <span class="cell-name-text">Porky Eggy Taco</span>
+                    </div>
+                  </td>
+                  <td>PET-001</td>
+                  <td>$4.99</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 21: eggy-sausage -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/taco.jpg" alt="Eggy Sausage Taco"></div>
+                      <span class="cell-name-text">Eggy Sausage Taco</span>
+                    </div>
+                  </td>
+                  <td>EST-001</td>
+                  <td>$4.99</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 22: veggie-eggy -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/taco.jpg" alt="Veggie Eggy Taco"></div>
+                      <span class="cell-name-text">Veggie Eggy Taco</span>
+                    </div>
+                  </td>
+                  <td>VET-001</td>
+                  <td>$4.99</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 23: biggy-eggy -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail"><img src="assets/thumbnails/taco.jpg" alt="Biggy Eggy Taco"></div>
+                      <span class="cell-name-text">Biggy Eggy Taco</span>
+                    </div>
+                  </td>
+                  <td>BET-001</td>
+                  <td>$5.99</td>
+                  <td><span class="cell-link">1 menu item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Modifier Item SKUs -->
+                <!-- Row 24: Banana Pudding Chess -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Banana Pudding Chess</span>
+                    </div>
+                  </td>
+                  <td>BPC-001</td>
+                  <td>$0.00</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 25: Oreo -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Oreo</span>
+                    </div>
+                  </td>
+                  <td>ORE-001</td>
+                  <td>$0.00</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 26: Lemon -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Lemon</span>
+                    </div>
+                  </td>
+                  <td>LEM-001</td>
+                  <td>$0.00</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 27: Scrambled Eggs -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Scrambled Eggs</span>
+                    </div>
+                  </td>
+                  <td>SCE-001</td>
+                  <td>$0.00</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 28: Over Hard -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Over Hard</span>
+                    </div>
+                  </td>
+                  <td>OVH-001</td>
+                  <td>$0.00</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 29: Extra Syrup -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Extra Syrup</span>
+                    </div>
+                  </td>
+                  <td>EXS-001</td>
+                  <td>$0.49</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 30: Extra Butter -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Extra Butter</span>
+                    </div>
+                  </td>
+                  <td>EXB-001</td>
+                  <td>$0.49</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 31: White American Cheese -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">White American Cheese</span>
+                    </div>
+                  </td>
+                  <td>WAC-001</td>
+                  <td>$0.99</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 32: Yellow American Cheese -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Yellow American Cheese</span>
+                    </div>
+                  </td>
+                  <td>YAC-001</td>
+                  <td>$0.99</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 33: Hash Brown (modifier) -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Hash Brown</span>
+                    </div>
+                  </td>
+                  <td>HSB-001</td>
+                  <td>$1.49</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 34: Extra Toast -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Extra Toast</span>
+                    </div>
+                  </td>
+                  <td>EXT-001</td>
+                  <td>$1.49</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 35: Extra Egg -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Extra Egg</span>
+                    </div>
+                  </td>
+                  <td>EXE-001</td>
+                  <td>$1.99</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 36: Bacon Two -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Bacon Two</span>
+                    </div>
+                  </td>
+                  <td>BAC-001</td>
+                  <td>$1.99</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 37: Ham -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Ham</span>
+                    </div>
+                  </td>
+                  <td>HAM-001</td>
+                  <td>$1.99</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 38: Sausage (modifier) -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Sausage</span>
+                    </div>
+                  </td>
+                  <td>SAU-002</td>
+                  <td>$1.99</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 39: Extra Pancake -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Extra Pancake</span>
+                    </div>
+                  </td>
+                  <td>EXP-001</td>
+                  <td>$2.49</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 40: Extra Waffle -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Extra Waffle</span>
+                    </div>
+                  </td>
+                  <td>EXW-001</td>
+                  <td>$2.49</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 41: White Cheese -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">White Cheese</span>
+                    </div>
+                  </td>
+                  <td>WHC-001</td>
+                  <td>$0.00</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 42: Yellow Cheese -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Yellow Cheese</span>
+                    </div>
+                  </td>
+                  <td>YEC-001</td>
+                  <td>$0.00</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+                <!-- Row 43: Onions -->
+                <tr>
+                  <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                  <td>
+                    <div class="cell-display-name">
+                      <div class="cell-thumbnail cell-thumbnail--placeholder"><i data-lucide="image" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-disabled)"></i></div>
+                      <span class="cell-name-text">Onions</span>
+                    </div>
+                  </td>
+                  <td>ONI-001</td>
+                  <td>$0.49</td>
+                  <td><span class="cell-link">1 modifier item</span></td>
+                  <td><span class="cell-link">1 brand</span></td>
+                  <td><span class="cell-link">10 locations</span></td>
+                  <td class="col-actions">
+                    <button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div><!-- /page-sku-library -->
+
       </main>
     </div>
   </div>
@@ -2299,7 +3181,7 @@
           <span class="btn__icon btn__icon--leading">
             <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
           </span>
-          <span>Create new menu item</span>
+          <span>Create from scratch</span>
         </button>
         <button class="btn btn--secondary" id="sku-modal-unlink" style="display:none">Unlink</button>
         <button class="btn btn--primary" id="sku-modal-continue" disabled>Continue</button>
@@ -3762,6 +4644,553 @@
     </div>
   </div>
 
+  <!-- ===== ADD MENU TAKEOVER ===== -->
+  <div class="takeover" id="menu-takeover">
+    <!-- Takeover Nav -->
+    <div class="takeover__nav">
+      <div class="takeover__nav-left">
+        <button class="takeover__nav-close" id="menu-takeover-close" aria-label="Close">
+          <i data-lucide="x" class="lucide-icon" style="width:20px;height:20px"></i>
+        </button>
+        <span class="takeover__nav-title" id="menu-takeover-nav-title">Add menu</span>
+      </div>
+      <div class="takeover__nav-right">
+        <span class="takeover__nav-help">Save keeps your changes in draft. Publish updates your live menu across selected locations and channels.</span>
+        <button class="btn btn--secondary" id="menu-takeover-save-publish">Save and publish</button>
+        <button class="btn btn--primary" id="menu-takeover-save">Save</button>
+        <button class="btn btn--icon-only">
+          <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Takeover Content -->
+    <div class="takeover__content takeover__content--single">
+      <div class="takeover__form">
+
+        <!-- Section: Menu details -->
+        <div class="form-section">
+          <div class="form-section__header">
+            <h3 class="form-section__title">Menu details</h3>
+          </div>
+          <div class="form-section__card">
+            <!-- Display name -->
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Display name</label>
+                <span class="form-field__desc">Customer-facing name for this menu. Example: &ldquo;Lunch Menu&rdquo;</span>
+              </div>
+              <div class="form-field__control">
+                <input type="text" class="form-input" id="menu-field-display-name" placeholder="Lunch special">
+              </div>
+            </div>
+            <!-- Internal name -->
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Internal name</label>
+                <span class="form-field__desc">Used for internal reference only. Not shown to customers.</span>
+              </div>
+              <div class="form-field__control">
+                <input type="text" class="form-input" id="menu-field-internal-name" placeholder="Lunch special discount">
+              </div>
+            </div>
+            <!-- Description -->
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Description</label>
+                <span class="form-field__desc">Add a description to help manage and organize this category internally.</span>
+              </div>
+              <div class="form-field__control">
+                <textarea class="form-textarea" id="menu-field-description" placeholder="Add your description here" maxlength="200"></textarea>
+                <span class="form-char-count" id="menu-field-description-count">0 / 200 Characters Remaining</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Cuisine types -->
+        <div class="form-section">
+          <div class="form-section__header">
+            <h3 class="form-section__title">Cuisine types</h3>
+          </div>
+          <div class="form-section__card">
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Cuisine types</label>
+                <span class="form-field__desc">Select cuisine types for this menu.</span>
+              </div>
+              <div class="form-field__control">
+                <select class="form-select" id="menu-field-cuisine">
+                  <option value="" disabled selected>Select cuisine types</option>
+                  <option>American</option>
+                  <option>Asian</option>
+                  <option>Beverages</option>
+                  <option>Breakfast</option>
+                  <option>Chinese</option>
+                  <option>Italian</option>
+                  <option>Mexican</option>
+                  <option>Seafood</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Categories -->
+        <div class="form-section">
+          <div class="form-section__header">
+            <h3 class="form-section__title">Categories</h3>
+            <div class="form-section__action" id="menu-categories-edit-action" style="display:none">
+              <button class="btn btn--secondary" id="menu-categories-edit-btn">
+                <i data-lucide="pencil" class="lucide-icon" style="width:14px;height:14px"></i>
+                <span>Edit category</span>
+              </button>
+            </div>
+          </div>
+          <!-- Empty state -->
+          <div class="form-empty-card" id="menu-categories-empty">
+            <span class="form-empty-card__text">Select categories to organize menu item for this menu.</span>
+            <button class="btn btn--secondary" id="menu-categories-add-btn">
+              <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
+              <span>Add category</span>
+            </button>
+          </div>
+          <!-- Filled state -->
+          <div class="category-filled-card" id="menu-categories-filled" style="display:none">
+            <div class="category-filled-card__header" id="menu-categories-filled-header">Categories</div>
+            <div class="category-filled-card__list" id="menu-categories-filled-list"></div>
+          </div>
+        </div>
+
+        <!-- Section: Fulfillment modes -->
+        <div class="form-section">
+          <div class="form-section__header">
+            <h3 class="form-section__title">Fulfillment modes</h3>
+          </div>
+          <div class="form-section__card">
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Fulfillment modes</label>
+                <span class="form-field__desc">Select fulfillment modes for this menu.</span>
+              </div>
+              <div class="form-field__control">
+                <div class="form-checkbox-group">
+                  <label class="form-checkbox">
+                    <input type="checkbox" class="form-checkbox__input" value="delivery">
+                    <span class="form-checkbox__box"></span>
+                    <span class="form-checkbox__label">Delivery</span>
+                  </label>
+                  <label class="form-checkbox">
+                    <input type="checkbox" class="form-checkbox__input" value="dine-in">
+                    <span class="form-checkbox__box"></span>
+                    <span class="form-checkbox__label">Dine-in</span>
+                  </label>
+                  <label class="form-checkbox">
+                    <input type="checkbox" class="form-checkbox__input" value="pick-up">
+                    <span class="form-checkbox__box"></span>
+                    <span class="form-checkbox__label">Pick-up</span>
+                  </label>
+                  <label class="form-checkbox">
+                    <input type="checkbox" class="form-checkbox__input" value="to-go">
+                    <span class="form-checkbox__box"></span>
+                    <span class="form-checkbox__label">To-go</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Locations, channels -->
+        <div class="form-section">
+          <div class="form-section__header">
+            <h3 class="form-section__title">Locations, channels</h3>
+          </div>
+          <div class="form-section__card">
+            <!-- Locations -->
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Locations</label>
+              </div>
+              <div class="form-field__control">
+                <select class="form-select" id="menu-field-locations">
+                  <option value="" disabled selected>Select</option>
+                  <option>Dallas - Trinity Groves</option>
+                  <option>TX - Fort Worth - Downtown</option>
+                  <option>PT's Fried Chicken and Fish - dallas o</option>
+                  <option>PT's Fried Chicken and Fish - Dallas</option>
+                </select>
+              </div>
+            </div>
+            <!-- Channels -->
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Channels</label>
+              </div>
+              <div class="form-field__control">
+                <select class="form-select" id="menu-field-channels">
+                  <option value="" disabled selected>Select</option>
+                  <option>DoorDash</option>
+                  <option>Uber Eats</option>
+                  <option>Grubhub</option>
+                  <option>All channels</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ADD MENU: ADD CATEGORIES MODAL ===== -->
+  <div class="cat-modal-overlay" id="menu-cat-modal-overlay">
+    <div class="cat-modal">
+      <div class="cat-modal__header">
+        <h2 class="cat-modal__title">Add categories</h2>
+        <button class="cat-modal__close" id="menu-cat-modal-close">
+          <i data-lucide="x" class="lucide-icon" style="width:20px;height:20px"></i>
+        </button>
+      </div>
+      <div class="cat-modal__body">
+        <div class="cat-modal__search">
+          <div class="cat-modal__search-input">
+            <i data-lucide="search" class="lucide-icon cat-modal__search-icon" style="width:16px;height:16px"></i>
+            <input type="text" class="cat-modal__search-field" id="menu-cat-search-input" placeholder="Search categories">
+          </div>
+        </div>
+        <!-- Select all -->
+        <div class="cat-modal__select-all">
+          <div class="cat-modal__option" data-value="__all__">
+            <input type="checkbox" class="cat-modal__checkbox" data-value="__all__">
+            <div class="cat-modal__option-info">
+              <span class="cat-modal__option-name cat-modal__option-name--bold">Select / deselect all</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-modal__divider"></div>
+        <!-- Category list -->
+        <div class="cat-modal__list" id="menu-cat-modal-list"></div>
+        <div class="cat-modal__empty" id="menu-cat-modal-empty">No categories found</div>
+      </div>
+      <div class="cat-modal__footer">
+        <button class="btn btn--secondary" id="menu-cat-modal-create-new">
+          <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
+          <span>Create new</span>
+        </button>
+        <button class="btn btn--primary" id="menu-cat-modal-confirm" disabled>Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODIFIER GROUP TAKEOVER ===== -->
+  <div class="takeover" id="mg-takeover">
+    <!-- Takeover Nav -->
+    <div class="takeover__nav">
+      <div class="takeover__nav-left">
+        <button class="takeover__nav-close" id="mg-takeover-close" aria-label="Close">
+          <i data-lucide="x" class="lucide-icon" style="width:20px;height:20px"></i>
+        </button>
+        <span class="takeover__nav-title" id="mg-takeover-nav-title">Add modifier group</span>
+      </div>
+      <div class="takeover__nav-right">
+        <span class="takeover__nav-help">Save keeps your changes in draft. Publish updates your live menu across selected locations and channels.</span>
+        <button class="btn btn--secondary" id="mg-takeover-save-publish">Save and publish</button>
+        <button class="btn btn--primary" id="mg-takeover-save">Save</button>
+        <button class="btn btn--icon-only">
+          <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Takeover Content -->
+    <div class="takeover__content takeover__content--single">
+      <div class="takeover__form">
+
+        <!-- Section: Modifier group details -->
+        <div class="form-section">
+          <div class="form-section__header">
+            <h3 class="form-section__title">Modifier group details</h3>
+          </div>
+          <div class="form-section__card">
+            <!-- Display name -->
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Display name</label>
+                <span class="form-field__desc">Customer-facing name shown when ordering.</span>
+              </div>
+              <div class="form-field__control">
+                <input type="text" class="form-input" id="mg-field-display-name" placeholder="Enter modifier group name">
+              </div>
+            </div>
+            <!-- Internal name -->
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Internal name</label>
+                <span class="form-field__desc">Used for internal reference only. Not shown to customers.</span>
+              </div>
+              <div class="form-field__control">
+                <input type="text" class="form-input" id="mg-field-internal-name" placeholder="Enter a name for internal usage">
+              </div>
+            </div>
+            <!-- Description -->
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Description</label>
+                <span class="form-field__desc">Add a description to help manage and organize this modifier group internally.</span>
+              </div>
+              <div class="form-field__control">
+                <textarea class="form-textarea" id="mg-field-description" placeholder="Add your description here" maxlength="200"></textarea>
+                <span class="form-char-count" id="mg-field-description-count">0 / 200 Characters Remaining</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Modifier group type + Selection rule (combined) -->
+        <div class="form-section">
+          <div class="form-section__header">
+            <h3 class="form-section__title">Modifier group type <i data-lucide="help-circle" class="lucide-icon mgc-field__hint-icon" style="width:16px;height:16px"></i></h3>
+          </div>
+          <div class="form-section__card" style="padding:24px">
+            <div class="form-field__desc" style="margin-bottom:12px">Choose the type that best matches what the customer is deciding here.</div>
+            <div class="mgc-type-grid" id="mg-type-grid">
+              <div class="mgc-type-card" data-type="Size"><div class="mgc-type-card__name">Size</div><div class="mgc-type-card__eg">E.g. Large, Medium, Small</div></div>
+              <div class="mgc-type-card" data-type="Product variation"><div class="mgc-type-card__name">Product variation</div><div class="mgc-type-card__eg">E.g. Wheat bun, Brioche bun</div></div>
+              <div class="mgc-type-card" data-type="Preference"><div class="mgc-type-card__name">Preference</div><div class="mgc-type-card__eg">E.g. Iced / Less spicy / Rare</div></div>
+              <div class="mgc-type-card" data-type="Packaging"><div class="mgc-type-card__name">Packaging</div><div class="mgc-type-card__eg">E.g. Reusable bowl</div></div>
+              <div class="mgc-type-card" data-type="Add-on"><div class="mgc-type-card__name">Add-on</div><div class="mgc-type-card__eg">E.g. Add tomato</div></div>
+              <div class="mgc-type-card" data-type="Removal"><div class="mgc-type-card__name">Removal</div><div class="mgc-type-card__eg">E.g. No onion</div></div>
+              <div class="mgc-type-card" data-type="Condiments"><div class="mgc-type-card__name">Condiments</div><div class="mgc-type-card__eg">E.g. Ketchup sachet</div></div>
+              <div class="mgc-type-card" data-type="Combo / Bundle"><div class="mgc-type-card__name">Combo / Bundle</div><div class="mgc-type-card__eg">E.g. Choose your main dish</div></div>
+              <div class="mgc-type-card" data-type="Upsell"><div class="mgc-type-card__name">Upsell</div><div class="mgc-type-card__eg">E.g. Add a drink</div></div>
+              <div class="mgc-type-card" data-type="Custom"><div class="mgc-type-card__name">Didn't see your option?</div><div class="mgc-type-card__eg">Customize your own</div></div>
+            </div>
+
+            <div style="border-top:1px solid var(--color-divider-weak);margin-top:20px;padding-top:20px">
+              <!-- Total selections (min-max) -->
+              <div class="form-field">
+                <div class="form-field__label-group">
+                  <label class="form-field__label" style="font-weight:var(--fw-medium)">Total selections (min–max)</label>
+                  <span class="form-field__desc">Define the Minimum and maximum number of modifiers customers can select from this group.</span>
+                </div>
+                <div class="form-field__control">
+                  <div class="mgc-selects-row">
+                    <div class="mgc-select-group">
+                      <label class="mgc-select-label">Minimum</label>
+                      <select class="mgc-select" id="mg-total-min">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </div>
+                    <span class="mgc-selects-to">to</span>
+                    <div class="mgc-select-group">
+                      <label class="mgc-select-label">Maximum</label>
+                      <select class="mgc-select" id="mg-total-max">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="Unlimited">Unlimited</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="mgc-rule-hint" id="mg-total-hint">Optional – customers can select any number of options.</div>
+                </div>
+              </div>
+              <!-- Max per options -->
+              <div class="form-field" id="mg-maxper-field">
+                <div class="form-field__label-group">
+                  <label class="form-field__label" style="font-weight:var(--fw-medium)">Max per options</label>
+                  <span class="form-field__desc">Define the maximum times each modifier can be selected.</span>
+                </div>
+                <div class="form-field__control">
+                  <div class="mgc-select-group mgc-select-group--wide">
+                    <label class="mgc-select-label">Maximum per options</label>
+                    <select class="mgc-select" id="mg-max-per">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="Unlimited">Unlimited</option>
+                    </select>
+                  </div>
+                  <div class="mgc-rule-hint" id="mg-maxper-hint">Each option can be selected multiple times.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Add modifier items (inline table) -->
+        <div class="form-section">
+          <div class="form-section__header">
+            <h3 class="form-section__title">Add modifier items <i data-lucide="help-circle" class="lucide-icon mgc-field__hint-icon" style="width:16px;height:16px"></i></h3>
+            <div class="form-section__action">
+              <button class="btn btn--secondary mgc-add-sku-btn" id="mg-add-sku-btn">
+                <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
+                <span>Add from SKU library</span>
+              </button>
+            </div>
+          </div>
+          <div class="mgc-items-table" id="mg-items-table">
+            <div class="mgc-items-table__head">
+              <span class="mgc-items-table__col mgc-items-table__col--name">Modifier items</span>
+              <span class="mgc-items-table__col mgc-items-table__col--price">Price</span>
+              <span class="mgc-items-table__col mgc-items-table__col--sku">Item SKU</span>
+              <span class="mgc-items-table__col mgc-items-table__col--default">Default</span>
+            </div>
+            <div class="mgc-items-table__body" id="mg-items-body">
+              <!-- Populated by JS -->
+            </div>
+            <div class="mgc-items-table__input-row">
+              <span class="mgc-items-table__col mgc-items-table__col--name" style="position:relative">
+                <input type="text" class="mgc-input mgc-input--sm" id="mg-search-modifier" placeholder="Search to add" autocomplete="off">
+              </span>
+              <span class="mgc-items-table__col mgc-items-table__col--price"><input type="text" class="mgc-input mgc-input--sm" id="mg-input-price" placeholder="$ 0.00"></span>
+              <span class="mgc-items-table__col mgc-items-table__col--sku"></span>
+              <span class="mgc-items-table__col mgc-items-table__col--default"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Assign to menu items -->
+        <div class="form-section">
+          <div class="form-section__header">
+            <h3 class="form-section__title">Assign to menu items</h3>
+            <div class="form-section__action" id="mg-menu-items-add-action" style="display:none">
+              <button class="btn btn--secondary" id="mg-menu-items-edit-btn">
+                <i data-lucide="pencil" class="lucide-icon" style="width:14px;height:14px"></i>
+                <span>Edit menu items</span>
+              </button>
+            </div>
+          </div>
+          <!-- Empty state -->
+          <div class="form-empty-card" id="mg-menu-items-empty">
+            <span class="form-empty-card__text">Assign this modifier group to menu items to make it available.</span>
+            <button class="btn btn--secondary" id="mg-menu-items-add-btn">
+              <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
+              <span>Assign to menu items</span>
+            </button>
+          </div>
+          <!-- Filled state -->
+          <div class="category-filled-card" id="mg-menu-items-filled" style="display:none">
+            <div class="category-filled-card__header" id="mg-menu-items-filled-header"></div>
+            <div class="category-filled-card__list" id="mg-menu-items-filled-list"></div>
+          </div>
+        </div>
+
+        <!-- Section: Locations, channels -->
+        <div class="form-section">
+          <div class="form-section__header">
+            <h3 class="form-section__title">Locations, channels</h3>
+          </div>
+          <div class="form-section__card">
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Locations</label>
+              </div>
+              <div class="form-field__control">
+                <div class="multiselect" data-field="mg-locations">
+                  <div class="multiselect__trigger">
+                    <div class="multiselect__pills">
+                      <span class="multiselect__placeholder">Select</span>
+                    </div>
+                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                  </div>
+                  <div class="multiselect__dropdown">
+                    <div class="multiselect__search-wrap">
+                      <i data-lucide="search" class="lucide-icon" style="width:14px;height:14px;color:var(--color-text-weak)"></i>
+                      <input type="text" class="multiselect__search" placeholder="Search...">
+                    </div>
+                    <div class="multiselect__option multiselect__option--select-all" data-value="__all__">
+                      <input type="checkbox" class="multiselect__checkbox">
+                      <span>Select all</span>
+                    </div>
+                    <div class="multiselect__divider"></div>
+                    <div class="multiselect__options">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Channels</label>
+              </div>
+              <div class="form-field__control">
+                <div class="multiselect" data-field="mg-channels">
+                  <div class="multiselect__trigger">
+                    <div class="multiselect__pills">
+                      <span class="multiselect__placeholder">Select</span>
+                    </div>
+                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                  </div>
+                  <div class="multiselect__dropdown">
+                    <div class="multiselect__search-wrap">
+                      <i data-lucide="search" class="lucide-icon" style="width:14px;height:14px;color:var(--color-text-weak)"></i>
+                      <input type="text" class="multiselect__search" placeholder="Search...">
+                    </div>
+                    <div class="multiselect__option multiselect__option--select-all" data-value="__all__">
+                      <input type="checkbox" class="multiselect__checkbox">
+                      <span>Select all</span>
+                    </div>
+                    <div class="multiselect__divider"></div>
+                    <div class="multiselect__options">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ASSIGN MENU ITEMS MODAL (for Modifier Group takeover) ===== -->
+  <div class="cat-modal-overlay" id="mg-menu-items-modal-overlay">
+    <div class="cat-modal">
+      <div class="cat-modal__header">
+        <h2 class="cat-modal__title" id="mg-menu-items-modal-title">Assign to menu items</h2>
+        <button class="cat-modal__close" id="mg-menu-items-modal-close">
+          <i data-lucide="x" class="lucide-icon" style="width:20px;height:20px"></i>
+        </button>
+      </div>
+      <div class="cat-modal__body">
+        <div class="cat-modal__search">
+          <div class="cat-modal__search-input">
+            <i data-lucide="search" class="lucide-icon cat-modal__search-icon" style="width:16px;height:16px"></i>
+            <input type="text" class="cat-modal__search-field" id="mg-menu-items-search-input" placeholder="Search menu items">
+          </div>
+        </div>
+        <div class="cat-modal__select-all">
+          <div class="cat-modal__option" data-value="__all__">
+            <input type="checkbox" class="cat-modal__checkbox" data-value="__all__">
+            <div class="cat-modal__option-info">
+              <span class="cat-modal__option-name cat-modal__option-name--bold">Select / deselect all</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-modal__divider"></div>
+        <div class="cat-modal__list" id="mg-menu-items-modal-list"></div>
+        <div class="cat-modal__empty" id="mg-menu-items-modal-empty">No menu items found</div>
+      </div>
+      <div class="cat-modal__footer">
+        <button class="btn btn--secondary" id="mg-menu-items-modal-cancel">Cancel</button>
+        <button class="btn btn--primary" id="mg-menu-items-modal-confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== ADD MENU ITEMS MODAL (for Category takeover) ===== -->
   <div class="cat-modal-overlay" id="cat-mi-modal-overlay">
     <div class="cat-modal">
@@ -3799,6 +5228,259 @@
     </div>
   </div>
 
+  <!-- ===== ADD MENU METHOD MODAL ===== -->
+  <div class="addmenu-modal-overlay" id="addmenu-modal-overlay">
+    <div class="addmenu-modal">
+      <div class="addmenu-modal__header">
+        <span class="addmenu-modal__title">Select a method to create your menu</span>
+        <button class="addmenu-modal__close" id="addmenu-modal-close" aria-label="Close">
+          <i data-lucide="x" class="lucide-icon" style="width:16px;height:16px;color:#141414"></i>
+        </button>
+      </div>
+      <div class="addmenu-modal__body">
+        <label class="addmenu-tile" data-method="import">
+          <input type="radio" name="addmenu-method" class="addmenu-tile__radio" value="import">
+          <div class="addmenu-tile__icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="19" stroke="#141414" stroke-width="1.5"/>
+              <path d="M13 14h14v12H13z" stroke="#141414" stroke-width="1.3" fill="none" rx="1"/>
+              <rect x="15" y="17" width="5" height="3" rx="0.5" fill="#FFBF62" stroke="#141414" stroke-width="0.8"/>
+              <text x="15.5" y="19.4" font-size="3" font-weight="700" fill="#141414" font-family="Inter">MENU</text>
+              <path d="M25 22l-3-3m0 0l-3 3m3-3v8" stroke="#141414" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" transform="translate(2,-6) scale(0.7)"/>
+              <circle cx="28" cy="13" r="4" fill="white" stroke="#141414" stroke-width="1"/>
+              <path d="M26.5 13l1 1 2-2" stroke="#141414" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="addmenu-tile__content">
+            <span class="addmenu-tile__name">Import from an online channel</span>
+            <span class="addmenu-tile__desc">Import an existing menu from your online channel, make edits directly in Otter and publish to all other online channels.</span>
+          </div>
+          <div class="addmenu-tile__badge">
+            <span class="addmenu-badge--fastest">Fastest</span>
+          </div>
+        </label>
+        <label class="addmenu-tile" data-method="create">
+          <input type="radio" name="addmenu-method" class="addmenu-tile__radio" value="create">
+          <div class="addmenu-tile__icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="19" stroke="#141414" stroke-width="1.5"/>
+              <path d="M14 12h8l4 4v12a1 1 0 01-1 1H14V12z" stroke="#141414" stroke-width="1.3" fill="none"/>
+              <path d="M22 12v4h4" stroke="#141414" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+              <rect x="16" y="21" width="5" height="3" rx="0.5" fill="#FFBF62" stroke="#141414" stroke-width="0.8"/>
+              <text x="16.5" y="23.4" font-size="3" font-weight="700" fill="#141414" font-family="Inter">MENU</text>
+              <line x1="16" y1="17" x2="21" y2="17" stroke="#141414" stroke-width="1" stroke-linecap="round"/>
+              <line x1="16" y1="19" x2="23" y2="19" stroke="#141414" stroke-width="1" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="addmenu-tile__content">
+            <span class="addmenu-tile__name">Create</span>
+            <span class="addmenu-tile__desc">Create your Otter menu from scratch with our menu creation tool.</span>
+          </div>
+          <div class="addmenu-tile__badge"></div>
+        </label>
+        <label class="addmenu-tile" data-method="upload">
+          <input type="radio" name="addmenu-method" class="addmenu-tile__radio" value="upload">
+          <div class="addmenu-tile__icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="19" stroke="#141414" stroke-width="1.5"/>
+              <rect x="13" y="20" width="14" height="8" rx="1" stroke="#141414" stroke-width="1.3" fill="none"/>
+              <rect x="15" y="22" width="5" height="3" rx="0.5" fill="#FFBF62" stroke="#141414" stroke-width="0.8"/>
+              <text x="15.5" y="24.4" font-size="3" font-weight="700" fill="#141414" font-family="Inter">MENU</text>
+              <path d="M20 12v9m0-9l-3 3m3-3l3 3" stroke="#141414" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="addmenu-tile__content">
+            <span class="addmenu-tile__name">Upload</span>
+            <span class="addmenu-tile__desc">Upload a list of your products with our Excel spreadsheet template.</span>
+          </div>
+          <div class="addmenu-tile__badge"></div>
+        </label>
+      </div>
+      <div class="addmenu-modal__footer">
+        <button class="btn btn--secondary" id="addmenu-modal-cancel">Cancel</button>
+        <button class="btn btn--primary" id="addmenu-modal-continue" disabled>Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== EDIT MENU PAGE TAKEOVER ===== -->
+  <div class="edit-menu-takeover" id="edit-menu-takeover">
+
+    <!-- Takeover Nav Bar -->
+    <div class="takeover-nav">
+      <div class="takeover-nav__left">
+        <button class="takeover-nav__close" id="edit-menu-close" aria-label="Close">
+          <i data-lucide="x" class="lucide-icon" style="width:16px;height:16px;color:var(--color-secondary-fill)"></i>
+        </button>
+        <span class="takeover-nav__title" id="edit-menu-title">Edit [Menu name]</span>
+      </div>
+      <div class="takeover-nav__right">
+        <span class="takeover-nav__hint">Save keeps your changes in draft. Publish updates your live menu across selected locations and channels.</span>
+        <div class="takeover-nav__cta">
+          <button class="btn btn--secondary">Save and publish</button>
+          <button class="btn btn--primary">Save</button>
+        </div>
+        <button class="btn btn--icon-only" aria-label="More actions">
+          <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Takeover Body -->
+    <div class="takeover-body">
+      <div class="takeover-content">
+
+        <!-- LEFT: Main Content -->
+        <div class="takeover-main">
+
+          <!-- Section nav -->
+          <div class="takeover-section-nav">
+            <span class="takeover-section-nav__title" id="edit-menu-section-title">Lunch menu</span>
+            <button class="btn btn--secondary" id="edit-menu-reorder-btn">
+              <span class="btn__icon btn__icon--leading">
+                <i data-lucide="grip-vertical" class="lucide-icon" style="width:14px;height:14px"></i>
+              </span>
+              <span>Reorder category</span>
+            </button>
+          </div>
+
+          <!-- Dynamic category cards rendered by JS -->
+          <div id="edit-menu-categories"></div>
+
+        </div><!-- /takeover-main -->
+
+        <!-- RIGHT: Menu Information Panel -->
+        <div class="takeover-sidebar">
+          <div class="menu-info-header">
+            <span class="menu-info-header__title">Menu information</span>
+            <button class="btn btn--secondary">
+              <span class="btn__icon btn__icon--leading">
+                <i data-lucide="pencil" class="lucide-icon" style="width:14px;height:14px"></i>
+              </span>
+              <span>Edit</span>
+            </button>
+          </div>
+          <div class="menu-info-rows">
+            <div class="menu-info-row">
+              <div class="menu-info-row__content">
+                <span class="menu-info-row__label">Display name</span>
+                <span class="menu-info-row__value" id="edit-menu-info-display-name">Drinks</span>
+              </div>
+            </div>
+            <div class="menu-info-row">
+              <div class="menu-info-row__content">
+                <span class="menu-info-row__label">Internal name</span>
+                <span class="menu-info-row__value" id="edit-menu-info-internal-name">Drinks</span>
+              </div>
+            </div>
+            <div class="menu-info-row">
+              <div class="menu-info-row__content">
+                <span class="menu-info-row__label">Description</span>
+                <span class="menu-info-row__value" id="edit-menu-info-description">Beverage menu</span>
+              </div>
+            </div>
+            <div class="menu-info-row">
+              <div class="menu-info-row__content">
+                <span class="menu-info-row__label">Cuisine type</span>
+                <span class="menu-info-row__value" id="edit-menu-info-cuisine">Mexico, Alcohol</span>
+              </div>
+            </div>
+            <div class="menu-info-row">
+              <div class="menu-info-row__content">
+                <span class="menu-info-row__label">Fulfillment mode</span>
+                <span class="menu-info-row__value" id="edit-menu-info-fulfillment">Dine-in, Pickup</span>
+              </div>
+            </div>
+            <div class="menu-info-row">
+              <div class="menu-info-row__content">
+                <span class="menu-info-row__label">Locations</span>
+                <span class="menu-info-row__value menu-info-row__value--link" id="edit-menu-info-locations">15 locations</span>
+              </div>
+            </div>
+            <div class="menu-info-row">
+              <div class="menu-info-row__content">
+                <span class="menu-info-row__label">Channels</span>
+                <span class="menu-info-row__value menu-info-row__value--link" id="edit-menu-info-channels">3 channels</span>
+              </div>
+            </div>
+          </div>
+        </div><!-- /takeover-sidebar -->
+
+      </div><!-- /takeover-content -->
+    </div><!-- /takeover-body -->
+
+    <!-- Reorder Categories Modal -->
+    <div class="reorder-modal-overlay" id="reorder-modal-overlay">
+      <div class="reorder-modal">
+        <div class="reorder-modal__header">
+          <span class="reorder-modal__title">Reorder categories</span>
+          <button class="reorder-modal__close" id="reorder-modal-close" aria-label="Close">
+            <i data-lucide="x" class="lucide-icon" style="width:16px;height:16px;color:#141414"></i>
+          </button>
+        </div>
+        <div class="reorder-modal__body">
+          <div class="reorder-modal__menu-card">
+            <div class="reorder-modal__menu-icon">
+              <i data-lucide="book-open" class="lucide-icon" style="width:20px;height:20px;color:#141414"></i>
+            </div>
+            <div class="reorder-modal__menu-info">
+              <span class="reorder-modal__menu-name" id="reorder-modal-menu-name">All Day Menu</span>
+              <span class="reorder-modal__menu-count" id="reorder-modal-menu-count">5 categories</span>
+            </div>
+          </div>
+          <div class="reorder-modal__list" id="reorder-modal-list"></div>
+        </div>
+        <div class="reorder-modal__footer">
+          <button class="btn btn--secondary" id="reorder-modal-cancel">Cancel</button>
+          <button class="btn btn--primary" id="reorder-modal-save">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Item to Category Modal -->
+    <div class="additem-modal-overlay" id="additem-modal-overlay">
+      <div class="additem-modal">
+        <div class="additem-modal__header">
+          <span class="additem-modal__title" id="additem-modal-title">Add menu item</span>
+          <button class="additem-modal__close" id="additem-modal-close" aria-label="Close">
+            <i data-lucide="x" class="lucide-icon" style="width:16px;height:16px;color:#141414"></i>
+          </button>
+        </div>
+        <div class="shared-banner" id="additem-shared-banner">
+          <div class="shared-banner__icon">
+            <i data-lucide="info" class="lucide-icon" style="width:16px;height:16px;color:var(--color-primary)"></i>
+          </div>
+          <div class="shared-banner__content">
+            <span class="shared-banner__title">Shared categories</span>
+            <span class="shared-banner__desc">This category is shared across multiple menus. Changes you make here will apply to all of them.</span>
+          </div>
+          <button class="shared-banner__close" aria-label="Close banner">
+            <i data-lucide="x" class="lucide-icon" style="width:14px;height:14px;color:var(--color-text-weak)"></i>
+          </button>
+        </div>
+        <div class="additem-modal__body">
+          <div class="additem-modal__search">
+            <div class="additem-modal__search-input">
+              <i data-lucide="search" class="lucide-icon additem-modal__search-icon" style="width:16px;height:16px"></i>
+              <input type="text" class="additem-modal__search-field" id="additem-modal-search" placeholder="Search menu items...">
+            </div>
+          </div>
+          <div class="additem-modal__list" id="additem-modal-list"></div>
+          <div class="additem-modal__empty" id="additem-modal-empty">No items found</div>
+        </div>
+        <div class="additem-modal__footer">
+          <button class="btn btn--ghost" id="additem-modal-create-new">
+            <span class="btn__icon btn__icon--leading"><i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i></span>
+            <span>Create new menu item</span>
+          </button>
+          <button class="btn btn--secondary" id="additem-modal-cancel">Cancel</button>
+          <button class="btn btn--primary" id="additem-modal-add" disabled>Add</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /edit-menu-takeover -->
+
   <!-- JavaScript -->
   <script src="js/sidebar.js?v=2"></script>
   <script src="js/tabs.js?v=2"></script>
@@ -3808,14 +5490,16 @@
   <script src="js/row-actions.js"></script>
   <script src="js/sort.js"></script>
   <script src="js/sticky-header.js?v=2"></script>
-  <script src="js/tooltips.js?v=7"></script>
+  <script src="js/tooltips.js?v=8"></script>
   <script src="js/mg-table.js"></script>
   <script src="js/menus-table.js"></script>
   <script src="js/mi-table.js?v=2"></script>
-  <script src="js/add-item.js?v=22"></script>
+  <script src="js/add-item.js?v=23"></script>
   <script src="js/add-modifier-item.js?v=10"></script>
-  <script src="js/add-category.js?v=5"></script>
+  <script src="js/add-category.js?v=7"></script>
+  <script src="js/add-modifier-group.js?v=1"></script>
   <script src="js/multiselect.js?v=4"></script>
+  <script src="js/edit-menu.js?v=10"></script>
   <script>
     // Initialize Lucide icons
     lucide.createIcons();

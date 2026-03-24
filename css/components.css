@@ -717,6 +717,13 @@
   object-fit: cover;
 }
 
+.cell-thumbnail--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-weak);
+}
+
 .cell-name-text {
   font-weight: var(--fw-medium);
   font-size: var(--text-body-small);
@@ -1028,7 +1035,7 @@
   padding: 10px 14px;
   min-width: 160px;
   max-width: 300px;
-  z-index: 300;
+  z-index: 1100;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
   pointer-events: none;
 }
@@ -1151,3 +1158,42 @@
 .bulk-action-bar__dismiss:hover {
   background: var(--color-bg-alpha-weak);
 }
+
+/* ===== SKU LIBRARY PAGE ===== */
+.sku-page-header {
+  padding: 24px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.sku-page-header__title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-title-large);
+  line-height: var(--lh-title-large);
+  color: var(--color-text-strong);
+  letter-spacing: -0.476px;
+}
+
+/* Info banner subtitle for two-line banners */
+.info-banner__subtitle {
+  font-size: var(--text-body-small);
+  line-height: var(--lh-body-small);
+  color: var(--color-text-weak);
+  margin-top: 2px;
+}
+
+/* Linked cell values (blue links) */
+.cell-link {
+  color: var(--color-text-weak);
+}
+
+/* SKU table column widths */
+#sku-table .col-sku-name { min-width: 240px; }
+#sku-table .col-sku-code { min-width: 120px; }
+#sku-table .col-price { min-width: 100px; }
+#sku-table .col-items-linked { min-width: 140px; }
+#sku-table .col-brands { min-width: 120px; }
+#sku-table .col-locations { min-width: 120px; }
