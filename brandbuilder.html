@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brand Builder Case Study Slides</title>
+    <meta
+      name="description"
+      content="A slide-based case study about Brand Builder, an AI-assisted menu optimization workflow for customer success teams."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=15" />
+  </head>
+  <body>
+    <div class="deck-shell">
+      <header class="deck-hud" aria-label="Presentation status">
+        <div class="deck-hud__meta">
+          <p class="deck-hud__meta-kicker">Case Study</p>
+          <label class="sr-only" for="case-study-switcher">Case study switcher</label>
+          <select class="case-switcher" id="case-study-switcher" data-case-switcher>
+            <option value="./index.html">Inventory Workflow</option>
+            <option value="./brandbuilder.html" selected>Brand Builder</option>
+            <option value="./slingshot.html">Slingshot</option>
+          </select>
+          <div class="deck-hud__status">
+            <p class="deck-hud__label" data-slide-title>Overview</p>
+            <p class="deck-hud__count">
+              <span data-current-slide>01</span>
+              <span>/</span>
+              <span data-total-slides>08</span>
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <nav class="deck-dots" aria-label="Slide navigation">
+        <button class="deck-dot is-active" type="button" data-slide-target="0" aria-label="Go to overview"></button>
+        <button class="deck-dot" type="button" data-slide-target="1" aria-label="Go to problem"></button>
+        <button class="deck-dot" type="button" data-slide-target="2" aria-label="Go to discovery"></button>
+        <button class="deck-dot" type="button" data-slide-target="3" aria-label="Go to solution"></button>
+        <button class="deck-dot" type="button" data-slide-target="4" aria-label="Go to optimization flow"></button>
+        <button class="deck-dot" type="button" data-slide-target="5" aria-label="Go to image workflow"></button>
+        <button class="deck-dot" type="button" data-slide-target="6" aria-label="Go to collaborative review"></button>
+        <button class="deck-dot" type="button" data-slide-target="7" aria-label="Go to results"></button>
+      </nav>
+
+      <main class="deck-track" aria-label="Brand Builder slide deck">
+        <section class="slide slide--hero is-current" id="slide-1" data-slide-title="Overview">
+          <div class="slide__frame slide__frame--hero">
+            <div class="hero-copy">
+              <p class="slide__eyebrow reveal">Case study</p>
+              <h1 class="slide__title slide__title--hero reveal">Create AI-driven menu optimization experience</h1>
+              <p class="slide__lede reveal">
+                Brand Builder is an internal AI-powered tool that helps Customer Success Managers
+                scale menu optimization for restaurant operators without losing editorial control.
+              </p>
+
+              <div class="hero-summary reveal">
+                <p>
+                  I turned a manual, service-heavy workflow into a structured and repeatable product
+                  experience while keeping CSMs in charge of the final output.
+                </p>
+              </div>
+
+              <div class="hero-details reveal">
+                <span class="info-pill">Lead Product Designer</span>
+                <span class="info-pill">Web app</span>
+                <span class="info-pill">2023</span>
+              </div>
+            </div>
+
+            <div class="hero-visual reveal">
+              <div class="visual-panel visual-panel--hero">
+                <img
+                  class="visual-panel__image visual-panel__image--hero"
+                  src="./assets/brandbuilder-hero.png"
+                  alt="Three interface previews from the Brand Builder case study."
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide slide--problem" id="slide-2" data-slide-title="Problem">
+          <div class="slide__frame slide__frame--split">
+            <div class="content-panel reveal">
+              <p class="slide__eyebrow">Problem</p>
+              <h2 class="slide__title">A high-impact service model was working, but it was not scalable.</h2>
+              <p class="slide__lede">
+                90% of inbound customers were new operators who knew food but not restaurant
+                management, so the customer success team was manually upgrading menus for them.
+              </p>
+            </div>
+
+            <div class="problem-grid">
+              <article class="insight-card reveal">
+                <p class="insight-card__index">01</p>
+                <h3>Operator gap</h3>
+                <p>New restaurant operators needed hands-on guidance to improve menu structure and copy.</p>
+              </article>
+              <article class="insight-card reveal">
+                <p class="insight-card__index">02</p>
+                <h3>Manual success</h3>
+                <p>The existing service model was driving roughly 30% average sales lift for supported menus.</p>
+              </article>
+              <article class="insight-card reveal">
+                <p class="insight-card__index">03</p>
+                <h3>Scaling pressure</h3>
+                <p>As the customer base grew, the same manual process became too expensive and slow to sustain.</p>
+              </article>
+            </div>
+
+            <div class="quote-band reveal">
+              <p class="quote-band__copy">
+                The challenge was not proving value. It was packaging expert menu optimization into a repeatable product system.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide slide--research" id="slide-3" data-slide-title="Discovery">
+          <div class="slide__frame slide__frame--research">
+            <div class="content-panel reveal">
+              <p class="slide__eyebrow">Discovery</p>
+              <h2 class="slide__title">The opportunity was to blend AI speed with human curation.</h2>
+              <p class="slide__lede">
+                After brainstorming with the Customer Success team, we identified a way to streamline
+                and scale menu optimization by integrating AI-driven enhancements into the workflow.
+              </p>
+
+              <div class="bullet-stack">
+                <article class="bullet-card reveal">
+                  <h3>Personalized prompts</h3>
+                  <p>CSMs tailored prompt inputs to reflect each restaurant’s voice, cuisine style, and signature elements.</p>
+                </article>
+                <article class="bullet-card reveal">
+                  <h3>Human refinement</h3>
+                  <p>Content specialists reviewed the AI output for accuracy, cultural authenticity, and consistency.</p>
+                </article>
+                <article class="bullet-card reveal">
+                  <h3>Product role</h3>
+                  <p>The interface needed to make AI feel editable, transparent, and safe for internal teams to trust.</p>
+                </article>
+              </div>
+            </div>
+
+            <figure class="image-stage reveal">
+              <img
+                src="./assets/brandbuilder-flow-1.png"
+                alt="Brand Builder interface used during the optimization workflow."
+              />
+              <figcaption>
+                The system’s value came from turning expert judgment into a guided product loop, not just generating text.
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="slide slide--strategy" id="slide-4" data-slide-title="Solution">
+          <div class="slide__frame slide__frame--strategy">
+            <div class="content-panel reveal">
+              <p class="slide__eyebrow">Solution</p>
+              <h2 class="slide__title">Brand Builder reframed CSMs from manual executors to strategic curators.</h2>
+              <p class="slide__lede">
+                I designed an AI-assisted workflow that let teams configure optimization inputs,
+                generate editable recommendations, collaborate with operators, and publish the final
+                menu on the operator’s behalf.
+              </p>
+            </div>
+
+            <div class="moment-grid">
+              <article class="moment-card reveal">
+                <p class="moment-card__tag">Step 1</p>
+                <h3>Structured setup</h3>
+                <p>Optimization begins with clear inputs instead of unstructured one-off requests.</p>
+              </article>
+              <article class="moment-card reveal">
+                <p class="moment-card__tag">Step 2</p>
+                <h3>Editable generation</h3>
+                <p>AI recommendations are reviewable and revisable, not treated as final output.</p>
+              </article>
+              <article class="moment-card reveal">
+                <p class="moment-card__tag">Step 3</p>
+                <h3>Clear approval loop</h3>
+                <p>Operators can compare versions, leave feedback, and approve polished updates.</p>
+              </article>
+            </div>
+
+            <div class="principle-ribbon reveal">
+              <span>Context-aware generation</span>
+              <span>Human refinement before publish</span>
+              <span>Scalable service without losing taste</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide slide--flow" id="slide-5" data-slide-title="Optimization Flow">
+          <div class="slide__frame slide__frame--flow">
+            <div class="flow-copy">
+              <p class="slide__eyebrow reveal">Designing the optimization flow</p>
+              <h2 class="slide__title reveal">The menu logic was sequenced so each AI step built on the last one.</h2>
+
+              <div class="flow-points">
+                <article class="flow-point reveal">
+                  <h3>Reorganize menu</h3>
+                  <p>Establish hierarchy and item positioning so all generated content is context-aware.</p>
+                </article>
+                <article class="flow-point reveal">
+                  <h3>Improve menu copy</h3>
+                  <p>Descriptions are generated based on item role within each category, improving consistency and reducing rework.</p>
+                </article>
+                <article class="flow-point reveal">
+                  <h3>Optimize modifiers</h3>
+                  <p>Modifier logic is layered on top of the finalized structure to support customization and upsell clarity.</p>
+                </article>
+              </div>
+
+              <div class="result-chip reveal">Each step increases contextual accuracy before the next one begins.</div>
+            </div>
+
+            <div class="screen-strip screen-strip--three reveal">
+              <figure class="screen-card">
+                <img src="./assets/brandbuilder-flow-1.png" alt="Brand Builder menu reorganization screen." />
+                <figcaption>Reorganize menu</figcaption>
+              </figure>
+              <figure class="screen-card">
+                <img src="./assets/brandbuilder-flow-2.png" alt="Brand Builder menu copy improvement screen." />
+                <figcaption>Improve menu copy</figcaption>
+              </figure>
+              <figure class="screen-card">
+                <img src="./assets/brandbuilder-flow-3.png" alt="Brand Builder modifier optimization screen." />
+                <figcaption>Optimize modifiers</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide slide--flow slide--flow-accent" id="slide-6" data-slide-title="Image Workflow">
+          <div class="slide__frame slide__frame--flow">
+            <div class="flow-copy">
+              <p class="slide__eyebrow reveal">AI image workflow</p>
+              <h2 class="slide__title reveal">Image generation stayed editable instead of becoming a one-shot asset pipeline.</h2>
+
+              <div class="flow-points">
+                <article class="flow-point reveal">
+                  <h3>Upstyle images</h3>
+                  <p>Images were generated only after the AI content was finalized, improving visual relevance and consistency.</p>
+                </article>
+                <article class="flow-point reveal">
+                  <h3>Regenerate on demand</h3>
+                  <p>Teams could regenerate imagery with the same context, enabling quick iteration without resetting the workflow.</p>
+                </article>
+                <article class="flow-point reveal">
+                  <h3>Keep the system flexible</h3>
+                  <p>The experience was designed so AI output could be revised rather than treated as precious or locked.</p>
+                </article>
+              </div>
+
+              <div class="result-chip reveal">Higher-quality visuals without sacrificing editorial control.</div>
+            </div>
+
+            <div class="screen-strip screen-strip--two reveal">
+              <figure class="screen-card">
+                <img src="./assets/brandbuilder-flow-4.png" alt="Brand Builder image upstyling screen." />
+                <figcaption>Upstyle images</figcaption>
+              </figure>
+              <figure class="screen-card">
+                <img src="./assets/brandbuilder-flow-5.png" alt="Brand Builder regenerate on demand interface." />
+                <figcaption>Regenerate on demand</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide slide--flow" id="slide-7" data-slide-title="Review">
+          <div class="slide__frame slide__frame--flow">
+            <div class="flow-copy">
+              <p class="slide__eyebrow reveal">Collaborative review</p>
+              <h2 class="slide__title reveal">Operators could review polished comparisons across desktop and mobile.</h2>
+
+              <div class="flow-summary reveal">
+                <p class="flow-summary__label">Review loop</p>
+                <p>Operators received side-by-side comparisons so they could review updates, give feedback, and request revisions before final approval.</p>
+              </div>
+
+              <div class="flow-points">
+                <article class="flow-point reveal">
+                  <h3>Clear comparison</h3>
+                  <p>Before-and-after presentation made AI changes easier to understand and trust.</p>
+                </article>
+                <article class="flow-point reveal">
+                  <h3>Cross-device confidence</h3>
+                  <p>The review experience translated between desktop workflows for teams and mobile-friendly output for operators.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="screen-strip screen-strip--two reveal">
+              <figure class="screen-card">
+                <img src="./assets/brandbuilder-desktop.png" alt="Desktop review interface for Brand Builder." />
+                <figcaption>Desktop review</figcaption>
+              </figure>
+              <figure class="screen-card">
+                <img src="./assets/brandbuilder-mobile.png" alt="Mobile review interface for Brand Builder." />
+                <figcaption>Mobile review</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide slide--outcome" id="slide-8" data-slide-title="Result">
+          <div class="slide__frame slide__frame--outcome">
+            <div class="content-panel reveal">
+              <p class="slide__eyebrow">Result</p>
+              <h2 class="slide__title">The pilot suggested strong commercial upside before the rollout paused.</h2>
+              <p class="slide__lede">
+                During testing, the AI upstyled image feature was piloted with 17 storefronts.
+                Early results were promising: 85% of participating storefronts saw GMV growth, with
+                an average increase of around 30%.
+              </p>
+            </div>
+
+            <div class="outcome-grid">
+              <article class="outcome-card reveal">
+                <p class="outcome-card__value">17</p>
+                <p class="outcome-card__label">storefronts included in the pilot phase</p>
+              </article>
+              <article class="outcome-card reveal">
+                <p class="outcome-card__value">85%</p>
+                <p class="outcome-card__label">of participating storefronts showed GMV growth</p>
+              </article>
+              <article class="outcome-card reveal">
+                <p class="outcome-card__value">~30%</p>
+                <p class="outcome-card__label">average GMV increase across the pilot</p>
+              </article>
+            </div>
+
+            <div class="closing-banner reveal">
+              <p>The project was later paused during company reorganization, before full rollout.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./main.js?v=5" defer></script>
+  </body>
+</html>

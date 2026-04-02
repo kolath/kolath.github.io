@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slingshot Case Study Slides</title>
+    <meta
+      name="description"
+      content="A slide-based case study about improving Slingshot adoption by expanding market analysis and redesigning deal calculator workflows."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=15" />
+  </head>
+  <body>
+    <div class="deck-shell">
+      <header class="deck-hud" aria-label="Presentation status">
+        <div class="deck-hud__meta">
+          <p class="deck-hud__meta-kicker">Case Study</p>
+          <label class="sr-only" for="case-study-switcher">Case study switcher</label>
+          <select class="case-switcher" id="case-study-switcher" data-case-switcher>
+            <option value="./index.html">Inventory Workflow</option>
+            <option value="./brandbuilder.html">Brand Builder</option>
+            <option value="./slingshot.html" selected>Slingshot</option>
+          </select>
+          <div class="deck-hud__status">
+            <p class="deck-hud__label" data-slide-title>Overview</p>
+            <p class="deck-hud__count">
+              <span data-current-slide>01</span>
+              <span>/</span>
+              <span data-total-slides>08</span>
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <nav class="deck-dots" aria-label="Slide navigation">
+        <button class="deck-dot is-active" type="button" data-slide-target="0" aria-label="Go to overview"></button>
+        <button class="deck-dot" type="button" data-slide-target="1" aria-label="Go to problem"></button>
+        <button class="deck-dot" type="button" data-slide-target="2" aria-label="Go to discovery"></button>
+        <button class="deck-dot" type="button" data-slide-target="3" aria-label="Go to strategy"></button>
+        <button class="deck-dot" type="button" data-slide-target="4" aria-label="Go to market analysis"></button>
+        <button class="deck-dot" type="button" data-slide-target="5" aria-label="Go to decision layer"></button>
+        <button class="deck-dot" type="button" data-slide-target="6" aria-label="Go to calculator"></button>
+        <button class="deck-dot" type="button" data-slide-target="7" aria-label="Go to results"></button>
+      </nav>
+
+      <main class="deck-track" aria-label="Slingshot slide deck">
+        <section class="slide slide--hero is-current" id="slide-1" data-slide-title="Overview">
+          <div class="slide__frame slide__frame--hero">
+            <div class="hero-copy">
+              <p class="slide__eyebrow reveal">Case study</p>
+              <h1 class="slide__title slide__title--hero reveal">Improve market analysis tool for AE adoption</h1>
+              <p class="slide__lede reveal">
+                Slingshot is a tool for market analysis and sales pitching, but adoption among AEs
+                was only 70%. I led discovery with AEs to identify workflow gaps, prioritized key
+                feature improvements, and worked on solutions that expanded its value and usability.
+              </p>
+
+              <div class="hero-summary reveal">
+                <p>
+                  We repositioned Slingshot from something useful in pitch moments into a more
+                  trusted day-to-day decision tool that helps AEs evaluate markets, compare
+                  facilities, and negotiate live with customers.
+                </p>
+              </div>
+
+              <div class="hero-details reveal">
+                <span class="info-pill">Lead Product Designer</span>
+                <span class="info-pill">Web app</span>
+                <span class="info-pill">2024</span>
+              </div>
+            </div>
+
+            <div class="hero-visual reveal">
+              <div class="visual-panel visual-panel--hero">
+                <img
+                  class="visual-panel__image visual-panel__image--hero"
+                  src="./assets/slingshot-hero.png"
+                  alt="Slingshot interface preview showing market analysis views."
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide slide--problem" id="slide-2" data-slide-title="Problem">
+          <div class="slide__frame slide__frame--split">
+            <div class="content-panel reveal">
+              <p class="slide__eyebrow">Problem</p>
+              <h2 class="slide__title">The product mattered to deals, but not enough to become habit-forming for AEs.</h2>
+              <p class="slide__lede">
+                Slingshot played an important role in market analysis and pitching, but its current
+                workflow support was too narrow to become essential across the broader sales cycle.
+              </p>
+            </div>
+
+            <div class="problem-grid">
+              <article class="insight-card reveal">
+                <p class="insight-card__index">01</p>
+                <h3>Adoption gap</h3>
+                <p>AE adoption was only 70%, and just 5% of closed-won opportunities were powered by Slingshot.</p>
+              </article>
+              <article class="insight-card reveal">
+                <p class="insight-card__index">02</p>
+                <h3>Workflow mismatch</h3>
+                <p>The tool was strong in pitch moments but lacked depth for market evaluation and real deal shaping.</p>
+              </article>
+              <article class="insight-card reveal">
+                <p class="insight-card__index">03</p>
+                <h3>Business goal</h3>
+                <p>Redesign the experience to support AE workflows better and increase both usage and deal impact.</p>
+              </article>
+            </div>
+
+            <div class="quote-band reveal">
+              <p class="quote-band__copy">
+                Slingshot had clear promise, but it needed to create tangible value earlier and more often in the sales process.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide slide--research" id="slide-3" data-slide-title="Discovery">
+          <div class="slide__frame slide__frame--research">
+            <div class="content-panel reveal">
+              <p class="slide__eyebrow">Discovery</p>
+              <h2 class="slide__title">Jam sessions with AEs showed where the workflow was falling short.</h2>
+              <p class="slide__lede">
+                Through collaborative sessions, we learned that while Slingshot helped with
+                pitching, it fell short as a comprehensive market analysis tool and didn’t support
+                the real structures AEs negotiate through.
+              </p>
+
+              <div class="bullet-stack">
+                <article class="bullet-card reveal">
+                  <h3>Research method</h3>
+                  <p>Collaborative jam sessions with AEs to walk through live deal evaluation and pitching workflows.</p>
+                </article>
+                <article class="bullet-card reveal">
+                  <h3>Key insight 1</h3>
+                  <p>Market analysis lacked actionable signals that could support confident decision-making.</p>
+                </article>
+                <article class="bullet-card reveal">
+                  <h3>Key insight 2</h3>
+                  <p>The calculator didn’t reflect real deal structures, making it hard to use in live conversations.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="screen-strip screen-strip--two reveal">
+              <figure class="screen-card">
+                <img src="./assets/slingshot-discovery-1.png" alt="Discovery artifact from Slingshot jam sessions." />
+                <figcaption>AE jam sessions surfaced where analysis stopped short of a decision.</figcaption>
+              </figure>
+              <figure class="screen-card">
+                <img src="./assets/slingshot-discovery-2.png" alt="Workflow exploration artifact for Slingshot." />
+                <figcaption>We mapped the gap between pitching support and broader deal-shaping needs.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide slide--strategy" id="slide-4" data-slide-title="Strategy">
+          <div class="slide__frame slide__frame--strategy">
+            <div class="content-panel reveal">
+              <p class="slide__eyebrow">Design solution</p>
+              <h2 class="slide__title">We focused the redesign on two jobs: better market decisions and better live negotiation support.</h2>
+              <p class="slide__lede">
+                We reframed the challenge around daily utility. Slingshot needed to help AEs decide
+                where to go, what to recommend, and how to negotiate through real scenarios.
+              </p>
+            </div>
+
+            <div class="moment-grid">
+              <article class="moment-card reveal">
+                <p class="moment-card__tag">Focus 1</p>
+                <h3>Actionable market analysis</h3>
+                <p>Make demand signals, nearby brands, and traffic drivers useful enough to shape recommendations.</p>
+              </article>
+              <article class="moment-card reveal">
+                <p class="moment-card__tag">Focus 2</p>
+                <h3>Realistic calculator</h3>
+                <p>Reflect actual deal structures, including multiple scenarios and upfront investment.</p>
+              </article>
+              <article class="moment-card reveal">
+                <p class="moment-card__tag">Focus 3</p>
+                <h3>Live conversation support</h3>
+                <p>Reduce cognitive load so AEs can use the tool fluidly during customer conversations.</p>
+              </article>
+            </div>
+
+            <div class="principle-ribbon reveal">
+              <span>Turn analysis into recommendations</span>
+              <span>Support real financial structures</span>
+              <span>Design for live sales conversations</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide slide--flow" id="slide-5" data-slide-title="Market Analysis">
+          <div class="slide__frame slide__frame--flow">
+            <div class="flow-copy">
+              <p class="slide__eyebrow reveal">Market analysis</p>
+              <h2 class="slide__title reveal">Expand value in market analysis by making the signals recommendation-ready.</h2>
+
+              <div class="flow-summary reveal">
+                <p class="flow-summary__label">What changed</p>
+                <p>We highlighted recommended facilities, key interests, and nearby top brands so AEs could identify higher-potential opportunities faster.</p>
+              </div>
+
+              <div class="flow-points">
+                <article class="flow-point reveal">
+                  <h3>Market analysis</h3>
+                  <p>Analyze local demographics and demand signals to evaluate market potential.</p>
+                </article>
+                <article class="flow-point reveal">
+                  <h3>Point of interest</h3>
+                  <p>Reveal nearby traffic drivers that influence customer demand around a facility.</p>
+                </article>
+                <article class="flow-point reveal">
+                  <h3>Top brands nearby</h3>
+                  <p>Show the competitive landscape by highlighting strong brands already operating in the area.</p>
+                </article>
+              </div>
+
+              <div class="result-chip reveal">
+                Analysis became something AEs could act on immediately, not just read through.
+              </div>
+            </div>
+
+            <div class="screen-strip screen-strip--three reveal">
+              <figure class="screen-card">
+                <img src="./assets/slingshot-market-analysis.png" alt="Market analysis screen in Slingshot." />
+                <figcaption>Market analysis</figcaption>
+              </figure>
+              <figure class="screen-card">
+                <img src="./assets/slingshot-point-of-interest.png" alt="Point of interest screen in Slingshot." />
+                <figcaption>Point of interest</figcaption>
+              </figure>
+              <figure class="screen-card">
+                <img src="./assets/slingshot-top-brands.png" alt="Top brands nearby screen in Slingshot." />
+                <figcaption>Top brands nearby</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide slide--flow slide--flow-accent" id="slide-6" data-slide-title="Decision Layer">
+          <div class="slide__frame slide__frame--flow">
+            <div class="flow-copy">
+              <p class="slide__eyebrow reveal">Decision layer</p>
+              <h2 class="slide__title reveal">Add scoring, brand impact, and comparisons so AEs can make a stronger case.</h2>
+
+              <div class="flow-summary reveal">
+                <p class="flow-summary__label">Decision support</p>
+                <p>We moved beyond exploration by helping AEs compare options, surface facility quality, and anticipate internal brand conflicts.</p>
+              </div>
+
+              <div class="flow-points">
+                <article class="flow-point reveal">
+                  <h3>Facility score</h3>
+                  <p>Rank facilities using a composite score based on demand, competition, and brand impact.</p>
+                </article>
+                <article class="flow-point reveal">
+                  <h3>Brand impact</h3>
+                  <p>Show a facility’s effect on a customer’s current brands to reduce internal deal conflicts.</p>
+                </article>
+                <article class="flow-point reveal">
+                  <h3>Comparison tool</h3>
+                  <p>Support side-by-side comparisons of facilities, brands, and competitors for more tailored pitches.</p>
+                </article>
+              </div>
+            </div>
+
+            <figure class="image-stage reveal">
+              <img
+                src="./assets/slingshot-facility-score.png"
+                alt="Facility score interface in Slingshot."
+              />
+              <figcaption>Facility score concentrated multiple market signals into one recommendation layer.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="slide slide--flow" id="slide-7" data-slide-title="Calculator">
+          <div class="slide__frame slide__frame--flow">
+            <div class="flow-copy">
+              <p class="slide__eyebrow reveal">Calculator redesign</p>
+              <h2 class="slide__title reveal">Turn the calculator into a live negotiation tool instead of a static worksheet.</h2>
+
+              <div class="flow-summary reveal">
+                <p class="flow-summary__label">Calculator redesign</p>
+                <p>The previous model didn’t reflect real deal structures, so we redesigned it to support multiple scenarios, include upfront investment, and reduce cognitive load in live conversations.</p>
+              </div>
+
+              <div class="flow-points">
+                <article class="flow-point reveal">
+                  <h3>Multiple financial scenarios</h3>
+                  <p>AEs can explore several commercial structures without rebuilding the model from scratch.</p>
+                </article>
+                <article class="flow-point reveal">
+                  <h3>Upfront investment</h3>
+                  <p>The tool now captures real investment terms that matter during negotiation.</p>
+                </article>
+                <article class="flow-point reveal">
+                  <h3>Shared calculator</h3>
+                  <p>Operators receive a customized P&amp;L calculator they can interact with directly.</p>
+                </article>
+              </div>
+
+              <div class="result-chip reveal">
+                The calculator became something AEs could use in conversation, not only after the meeting.
+              </div>
+            </div>
+
+            <div class="screen-strip screen-strip--three reveal">
+              <figure class="screen-card">
+                <img src="./assets/slingshot-pnl-desktop.png" alt="Desktop profit and loss calculator in Slingshot." />
+                <figcaption>Profit &amp; loss calculator</figcaption>
+              </figure>
+              <figure class="screen-card">
+                <img src="./assets/slingshot-pnl-mobile-1.png" alt="Shared PNL calculator mobile view." />
+                <figcaption>Shared PNL calculator</figcaption>
+              </figure>
+              <figure class="screen-card">
+                <img src="./assets/slingshot-pnl-mobile-2.png" alt="Shared PNL calculator mobile view while scrolled." />
+                <figcaption>Shared PNL calculator, scrolled</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide slide--research" id="slide-8" data-slide-title="Results">
+          <div class="slide__frame slide__frame--research">
+            <div class="content-panel reveal">
+              <p class="slide__eyebrow">Results</p>
+              <h2 class="slide__title">Slingshot became more influential in both adoption and deal impact after launch.</h2>
+              <p class="slide__lede">
+                Post-launch, Slingshot adoption increased significantly, and its share of
+                closed-won contribution rose from 5% to 15%. Teams also shared strong positive
+                feedback about its value in selling.
+              </p>
+
+              <div class="bullet-stack">
+                <article class="bullet-card reveal">
+                  <h3>Adoption</h3>
+                  <p>Usage increased significantly once the product became more useful across the sales workflow.</p>
+                </article>
+                <article class="bullet-card reveal">
+                  <h3>Deal impact</h3>
+                  <p>Closed-won contribution rose from 5% to 15%, showing stronger influence on real outcomes.</p>
+                </article>
+                <article class="bullet-card reveal">
+                  <h3>Team response</h3>
+                  <p>AEs described Slingshot as one of the most powerful tools they have for selling complex ghost-kitchen decisions.</p>
+                </article>
+              </div>
+            </div>
+
+            <figure class="image-stage reveal">
+              <img
+                src="./assets/slingshot-results-quote.png"
+                alt="Positive team message about Slingshot's value in selling."
+              />
+              <figcaption>Strong internal feedback reinforced that the redesign made the product easier to trust and sell with.</figcaption>
+            </figure>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./main.js?v=5" defer></script>
+  </body>
+</html>
