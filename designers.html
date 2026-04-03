@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Designers — Curated</title>
+    <meta name="description" content="A curated list of exceptional product and UI/UX designers worth following." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --bg: #0a0a0a;
+        --surface: #111111;
+        --border: rgba(255,255,255,0.07);
+        --border-hover: rgba(255,255,255,0.15);
+        --text-primary: #f0f0f0;
+        --text-secondary: #888;
+        --text-muted: #555;
+        --accent: #e8ff5a;
+        --accent-dim: rgba(232,255,90,0.1);
+        --tag-bg: rgba(255,255,255,0.06);
+        --tag-text: #aaa;
+        --radius: 12px;
+        --transition: 200ms cubic-bezier(0.2, 0, 0, 1);
+      }
+
+      html { font-size: 15px; }
+
+      body {
+        background: var(--bg);
+        color: var(--text-primary);
+        font-family: 'Inter', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        min-height: 100vh;
+      }
+
+      /* ── LAYOUT ── */
+      .page {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 0 24px 80px;
+      }
+
+      /* ── HEADER ── */
+      .header {
+        padding: 64px 0 48px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .header__eyebrow {
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 16px;
+      }
+
+      .header__title {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        color: var(--text-primary);
+        margin-bottom: 12px;
+      }
+
+      .header__desc {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        max-width: 480px;
+      }
+
+      .header__count {
+        margin-top: 8px;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      /* ── TOOLBAR ── */
+      .toolbar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 24px 0;
+        flex-wrap: wrap;
+      }
+
+      .search-wrap {
+        flex: 1;
+        min-width: 200px;
+        position: relative;
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+        pointer-events: none;
+      }
+
+      .search {
+        width: 100%;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 9px 12px 9px 36px;
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: 0.875rem;
+        outline: none;
+        transition: border-color var(--transition);
+      }
+
+      .search::placeholder { color: var(--text-muted); }
+      .search:focus { border-color: var(--border-hover); }
+
+      .filters {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        padding: 6px 14px;
+        font-size: 0.8rem;
+        font-family: inherit;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all var(--transition);
+        white-space: nowrap;
+      }
+
+      .filter-btn:hover {
+        border-color: var(--border-hover);
+        color: var(--text-primary);
+      }
+
+      .filter-btn.is-active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #000;
+        font-weight: 500;
+      }
+
+      /* ── LIST ── */
+      .list-header {
+        display: grid;
+        grid-template-columns: 28px 80px 1fr auto 32px;
+        gap: 16px;
+        align-items: center;
+        padding: 0 12px 10px;
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .designer-list {
+        list-style: none;
+      }
+
+      .designer-item {
+        display: grid;
+        grid-template-columns: 28px 80px 1fr auto 32px;
+        gap: 16px;
+        align-items: center;
+        padding: 14px 12px;
+        border-bottom: 1px solid var(--border);
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        transition: background var(--transition);
+        border-radius: 8px;
+        margin: 2px -12px;
+      }
+
+      .designer-item:hover {
+        background: var(--surface);
+      }
+
+      .designer-item:hover .item-arrow {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .designer-item:hover .item-thumb {
+        filter: grayscale(0);
+        opacity: 1;
+      }
+
+      /* index */
+      .item-index {
+        font-size: 0.72rem;
+        font-variant-numeric: tabular-nums;
+        color: var(--text-muted);
+        text-align: right;
+        font-weight: 500;
+      }
+
+      /* thumbnail */
+      .item-thumb-wrap {
+        width: 80px;
+        height: 52px;
+        border-radius: 6px;
+        overflow: hidden;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+
+      .item-thumb {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        filter: grayscale(0.3);
+        opacity: 0.85;
+        transition: all var(--transition);
+      }
+
+      .item-thumb-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        background: linear-gradient(135deg, #1a1a1a, #222);
+      }
+
+      /* info */
+      .item-info {}
+
+      .item-name {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text-primary);
+        margin-bottom: 3px;
+      }
+
+      .item-title {
+        font-size: 0.78rem;
+        color: var(--text-secondary);
+        margin-bottom: 6px;
+      }
+
+      .item-tags {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+
+      .item-tag {
+        font-size: 0.68rem;
+        background: var(--tag-bg);
+        color: var(--tag-text);
+        border-radius: 4px;
+        padding: 2px 7px;
+        white-space: nowrap;
+      }
+
+      /* url */
+      .item-url {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 140px;
+        text-align: right;
+      }
+
+      /* arrow */
+      .item-arrow {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        opacity: 0;
+        transform: translateX(-4px);
+        transition: all var(--transition);
+        flex-shrink: 0;
+      }
+
+      /* ── EMPTY STATE ── */
+      .empty-state {
+        padding: 64px 24px;
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        display: none;
+      }
+
+      .empty-state.is-visible { display: block; }
+
+      /* ── FOOTER ── */
+      .footer {
+        padding: 32px 0 0;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      .footer a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+
+      .footer a:hover { color: var(--text-secondary); }
+
+      /* ── LOADING ── */
+      .loading {
+        padding: 48px 0;
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.8rem;
+      }
+
+      @media (max-width: 600px) {
+        .list-header { display: none; }
+        .designer-item {
+          grid-template-columns: 24px 64px 1fr 24px;
+          gap: 12px;
+        }
+        .item-url { display: none; }
+        .item-thumb-wrap { width: 64px; height: 44px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+
+      <!-- HEADER -->
+      <header class="header">
+        <p class="header__eyebrow">Curated</p>
+        <h1 class="header__title">Product Designers Worth Following</h1>
+        <p class="header__desc">A hand-curated list of exceptional product and UI/UX designers. Each one is worth studying.</p>
+        <p class="header__count" id="count-label">Loading…</p>
+      </header>
+
+      <!-- TOOLBAR -->
+      <div class="toolbar">
+        <div class="search-wrap">
+          <svg class="search-icon" width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input class="search" id="search" type="search" placeholder="Search designers…" autocomplete="off" />
+        </div>
+        <div class="filters" id="filters">
+          <button class="filter-btn is-active" data-filter="all">All</button>
+        </div>
+      </div>
+
+      <!-- LIST HEADER -->
+      <div class="list-header" aria-hidden="true">
+        <span>#</span>
+        <span>Site</span>
+        <span>Designer</span>
+        <span>URL</span>
+        <span></span>
+      </div>
+
+      <!-- DESIGNER LIST -->
+      <div id="loading" class="loading">Loading designers…</div>
+      <ul class="designer-list" id="list" role="list"></ul>
+      <div class="empty-state" id="empty">No designers match your filter.</div>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <span>Updated regularly</span>
+        <a href="./index.html">← Back to portfolio</a>
+      </footer>
+
+    </div>
+
+    <script>
+      const THUMB_BASE = 'https://image.thum.io/get/width/320/crop/420/noanimate/';
+
+      let allDesigners = [];
+      let activeFilter = 'all';
+
+      async function init() {
+        try {
+          const res = await fetch('./designers.json');
+          allDesigners = await res.json();
+        } catch (e) {
+          allDesigners = [];
+        }
+
+        document.getElementById('loading').style.display = 'none';
+        buildFilters();
+        render();
+        setupSearch();
+      }
+
+      function buildFilters() {
+        const all = allDesigners.flatMap(d => d.specialties || []);
+        const counts = {};
+        all.forEach(s => counts[s] = (counts[s] || 0) + 1);
+        const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 6);
+
+        const container = document.getElementById('filters');
+        sorted.forEach(([tag]) => {
+          const btn = document.createElement('button');
+          btn.className = 'filter-btn';
+          btn.dataset.filter = tag;
+          btn.textContent = tag;
+          btn.addEventListener('click', () => setFilter(tag));
+          container.appendChild(btn);
+        });
+
+        container.querySelector('[data-filter="all"]').addEventListener('click', () => setFilter('all'));
+      }
+
+      function setFilter(f) {
+        activeFilter = f;
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.classList.toggle('is-active', b.dataset.filter === f);
+        });
+        render();
+      }
+
+      function setupSearch() {
+        document.getElementById('search').addEventListener('input', render);
+      }
+
+      function render() {
+        const query = document.getElementById('search').value.toLowerCase().trim();
+        let list = allDesigners;
+
+        if (activeFilter !== 'all') {
+          list = list.filter(d => d.specialties?.includes(activeFilter));
+        }
+
+        if (query) {
+          list = list.filter(d =>
+            d.name.toLowerCase().includes(query) ||
+            d.title?.toLowerCase().includes(query) ||
+            d.company?.toLowerCase().includes(query) ||
+            d.specialties?.some(s => s.toLowerCase().includes(query))
+          );
+        }
+
+        const ul = document.getElementById('list');
+        const empty = document.getElementById('empty');
+
+        if (list.length === 0) {
+          ul.innerHTML = '';
+          empty.classList.add('is-visible');
+        } else {
+          empty.classList.remove('is-visible');
+          ul.innerHTML = list.map((d, i) => designerRow(d, i + 1)).join('');
+        }
+
+        const total = allDesigners.length;
+        document.getElementById('count-label').textContent =
+          list.length === total
+            ? `${total} designers`
+            : `${list.length} of ${total} designers`;
+      }
+
+      function designerRow(d, i) {
+        const thumbUrl = d.url ? `${THUMB_BASE}${d.url}` : '';
+        const displayUrl = d.url ? d.url.replace(/^https?:\/\/(www\.)?/, '') : '';
+        const tags = (d.specialties || []).map(s => `<span class="item-tag">${s}</span>`).join('');
+        const titleStr = [d.title, d.company].filter(Boolean).join(' · ');
+
+        const thumbContent = thumbUrl
+          ? `<img class="item-thumb" src="${thumbUrl}" alt="${d.name}'s website" loading="lazy" onerror="this.parentElement.innerHTML='<div class=item-thumb-placeholder>✦</div>'" />`
+          : `<div class="item-thumb-placeholder">✦</div>`;
+
+        return `
+          <li>
+            <a class="designer-item" href="${d.url || '#'}" target="_blank" rel="noopener noreferrer">
+              <span class="item-index">${String(i).padStart(2, '0')}</span>
+              <div class="item-thumb-wrap">${thumbContent}</div>
+              <div class="item-info">
+                <div class="item-name">${d.name}</div>
+                ${titleStr ? `<div class="item-title">${titleStr}</div>` : ''}
+                <div class="item-tags">${tags}</div>
+              </div>
+              <span class="item-url">${displayUrl}</span>
+              <span class="item-arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          </li>`;
+      }
+
+      init();
+    </script>
+  </body>
+</html>

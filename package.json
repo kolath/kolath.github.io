@@ -5,6 +5,11 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "test": "node --test"
+    "test": "node --test",
+    "fetch-designers": "node scripts/fetch-designers.js",
+    "fetch-designers:dry": "node scripts/fetch-designers.js --dry-run"
+  },
+  "dependencies": {
+    "playwright": "^1.44.0"
   }
 }

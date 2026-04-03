@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Rauno Freiberg",
+    "title": "Product Designer",
+    "company": "Vercel",
+    "specialties": ["UI Design", "Design Systems", "Web"],
+    "url": "https://rauno.me",
+    "twitter": "raunofreiberg",
+    "added": "2026-04-03"
+  },
+  {
+    "id": 2,
+    "name": "Paco Coursey",
+    "title": "Product Designer",
+    "company": "Linear",
+    "specialties": ["Product", "UI Design", "Interaction"],
+    "url": "https://paco.me",
+    "twitter": "pacocoursey",
+    "added": "2026-04-03"
+  },
+  {
+    "id": 3,
+    "name": "Adam Morse",
+    "title": "Designer & Developer",
+    "company": "Cloudflare",
+    "specialties": ["Typography", "Design Systems", "Open Source"],
+    "url": "https://mrmrs.cc",
+    "twitter": "mrmrs_",
+    "added": "2026-04-03"
+  },
+  {
+    "id": 4,
+    "name": "Mariana Castilho",
+    "title": "Product Designer",
+    "company": "Framer",
+    "specialties": ["Product", "UI Design", "Prototyping"],
+    "url": "https://marianacastilho.com",
+    "twitter": "bysusantu",
+    "added": "2026-04-03"
+  },
+  {
+    "id": 5,
+    "name": "Tobias Fried",
+    "title": "Product Designer",
+    "company": "Notion",
+    "specialties": ["Product", "UX", "Design Systems"],
+    "url": "https://tobiasfried.com",
+    "twitter": "tobiasfried",
+    "added": "2026-04-03"
+  }
+]
