@@ -9,7 +9,7 @@
  *   4. Writes the result back to designers.json
  *
  * Usage:
- *   node scripts/generate-recommendations.js              # only missing recs
+ *   node scripts/generate-recommendations.js              # only missing recs or labels
  *   node scripts/generate-recommendations.js --force      # regenerate all
  *   node scripts/generate-recommendations.js --id 3       # single designer by id
  *
@@ -88,11 +88,20 @@ async function scrapePortfolio(page, url) {
   }
 }
 
-// ── Claude recommendation generator ──────────────────────────────────────────
+// ── All available labels (keep in sync with designers.html LABEL_ORDER) ───────
+
+const KNOWN_LABELS = [
+  'AI', 'Autonomous', 'Fintech', 'Dev Tools', 'Productivity',
+  'B2B', 'B2C', 'Enterprise', 'Consumer', 'Healthcare',
+  'Creator Tools', 'No-Code', 'Open Source', 'Infrastructure',
+  'Social', 'Education', 'E-commerce', 'Gaming', 'Climate',
+];
+
+// ── Claude generator (recommendation + labels together) ───────────────────────
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-async function generateRecommendation(designer, portfolioText) {
+async function generateInsights(designer, portfolioText) {
   const context = [
     `设计师姓名：${designer.name}`,
     designer.title ? `职位：${designer.title}` : null,
@@ -107,7 +116,7 @@ async function generateRecommendation(designer, portfolioText) {
 
   const response = await anthropic.messages.create({
     model: 'claude-opus-4-6',
-    max_tokens: 400,
+    max_tokens: 600,
     thinking: { type: 'adaptive' },
     system: `你是一名经验丰富的设计招聘负责人（Design Hiring Manager），擅长从面试和 offer 决策的角度评估设计师作品集。
 你的语气专业、直接，像在给同行设计团队负责人写内部评估备注。
@@ -115,21 +124,37 @@ async function generateRecommendation(designer, portfolioText) {
     messages: [
       {
         role: 'user',
-        content: `请根据以下信息，用中文写一段 2-3 句话的推荐理由（约 60-100 字），说明这个设计师的作品集从招聘角度好在哪里：
-——适合什么类型的公司或职位
-——作品集里最有说服力的一个具体特质
-——面试时为什么会让人印象深刻
+        content: `请根据以下设计师信息，输出一个 JSON 对象，包含两个字段：
+
+1. "recommendation"：用中文写 2-3 句话（约 60-100 字）的招聘推荐理由，说明：
+   - 适合什么类型的公司或职位
+   - 作品集里最有说服力的具体特质
+   - 面试时为什么会让人印象深刻
+
+2. "labels"：从下面的列表中选出 1-4 个最匹配的行业/方向标签（数组）：
+   ${KNOWN_LABELS.join(', ')}
+   如果都不匹配可以返回空数组。
 
 设计师信息：
 ${context}
 
-只输出推荐理由本身，不要标题，不要引号，不要解释。`,
+只输出 JSON，不要任何解释或 markdown 代码块。格式：{"recommendation":"...","labels":["..."]}`,
       },
     ],
   });
 
   const textBlock = response.content.find(b => b.type === 'text');
-  return textBlock?.text?.trim() || null;
+  const raw = textBlock?.text?.trim();
+  if (!raw) return null;
+
+  try {
+    // Strip possible markdown fences just in case
+    const clean = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
+    return JSON.parse(clean);
+  } catch {
+    // Fallback: treat entire output as recommendation if JSON parse fails
+    return { recommendation: raw, labels: [] };
+  }
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────
@@ -142,11 +167,11 @@ async function main() {
 
   const designers = JSON.parse(readFileSync(DATA_FILE, 'utf8'));
 
-  // Filter which designers need a recommendation
+  // Filter: process designers missing recommendation OR labels (unless --force)
   const targets = designers.filter(d => {
     if (ONLY_ID !== null) return d.id === ONLY_ID;
     if (FORCE) return true;
-    return !d.recommendation;
+    return !d.recommendation || !d.labels?.length;
   });
 
   if (targets.length === 0) {
@@ -154,7 +179,7 @@ async function main() {
     return;
   }
 
-  console.log(`\n🤖 Generating recommendations for ${targets.length} designer(s)…\n`);
+  console.log(`\n🤖 Generating recommendations + labels for ${targets.length} designer(s)…\n`);
 
   const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
   const context = await browser.newContext({
@@ -177,24 +202,28 @@ async function main() {
       console.log(portfolioText ? `${portfolioText.length} chars` : 'failed');
     }
 
-    // 2. Ask Claude
+    // 2. Ask Claude for recommendation + labels
     process.stdout.write(`    → Asking Claude… `);
-    let rec = null;
+    let insights = null;
     try {
-      rec = await generateRecommendation(designer, portfolioText);
+      insights = await generateInsights(designer, portfolioText);
       console.log('done');
-      console.log(`    ✦ ${rec}\n`);
+      if (insights?.recommendation) console.log(`    ✦ ${insights.recommendation}`);
+      if (insights?.labels?.length) console.log(`    🏷  ${insights.labels.join(', ')}`);
+      console.log('');
     } catch (e) {
       console.log(`failed: ${e.message}`);
     }
 
-    if (rec) {
-      // Update in-place in the array
+    if (insights) {
       const idx = designers.findIndex(d => d.id === designer.id);
-      designers[idx].recommendation = rec;
+      if (insights.recommendation) designers[idx].recommendation = insights.recommendation;
+      if (insights.labels?.length) {
+        // Merge with any existing manually-set labels, dedup
+        const existing = designers[idx].labels || [];
+        designers[idx].labels = [...new Set([...existing, ...insights.labels])];
+      }
       saved++;
-
-      // Save after each success so partial progress is preserved
       writeFileSync(DATA_FILE, JSON.stringify(designers, null, 2));
     }
 
@@ -204,7 +233,7 @@ async function main() {
 
   await browser.close();
 
-  console.log(`\n💾 Saved ${saved} recommendation(s) to designers.json`);
+  console.log(`\n💾 Saved ${saved} designer(s) to designers.json`);
 }
 
 main().catch(err => {

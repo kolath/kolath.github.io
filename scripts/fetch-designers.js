@@ -70,6 +70,57 @@ const SPECIALTY_MAP = {
   'consumer': 'Consumer',
 };
 
+// Label inference from bio text — industry/domain signals
+const LABEL_MAP = {
+  'ai': 'AI',
+  'artificial intelligence': 'AI',
+  'machine learning': 'AI',
+  'llm': 'AI',
+  'gpt': 'AI',
+  'autonomous': 'Autonomous',
+  'self-driving': 'Autonomous',
+  'robotics': 'Autonomous',
+  'fintech': 'Fintech',
+  'payment': 'Fintech',
+  'banking': 'Fintech',
+  'crypto': 'Fintech',
+  'defi': 'Fintech',
+  'stripe': 'Fintech',
+  'dev tool': 'Dev Tools',
+  'developer tool': 'Dev Tools',
+  'developer experience': 'Dev Tools',
+  'devex': 'Dev Tools',
+  'github': 'Dev Tools',
+  'vercel': 'Dev Tools',
+  'linear': 'Dev Tools',
+  'productivity': 'Productivity',
+  'notion': 'Productivity',
+  'workflow': 'Productivity',
+  'task management': 'Productivity',
+  'b2b': 'B2B',
+  'saas': 'B2B',
+  'enterprise': 'Enterprise',
+  'b2c': 'B2C',
+  'consumer': 'Consumer',
+  'social': 'Social',
+  'creator': 'Creator Tools',
+  'no-code': 'No-Code',
+  'nocode': 'No-Code',
+  'framer': 'No-Code',
+  'webflow': 'No-Code',
+  'open source': 'Open Source',
+  'healthcare': 'Healthcare',
+  'health': 'Healthcare',
+  'medtech': 'Healthcare',
+  'education': 'Education',
+  'edtech': 'Education',
+  'ecommerce': 'E-commerce',
+  'e-commerce': 'E-commerce',
+  'marketplace': 'E-commerce',
+  'infrastructure': 'Infrastructure',
+  'platform': 'Infrastructure',
+};
+
 // Category inference from bio text
 const CATEGORY_MAP = [
   { keywords: ['design engineer', 'engineer', 'developer', 'code', 'coding'], category: 'Design Engineer' },
@@ -96,6 +147,15 @@ function extractSpecialties(bio = '') {
     if (lower.includes(keyword)) found.add(tag);
   }
   if (found.size === 0) found.add('Product');
+  return [...found].slice(0, 4);
+}
+
+function inferLabels(bio = '', company = '') {
+  const lower = (bio + ' ' + company).toLowerCase();
+  const found = new Set();
+  for (const [keyword, label] of Object.entries(LABEL_MAP)) {
+    if (lower.includes(keyword)) found.add(label);
+  }
   return [...found].slice(0, 4);
 }
 
@@ -265,6 +325,7 @@ async function main() {
 
     const specialties = extractSpecialties(profile.bio);
     const category = inferCategory(profile.bio);
+    const labels = inferLabels(profile.bio);
     const designer = {
       id: existing.length + newDesigners.length + 1,
       name: profile.name,
@@ -273,9 +334,10 @@ async function main() {
       category,
       bio: profile.bio || null,
       specialties,
+      labels,
       url: profile.website,
       twitter: profile.handle,
-      recommendation: null,   // fill in manually or via AI later
+      recommendation: null,
       added: new Date().toISOString().split('T')[0],
     };
 
