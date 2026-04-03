@@ -5,6 +5,14 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "test": "node --test"
+    "test": "node --test",
+    "fetch-designers": "node scripts/fetch-designers.js",
+    "fetch-designers:dry": "node scripts/fetch-designers.js --dry-run",
+    "gen-recs": "node scripts/generate-recommendations.js",
+    "gen-recs:force": "node scripts/generate-recommendations.js --force"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "playwright": "^1.44.0"
   }
 }
