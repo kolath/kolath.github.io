@@ -363,12 +363,13 @@ img {
   max-height: min(82dvh, 50rem);
   gap: var(--slide-gap);
   margin: auto;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .slide__frame--hero {
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.95fr);
   align-items: center;
+  overflow: visible;
 }
 
 .slide__frame--split,
@@ -454,6 +455,10 @@ img {
   gap: clamp(0.65rem, 1.1vw, 0.9rem);
 }
 
+.hero-details--tight {
+  margin-top: clamp(0.35rem, 0.9vh, 0.7rem);
+}
+
 .info-pill {
   padding: 0;
   border: none;
@@ -492,6 +497,8 @@ img {
 .hero-visual {
   position: relative;
   min-height: 0;
+  padding: clamp(0.45rem, 1.1vh, 0.85rem);
+  overflow: visible;
 }
 
 .visual-panel {
@@ -695,12 +702,14 @@ img {
   border: 1px solid var(--color-slide-line);
   background: rgb(255 255 255 / 0.78);
   min-height: 0;
+  overflow: visible;
 }
 
 .image-stage img {
+  height: auto;
   width: auto;
   max-width: 100%;
-  max-height: min(44vh, 340px);
+  max-height: min(40vh, 320px);
   border-radius: calc(var(--slide-radius) - 0.2rem);
   object-fit: contain;
   margin: 0 auto;
@@ -774,6 +783,7 @@ img {
   display: grid;
   gap: clamp(0.8rem, 1.1vw, 1rem);
   min-height: 0;
+  overflow: visible;
 }
 
 .screen-strip--three {
@@ -790,12 +800,14 @@ img {
   gap: 0.6rem;
   align-content: start;
   min-height: 0;
+  overflow: visible;
 }
 
 .screen-card img {
+  height: auto;
   width: auto;
   max-width: 100%;
-  max-height: min(54vh, 420px);
+  max-height: min(48vh, 380px);
   border-radius: clamp(1rem, 1.7vw, 1.4rem);
   border: 1px solid rgb(16 33 51 / 0.08);
   background: rgb(255 255 255 / 0.96);
@@ -949,12 +961,12 @@ img {
   }
 
   .screen-card img {
-    max-height: min(37vh, 300px);
+    max-height: min(34vh, 280px);
   }
 
   .image-stage img,
   .visual-panel__image--hero {
-    max-height: min(34vh, 280px);
+    max-height: min(31vh, 260px);
   }
 
   .floating-note {
@@ -982,11 +994,11 @@ img {
 
   .screen-card img,
   .image-stage img {
-    max-height: min(40vh, 280px);
+    max-height: min(35vh, 260px);
   }
 
   .visual-panel__image--hero {
-    max-height: min(34vh, 240px);
+    max-height: min(30vh, 220px);
   }
 }
 
@@ -1040,7 +1052,7 @@ img {
   .screen-card img,
   .image-stage img,
   .visual-panel__image--hero {
-    max-height: min(30vh, 200px);
+    max-height: min(26vh, 180px);
   }
 }
 
