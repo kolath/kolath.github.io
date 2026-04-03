@@ -3,615 +3,645 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Designers — Curated</title>
+    <title>Designers — Curated</title>
     <meta name="description" content="A curated list of exceptional product and UI/UX designers worth following." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       :root {
-        --bg: #0a0a0a;
-        --surface: #141414;
-        --surface-2: #1a1a1a;
-        --border: rgba(255,255,255,0.07);
-        --border-hover: rgba(255,255,255,0.14);
-        --text-primary: #efefef;
-        --text-secondary: #888;
-        --text-muted: #4a4a4a;
-        --accent: #d4f754;
-        --tag-bg: rgba(255,255,255,0.05);
-        --tag-text: #777;
-        --label-bg: rgba(130,180,255,0.07);
-        --label-border: rgba(130,180,255,0.2);
-        --label-text: #8ab4e8;
-        --rec-bg: rgba(212,247,84,0.05);
-        --rec-border: rgba(212,247,84,0.15);
-        --rec-text: #bcd85a;
-        --transition: 180ms cubic-bezier(0.2, 0, 0, 1);
+        --bg: #0d0d0d;
+        --surface: #161616;
+        --surface-hover: #1c1c1c;
+        --border: rgba(255,255,255,0.06);
+        --border-hover: rgba(255,255,255,0.12);
+        --text-1: #f0ede8;
+        --text-2: #8a8580;
+        --text-3: #4a4744;
+        --accent: #e8ff5a;
+        --accent-dim: rgba(232,255,90,0.08);
+        --label-bg: rgba(120,170,255,0.08);
+        --label-border: rgba(120,170,255,0.18);
+        --label-text: #8ab0e8;
+        --rec-bg: rgba(232,255,90,0.05);
+        --rec-border: rgba(232,255,90,0.14);
+        --ease: cubic-bezier(0.2, 0, 0, 1);
+        --card-radius: 14px;
       }
 
-      html { font-size: 15px; }
+      html { font-size: 15px; scroll-behavior: smooth; }
 
       body {
         background: var(--bg);
-        color: var(--text-primary);
+        color: var(--text-1);
         font-family: 'Inter', system-ui, sans-serif;
         -webkit-font-smoothing: antialiased;
         min-height: 100vh;
+        overflow-x: hidden;
       }
 
-      .page {
-        max-width: 900px;
+      /* ─── HERO ──────────────────────────────────────────────────────────── */
+
+      .hero {
+        max-width: 1120px;
         margin: 0 auto;
-        padding: 0 24px 80px;
+        padding: 80px 32px 56px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 32px;
+        align-items: end;
+        border-bottom: 1px solid var(--border);
       }
 
-      /* ── HEADER ── */
-      .header { padding: 64px 0 40px; }
-
-      .header__eyebrow {
+      .hero__kicker {
+        display: flex;
+        align-items: center;
+        gap: 8px;
         font-size: 0.7rem;
         font-weight: 500;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         color: var(--accent);
-        margin-bottom: 14px;
+        margin-bottom: 20px;
       }
 
-      .header__title {
-        font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+      .hero__kicker::before {
+        content: '';
+        width: 20px;
+        height: 1px;
+        background: var(--accent);
+        opacity: 0.6;
+      }
+
+      .hero__title {
+        font-family: 'DM Serif Display', Georgia, serif;
+        font-size: clamp(2.4rem, 5vw, 4rem);
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        color: var(--text-1);
+      }
+
+      .hero__title em {
+        font-style: italic;
+        color: var(--text-2);
+      }
+
+      .hero__meta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+        padding-bottom: 6px;
+      }
+
+      .hero__stat {
+        font-size: 0.72rem;
+        color: var(--text-3);
+        text-align: right;
+      }
+
+      .hero__stat strong {
+        color: var(--text-2);
+        font-weight: 500;
+      }
+
+      /* ─── STICKY FILTER BAR ────────────────────────────────────────────── */
+
+      .filter-bar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: rgba(13,13,13,0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .filter-bar__inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 32px;
+        display: flex;
+        align-items: center;
+        gap: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .filter-bar__inner::-webkit-scrollbar { display: none; }
+
+      .filter-divider {
+        width: 1px;
+        height: 20px;
+        background: var(--border);
+        flex-shrink: 0;
+        margin: 0 4px;
+      }
+
+      .search-input-wrap {
+        position: relative;
+        flex-shrink: 0;
+        width: 200px;
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-3);
+        pointer-events: none;
+      }
+
+      .search-input {
+        width: 100%;
+        background: transparent;
+        border: none;
+        padding: 16px 0 16px 22px;
+        color: var(--text-1);
+        font-family: inherit;
+        font-size: 0.8rem;
+        outline: none;
+      }
+
+      .search-input::placeholder { color: var(--text-3); }
+
+      .filter-chips {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        padding: 10px 0;
+        flex-shrink: 0;
+      }
+
+      .chip {
+        border: none;
+        background: transparent;
+        border-radius: 100px;
+        padding: 5px 12px;
+        font-size: 0.75rem;
+        font-family: inherit;
+        color: var(--text-3);
+        cursor: pointer;
+        transition: all 160ms var(--ease);
+        white-space: nowrap;
+      }
+
+      .chip:hover { color: var(--text-2); background: var(--surface); }
+
+      .chip.is-active {
+        background: var(--accent);
+        color: #111;
         font-weight: 600;
-        letter-spacing: -0.025em;
-        line-height: 1.15;
-        margin-bottom: 10px;
       }
 
-      .header__desc {
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-        line-height: 1.65;
-        max-width: 440px;
+      .chip--label { color: var(--text-3); }
+      .chip--label:hover { color: var(--label-text); }
+      .chip--label.is-active {
+        background: var(--label-bg);
+        border: 1px solid var(--label-border);
+        color: var(--label-text);
+        font-weight: 500;
       }
 
-      /* ── TOOLBAR ── */
-      .toolbar {
-        padding: 24px 0 0;
-        border-top: 1px solid var(--border);
-        margin-top: 32px;
+      /* ─── MAIN GRID ─────────────────────────────────────────────────────── */
+
+      .main {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 40px 32px 80px;
+      }
+
+      /* category group */
+      .cat-group { margin-bottom: 56px; }
+
+      .cat-group__header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .cat-group__name {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-3);
+      }
+
+      .cat-group__line {
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .cat-group__count {
+        font-size: 0.68rem;
+        color: var(--text-3);
+      }
+
+      /* card grid */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+      }
+
+      /* ─── CARD ──────────────────────────────────────────────────────────── */
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--card-radius);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: border-color 180ms var(--ease), transform 200ms var(--ease), box-shadow 200ms var(--ease);
+        position: relative;
+      }
+
+      .card:hover {
+        border-color: var(--border-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      }
+
+      /* screenshot */
+      .card__thumb {
+        width: 100%;
+        height: 160px;
+        overflow: hidden;
+        background: #111;
+        border-bottom: 1px solid var(--border);
+        position: relative;
+      }
+
+      .card__thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        filter: grayscale(0.15);
+        opacity: 0.85;
+        transition: transform 400ms var(--ease), opacity 200ms var(--ease), filter 200ms var(--ease);
+      }
+
+      .card:hover .card__thumb img {
+        transform: scale(1.03);
+        opacity: 1;
+        filter: grayscale(0);
+      }
+
+      .card__thumb-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-3);
+        font-size: 1.5rem;
+        background: linear-gradient(140deg, #141414, #1a1a1a);
+      }
+
+      /* visit overlay on hover */
+      .card__visit {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0,0,0,0.5);
+        opacity: 0;
+        transition: opacity 180ms var(--ease);
+        text-decoration: none;
+      }
+
+      .card:hover .card__visit { opacity: 1; }
+
+      .card__visit-label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 100px;
+        padding: 7px 14px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: #fff;
+      }
+
+      /* body */
+      .card__body {
+        padding: 16px;
+        flex: 1;
         display: flex;
         flex-direction: column;
         gap: 10px;
       }
 
-      .toolbar-row {
+      .card__top {
         display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 8px;
       }
 
-      .toolbar-label {
-        font-size: 0.68rem;
-        font-weight: 500;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--text-muted);
-        flex-shrink: 0;
-        width: 52px;
-      }
-
-      .search-wrap {
-        flex: 1;
-        min-width: 180px;
-        position: relative;
-      }
-
-      .search-icon {
-        position: absolute;
-        left: 11px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--text-muted);
-        pointer-events: none;
-      }
-
-      .search {
-        width: 100%;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 8px 11px 8px 32px;
-        color: var(--text-primary);
-        font-family: inherit;
-        font-size: 0.825rem;
-        outline: none;
-        transition: border-color var(--transition);
-      }
-
-      .search::placeholder { color: var(--text-muted); }
-      .search:focus { border-color: var(--border-hover); }
-
-      /* ── FILTER CHIPS ── */
-      .filter-group {
-        display: flex;
-        gap: 5px;
-        flex-wrap: wrap;
-        align-items: center;
-      }
-
-      /* category filters — plain style */
-      .filter-btn {
-        background: transparent;
-        border: 1px solid var(--border);
-        border-radius: 100px;
-        padding: 4px 12px;
-        font-size: 0.73rem;
-        font-family: inherit;
-        color: var(--text-muted);
-        cursor: pointer;
-        transition: all var(--transition);
-        white-space: nowrap;
-      }
-
-      .filter-btn:hover { border-color: var(--border-hover); color: var(--text-secondary); }
-
-      .filter-btn.is-active {
-        background: var(--accent);
-        border-color: var(--accent);
-        color: #111;
-        font-weight: 500;
-      }
-
-      /* label filters — blue tint to match label pills */
-      .label-btn {
-        background: transparent;
-        border: 1px solid var(--label-border);
-        border-radius: 100px;
-        padding: 4px 12px;
-        font-size: 0.73rem;
-        font-family: inherit;
-        color: var(--text-muted);
-        cursor: pointer;
-        transition: all var(--transition);
-        white-space: nowrap;
-      }
-
-      .label-btn:hover { color: var(--label-text); border-color: rgba(130,180,255,0.35); }
-
-      .label-btn.is-active {
-        background: var(--label-bg);
-        border-color: var(--label-border);
-        color: var(--label-text);
-        font-weight: 500;
-      }
-
-      /* ── CATEGORY SECTION ── */
-      .category-section { margin-top: 40px; }
-
-      .category-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 0 0 14px;
-        border-bottom: 1px solid var(--border);
-        margin-bottom: 4px;
-      }
-
-      .category-title {
-        font-size: 0.72rem;
+      .card__name {
+        font-size: 0.95rem;
         font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--text-muted);
+        color: var(--text-1);
+        line-height: 1.25;
       }
 
-      .category-count {
-        font-size: 0.68rem;
-        color: var(--text-muted);
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 100px;
-        padding: 1px 8px;
+      .card__subtitle {
+        font-size: 0.75rem;
+        color: var(--text-2);
+        margin-top: 2px;
+        line-height: 1.4;
       }
 
-      /* ── DESIGNER ROW ── */
-      .designer-list { list-style: none; }
-
-      .designer-item { border-bottom: 1px solid var(--border); }
-
-      /* grid lives on the row div, not the link */
-      .designer-row {
-        display: grid;
-        grid-template-columns: 26px 76px 1fr auto 28px;
-        gap: 14px;
-        align-items: center;
-        padding: 4px 8px;
-        border-radius: 8px;
-        margin: 0 -8px;
-        transition: background var(--transition);
-        position: relative;
-      }
-
-      .designer-row:hover { background: var(--surface); }
-
-      /* the portfolio link spans the first 3 content columns */
-      .row-link {
-        display: contents; /* participates in parent grid without creating a box */
-        text-decoration: none;
-        color: inherit;
-      }
-
-      /* make the three columns in row-link actually clickable */
-      .row-link .item-index,
-      .row-link .item-thumb-wrap,
-      .row-link .item-info {
-        cursor: pointer;
-        padding: 8px 0;
-      }
-
-      .item-index {
-        font-size: 0.68rem;
-        font-variant-numeric: tabular-nums;
-        color: var(--text-muted);
-        text-align: right;
-        font-weight: 500;
-        flex-shrink: 0;
-      }
-
-      .item-thumb-wrap {
-        width: 76px;
-        height: 50px;
-        border-radius: 6px;
-        overflow: hidden;
-        background: var(--surface-2);
-        border: 1px solid var(--border);
-        flex-shrink: 0;
-      }
-
-      .item-thumb {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: top left;
-        filter: grayscale(0.2);
-        opacity: 0.8;
-        transition: all var(--transition);
-      }
-
-      .designer-row:hover .item-thumb { filter: grayscale(0); opacity: 1; }
-
-      .designer-row:hover .item-arrow { color: var(--text-secondary); transform: translateX(2px); }
-
-      .item-thumb-placeholder {
-        width: 100%;
-        height: 100%;
+      /* x link */
+      .card__x {
+        width: 28px;
+        height: 28px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--text-muted);
-        font-size: 1rem;
-        background: linear-gradient(135deg, #161616, #1e1e1e);
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        color: var(--text-3);
+        text-decoration: none;
+        flex-shrink: 0;
+        transition: all 160ms var(--ease);
       }
 
-      .item-name {
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: var(--text-primary);
-        margin-bottom: 2px;
+      .card__x:hover {
+        border-color: var(--border-hover);
+        color: var(--text-2);
+        background: var(--surface-hover);
       }
 
-      .item-subtitle {
-        font-size: 0.75rem;
-        color: var(--text-secondary);
-        margin-bottom: 6px;
-      }
-
-      /* tags row: specialties + labels together */
-      .item-tags {
+      /* tags */
+      .card__tags {
         display: flex;
-        gap: 4px;
         flex-wrap: wrap;
-        align-items: center;
+        gap: 4px;
       }
 
-      /* specialty tag — grey, no border */
-      .item-tag {
+      .tag {
         font-size: 0.65rem;
-        background: var(--tag-bg);
-        color: var(--tag-text);
         border-radius: 4px;
-        padding: 2px 6px;
+        padding: 2px 7px;
         white-space: nowrap;
       }
 
-      /* label pill — blue tint, with dot */
-      .item-label {
-        font-size: 0.65rem;
+      .tag--specialty {
+        background: rgba(255,255,255,0.05);
+        color: #666;
+      }
+
+      .tag--label {
         background: var(--label-bg);
-        color: var(--label-text);
         border: 1px solid var(--label-border);
+        color: var(--label-text);
         border-radius: 100px;
-        padding: 1px 7px 1px 5px;
-        white-space: nowrap;
         display: inline-flex;
         align-items: center;
-        gap: 4px;
+        gap: 3px;
+        padding-left: 5px;
       }
 
-      .item-label::before {
+      .tag--label::before {
         content: '';
         width: 4px;
         height: 4px;
-        background: var(--label-text);
+        background: currentColor;
         border-radius: 50%;
-        opacity: 0.6;
+        opacity: 0.5;
         flex-shrink: 0;
       }
 
-      /* actions group (rec + x link) */
-      .item-actions {
+      /* why-good */
+      .card__footer {
+        margin-top: auto;
+        padding-top: 10px;
+        border-top: 1px solid var(--border);
+      }
+
+      .why-btn {
         display: flex;
         align-items: center;
         gap: 6px;
-        flex-shrink: 0;
-      }
-
-      /* X link icon */
-      .x-link {
-        width: 26px;
-        height: 26px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        color: var(--text-muted);
-        text-decoration: none;
-        transition: all var(--transition);
-        flex-shrink: 0;
-      }
-
-      .x-link:hover {
-        border-color: var(--border-hover);
-        color: var(--text-secondary);
-        background: var(--surface-2);
-      }
-
-      /* rec trigger */
-      .rec-trigger {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        padding: 4px 9px;
-        background: var(--rec-bg);
-        border: 1px solid var(--rec-border);
-        border-radius: 100px;
-        font-size: 0.68rem;
-        color: var(--rec-text);
+        width: 100%;
+        background: none;
+        border: none;
         cursor: pointer;
         font-family: inherit;
-        transition: all var(--transition);
-        white-space: nowrap;
-        flex-shrink: 0;
+        font-size: 0.72rem;
+        color: rgba(232,255,90,0.55);
+        padding: 0;
+        transition: color 160ms var(--ease);
+        text-align: left;
       }
 
-      .rec-trigger:hover { background: rgba(212,247,84,0.12); border-color: rgba(212,247,84,0.25); }
-      .rec-trigger.is-open { background: rgba(212,247,84,0.12); }
-      .rec-trigger svg { transition: transform var(--transition); flex-shrink: 0; }
-      .rec-trigger.is-open svg { transform: rotate(180deg); }
+      .why-btn:hover { color: rgba(232,255,90,0.85); }
 
-      .item-arrow {
-        width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--text-muted);
+      .why-btn.is-open { color: var(--accent); }
+
+      .why-btn__chevron {
+        margin-left: auto;
         flex-shrink: 0;
-        transition: all var(--transition);
-        pointer-events: none;
+        transition: transform 200ms var(--ease);
       }
 
-      /* ── RECOMMENDATION PANEL ── */
-      .rec-panel {
+      .why-btn.is-open .why-btn__chevron { transform: rotate(180deg); }
+
+      .why-body {
         display: none;
-        margin: 0 8px 12px;
-        padding: 14px 16px;
-        background: var(--rec-bg);
-        border: 1px solid var(--rec-border);
-        border-radius: 8px;
-      }
-
-      .rec-panel.is-open { display: block; }
-
-      .rec-panel__label {
-        font-size: 0.65rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 8px;
-        opacity: 0.7;
-      }
-
-      .rec-panel__text {
-        font-size: 0.825rem;
+        padding-top: 10px;
+        font-size: 0.78rem;
         line-height: 1.65;
-        color: #c8d8a0;
+        color: #b8cc80;
         font-style: italic;
       }
 
-      /* ── MISC ── */
+      .why-body.is-open { display: block; }
+
+      /* ─── EMPTY ─────────────────────────────────────────────────────────── */
+
       .empty {
-        padding: 56px 0;
+        grid-column: 1/-1;
+        padding: 64px 0;
         text-align: center;
-        color: var(--text-muted);
-        font-size: 0.825rem;
+        color: var(--text-3);
+        font-size: 0.85rem;
         display: none;
       }
+
       .empty.is-visible { display: block; }
 
-      .stats-bar {
+      /* ─── FOOTER ────────────────────────────────────────────────────────── */
+
+      .footer {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 24px 32px;
+        border-top: 1px solid var(--border);
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 20px 0 0;
-        font-size: 0.75rem;
-        color: var(--text-muted);
-        border-top: 1px solid var(--border);
-        margin-top: 40px;
+        font-size: 0.72rem;
+        color: var(--text-3);
       }
 
-      .stats-bar a { color: var(--text-muted); text-decoration: none; }
-      .stats-bar a:hover { color: var(--text-secondary); }
+      .footer a { color: var(--text-3); text-decoration: none; }
+      .footer a:hover { color: var(--text-2); }
 
-      .loading {
-        padding: 48px 0;
-        text-align: center;
-        color: var(--text-muted);
-        font-size: 0.8rem;
+      /* ─── RESPONSIVE ────────────────────────────────────────────────────── */
+
+      @media (max-width: 700px) {
+        .hero { padding: 48px 20px 36px; grid-template-columns: 1fr; }
+        .hero__meta { display: none; }
+        .filter-bar__inner { padding: 0 20px; }
+        .main { padding: 28px 20px 60px; }
+        .card-grid { grid-template-columns: 1fr; }
+        .footer { padding: 20px; }
       }
 
-      @media (max-width: 580px) {
-        .designer-row { grid-template-columns: 20px 60px 1fr 22px; gap: 10px; }
-        .item-thumb-wrap { width: 60px; height: 40px; }
-        .rec-trigger { display: none; }
-        .toolbar-label { display: none; }
+      @media (min-width: 900px) {
+        .card-grid { grid-template-columns: repeat(3, 1fr); }
       }
     </style>
   </head>
   <body>
-    <div class="page">
 
-      <header class="header">
-        <p class="header__eyebrow">Curated</p>
-        <h1 class="header__title">Product Designers Worth Following</h1>
-        <p class="header__desc">精选 product 和 UI/UX 设计师，附上从 offer 角度来看这份作品集好在哪里。</p>
-      </header>
-
-      <div class="toolbar">
-        <!-- search -->
-        <div class="toolbar-row">
-          <div class="search-wrap">
-            <svg class="search-icon" width="13" height="13" viewBox="0 0 16 16" fill="none">
-              <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <input class="search" id="search" type="search" placeholder="Search by name, company, specialty, label…" autocomplete="off" />
-          </div>
-        </div>
-        <!-- role filter -->
-        <div class="toolbar-row">
-          <span class="toolbar-label">Role</span>
-          <div class="filter-group" id="cat-filters">
-            <button class="filter-btn is-active" data-filter="all">All</button>
-          </div>
-        </div>
-        <!-- label filter -->
-        <div class="toolbar-row" id="label-row">
-          <span class="toolbar-label">Label</span>
-          <div class="filter-group" id="label-filters"></div>
-        </div>
+    <!-- HERO -->
+    <div class="hero">
+      <div>
+        <p class="hero__kicker">Curated</p>
+        <h1 class="hero__title">Product designers<br><em>worth following</em></h1>
       </div>
-
-      <div id="loading" class="loading">Loading…</div>
-      <div id="content"></div>
-      <div class="empty" id="empty">No designers match your search.</div>
-
-      <div class="stats-bar">
-        <span id="count-label"></span>
-        <a href="./index.html">← Portfolio</a>
+      <div class="hero__meta">
+        <p class="hero__stat" id="hero-count"><strong>—</strong> designers</p>
+        <p class="hero__stat">Updated April 2026</p>
+        <p class="hero__stat"><a href="./index.html" style="color:var(--text-3);text-decoration:none;">← Portfolio</a></p>
       </div>
-
     </div>
 
-    <script>
-      const THUMB = 'https://image.thum.io/get/width/320/crop/420/noanimate/';
+    <!-- STICKY FILTER BAR -->
+    <div class="filter-bar">
+      <div class="filter-bar__inner">
 
-      const CATEGORY_ORDER = [
+        <div class="search-input-wrap">
+          <svg class="search-icon" width="12" height="12" viewBox="0 0 16 16" fill="none">
+            <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input class="search-input" id="search" type="search" placeholder="Search…" autocomplete="off" />
+        </div>
+
+        <div class="filter-divider"></div>
+
+        <div class="filter-chips" id="cat-chips">
+          <button class="chip is-active" data-cat="all">All</button>
+        </div>
+
+        <div class="filter-divider" id="label-divider"></div>
+        <div class="filter-chips" id="label-chips"></div>
+
+      </div>
+    </div>
+
+    <!-- CARD GRID -->
+    <main class="main" id="main-content">
+      <p style="color:var(--text-3);font-size:0.8rem;padding:40px 0;text-align:center">Loading…</p>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <span id="footer-count"></span>
+      <a href="./index.html">← Back to portfolio</a>
+    </footer>
+
+    <script>
+      const THUMB = 'https://image.thum.io/get/width/600/crop/400/noanimate/';
+
+      const CAT_ORDER = [
         'Product Designer', 'Design Engineer', 'Design Systems',
         'UX Researcher', 'Brand Designer', 'Other',
       ];
 
-      // Common labels — sorted by relevance for product designers
       const LABEL_ORDER = [
         'AI', 'Autonomous', 'Fintech', 'Dev Tools', 'Productivity',
         'B2B', 'B2C', 'Enterprise', 'Consumer', 'Healthcare',
         'Creator Tools', 'No-Code', 'Open Source', 'Infrastructure', 'Social',
       ];
 
-      let all = [];
-      let activeCategory = 'all';
-      let activeLabel = 'all';
+      let all = [], activeCat = 'all', activeLabel = 'all';
 
       async function init() {
-        try {
-          const res = await fetch('./designers.json');
-          all = await res.json();
-        } catch { all = []; }
-        document.getElementById('loading').style.display = 'none';
-        buildCategoryFilters();
-        buildLabelFilters();
+        const res = await fetch('./designers.json').catch(() => ({ json: () => [] }));
+        all = await res.json().catch(() => []);
+
+        document.getElementById('hero-count').innerHTML =
+          `<strong>${all.length}</strong> designers`;
+
+        buildFilters();
         render();
         document.getElementById('search').addEventListener('input', render);
       }
 
-      function buildCategoryFilters() {
+      function buildFilters() {
+        // categories
         const cats = [...new Set(all.map(d => d.category).filter(Boolean))];
-        const ordered = CATEGORY_ORDER.filter(c => cats.includes(c));
-        const rest = cats.filter(c => !CATEGORY_ORDER.includes(c));
-        const container = document.getElementById('cat-filters');
-        container.querySelector('[data-filter="all"]').addEventListener('click', () => setCat('all'));
-        [...ordered, ...rest].forEach(cat => {
-          const btn = document.createElement('button');
-          btn.className = 'filter-btn';
-          btn.dataset.filter = cat;
-          btn.textContent = cat;
-          btn.addEventListener('click', () => setCat(cat));
-          container.appendChild(btn);
-        });
-      }
+        const catContainer = document.getElementById('cat-chips');
+        catContainer.querySelector('[data-cat="all"]').addEventListener('click', () => setCat('all'));
+        CAT_ORDER.filter(c => cats.includes(c)).concat(cats.filter(c => !CAT_ORDER.includes(c)))
+          .forEach(cat => {
+            const b = document.createElement('button');
+            b.className = 'chip'; b.dataset.cat = cat; b.textContent = cat;
+            b.addEventListener('click', () => setCat(cat));
+            catContainer.appendChild(b);
+          });
 
-      function buildLabelFilters() {
+        // labels
         const allLabels = all.flatMap(d => d.labels || []);
-        const counts = {};
-        allLabels.forEach(l => counts[l] = (counts[l] || 0) + 1);
-        const ordered = LABEL_ORDER.filter(l => counts[l]);
-        const rest = Object.keys(counts).filter(l => !LABEL_ORDER.includes(l)).sort();
+        const labelCounts = {};
+        allLabels.forEach(l => labelCounts[l] = (labelCounts[l] || 0) + 1);
+        const sorted = LABEL_ORDER.filter(l => labelCounts[l])
+          .concat(Object.keys(labelCounts).filter(l => !LABEL_ORDER.includes(l)));
 
-        const container = document.getElementById('label-filters');
-        const labelRow = document.getElementById('label-row');
-
-        if (ordered.length + rest.length === 0) {
-          labelRow.style.display = 'none';
-          return;
+        const labelContainer = document.getElementById('label-chips');
+        if (sorted.length === 0) {
+          document.getElementById('label-divider').style.display = 'none';
+        } else {
+          sorted.forEach(label => {
+            const b = document.createElement('button');
+            b.className = 'chip chip--label'; b.dataset.label = label; b.textContent = label;
+            b.addEventListener('click', () => setLabel(label));
+            labelContainer.appendChild(b);
+          });
         }
-
-        [...ordered, ...rest].forEach(label => {
-          const btn = document.createElement('button');
-          btn.className = 'label-btn';
-          btn.dataset.label = label;
-          btn.textContent = label;
-          btn.addEventListener('click', () => setLabel(label));
-          container.appendChild(btn);
-        });
       }
 
-      function setCat(f) {
-        activeCategory = f;
-        document.querySelectorAll('.filter-btn').forEach(b =>
-          b.classList.toggle('is-active', b.dataset.filter === f)
-        );
+      function setCat(c) {
+        activeCat = c;
+        document.querySelectorAll('[data-cat]').forEach(b =>
+          b.classList.toggle('is-active', b.dataset.cat === c));
         render();
       }
 
       function setLabel(l) {
         activeLabel = activeLabel === l ? 'all' : l;
-        document.querySelectorAll('.label-btn').forEach(b =>
-          b.classList.toggle('is-active', b.dataset.label === activeLabel)
-        );
+        document.querySelectorAll('[data-label]').forEach(b =>
+          b.classList.toggle('is-active', b.dataset.label === activeLabel));
         render();
       }
 
@@ -619,140 +649,130 @@
         const q = document.getElementById('search').value.toLowerCase().trim();
         let list = all;
 
-        if (activeCategory !== 'all') {
-          list = list.filter(d => d.category === activeCategory);
-        }
+        if (activeCat !== 'all') list = list.filter(d => d.category === activeCat);
+        if (activeLabel !== 'all') list = list.filter(d => d.labels?.includes(activeLabel));
+        if (q) list = list.filter(d =>
+          [d.name, d.title, d.company, d.category, ...(d.specialties || []), ...(d.labels || [])]
+            .filter(Boolean).some(v => v.toLowerCase().includes(q))
+        );
 
-        if (activeLabel !== 'all') {
-          list = list.filter(d => d.labels?.includes(activeLabel));
-        }
-
-        if (q) {
-          list = list.filter(d =>
-            d.name.toLowerCase().includes(q) ||
-            d.title?.toLowerCase().includes(q) ||
-            d.company?.toLowerCase().includes(q) ||
-            d.category?.toLowerCase().includes(q) ||
-            d.specialties?.some(s => s.toLowerCase().includes(q)) ||
-            d.labels?.some(l => l.toLowerCase().includes(q))
-          );
-        }
-
-        const content = document.getElementById('content');
-        const empty = document.getElementById('empty');
+        const container = document.getElementById('main-content');
 
         if (list.length === 0) {
-          content.innerHTML = '';
-          empty.classList.add('is-visible');
-          document.getElementById('count-label').textContent = '0 designers';
+          container.innerHTML = '<div class="empty is-visible">No designers match your search.</div>';
+          document.getElementById('footer-count').textContent = '0 designers';
           return;
         }
 
-        empty.classList.remove('is-visible');
-
-        // Group by category
+        // group by category
         const groups = {};
         list.forEach(d => {
           const cat = d.category || 'Other';
-          if (!groups[cat]) groups[cat] = [];
-          groups[cat].push(d);
+          (groups[cat] = groups[cat] || []).push(d);
         });
 
-        const orderedKeys = CATEGORY_ORDER.filter(c => groups[c]);
-        const restKeys = Object.keys(groups).filter(c => !CATEGORY_ORDER.includes(c));
+        const keys = CAT_ORDER.filter(c => groups[c])
+          .concat(Object.keys(groups).filter(c => !CAT_ORDER.includes(c)));
 
         let idx = 1;
-        const html = [...orderedKeys, ...restKeys].map(cat => {
-          const items = groups[cat];
-          const rows = items.map(d => designerRow(d, idx++)).join('');
-          return `
-            <section class="category-section">
-              <div class="category-header">
-                <span class="category-title">${cat}</span>
-                <span class="category-count">${items.length}</span>
-              </div>
-              <ul class="designer-list">${rows}</ul>
-            </section>`;
-        }).join('');
+        container.innerHTML = keys.map(cat => `
+          <div class="cat-group">
+            <div class="cat-group__header">
+              <span class="cat-group__name">${cat}</span>
+              <span class="cat-group__line"></span>
+              <span class="cat-group__count">${groups[cat].length}</span>
+            </div>
+            <div class="card-grid">
+              ${groups[cat].map(d => cardHTML(d, idx++)).join('')}
+            </div>
+          </div>`).join('');
 
-        content.innerHTML = html;
-
-        // Bind rec toggles
-        content.querySelectorAll('.rec-trigger').forEach(btn => {
-          btn.addEventListener('click', e => {
-            e.preventDefault();
-            e.stopPropagation();
-            const id = btn.dataset.id;
-            const panel = document.getElementById(`rec-${id}`);
-            const isOpen = panel.classList.contains('is-open');
-            content.querySelectorAll('.rec-panel.is-open').forEach(p => p.classList.remove('is-open'));
-            content.querySelectorAll('.rec-trigger.is-open').forEach(b => b.classList.remove('is-open'));
-            if (!isOpen) { panel.classList.add('is-open'); btn.classList.add('is-open'); }
+        // bind why buttons
+        container.querySelectorAll('.why-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const body = document.getElementById('why-' + btn.dataset.id);
+            const open = body.classList.toggle('is-open');
+            btn.classList.toggle('is-open', open);
+            if (open) {
+              // close others
+              container.querySelectorAll('.why-body.is-open').forEach(b => {
+                if (b !== body) { b.classList.remove('is-open'); }
+              });
+              container.querySelectorAll('.why-btn.is-open').forEach(b => {
+                if (b !== btn) b.classList.remove('is-open');
+              });
+            }
           });
         });
 
-        document.getElementById('count-label').textContent =
-          list.length === all.length ? `${all.length} designers` : `${list.length} of ${all.length}`;
+        const total = all.length;
+        document.getElementById('footer-count').textContent =
+          list.length === total ? `${total} designers` : `${list.length} of ${total} designers`;
+        document.getElementById('hero-count').innerHTML =
+          `<strong>${list.length === total ? total : list.length + ' / ' + total}</strong> designers`;
       }
 
-      function designerRow(d, idx) {
-        const thumbUrl = d.url ? `${THUMB}${d.url}` : '';
+      function cardHTML(d, idx) {
+        const thumb = d.url
+          ? `<img src="${THUMB}${d.url}" alt="${d.name}" loading="lazy"
+               onerror="this.outerHTML='<div class=card__thumb-placeholder>✦</div>'" />`
+          : `<div class="card__thumb-placeholder">✦</div>`;
+
         const subtitle = [d.title, d.company].filter(Boolean).join(' · ');
 
-        const thumb = thumbUrl
-          ? `<img class="item-thumb" src="${thumbUrl}" alt="${d.name}" loading="lazy"
-               onerror="this.outerHTML='<div class=item-thumb-placeholder>✦</div>'" />`
-          : `<div class="item-thumb-placeholder">✦</div>`;
-
         const specialtyTags = (d.specialties || [])
-          .map(s => `<span class="item-tag">${s}</span>`).join('');
-
+          .map(s => `<span class="tag tag--specialty">${s}</span>`).join('');
         const labelPills = (d.labels || [])
-          .map(l => `<span class="item-label">${l}</span>`).join('');
+          .map(l => `<span class="tag tag--label">${l}</span>`).join('');
 
-        const recBtn = d.recommendation ? `
-          <button class="rec-trigger" data-id="${d.id}" aria-label="Why this portfolio is good">
-            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Why good
-          </button>` : '';
+        const xBtn = d.twitter
+          ? `<a class="card__x" href="https://x.com/${d.twitter}" target="_blank" rel="noopener noreferrer"
+               title="@${d.twitter}" aria-label="@${d.twitter} on X">
+               <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor">
+                 <path d="M12.6 1h2.3L9.8 6.8 16 15h-4.3l-3.7-4.9L3.5 15H1.2l5.5-6.2L0 1h4.4l3.4 4.4L12.6 1zm-.8 12.6h1.3L4.2 2.4H2.8l9 11.2z"/>
+               </svg>
+             </a>` : '';
 
-        const xBtn = d.twitter ? `
-          <a class="x-link" href="https://x.com/${d.twitter}" target="_blank" rel="noopener noreferrer"
-             aria-label="${d.name} on X" title="@${d.twitter} on X">
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
-              <path d="M12.6 1h2.3L9.8 6.8 16 15h-4.3l-3.7-4.9L3.5 15H1.2l5.5-6.2L0 1h4.4l3.4 4.4L12.6 1zm-.8 12.6h1.3L4.2 2.4H2.8l9 11.2z"/>
-            </svg>
-          </a>` : '';
-
-        const recPanel = d.recommendation ? `
-          <div class="rec-panel" id="rec-${d.id}">
-            <p class="rec-panel__label">From a hiring perspective</p>
-            <p class="rec-panel__text">${d.recommendation}</p>
+        const whySection = d.recommendation ? `
+          <div class="card__footer">
+            <button class="why-btn" data-id="${d.id}">
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+                <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M6 4v3M6 8.5v.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+              Why this portfolio stands out
+              <svg class="why-btn__chevron" width="10" height="10" viewBox="0 0 12 12" fill="none">
+                <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="why-body" id="why-${d.id}">${d.recommendation}</div>
           </div>` : '';
 
         return `
-          <li class="designer-item">
-            <div class="designer-row">
-              <a class="row-link" href="${d.url || '#'}" target="_blank" rel="noopener noreferrer">
-                <span class="item-index">${String(idx).padStart(2, '0')}</span>
-                <div class="item-thumb-wrap">${thumb}</div>
-                <div class="item-info">
-                  <div class="item-name">${d.name}</div>
-                  ${subtitle ? `<div class="item-subtitle">${subtitle}</div>` : ''}
-                  <div class="item-tags">${specialtyTags}${labelPills}</div>
-                </div>
+          <article class="card">
+            <div class="card__thumb">
+              ${thumb}
+              <a class="card__visit" href="${d.url || '#'}" target="_blank" rel="noopener noreferrer">
+                <span class="card__visit-label">
+                  Visit site
+                  <svg width="10" height="10" viewBox="0 0 16 16" fill="none">
+                    <path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
               </a>
-              <div class="item-actions">${recBtn}${xBtn}</div>
-              <span class="item-arrow" aria-hidden="true">
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
             </div>
-            ${recPanel}
-          </li>`;
+            <div class="card__body">
+              <div class="card__top">
+                <div>
+                  <div class="card__name">${d.name}</div>
+                  ${subtitle ? `<div class="card__subtitle">${subtitle}</div>` : ''}
+                </div>
+                ${xBtn}
+              </div>
+              ${(specialtyTags || labelPills) ? `<div class="card__tags">${labelPills}${specialtyTags}</div>` : ''}
+              ${whySection}
+            </div>
+          </article>`;
       }
 
       init();
