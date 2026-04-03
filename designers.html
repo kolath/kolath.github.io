@@ -7,24 +7,27 @@
     <meta name="description" content="A curated list of exceptional product and UI/UX designers worth following." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       :root {
         --bg: #0a0a0a;
-        --surface: #111111;
+        --surface: #141414;
+        --surface-2: #1a1a1a;
         --border: rgba(255,255,255,0.07);
-        --border-hover: rgba(255,255,255,0.15);
-        --text-primary: #f0f0f0;
+        --border-hover: rgba(255,255,255,0.14);
+        --text-primary: #efefef;
         --text-secondary: #888;
-        --text-muted: #555;
-        --accent: #e8ff5a;
-        --accent-dim: rgba(232,255,90,0.1);
-        --tag-bg: rgba(255,255,255,0.06);
-        --tag-text: #aaa;
-        --radius: 12px;
-        --transition: 200ms cubic-bezier(0.2, 0, 0, 1);
+        --text-muted: #4a4a4a;
+        --accent: #d4f754;
+        --accent-dim: rgba(212,247,84,0.08);
+        --tag-bg: rgba(255,255,255,0.05);
+        --tag-text: #777;
+        --rec-bg: rgba(212,247,84,0.05);
+        --rec-border: rgba(212,247,84,0.15);
+        --rec-text: #bcd85a;
+        --transition: 180ms cubic-bezier(0.2, 0, 0, 1);
       }
 
       html { font-size: 15px; }
@@ -37,68 +40,61 @@
         min-height: 100vh;
       }
 
-      /* ── LAYOUT ── */
       .page {
-        max-width: 860px;
+        max-width: 900px;
         margin: 0 auto;
         padding: 0 24px 80px;
       }
 
       /* ── HEADER ── */
       .header {
-        padding: 64px 0 48px;
-        border-bottom: 1px solid var(--border);
+        padding: 64px 0 40px;
       }
 
       .header__eyebrow {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         font-weight: 500;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
         color: var(--accent);
-        margin-bottom: 16px;
+        margin-bottom: 14px;
       }
 
       .header__title {
-        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-size: clamp(1.6rem, 3.5vw, 2.25rem);
         font-weight: 600;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.025em;
         line-height: 1.15;
-        color: var(--text-primary);
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
 
       .header__desc {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         color: var(--text-secondary);
-        line-height: 1.6;
-        max-width: 480px;
-      }
-
-      .header__count {
-        margin-top: 8px;
-        font-size: 0.8rem;
-        color: var(--text-muted);
+        line-height: 1.65;
+        max-width: 440px;
       }
 
       /* ── TOOLBAR ── */
       .toolbar {
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 24px 0;
+        gap: 10px;
+        padding: 28px 0 0;
         flex-wrap: wrap;
+        border-top: 1px solid var(--border);
+        margin-top: 32px;
       }
 
       .search-wrap {
         flex: 1;
-        min-width: 200px;
+        min-width: 180px;
         position: relative;
       }
 
       .search-icon {
         position: absolute;
-        left: 12px;
+        left: 11px;
         top: 50%;
         transform: translateY(-50%);
         color: var(--text-muted);
@@ -110,10 +106,10 @@
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: 8px;
-        padding: 9px 12px 9px 36px;
+        padding: 8px 11px 8px 32px;
         color: var(--text-primary);
         font-family: inherit;
-        font-size: 0.875rem;
+        font-size: 0.825rem;
         outline: none;
         transition: border-color var(--transition);
       }
@@ -123,98 +119,105 @@
 
       .filters {
         display: flex;
-        gap: 6px;
+        gap: 5px;
         flex-wrap: wrap;
       }
 
       .filter-btn {
-        background: var(--surface);
+        background: transparent;
         border: 1px solid var(--border);
         border-radius: 100px;
-        padding: 6px 14px;
-        font-size: 0.8rem;
+        padding: 5px 13px;
+        font-size: 0.75rem;
         font-family: inherit;
-        color: var(--text-secondary);
+        color: var(--text-muted);
         cursor: pointer;
         transition: all var(--transition);
         white-space: nowrap;
       }
 
-      .filter-btn:hover {
-        border-color: var(--border-hover);
-        color: var(--text-primary);
-      }
-
+      .filter-btn:hover { border-color: var(--border-hover); color: var(--text-secondary); }
       .filter-btn.is-active {
         background: var(--accent);
         border-color: var(--accent);
-        color: #000;
+        color: #111;
         font-weight: 500;
       }
 
-      /* ── LIST ── */
-      .list-header {
-        display: grid;
-        grid-template-columns: 28px 80px 1fr auto 32px;
-        gap: 16px;
+      /* ── CATEGORY SECTION ── */
+      .category-section {
+        margin-top: 40px;
+      }
+
+      .category-header {
+        display: flex;
         align-items: center;
-        padding: 0 12px 10px;
-        font-size: 0.7rem;
-        letter-spacing: 0.08em;
+        gap: 12px;
+        padding: 0 0 14px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 4px;
+      }
+
+      .category-title {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text-muted);
-        border-bottom: 1px solid var(--border);
       }
 
-      .designer-list {
-        list-style: none;
+      .category-count {
+        font-size: 0.68rem;
+        color: var(--text-muted);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        padding: 1px 8px;
       }
+
+      /* ── DESIGNER ROW ── */
+      .designer-list { list-style: none; }
 
       .designer-item {
-        display: grid;
-        grid-template-columns: 28px 80px 1fr auto 32px;
-        gap: 16px;
-        align-items: center;
-        padding: 14px 12px;
         border-bottom: 1px solid var(--border);
+      }
+
+      .designer-row {
+        display: grid;
+        grid-template-columns: 26px 76px 1fr auto 28px;
+        gap: 14px;
+        align-items: center;
+        padding: 12px 8px;
         cursor: pointer;
-        text-decoration: none;
-        color: inherit;
         transition: background var(--transition);
         border-radius: 8px;
-        margin: 2px -12px;
+        margin: 0 -8px;
+        text-decoration: none;
+        color: inherit;
+        position: relative;
       }
 
-      .designer-item:hover {
+      .designer-row:hover {
         background: var(--surface);
-      }
-
-      .designer-item:hover .item-arrow {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      .designer-item:hover .item-thumb {
-        filter: grayscale(0);
-        opacity: 1;
       }
 
       /* index */
       .item-index {
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         font-variant-numeric: tabular-nums;
         color: var(--text-muted);
         text-align: right;
         font-weight: 500;
+        flex-shrink: 0;
       }
 
       /* thumbnail */
       .item-thumb-wrap {
-        width: 80px;
-        height: 52px;
+        width: 76px;
+        height: 50px;
         border-radius: 6px;
         overflow: hidden;
-        background: var(--surface);
+        background: var(--surface-2);
         border: 1px solid var(--border);
         flex-shrink: 0;
       }
@@ -223,10 +226,15 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: top;
-        filter: grayscale(0.3);
-        opacity: 0.85;
+        object-position: top left;
+        filter: grayscale(0.2);
+        opacity: 0.8;
         transition: all var(--transition);
+      }
+
+      .designer-row:hover .item-thumb {
+        filter: grayscale(0);
+        opacity: 1;
       }
 
       .item-thumb-placeholder {
@@ -235,94 +243,149 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.25rem;
-        background: linear-gradient(135deg, #1a1a1a, #222);
+        color: var(--text-muted);
+        font-size: 1rem;
+        background: linear-gradient(135deg, #161616, #1e1e1e);
       }
 
       /* info */
-      .item-info {}
-
       .item-name {
-        font-size: 0.9rem;
+        font-size: 0.875rem;
         font-weight: 500;
         color: var(--text-primary);
-        margin-bottom: 3px;
+        margin-bottom: 2px;
       }
 
-      .item-title {
-        font-size: 0.78rem;
+      .item-subtitle {
+        font-size: 0.75rem;
         color: var(--text-secondary);
         margin-bottom: 6px;
       }
 
       .item-tags {
         display: flex;
-        gap: 5px;
+        gap: 4px;
         flex-wrap: wrap;
       }
 
       .item-tag {
-        font-size: 0.68rem;
+        font-size: 0.65rem;
         background: var(--tag-bg);
         color: var(--tag-text);
         border-radius: 4px;
-        padding: 2px 7px;
+        padding: 2px 6px;
         white-space: nowrap;
       }
 
-      /* url */
-      .item-url {
-        font-size: 0.72rem;
-        color: var(--text-muted);
+      /* rec trigger button */
+      .rec-trigger {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 9px;
+        background: var(--rec-bg);
+        border: 1px solid var(--rec-border);
+        border-radius: 100px;
+        font-size: 0.68rem;
+        color: var(--rec-text);
+        cursor: pointer;
+        font-family: inherit;
+        transition: all var(--transition);
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 140px;
-        text-align: right;
+        flex-shrink: 0;
+      }
+
+      .rec-trigger:hover {
+        background: rgba(212,247,84,0.12);
+        border-color: rgba(212,247,84,0.25);
+      }
+
+      .rec-trigger.is-open {
+        background: rgba(212,247,84,0.12);
+      }
+
+      .rec-trigger svg {
+        transition: transform var(--transition);
+        flex-shrink: 0;
+      }
+
+      .rec-trigger.is-open svg {
+        transform: rotate(180deg);
       }
 
       /* arrow */
       .item-arrow {
-        width: 28px;
-        height: 28px;
+        width: 24px;
+        height: 24px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--text-secondary);
-        opacity: 0;
-        transform: translateX(-4px);
-        transition: all var(--transition);
+        color: var(--text-muted);
         flex-shrink: 0;
+        transition: all var(--transition);
       }
 
-      /* ── EMPTY STATE ── */
-      .empty-state {
-        padding: 64px 24px;
+      .designer-row:hover .item-arrow {
+        color: var(--text-secondary);
+        transform: translateX(2px);
+      }
+
+      /* ── RECOMMENDATION PANEL ── */
+      .rec-panel {
+        display: none;
+        margin: 0 8px 12px;
+        padding: 14px 16px;
+        background: var(--rec-bg);
+        border: 1px solid var(--rec-border);
+        border-radius: 8px;
+      }
+
+      .rec-panel.is-open { display: block; }
+
+      .rec-panel__label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 8px;
+        opacity: 0.7;
+      }
+
+      .rec-panel__text {
+        font-size: 0.825rem;
+        line-height: 1.65;
+        color: #c8d8a0;
+        font-style: italic;
+      }
+
+      /* ── EMPTY ── */
+      .empty {
+        padding: 56px 0;
         text-align: center;
         color: var(--text-muted);
-        font-size: 0.875rem;
+        font-size: 0.825rem;
         display: none;
       }
+      .empty.is-visible { display: block; }
 
-      .empty-state.is-visible { display: block; }
-
-      /* ── FOOTER ── */
-      .footer {
-        padding: 32px 0 0;
-        border-top: 1px solid var(--border);
+      /* ── STATS BAR ── */
+      .stats-bar {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding: 20px 0 0;
         font-size: 0.75rem;
         color: var(--text-muted);
+        border-top: 1px solid var(--border);
+        margin-top: 40px;
       }
 
-      .footer a {
+      .stats-bar a {
         color: var(--text-muted);
         text-decoration: none;
       }
-
-      .footer a:hover { color: var(--text-secondary); }
+      .stats-bar a:hover { color: var(--text-secondary); }
 
       /* ── LOADING ── */
       .loading {
@@ -332,177 +395,222 @@
         font-size: 0.8rem;
       }
 
-      @media (max-width: 600px) {
-        .list-header { display: none; }
-        .designer-item {
-          grid-template-columns: 24px 64px 1fr 24px;
-          gap: 12px;
+      @media (max-width: 580px) {
+        .designer-row {
+          grid-template-columns: 20px 60px 1fr 22px;
+          gap: 10px;
         }
-        .item-url { display: none; }
-        .item-thumb-wrap { width: 64px; height: 44px; }
+        .item-thumb-wrap { width: 60px; height: 40px; }
+        .rec-trigger { display: none; }
       }
     </style>
   </head>
   <body>
     <div class="page">
 
-      <!-- HEADER -->
       <header class="header">
         <p class="header__eyebrow">Curated</p>
         <h1 class="header__title">Product Designers Worth Following</h1>
-        <p class="header__desc">A hand-curated list of exceptional product and UI/UX designers. Each one is worth studying.</p>
-        <p class="header__count" id="count-label">Loading…</p>
+        <p class="header__desc">精选 product 和 UI/UX 设计师，附上从 offer 角度来看这份作品集好在哪里。</p>
       </header>
 
-      <!-- TOOLBAR -->
       <div class="toolbar">
         <div class="search-wrap">
-          <svg class="search-icon" width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <svg class="search-icon" width="13" height="13" viewBox="0 0 16 16" fill="none">
             <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
             <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          <input class="search" id="search" type="search" placeholder="Search designers…" autocomplete="off" />
+          <input class="search" id="search" type="search" placeholder="Search by name, company, specialty…" autocomplete="off" />
         </div>
         <div class="filters" id="filters">
           <button class="filter-btn is-active" data-filter="all">All</button>
         </div>
       </div>
 
-      <!-- LIST HEADER -->
-      <div class="list-header" aria-hidden="true">
-        <span>#</span>
-        <span>Site</span>
-        <span>Designer</span>
-        <span>URL</span>
-        <span></span>
+      <div id="loading" class="loading">Loading…</div>
+      <div id="content"></div>
+      <div class="empty" id="empty">No designers match your search.</div>
+
+      <div class="stats-bar">
+        <span id="count-label"></span>
+        <a href="./index.html">← Portfolio</a>
       </div>
-
-      <!-- DESIGNER LIST -->
-      <div id="loading" class="loading">Loading designers…</div>
-      <ul class="designer-list" id="list" role="list"></ul>
-      <div class="empty-state" id="empty">No designers match your filter.</div>
-
-      <!-- FOOTER -->
-      <footer class="footer">
-        <span>Updated regularly</span>
-        <a href="./index.html">← Back to portfolio</a>
-      </footer>
 
     </div>
 
     <script>
-      const THUMB_BASE = 'https://image.thum.io/get/width/320/crop/420/noanimate/';
+      const THUMB = 'https://image.thum.io/get/width/320/crop/420/noanimate/';
 
-      let allDesigners = [];
+      // Category display order and labels
+      const CATEGORY_ORDER = [
+        'Product Designer',
+        'Design Engineer',
+        'Design Systems',
+        'UX Researcher',
+        'Brand Designer',
+        'Other',
+      ];
+
+      let all = [];
       let activeFilter = 'all';
 
       async function init() {
         try {
           const res = await fetch('./designers.json');
-          allDesigners = await res.json();
-        } catch (e) {
-          allDesigners = [];
-        }
-
+          all = await res.json();
+        } catch { all = []; }
         document.getElementById('loading').style.display = 'none';
         buildFilters();
         render();
-        setupSearch();
+        document.getElementById('search').addEventListener('input', render);
       }
 
       function buildFilters() {
-        const all = allDesigners.flatMap(d => d.specialties || []);
-        const counts = {};
-        all.forEach(s => counts[s] = (counts[s] || 0) + 1);
-        const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 6);
-
+        const cats = [...new Set(all.map(d => d.category).filter(Boolean))];
+        const ordered = CATEGORY_ORDER.filter(c => cats.includes(c));
+        const rest = cats.filter(c => !CATEGORY_ORDER.includes(c));
         const container = document.getElementById('filters');
-        sorted.forEach(([tag]) => {
+        [...ordered, ...rest].forEach(cat => {
           const btn = document.createElement('button');
           btn.className = 'filter-btn';
-          btn.dataset.filter = tag;
-          btn.textContent = tag;
-          btn.addEventListener('click', () => setFilter(tag));
+          btn.dataset.filter = cat;
+          btn.textContent = cat;
+          btn.addEventListener('click', () => setFilter(cat));
           container.appendChild(btn);
         });
-
         container.querySelector('[data-filter="all"]').addEventListener('click', () => setFilter('all'));
       }
 
       function setFilter(f) {
         activeFilter = f;
-        document.querySelectorAll('.filter-btn').forEach(b => {
-          b.classList.toggle('is-active', b.dataset.filter === f);
-        });
+        document.querySelectorAll('.filter-btn').forEach(b =>
+          b.classList.toggle('is-active', b.dataset.filter === f)
+        );
         render();
       }
 
-      function setupSearch() {
-        document.getElementById('search').addEventListener('input', render);
-      }
-
       function render() {
-        const query = document.getElementById('search').value.toLowerCase().trim();
-        let list = allDesigners;
+        const q = document.getElementById('search').value.toLowerCase().trim();
+        let list = all;
 
         if (activeFilter !== 'all') {
-          list = list.filter(d => d.specialties?.includes(activeFilter));
+          list = list.filter(d => d.category === activeFilter);
         }
 
-        if (query) {
+        if (q) {
           list = list.filter(d =>
-            d.name.toLowerCase().includes(query) ||
-            d.title?.toLowerCase().includes(query) ||
-            d.company?.toLowerCase().includes(query) ||
-            d.specialties?.some(s => s.toLowerCase().includes(query))
+            d.name.toLowerCase().includes(q) ||
+            d.title?.toLowerCase().includes(q) ||
+            d.company?.toLowerCase().includes(q) ||
+            d.category?.toLowerCase().includes(q) ||
+            d.specialties?.some(s => s.toLowerCase().includes(q))
           );
         }
 
-        const ul = document.getElementById('list');
+        const content = document.getElementById('content');
         const empty = document.getElementById('empty');
 
         if (list.length === 0) {
-          ul.innerHTML = '';
+          content.innerHTML = '';
           empty.classList.add('is-visible');
-        } else {
-          empty.classList.remove('is-visible');
-          ul.innerHTML = list.map((d, i) => designerRow(d, i + 1)).join('');
+          document.getElementById('count-label').textContent = '0 designers';
+          return;
         }
 
-        const total = allDesigners.length;
+        empty.classList.remove('is-visible');
+
+        // Group by category
+        const groups = {};
+        list.forEach((d, i) => {
+          const cat = d.category || 'Other';
+          if (!groups[cat]) groups[cat] = [];
+          groups[cat].push({ ...d, _globalIdx: i + 1 });
+        });
+
+        const orderedKeys = CATEGORY_ORDER.filter(c => groups[c]);
+        const restKeys = Object.keys(groups).filter(c => !CATEGORY_ORDER.includes(c));
+
+        let globalIdx = 1;
+        const html = [...orderedKeys, ...restKeys].map(cat => {
+          const items = groups[cat];
+          const rows = items.map(d => designerRow(d, globalIdx++)).join('');
+          return `
+            <section class="category-section">
+              <div class="category-header">
+                <span class="category-title">${cat}</span>
+                <span class="category-count">${items.length}</span>
+              </div>
+              <ul class="designer-list">${rows}</ul>
+            </section>`;
+        }).join('');
+
+        content.innerHTML = html;
+
+        // Bind rec toggles
+        content.querySelectorAll('.rec-trigger').forEach(btn => {
+          btn.addEventListener('click', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            const id = btn.dataset.id;
+            const panel = document.getElementById(`rec-${id}`);
+            const isOpen = panel.classList.contains('is-open');
+            // close all others
+            content.querySelectorAll('.rec-panel.is-open').forEach(p => p.classList.remove('is-open'));
+            content.querySelectorAll('.rec-trigger.is-open').forEach(b => b.classList.remove('is-open'));
+            if (!isOpen) {
+              panel.classList.add('is-open');
+              btn.classList.add('is-open');
+            }
+          });
+        });
+
         document.getElementById('count-label').textContent =
-          list.length === total
-            ? `${total} designers`
-            : `${list.length} of ${total} designers`;
+          list.length === all.length ? `${all.length} designers` : `${list.length} of ${all.length}`;
       }
 
-      function designerRow(d, i) {
-        const thumbUrl = d.url ? `${THUMB_BASE}${d.url}` : '';
-        const displayUrl = d.url ? d.url.replace(/^https?:\/\/(www\.)?/, '') : '';
+      function designerRow(d, idx) {
+        const thumbUrl = d.url ? `${THUMB}${d.url}` : '';
+        const displayUrl = d.url ? d.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '') : '';
         const tags = (d.specialties || []).map(s => `<span class="item-tag">${s}</span>`).join('');
-        const titleStr = [d.title, d.company].filter(Boolean).join(' · ');
+        const subtitle = [d.title, d.company].filter(Boolean).join(' · ');
 
-        const thumbContent = thumbUrl
-          ? `<img class="item-thumb" src="${thumbUrl}" alt="${d.name}'s website" loading="lazy" onerror="this.parentElement.innerHTML='<div class=item-thumb-placeholder>✦</div>'" />`
+        const thumb = thumbUrl
+          ? `<img class="item-thumb" src="${thumbUrl}" alt="${d.name}" loading="lazy"
+               onerror="this.outerHTML='<div class=item-thumb-placeholder>✦</div>'" />`
           : `<div class="item-thumb-placeholder">✦</div>`;
 
+        const recBtn = d.recommendation ? `
+          <button class="rec-trigger" data-id="${d.id}" aria-label="Why this portfolio is good">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Why good
+          </button>` : '';
+
+        const recPanel = d.recommendation ? `
+          <div class="rec-panel" id="rec-${d.id}">
+            <p class="rec-panel__label">From a hiring perspective</p>
+            <p class="rec-panel__text">${d.recommendation}</p>
+          </div>` : '';
+
         return `
-          <li>
-            <a class="designer-item" href="${d.url || '#'}" target="_blank" rel="noopener noreferrer">
-              <span class="item-index">${String(i).padStart(2, '0')}</span>
-              <div class="item-thumb-wrap">${thumbContent}</div>
+          <li class="designer-item">
+            <a class="designer-row" href="${d.url || '#'}" target="_blank" rel="noopener noreferrer">
+              <span class="item-index">${String(idx).padStart(2, '0')}</span>
+              <div class="item-thumb-wrap">${thumb}</div>
               <div class="item-info">
                 <div class="item-name">${d.name}</div>
-                ${titleStr ? `<div class="item-title">${titleStr}</div>` : ''}
+                ${subtitle ? `<div class="item-subtitle">${subtitle}</div>` : ''}
                 <div class="item-tags">${tags}</div>
               </div>
-              <span class="item-url">${displayUrl}</span>
+              ${recBtn}
               <span class="item-arrow" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </a>
+            ${recPanel}
           </li>`;
       }
 

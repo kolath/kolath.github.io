@@ -28,22 +28,26 @@ const args = process.argv.slice(2);
 const LIMIT = parseInt(args[args.indexOf('--limit') + 1] || '20', 10);
 const DRY_RUN = args.includes('--dry-run');
 
-// Google search queries to find product designers on X
+// Google search queries — focused on product designers, not UI-only
+// Using X bios that signal product thinking over visual craft
 const SEARCH_QUERIES = [
-  'site:x.com "product designer" "portfolio"',
-  'site:x.com "ux designer" "portfolio"',
-  'site:x.com "ui designer" "open to work"',
-  'site:x.com "product designer at"',
+  'site:x.com "product designer" "case study"',
+  'site:x.com "product designer at" "previously"',
+  'site:x.com "head of design" "product"',
+  'site:x.com "staff designer" portfolio',
+  'site:x.com "principal designer" portfolio',
+  'site:x.com "product designer" "0 to 1"',
+  'site:x.com "ux" "product thinking" portfolio',
 ];
 
-// Specialty keywords to tag designers automatically
+// Specialty keywords — weighted toward product/UX signals
 const SPECIALTY_MAP = {
   'design system': 'Design Systems',
   'design systems': 'Design Systems',
-  'motion': 'Motion',
-  'animation': 'Motion',
-  'brand': 'Branding',
-  'typography': 'Typography',
+  '0 to 1': '0→1',
+  'zero to one': '0→1',
+  'growth': 'Growth',
+  'platform': 'Platform',
   'mobile': 'Mobile',
   'ios': 'Mobile',
   'android': 'Mobile',
@@ -51,14 +55,29 @@ const SPECIALTY_MAP = {
   'interaction': 'Interaction',
   'research': 'Research',
   'ux research': 'Research',
+  'user research': 'Research',
   'accessibility': 'Accessibility',
   'a11y': 'Accessibility',
-  'product': 'Product',
-  'ui': 'UI Design',
-  'ux': 'UX',
-  'figma': 'Figma',
+  'motion': 'Motion',
+  'animation': 'Motion',
+  'brand': 'Branding',
+  'typography': 'Typography',
   'prototyp': 'Prototyping',
+  'figma': 'Figma',
+  'saas': 'SaaS',
+  'enterprise': 'Enterprise',
+  'b2b': 'B2B',
+  'consumer': 'Consumer',
 };
+
+// Category inference from bio text
+const CATEGORY_MAP = [
+  { keywords: ['design engineer', 'engineer', 'developer', 'code', 'coding'], category: 'Design Engineer' },
+  { keywords: ['design system', 'design systems', 'infrastructure'], category: 'Design Systems' },
+  { keywords: ['ux researcher', 'user researcher', 'research lead'], category: 'UX Researcher' },
+  { keywords: ['brand', 'visual design', 'art director'], category: 'Brand Designer' },
+  { keywords: ['head of design', 'vp of design', 'director of design', 'staff designer', 'principal'], category: 'Product Designer' },
+];
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -76,9 +95,16 @@ function extractSpecialties(bio = '') {
   for (const [keyword, tag] of Object.entries(SPECIALTY_MAP)) {
     if (lower.includes(keyword)) found.add(tag);
   }
-  // Default
   if (found.size === 0) found.add('Product');
   return [...found].slice(0, 4);
+}
+
+function inferCategory(bio = '') {
+  const lower = bio.toLowerCase();
+  for (const { keywords, category } of CATEGORY_MAP) {
+    if (keywords.some(k => lower.includes(k))) return category;
+  }
+  return 'Product Designer';
 }
 
 function cleanUrl(url) {
@@ -238,15 +264,18 @@ async function main() {
     }
 
     const specialties = extractSpecialties(profile.bio);
+    const category = inferCategory(profile.bio);
     const designer = {
       id: existing.length + newDesigners.length + 1,
       name: profile.name,
       title: 'Product Designer',
       company: null,
+      category,
       bio: profile.bio || null,
       specialties,
       url: profile.website,
       twitter: profile.handle,
+      recommendation: null,   // fill in manually or via AI later
       added: new Date().toISOString().split('T')[0],
     };
 
