@@ -9,7 +9,7 @@
     "labels": ["Dev Tools", "Open Source"],
     "url": "https://rauno.me",
     "twitter": "raunofreiberg",
-    "recommendation": "作品极度精炼——每个细节都经过深思。他的个人网站本身就是一份作品集，展示了对微交互和动效的掌控力。面试时会让人觉得「这个人真的懂产品」。",
+    "recommendation": "他的作品之所以值得 follow，在于把动效、信息层级和交互克制地揉成一个完整产品体验。Rauno 很适合学习如何用极少的视觉语言做出高完成度的界面。",
     "added": "2026-04-03"
   },
   {
@@ -22,7 +22,7 @@
     "labels": ["Dev Tools", "Productivity"],
     "url": "https://paco.me",
     "twitter": "pacocoursey",
-    "recommendation": "作品集叙事清晰，展示了设计决策背后的逻辑而不只是最终结果。在 Linear 的工作案例说明了他如何在高密度信息产品中做减法——这种能力招聘方极度稀缺。",
+    "recommendation": "他值得学习的地方，是总能把复杂产品压缩成清楚、轻快、没有废话的体验。Paco 的案例很适合看信息密度高的工具类产品，如何通过结构和优先级做减法。",
     "added": "2026-04-03"
   },
   {
@@ -35,20 +35,20 @@
     "labels": ["Infrastructure", "Open Source"],
     "url": "https://mrmrs.cc",
     "twitter": "mrmrs_",
-    "recommendation": "开源设计系统 Tachyons 的创始人。作品集展示了跨越设计与工程的系统级思维——如果你在面试 Design Systems 职位，这是教科书级的参考。",
+    "recommendation": "Adam Morse 值得 follow，是因为他一直在用系统化方法连接设计和工程。看他的工作，能学到设计语言如何真正变成可复用、可扩展的产品基础设施。",
     "added": "2026-04-03"
   },
   {
     "id": 4,
-    "name": "Mariana Castilho",
-    "title": "Product Designer",
-    "company": "Framer",
+    "name": "Nate Parrott",
+    "title": "Designer",
+    "company": "Anthropic",
     "category": "Product Designer",
-    "specialties": ["Product", "UI Design", "Prototyping"],
-    "labels": ["No-Code", "Creator Tools"],
-    "url": "https://marianacastilho.com",
-    "twitter": "bysusantu",
-    "recommendation": "案例研究结构完整：问题定义→用户研究→迭代过程→结果数据。Framer 的作品展示了她如何推动高复杂度工具产品的设计决策，说服力强。",
+    "specialties": ["AI Interfaces", "Product", "Interaction"],
+    "labels": ["AI", "Consumer", "B2B"],
+    "url": "https://nateparrott.com",
+    "twitter": "nateparrott",
+    "recommendation": "Nate Parrott 值得关注的地方，是他把 AI 产品做得更像真实工具而不是概念演示。看他的工作，能学到新技术界面如何保持熟悉感、速度感和使用节奏。",
     "added": "2026-04-03"
   },
   {
@@ -61,7 +61,7 @@
     "labels": ["Productivity", "AI", "B2B"],
     "url": "https://tobiasfried.com",
     "twitter": "tobiasfried",
-    "recommendation": "Notion 的案例展示了他如何在极度灵活的编辑器产品里做一致性设计——这类「边界模糊」的产品挑战是大厂面试中经常被问到的。展示清晰，容易被记住。",
+    "recommendation": "他值得学习的，是在高度灵活的产品里仍然能维持一致、安静、易理解的体验。Tobias Fried 很适合参考编辑器、工作流和多状态产品的秩序感设计。",
     "added": "2026-04-03"
   },
   {
@@ -74,20 +74,19 @@
     "labels": ["Dev Tools", "Open Source", "Enterprise"],
     "url": "https://broccolini.net",
     "twitter": "broccolini",
-    "recommendation": "GitHub Primer Design System 的核心推动者。作品集展示了如何在大型工程组织里推进设计基础建设——适合面试 Staff/Principal 级别职位时参考其叙事方式。",
+    "recommendation": "Diana Mounter 值得 follow，因为她代表了设计系统从组件层走向组织层的能力。她的工作很适合学习大规模产品里的一致性、可访问性和协作机制。",
     "added": "2026-04-03"
   },
   {
     "id": 7,
-    "name": "Femke van Schoonhoven",
-    "title": "Product Designer",
-    "company": "Pitch",
+    "name": "Irene Au",
+    "title": "Head of UX & Design",
+    "company": "Google",
     "category": "Product Designer",
-    "specialties": ["Product", "UX", "Research"],
-    "labels": ["Productivity", "Creator Tools", "B2B"],
-    "url": "https://femke.co.nz",
-    "twitter": "femkesvs",
-    "recommendation": "作品集的亮点是对用户研究流程的透明展示——不只是结论，而是整个思考路径。面试中这种「展示工作过程」的能力往往比最终视觉更打动 hiring manager。",
+    "specialties": ["Leadership", "UX Strategy", "Human-Centered Design"],
+    "labels": ["Consumer", "Enterprise", "B2C"],
+    "url": "https://www.ireneau.com",
+    "recommendation": "Irene Au 值得关注，因为她代表的是把设计从单点输出提升为组织能力的那一代领导者。她的经历很适合学习设计团队如何在高速增长公司里建立方法、文化和判断标准。",
     "added": "2026-04-03"
   },
   {
@@ -100,7 +99,7 @@
     "labels": ["Fintech", "B2B"],
     "url": "https://emilkowal.ski",
     "twitter": "emilkowalski_",
-    "recommendation": "个人网站本身就是作品——充满精心设计的微动效和交互细节。展示了「设计师写代码」的极致形态。面试重视原型能力或设计工程师岗位的首选参考。",
+    "recommendation": "Emil Kowalski 值得 follow，是因为他把视觉、交互和前端实现压成了一个整体。看他的作品，能学到设计师写代码之后，细节密度可以被推到什么程度。",
     "added": "2026-04-03"
   },
   {
@@ -113,7 +112,7 @@
     "labels": ["AI", "Dev Tools", "Open Source"],
     "url": "https://wattenberger.com",
     "twitter": "wattenberger",
-    "recommendation": "GitHub Copilot Chat 界面的核心设计者之一，将「如何让 AI 融入开发者工作流」这个抽象问题变成了具体可用的交互模式。她公开分享的 AI 界面探索文章在业内被大量引用——面试 AI 产品设计岗时能立刻建立专业信任。",
+    "recommendation": "Amelia Wattenberger 值得学习的，是她总能把抽象复杂的问题转成清楚的交互结构。无论是 AI 界面还是可视化，她的工作都很适合参考“复杂内容如何被讲清楚”。",
     "added": "2026-04-03"
   },
   {
@@ -126,7 +125,7 @@
     "labels": ["AI", "Research", "B2B"],
     "url": "https://maggieappleton.com",
     "twitter": "mappletons",
-    "recommendation": "LLM 界面和 prompt UX 领域最被引用的设计师之一，作品集兼具深度写作和真实产品案例。在 AI 研究工具 Elicit 的工作展示了她如何把复杂 AI 能力翻译成可用界面——面试 AI 产品岗时能展示系统性思考而不只是会用工具。",
+    "recommendation": "Maggie Appleton 值得 follow，因为她很擅长把 AI 能力翻译成人真正能理解和使用的产品体验。她的写作和案例都很适合学习新范式界面的命名、解释和引导方式。",
     "added": "2026-04-03"
   },
   {
@@ -139,7 +138,7 @@
     "labels": ["AI", "Open Source", "Dev Tools"],
     "url": "https://thesephist.com",
     "twitter": "thesephist",
-    "recommendation": "持续发布自研 AI 界面实验项目，不是概念稿而是真正可用的工具，探索密度极高。作品集展示了对「人机协作交互」最前沿的独立思考——面试 AI 产品设计岗时这种实验广度和原创性很难被忽视。",
+    "recommendation": "Linus Lee 值得关注，因为他的 AI 界面实验不是停在想法，而是会被做成可用工具。看他的项目，很适合学习人机协作里新的交互语法和产品原型思维。",
     "added": "2026-04-03"
   },
   {
@@ -152,7 +151,7 @@
     "labels": ["AI", "Open Source", "Dev Tools"],
     "url": "https://www.geoffreylitt.com",
     "twitter": "geoffreylitt",
-    "recommendation": "Ink & Switch 研究员，专注 local-first 和 AI 增强的创作工具。Potluck 等项目展示了他如何把学术研究转化为真实可交互的原型——面试需要研究驱动设计能力的 AI 产品团队时，这份深度很罕见。",
+    "recommendation": "Geoffrey Litt 值得学习的地方，在于他能把研究问题转成真正可体验的原型。对创作工具、AI 辅助和 local-first 感兴趣的人，会从他的工作里看到很扎实的产品探索方法。",
     "added": "2026-04-03"
   },
   {
@@ -165,7 +164,7 @@
     "labels": ["Dev Tools", "Productivity", "B2B"],
     "url": "https://karrisaarinen.com",
     "twitter": "karrisaarinen",
-    "recommendation": "Linear 联合创始人，从零打造出被整个科技圈奉为设计标杆的 PM 工具。他的个人作品集展示了一个「设计师创始人」如何做产品决策——面试 0-to-1 产品岗或创业公司时，这种视角极具说服力。",
+    "recommendation": "Karri Saarinen 值得 follow，因为他体现了设计师创始人如何把审美、速度和产品判断绑在一起。看他的工作，能学到工具产品为什么会显得“顺”，以及这种顺是怎么被设计出来的。",
     "added": "2026-04-03"
   },
   {
@@ -178,7 +177,7 @@
     "labels": ["Dev Tools", "Open Source", "Creator Tools"],
     "url": "https://rsms.me",
     "twitter": "rsms",
-    "recommendation": "Inter 字体的创造者，被全球数百万产品和网站使用。在 Figma 早期奠定了设计工程方向，作品集完整呈现了从字体设计到产品系统的跨领域深度——面试任何 design infra 或 design engineer 岗时是最有力的参考对象之一。",
+    "recommendation": "Rasmus Andersson 值得关注，因为他同时覆盖了字体、界面和产品系统三个层次。看他的工作，能学到设计工程不是把设计做出来，而是把设计语言做深、做准、做成基础设施。",
     "added": "2026-04-03"
   },
   {
@@ -191,20 +190,20 @@
     "labels": ["Dev Tools", "AI", "Creator Tools"],
     "url": "https://nlevin.com",
     "twitter": "nlevin",
-    "recommendation": "Figma VP of Product Design，主导了 Figma AI 功能方向和整体产品设计语言演进。他的对外写作和演讲展示了在顶级设计工具公司做设计领导的思维框架——面试 design lead 或 head of design 岗时值得深入研究其叙事方式。",
+    "recommendation": "Noah Levin 值得学习的，是顶级设计工具公司如何在产品扩张时保持清晰的方向和语言统一。关注他的分享，能看到设计领导如何平衡系统、创新和产品节奏。",
     "added": "2026-04-03"
   },
   {
     "id": 16,
-    "name": "Mia Blume",
-    "title": "Design Leader",
-    "company": "Pinterest",
+    "name": "Soleio",
+    "title": "Product Design Leader",
+    "company": "Facebook",
     "category": "Product Designer",
-    "specialties": ["Leadership", "Research", "Product"],
+    "specialties": ["Consumer Product", "0→1", "Social Product"],
     "labels": ["Consumer", "Social", "B2C"],
-    "url": "https://miablume.com",
-    "twitter": "mialoira",
-    "recommendation": "前 Pinterest 设计总监，创立了设计领导力培训项目 Design Dept。她的作品集和写作展示了如何在大型 consumer 产品里推动设计文化——面试 design manager 或 director 级别时，她对「设计组织」的理解是极好的参考框架。",
+    "url": "https://soleio.com",
+    "twitter": "soleio",
+    "recommendation": "Soleio 值得 follow，因为他参与塑造过社交产品最关键的一代交互体验。看他的工作，能学到 consumer 产品为什么会显得自然、轻巧，而且一上手就懂。",
     "added": "2026-04-03"
   },
   {
@@ -217,7 +216,110 @@
     "labels": ["AI", "Open Source", "Creator Tools"],
     "url": "https://worrydream.com",
     "twitter": "worrydream",
-    "recommendation": "Dynamicland 创始人，「可理解性」界面设计理念的奠基人。他的 demo 和文章是 AI 界面领域最重要的思想来源——面试重视设计哲学的团队时，能流利引用他的观点会立刻拉高对话层次。",
+    "recommendation": "Bret Victor 值得长期关注，因为他影响的不是某个界面细节，而是人们理解交互和工具的方式。想学更底层的设计思想、可理解性和创作工具未来，几乎绕不开他。",
+    "added": "2026-04-03"
+  },
+  {
+    "id": 18,
+    "name": "Maddie Simens",
+    "title": "Product Designer",
+    "company": "OpenAI",
+    "category": "Product Designer",
+    "specialties": ["AI Interfaces", "Product", "Interaction"],
+    "labels": ["AI", "Consumer", "B2B"],
+    "url": "https://maddie.ai",
+    "twitter": "maddiesimens",
+    "recommendation": "Maddie Simens 值得 follow，因为她的工作很接近当下最前线的 AI 产品落地方式。看她的输出，能学到 AI 产品如何兼顾能力表达、界面清晰度和发布节奏。",
+    "added": "2026-04-03"
+  },
+  {
+    "id": 19,
+    "name": "Mike Matas",
+    "title": "Product Designer",
+    "company": "Apple",
+    "category": "Product Designer",
+    "specialties": ["Interaction Design", "Prototyping", "Consumer Product"],
+    "labels": ["Consumer", "B2C", "Creator Tools"],
+    "url": "https://classic.mikematas.com",
+    "twitter": "mike_matas",
+    "recommendation": "Mike Matas 值得学习，因为他参与过多款定义时代的产品体验。看他的工作，能理解标志性产品交互并不是靠视觉噱头，而是靠对媒介、层次和操作节奏的深刻判断。",
+    "added": "2026-04-03"
+  },
+  {
+    "id": 20,
+    "name": "Julie Zhuo",
+    "title": "VP of Product Design",
+    "company": "Meta",
+    "category": "Product Designer",
+    "specialties": ["Leadership", "Consumer Product", "Team Building"],
+    "labels": ["Consumer", "Social", "B2C"],
+    "url": "https://www.juliezhuo.com",
+    "twitter": "joulee",
+    "recommendation": "Julie Zhuo 值得关注，因为她特别擅长把抽象的设计成长和设计管理问题讲得具体可执行。除了产品经验，她的价值还在于能帮助人建立更成熟的设计判断框架。",
+    "added": "2026-04-03"
+  },
+  {
+    "id": 21,
+    "name": "Luke Wroblewski",
+    "title": "Product Director",
+    "company": "Google",
+    "category": "Product Designer",
+    "specialties": ["Mobile UX", "Product Strategy", "Interaction"],
+    "labels": ["Consumer", "B2C", "Enterprise"],
+    "url": "https://lukew.com",
+    "twitter": "lukew",
+    "recommendation": "Luke Wroblewski 值得 follow，因为他总能把设计讨论重新拉回真实用户行为。无论是移动端、表单还是产品策略，他的工作都很适合学习“界面之外”的产品判断。",
+    "added": "2026-04-03"
+  },
+  {
+    "id": 22,
+    "name": "Joe Gebbia",
+    "title": "Co-founder & Product Design Leader",
+    "company": "Airbnb",
+    "category": "Product Designer",
+    "specialties": ["0→1", "Marketplace", "Consumer Product"],
+    "labels": ["Consumer", "B2C", "Creator Tools"],
+    "url": "https://joegebbia.com",
+    "recommendation": "Joe Gebbia 值得学习，因为他展示了设计师如何把产品体验、品牌感和商业模型一起设计出来。关注他，不只是看界面，而是看设计怎样真正改变一家公司要做什么。",
+    "added": "2026-04-03"
+  },
+  {
+    "id": 23,
+    "name": "Ethan Eismann",
+    "title": "Design Leader",
+    "company": "Uber",
+    "category": "Product Designer",
+    "specialties": ["Leadership", "Consumer UX", "Systems Thinking"],
+    "labels": ["Consumer", "B2C", "Enterprise"],
+    "url": "https://www.ethaneismann.com",
+    "twitter": "eeismann",
+    "recommendation": "Ethan Eismann 值得关注，因为他跨过多个顶尖产品组织，持续在更复杂的环境里推动设计。看他的路径，能学到设计领导如何在不同产品文化之间建立一致的判断和标准。",
+    "added": "2026-04-03"
+  },
+  {
+    "id": 24,
+    "name": "Douglas Bowman",
+    "title": "Visual Design Lead",
+    "company": "Google",
+    "category": "Product Designer",
+    "specialties": ["Visual Design", "Product Direction", "Leadership"],
+    "labels": ["Consumer", "B2C", "Social"],
+    "url": "https://stopdesign.com",
+    "twitter": "stop",
+    "recommendation": "Douglas Bowman 值得 follow，因为他代表了互联网早期视觉设计如何真正进入产品核心。看他的工作，能学到视觉语言如何在大规模平台上保持辨识度和一致性。",
+    "added": "2026-04-03"
+  },
+  {
+    "id": 25,
+    "name": "Daniel Burka",
+    "title": "Director of Design",
+    "company": "Slack",
+    "category": "Product Designer",
+    "specialties": ["Product Strategy", "0→1", "Leadership"],
+    "labels": ["Productivity", "B2B", "Enterprise"],
+    "url": "https://danielburka.com",
+    "twitter": "dburka",
+    "recommendation": "Daniel Burka 值得学习，因为他很擅长把产品设计、产品策略和叙事整合成一个清楚方向。看他的工作，会更容易理解复杂问题怎样被拆解成简单、可信、能落地的产品体验。",
     "added": "2026-04-03"
   }
 ]
