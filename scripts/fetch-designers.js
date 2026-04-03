@@ -38,6 +38,12 @@ const SEARCH_QUERIES = [
   'site:x.com "principal designer" portfolio',
   'site:x.com "product designer" "0 to 1"',
   'site:x.com "ux" "product thinking" portfolio',
+  'site:x.com "designer" openai portfolio',
+  'site:x.com "designer" anthropic portfolio',
+  'site:x.com "designer" figma "case study"',
+  'site:x.com "designer" "midjourney" OR "runway" OR "perplexity"',
+  'site:x.com "ai product designer" portfolio',
+  'site:x.com "designing for ai" portfolio',
 ];
 
 // Specialty keywords — weighted toward product/UX signals
@@ -77,6 +83,15 @@ const LABEL_MAP = {
   'machine learning': 'AI',
   'llm': 'AI',
   'gpt': 'AI',
+  'openai': 'AI',
+  'anthropic': 'AI',
+  'midjourney': 'AI',
+  'runway': 'AI',
+  'perplexity': 'AI',
+  'cursor': 'AI',
+  'copilot': 'AI',
+  'chatgpt': 'AI',
+  'claude': 'AI',
   'autonomous': 'Autonomous',
   'self-driving': 'Autonomous',
   'robotics': 'Autonomous',
@@ -128,6 +143,7 @@ const CATEGORY_MAP = [
   { keywords: ['ux researcher', 'user researcher', 'research lead'], category: 'UX Researcher' },
   { keywords: ['brand', 'visual design', 'art director'], category: 'Brand Designer' },
   { keywords: ['head of design', 'vp of design', 'director of design', 'staff designer', 'principal'], category: 'Product Designer' },
+  { keywords: ['openai', 'anthropic', 'midjourney', 'runway', 'perplexity', 'cursor', 'ai product'], category: 'Product Designer' },
 ];
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
