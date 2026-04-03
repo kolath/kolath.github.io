@@ -281,8 +281,21 @@
         grid-area: cat;
       }
 
-      #label-chips {
+      .fb-secondary {
         grid-area: label;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      #label-chips {
+        flex: 1 1 auto;
+      }
+
+      .fb-group--secondary {
+        gap: 4px;
       }
 
       .fb-chip {
@@ -312,6 +325,35 @@
       .fb-chip--label.is-active {
         color: var(--archive);
         background: var(--archive-soft);
+      }
+
+      .fb-chip--hidden {
+        display: none;
+      }
+
+      .fb-secondary.is-expanded .fb-chip--hidden,
+      .fb-chip--label.is-active.fb-chip--hidden {
+        display: inline-flex;
+      }
+
+      .fb-more {
+        flex: 0 0 auto;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 7px 0 7px 8px;
+        font-family: 'Instrument Sans', sans-serif;
+        font-size: 0.68rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        transition: color 150ms var(--ease);
+        white-space: nowrap;
+      }
+
+      .fb-more:hover,
+      .fb-more:focus-visible {
+        color: var(--ink);
       }
 
       .workspace {
@@ -375,10 +417,10 @@
         padding: 22px 14px 22px 0;
         border-bottom: 1px solid color-mix(in oklab, var(--ink) 8%, transparent);
         cursor: default;
-        transition: background 150ms var(--ease), transform 150ms var(--ease);
-        border-radius: 8px;
+        transition: transform 150ms var(--ease);
         margin: 0 -14px;
         position: relative;
+        isolation: isolate;
         animation: fadeUp 300ms var(--ease) both;
       }
 
@@ -389,20 +431,34 @@
         top: 10px;
         bottom: 10px;
         width: 3px;
-        background: linear-gradient(180deg, var(--wine), color-mix(in oklab, var(--wine) 40%, var(--paper)));
+        background: var(--wine);
         border-radius: 0 4px 4px 0;
         opacity: 0;
         transition: opacity 150ms var(--ease);
       }
 
+      .designer-row::after {
+        content: '';
+        position: absolute;
+        inset: 4px -10px;
+        background: var(--paper-2);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 150ms var(--ease), transform 150ms var(--ease);
+        z-index: -1;
+      }
+
       .designer-row:hover {
-        background: color-mix(in oklab, var(--paper-2) 82%, white 18%);
         transform: translateX(2px);
       }
 
       .designer-row.is-active {
-        background: color-mix(in oklab, var(--paper-2) 90%, white 10%);
         transform: translateX(4px);
+      }
+
+      .designer-row:hover::after,
+      .designer-row.is-active::after {
+        opacity: 1;
       }
 
       .designer-row.is-active::before { opacity: 1; }
@@ -563,9 +619,10 @@
         margin-top: 12px;
         width: 100%;
         padding: 14px 18px 18px 16px;
-        font-size: 0.98rem;
+        font-family: 'Instrument Sans', sans-serif;
+        font-size: 0.92rem;
         font-weight: 400;
-        line-height: 1.72;
+        line-height: 1.68;
         color: var(--ink-2);
         border-top: 1px solid color-mix(in oklab, var(--wine) 16%, transparent);
         border-left: 2px solid color-mix(in oklab, var(--wine) 24%, transparent);
@@ -636,7 +693,7 @@
 
       .preview-shot {
         width: 100%;
-        aspect-ratio: 4/5;
+        height: 255px;
         border-radius: 18px;
         overflow: hidden;
         background: linear-gradient(145deg, var(--paper-2), var(--paper-3));
@@ -807,10 +864,10 @@
       }
 
       .preview-rec-text {
-        font-family: 'Fraunces', Georgia, serif;
-        font-size: 1.04rem;
+        font-family: 'Instrument Sans', sans-serif;
+        font-size: 0.96rem;
         font-weight: 400;
-        line-height: 1.78;
+        line-height: 1.72;
         color: var(--ink-2);
       }
 
@@ -922,6 +979,16 @@
           gap: 6px;
           padding: 0;
         }
+
+        .fb-secondary {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+        }
+
+        .fb-more {
+          padding-left: 0;
+        }
       }
 
       @media (max-width: 860px) {
@@ -971,7 +1038,7 @@
     </style>
   </head>
   <body>
-    <a class="skip-link" href="#list-col">Skip to designer list</a>
+    <a class="skip-link" href="#list-col">Skip to people list</a>
 
     <!-- MASTHEAD -->
     <header class="masthead">
@@ -982,7 +1049,7 @@
           <span class="masthead__title-small">Issue No. 001</span>
         </div>
         <h1 class="masthead__headline" id="page-title">
-          Product designers<br>
+          AI product people<br>
           <em>worth following</em>
         </h1>
       </div>
@@ -1008,8 +1075,10 @@
         <div class="fb-group" id="cat-chips" role="group" aria-label="Filter by category">
           <button class="fb-chip is-active" type="button" data-cat="all" aria-pressed="true">All</button>
         </div>
-        <div class="fb-sep" id="label-sep"></div>
-        <div class="fb-group" id="label-chips" role="group" aria-label="Filter by label"></div>
+        <div class="fb-secondary" id="secondary-filters">
+          <div class="fb-group fb-group--secondary" id="label-chips" role="group" aria-label="Filter by label"></div>
+          <button class="fb-more" id="label-toggle" type="button" aria-expanded="false" hidden>More</button>
+        </div>
       </div>
     </div>
     <p class="sr-only" id="results-status" role="status" aria-live="polite" aria-atomic="true">Loading designer list.</p>
@@ -1056,11 +1125,13 @@
     </footer>
 
     <script>
-      const CAT_ORDER = ['Product Designer','Design Engineer','Design Systems','UX Researcher','Brand Designer','Other'];
+      const CAT_ORDER = ['Product Designer','Product Manager','Design Engineer','Design Systems','UX Researcher','Brand Designer','Other'];
+      const CAT_LABELS = { 'Product Manager': 'PM' };
+      const PRIMARY_LABELS = ['AI','Dev Tools','Productivity','Consumer','B2B'];
       const LABEL_ORDER = ['AI','Autonomous','Fintech','Dev Tools','Productivity','B2B','B2C','Enterprise','Consumer','Healthcare','Creator Tools','No-Code','Open Source','Infrastructure','Social'];
       const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
 
-      let all = [], activeCat = 'all', activeLabel = 'all', hoverTimer = null;
+      let all = [], activeCat = 'all', activeLabel = 'all', hoverTimer = null, labelsExpanded = false;
 
       async function init() {
         const res = await fetch('./designers.json').catch(() => null);
@@ -1088,7 +1159,7 @@
         if (query) parts.push(`search ${query}`);
 
         const filtersText = parts.length ? ` matching ${parts.join(', ')}` : '';
-        document.getElementById('results-status').textContent = `${visibleCount} of ${totalCount} designers shown${filtersText}.`;
+        document.getElementById('results-status').textContent = `${visibleCount} of ${totalCount} entries shown${filtersText}.`;
       }
 
       function buildFilters() {
@@ -1097,7 +1168,7 @@
         catEl.querySelector('[data-cat="all"]').addEventListener('click', () => setCat('all'));
         CAT_ORDER.filter(c => cats.includes(c)).concat(cats.filter(c => !CAT_ORDER.includes(c))).forEach(c => {
           const b = document.createElement('button');
-          b.className = 'fb-chip'; b.dataset.cat = c; b.textContent = c; b.type = 'button';
+          b.className = 'fb-chip'; b.dataset.cat = c; b.textContent = CAT_LABELS[c] || c; b.type = 'button';
           b.setAttribute('aria-pressed', 'false');
           b.addEventListener('click', () => setCat(c));
           catEl.appendChild(b);
@@ -1108,17 +1179,37 @@
         allLabels.forEach(l => counts[l] = (counts[l]||0)+1);
         const sorted = LABEL_ORDER.filter(l => counts[l]).concat(Object.keys(counts).filter(l => !LABEL_ORDER.includes(l)));
         const labelEl = document.getElementById('label-chips');
+        const secondaryEl = document.getElementById('secondary-filters');
+        const toggle = document.getElementById('label-toggle');
         if (!sorted.length) {
-          document.getElementById('label-sep').style.display = 'none';
+          secondaryEl.style.display = 'none';
         } else {
           sorted.forEach(l => {
             const b = document.createElement('button');
             b.className = 'fb-chip fb-chip--label'; b.dataset.label = l; b.textContent = l; b.type = 'button';
+            if (!PRIMARY_LABELS.includes(l)) b.classList.add('fb-chip--hidden');
             b.setAttribute('aria-pressed', 'false');
             b.addEventListener('click', () => setLabel(l));
             labelEl.appendChild(b);
           });
+
+          const hiddenCount = sorted.filter(l => !PRIMARY_LABELS.includes(l)).length;
+          if (hiddenCount) {
+            toggle.hidden = false;
+            toggle.textContent = `More (${hiddenCount})`;
+            toggle.addEventListener('click', toggleSecondaryFilters);
+          }
         }
+      }
+
+      function toggleSecondaryFilters() {
+        labelsExpanded = !labelsExpanded;
+        const wrapper = document.getElementById('secondary-filters');
+        const toggle = document.getElementById('label-toggle');
+        const hiddenCount = document.querySelectorAll('#label-chips .fb-chip--hidden').length;
+        wrapper.classList.toggle('is-expanded', labelsExpanded);
+        toggle.setAttribute('aria-expanded', String(labelsExpanded));
+        toggle.textContent = labelsExpanded ? 'Less' : `More (${hiddenCount})`;
       }
 
       function setCat(c) {
@@ -1288,14 +1379,13 @@
         const palette = getPreviewPalette(d);
         const initials = getInitials(d.name);
         const avatar = d.twitter
-          ? `<img class="preview-shot-avatar" src="https://unavatar.io/x/${d.twitter}" alt="${d.name} on X" loading="lazy" onerror="this.hidden=true; this.nextElementSibling.hidden=false" />
-             <div class="preview-shot-initials" hidden>${initials}</div>`
-          : `<div class="preview-shot-initials">${initials}</div>`;
+          ? `<img class="preview-shot-avatar" src="https://unavatar.io/x/${d.twitter}" alt="Profile image of ${d.name}" loading="lazy" onerror="this.parentElement.innerHTML='&lt;div class=&quot;preview-shot-initials&quot; aria-hidden=&quot;true&quot;&gt;${initials}&lt;/div&gt;'" />`
+          : `<div class="preview-shot-initials" aria-hidden="true">${initials}</div>`;
 
         return `
           <div class="preview-shot-card" style="--preview-bg:${palette.bg}; --preview-accent:${palette.accent};">
             <div class="preview-shot-meta">
-              <span class="preview-shot-kicker">Designer file</span>
+              <span class="preview-shot-kicker">Profile file</span>
               <span class="preview-shot-company">${d.company || 'Independent'}</span>
             </div>
             <div class="preview-shot-avatar-wrap">
@@ -1313,7 +1403,7 @@
         const labelTags = (d.labels||[]).map(l => `<span class="tag-label">${l}</span>`).join('');
 
         const siteLink = d.url ? `
-          <a class="row-link row-link--primary" href="${d.url}" target="_blank" rel="noopener noreferrer" title="Visit portfolio" aria-label="Visit ${d.name}'s portfolio">
+          <a class="row-link row-link--primary" href="${d.url}" target="_blank" rel="noopener noreferrer" title="Visit site" aria-label="Visit ${d.name}'s site">
             <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
               <path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
