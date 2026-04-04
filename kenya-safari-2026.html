@@ -46,6 +46,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body.is-locked {
+  overflow: hidden;
+}
+
 body::before {
   content: none;
 }
@@ -58,8 +62,116 @@ img { display: block; max-width: 100%; }
   position: relative;
 }
 
+body.is-locked .page-shell {
+  pointer-events: none;
+  user-select: none;
+  visibility: hidden;
+}
+
 .page-shell::before {
   content: none;
+}
+
+.passcode-gate {
+  align-items: center;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(255, 186, 96, 0.2), transparent 22%),
+    linear-gradient(180deg, rgba(253, 252, 248, 0.98) 0%, rgba(246, 239, 227, 0.99) 100%);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 1.5rem;
+  position: fixed;
+  z-index: 1000;
+}
+
+body:not(.is-locked) .passcode-gate {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.passcode-card {
+  background: rgba(255, 253, 249, 0.96);
+  border: 1px solid rgba(196, 163, 109, 0.22);
+  border-radius: 1.5rem;
+  box-shadow: 0 24px 60px rgba(71, 52, 25, 0.12);
+  max-width: 27rem;
+  padding: 2rem 1.6rem;
+  text-align: center;
+  width: 100%;
+}
+
+.passcode-kicker {
+  color: var(--savanna-dark);
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.passcode-title {
+  color: var(--earth);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.02;
+  margin-top: 0.8rem;
+}
+
+.passcode-copy {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  margin-top: 0.75rem;
+}
+
+.passcode-form {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.passcode-input {
+  appearance: none;
+  background: var(--white);
+  border: 1px solid rgba(94, 72, 50, 0.18);
+  border-radius: 999px;
+  color: var(--ink);
+  font-family: "Source Sans 3", Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  outline: none;
+  padding: 0.95rem 1.2rem;
+  text-align: center;
+}
+
+.passcode-input:focus {
+  border-color: rgba(142, 109, 60, 0.55);
+  box-shadow: 0 0 0 4px rgba(196, 163, 109, 0.14);
+}
+
+.passcode-submit {
+  appearance: none;
+  background: var(--earth);
+  border: none;
+  border-radius: 999px;
+  color: var(--white);
+  cursor: pointer;
+  font-family: "Source Sans 3", Georgia, serif;
+  font-size: 0.96rem;
+  font-weight: 700;
+  padding: 0.95rem 1.25rem;
+}
+
+.passcode-submit:hover {
+  background: var(--earth-light);
+}
+
+.passcode-error {
+  color: #8d3d2f;
+  font-size: 0.88rem;
+  min-height: 1.3em;
 }
 
 .section {
@@ -1390,7 +1502,19 @@ img { display: block; max-width: 100%; }
 }
 </style>
 </head>
-<body>
+<body class="is-locked">
+<div class="passcode-gate" aria-live="polite">
+  <div class="passcode-card">
+    <div class="passcode-kicker">Private Page</div>
+    <h1 class="passcode-title">Kenya Safari 2026</h1>
+    <p class="passcode-copy">Enter the 4-digit passcode to view the itinerary.</p>
+    <form class="passcode-form" id="passcode-form">
+      <input class="passcode-input" id="passcode-input" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="0000" aria-label="4-digit passcode">
+      <button class="passcode-submit" type="submit">Enter</button>
+      <div class="passcode-error" id="passcode-error"></div>
+    </form>
+  </div>
+</div>
 <div class="page-shell">
 
   <section class="hero">
@@ -2572,6 +2696,45 @@ img { display: block; max-width: 100%; }
 </div>
 
 <script>
+const PASSCODE = "0101";
+const PASSCODE_STORAGE_KEY = "kenya-safari-2026-passcode-ok";
+
+function unlockPage() {
+  document.body.classList.remove("is-locked");
+}
+
+function loadPasscodeGate() {
+  const saved = sessionStorage.getItem(PASSCODE_STORAGE_KEY);
+  if (saved === "true") {
+    unlockPage();
+    return;
+  }
+
+  const form = document.getElementById("passcode-form");
+  const input = document.getElementById("passcode-input");
+  const error = document.getElementById("passcode-error");
+
+  if (!form || !input || !error) return;
+
+  input.focus();
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const value = input.value.trim();
+
+    if (value === PASSCODE) {
+      sessionStorage.setItem(PASSCODE_STORAGE_KEY, "true");
+      error.textContent = "";
+      unlockPage();
+      return;
+    }
+
+    error.textContent = "Incorrect passcode. Try again.";
+    input.value = "";
+    input.focus();
+  });
+}
+
 function toggleCheck(item) {
   item.classList.toggle("checked");
   const box = item.querySelector(".check-box");
@@ -2672,6 +2835,7 @@ window.addEventListener("scroll", () => {
 
 applyCurrentTimelineDate();
 loadChecklist();
+loadPasscodeGate();
 </script>
 </body>
 </html>
