@@ -1370,6 +1370,65 @@ body:not(.is-locked) .passcode-gate {
   line-height: 1.4;
 }
 
+.checklist-add {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.checklist-add-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.checklist-add-input,
+.checklist-add-assignee,
+.checklist-add-button {
+  border-radius: 999px;
+  font-family: "Source Sans 3", Georgia, serif;
+  font-size: 0.82rem;
+}
+
+.checklist-add-input,
+.checklist-add-assignee {
+  background: rgba(255, 252, 247, 0.92);
+  border: 1px solid rgba(142, 109, 60, 0.18);
+  color: var(--ink);
+}
+
+.checklist-add-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.7rem 0.95rem;
+}
+
+.checklist-add-input::placeholder {
+  color: var(--ink-muted);
+}
+
+.checklist-add-assignee {
+  padding: 0.7rem 0.8rem;
+}
+
+.checklist-add-button {
+  background: var(--earth);
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0.7rem 0.95rem;
+  white-space: nowrap;
+}
+
+.checklist-add-button:hover {
+  background: var(--earth-light);
+}
+
+.checklist-add-note {
+  color: var(--ink-muted);
+  font-size: 0.76rem;
+}
+
 .footer {
   color: var(--ink-muted);
   padding: 3rem 1.5rem 4rem;
@@ -1477,6 +1536,15 @@ body:not(.is-locked) .passcode-gate {
     align-items: start;
     flex-direction: column;
   }
+
+  .checklist-add-row {
+    flex-wrap: wrap;
+  }
+
+  .checklist-add-assignee,
+  .checklist-add-button {
+    flex: 1 1 140px;
+  }
 }
 
 @media print {
@@ -1583,36 +1651,10 @@ body:not(.is-locked) .passcode-gate {
 
     <div class="itinerary-list">
       <div class="day-block reveal">
-        <div class="day-dot highlight"></div>
-        <div class="day-header">
-          <span class="day-date">Jun 5</span>
-          <span class="day-weekday">Friday</span>
-          <span class="day-location-tag tag-transit">Departure Day</span>
-        </div>
-        <div class="day-content">
-          <div class="day-section">
-            <div class="day-section-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L2 8.5l7.5 3L22 2zM9.5 11.5L12 22l3-8.5"/></svg>
-              Flights
-            </div>
-
-            <div class="flight-row">
-              <span class="flight-who who-di">Di Family</span>
-              <span class="flight-route">SFO &rarr; DOH</span>
-              <span class="flight-detail">15:55 dep &middot; 17:25 (+1) arr &middot; Qatar
-                <span class="flight-subnote">Doc notes seats 5E, 5F, 6D, 6G and meal selection still pending.</span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="day-block reveal">
         <div class="day-dot"></div>
         <div class="day-header">
           <span class="day-date">Jun 6</span>
           <span class="day-weekday">Saturday</span>
-          <span class="day-location-tag tag-nairobi">Nairobi</span>
           <span class="day-location-tag tag-london">London</span>
           <span class="day-location-tag tag-transit">Split Transit</span>
         </div>
@@ -1629,10 +1671,10 @@ body:not(.is-locked) .passcode-gate {
               </div>
               <div class="hotel-card-mini">
                 <div class="hotel-card-top">
-                  <div class="hotel-name">Nairobi arrival base</div>
-                  <a class="hotel-booking-link" href="https://www.google.com/maps/search/?api=1&query=Hyatt+Regency+Nairobi+Westlands" target="_blank" rel="noreferrer">Open in Google Maps &rarr;</a>
+                  <div class="hotel-name">London transit leg</div>
+                  <a class="hotel-booking-link" href="https://www.google.com/maps/search/?api=1&query=London+Heathrow+Airport" target="_blank" rel="noreferrer">Open in Google Maps &rarr;</a>
                 </div>
-                <div class="hotel-detail">Late-night arrival into Nairobi with hotel transfer still to be arranged.</div>
+                <div class="hotel-detail">Departure day from San Francisco, with the overnight flight landing in London the next day.</div>
               </div>
             </div>
 
@@ -1642,24 +1684,21 @@ body:not(.is-locked) .passcode-gate {
                 Flights
               </div>
               <div class="flight-row">
-                <span class="flight-route">DOH &rarr; NBO</span>
-                <span class="flight-detail">18:45 dep &middot; 23:50 arr &middot; 1h 20m Doha layover
-                  <span class="flight-subnote">Doc notes seats 3A, 4B, 5A, 6B and meal selection still pending.</span>
+                <span class="flight-route">SFO &rarr; LHR</span>
+                <span class="flight-detail">5:55 PM dep &middot; 12:15 PM (+1) arr &middot; VS0020 Virgin Atlantic
+                  <span class="flight-subnote">The updated Google Doc now lists London as the outbound connection, with seat selection still pending.</span>
                 </span>
               </div>
             </div>
 
             <div class="day-section">
               <div class="day-section-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                Stay
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                Transit
               </div>
-              <div class="hotel-card-mini">
-                <div class="hotel-card-top">
-                  <div class="hotel-name"><a class="hotel-link" href="https://www.booking.com/hotel/ke/hyatt-regency-nairobi-westlands.html" target="_blank" rel="noreferrer">Hyatt Regency Nairobi Westlands</a></div>
-                  <a class="hotel-booking-link" href="https://www.booking.com/hotel/ke/hyatt-regency-nairobi-westlands.html" target="_blank" rel="noreferrer">Booking.com &rarr;</a>
-                </div>
-                <div class="hotel-detail">Deluxe Suite on 14.5k points &middot; hotel pickup still to be arranged.</div>
+              <div class="activity-item">
+                <span class="activity-time">Overnight</span>
+                <span class="activity-text">Di family is now on the Virgin Atlantic overnight into London, rather than the earlier Doha routing.</span>
               </div>
             </div>
           </div>
@@ -1715,8 +1754,8 @@ body:not(.is-locked) .passcode-gate {
         <div class="day-header">
           <span class="day-date">Jun 7</span>
           <span class="day-weekday">Sunday</span>
-          <span class="day-location-tag tag-nairobi">Nairobi</span>
           <span class="day-location-tag tag-london">London</span>
+          <span class="day-location-tag tag-nairobi">Nairobi</span>
         </div>
         <div class="family-day-stack">
           <div class="day-content">
@@ -1731,10 +1770,10 @@ body:not(.is-locked) .passcode-gate {
               </div>
               <div class="hotel-card-mini">
                 <div class="hotel-card-top">
-                  <div class="hotel-name">Nairobi city day</div>
-                  <a class="hotel-booking-link" href="https://www.google.com/maps/search/?api=1&query=Giraffe+Centre+Nairobi" target="_blank" rel="noreferrer">Open in Google Maps &rarr;</a>
+                  <div class="hotel-name">Heathrow connection</div>
+                  <a class="hotel-booking-link" href="https://www.google.com/maps/search/?api=1&query=Heathrow+Airport+Terminal+4" target="_blank" rel="noreferrer">Open in Google Maps &rarr;</a>
                 </div>
-                <div class="hotel-detail">Google Doc notes a light city tour, with Giraffe Centre as the clearest pinned stop.</div>
+                <div class="hotel-detail">Same-day Heathrow connection before the overnight Kenya Airways leg into Nairobi.</div>
               </div>
             </div>
 
@@ -1743,23 +1782,22 @@ body:not(.is-locked) .passcode-gate {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
                 Activities
               </div>
-              <div class="activity-item">
-                <span class="activity-time">Daytime</span>
-                <span class="activity-text"><span class="activity-highlight">Light city tour</span> with Giraffe Centre listed in the Google Doc.</span>
+              <div class="flight-row">
+                <span class="flight-route">LHR &rarr; NBO</span>
+                <span class="flight-detail">6:25 PM dep &middot; 5:15 AM (+1) arr &middot; KQ0101 Kenya Airways
+                  <span class="flight-subnote">The updated doc calls out Terminal 4 at Heathrow for this connection.</span>
+                </span>
               </div>
             </div>
 
             <div class="day-section">
               <div class="day-section-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                Stay
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                Transit
               </div>
-              <div class="hotel-card-mini">
-                <div class="hotel-card-top">
-                  <div class="hotel-name"><a class="hotel-link" href="https://www.booking.com/hotel/ke/hyatt-regency-nairobi-westlands.html" target="_blank" rel="noreferrer">Hyatt Regency Nairobi Westlands</a></div>
-                  <a class="hotel-booking-link" href="https://www.booking.com/hotel/ke/hyatt-regency-nairobi-westlands.html" target="_blank" rel="noreferrer">Booking.com &rarr;</a>
-                </div>
-                <div class="hotel-detail">Deluxe Suite via points.</div>
+              <div class="activity-item">
+                <span class="activity-time">Overnight</span>
+                <span class="activity-text">Overnight Kenya Airways flight to Nairobi after the London connection.</span>
               </div>
             </div>
           </div>
@@ -1831,10 +1869,10 @@ body:not(.is-locked) .passcode-gate {
               </div>
               <div class="hotel-card-mini">
                 <div class="hotel-card-top">
-                  <div class="hotel-name">Nairobi flexible day</div>
-                  <a class="hotel-booking-link" href="https://www.google.com/maps/search/?api=1&query=Nairobi" target="_blank" rel="noreferrer">Open in Google Maps &rarr;</a>
+                  <div class="hotel-name">Nairobi arrival base</div>
+                  <a class="hotel-booking-link" href="https://www.google.com/maps/search/?api=1&query=Hyatt+Regency+Nairobi+Westlands" target="_blank" rel="noreferrer">Open in Google Maps &rarr;</a>
                 </div>
-                <div class="hotel-detail">Still a planning gap in the Google Doc before the safari portion begins.</div>
+                <div class="hotel-detail">Early-morning arrival into Nairobi, with the Hyatt transfer still called out as a TODO in the doc.</div>
               </div>
             </div>
 
@@ -1844,8 +1882,8 @@ body:not(.is-locked) .passcode-gate {
                 Planning
               </div>
               <div class="activity-item">
-                <span class="activity-time">Daytime</span>
-                <span class="activity-text">Nairobi day remains flexible in the doc, with a TODO to finalize sightseeing before safari departure.</span>
+                <span class="activity-time">05:15</span>
+                <span class="activity-text">Arrive at NBO, check into Hyatt, and keep the day flexible while the doc still carries a TODO to add a light tour.</span>
               </div>
             </div>
 
@@ -1859,7 +1897,7 @@ body:not(.is-locked) .passcode-gate {
                   <div class="hotel-name"><a class="hotel-link" href="https://www.booking.com/hotel/ke/hyatt-regency-nairobi-westlands.html" target="_blank" rel="noreferrer">Hyatt Regency Nairobi Westlands</a></div>
                   <a class="hotel-booking-link" href="https://www.booking.com/hotel/ke/hyatt-regency-nairobi-westlands.html" target="_blank" rel="noreferrer">Booking.com &rarr;</a>
                 </div>
-                <div class="hotel-detail">Already in Nairobi and staying at Hyatt.</div>
+                <div class="hotel-detail">Deluxe Suite on 14.5k points, with pickup still to be coordinated.</div>
               </div>
             </div>
           </div>
@@ -2348,13 +2386,7 @@ body:not(.is-locked) .passcode-gate {
 
           <div class="checklist-item" onclick="toggleCheck(this)">
             <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <span class="check-text">Select meals for SFO &rarr; DOH</span>
-            <span class="check-who who-di">Di</span>
-          </div>
-
-          <div class="checklist-item" onclick="toggleCheck(this)">
-            <div class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <span class="check-text">Select meals for DOH &rarr; NBO</span>
+            <span class="check-text">Select seats for SFO &rarr; LHR</span>
             <span class="check-who who-di">Di</span>
           </div>
 
@@ -2734,25 +2766,200 @@ function toggleCheck(item) {
   saveChecklist();
 }
 
+const CHECKLIST_STATE_KEY = "safari2026-checklist-state-v2";
+const CHECKLIST_CUSTOM_KEY = "safari2026-checklist-custom-v2";
+const CHECKLIST_SYNC_KEY = "safari2026-checklist-sync-v2";
+const checklistChannel = "BroadcastChannel" in window ? new BroadcastChannel("safari2026-checklist") : null;
+
+function slugifyChecklistValue(value) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+function getChecklistGroups() {
+  return Array.from(document.querySelectorAll(".checklist-group"));
+}
+
+function assignChecklistBaseIds() {
+  getChecklistGroups().forEach((group, groupIndex) => {
+    const title = group.querySelector(".checklist-group-title")?.textContent?.trim() || `group-${groupIndex + 1}`;
+    const groupId = `${slugifyChecklistValue(title)}-${groupIndex + 1}`;
+    group.dataset.groupId = groupId;
+
+    Array.from(group.querySelectorAll(".checklist-item:not([data-custom='true'])")).forEach((item, itemIndex) => {
+      item.dataset.itemId = `${groupId}-item-${itemIndex + 1}`;
+
+      const whoBadge = item.querySelector(".check-who");
+      if (whoBadge?.classList.contains("who-hui")) item.dataset.who = "hui";
+      else if (whoBadge?.classList.contains("who-di")) item.dataset.who = "di";
+      else item.dataset.who = "all";
+    });
+  });
+}
+
+function getChecklistState() {
+  const saved = localStorage.getItem(CHECKLIST_STATE_KEY);
+  if (!saved) return null;
+
+  try {
+    return JSON.parse(saved);
+  } catch {
+    return null;
+  }
+}
+
+function getCustomChecklistItems() {
+  try {
+    return JSON.parse(localStorage.getItem(CHECKLIST_CUSTOM_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function notifyChecklistSync() {
+  localStorage.setItem(CHECKLIST_SYNC_KEY, String(Date.now()));
+  checklistChannel?.postMessage("sync");
+}
+
+function saveCustomChecklistItems(items) {
+  localStorage.setItem(CHECKLIST_CUSTOM_KEY, JSON.stringify(items));
+  notifyChecklistSync();
+}
+
 function saveChecklist() {
-  const items = document.querySelectorAll(".checklist-item");
-  const state = Array.from(items).map((item) => item.classList.contains("checked"));
-  localStorage.setItem("safari2026-checklist", JSON.stringify(state));
+  assignChecklistBaseIds();
+  const checkedIds = Array.from(document.querySelectorAll(".checklist-item.checked"))
+    .map((item) => item.dataset.itemId)
+    .filter(Boolean);
+
+  localStorage.setItem(CHECKLIST_STATE_KEY, JSON.stringify({ checkedIds }));
+  notifyChecklistSync();
 }
 
 function loadChecklist() {
-  const saved = localStorage.getItem("safari2026-checklist");
-  if (!saved) return;
+  const state = getChecklistState();
+  if (!state) return;
+  const checkedIds = new Set(state.checkedIds || []);
 
-  const state = JSON.parse(saved);
-  const items = document.querySelectorAll(".checklist-item");
-
-  items.forEach((item, index) => {
-    if (!state[index]) return;
-    item.classList.add("checked");
-    item.querySelector(".check-box").classList.add("checked");
+  document.querySelectorAll(".checklist-item").forEach((item) => {
+    const checked = checkedIds.has(item.dataset.itemId);
+    item.classList.toggle("checked", checked);
+    item.querySelector(".check-box")?.classList.toggle("checked", checked);
   });
 }
+
+function createChecklistWhoBadge(who) {
+  const badge = document.createElement("span");
+  badge.className = `check-who ${who === "hui" ? "who-hui" : who === "di" ? "who-di" : "who-all"}`;
+  badge.textContent = who === "hui" ? "Hui" : who === "di" ? "Di" : "All";
+  return badge;
+}
+
+function createChecklistItemElement({ groupId, id, text, who }) {
+  const item = document.createElement("div");
+  item.className = "checklist-item";
+  item.dataset.itemId = id;
+  item.dataset.groupId = groupId;
+  item.dataset.custom = "true";
+  item.dataset.who = who;
+  item.addEventListener("click", () => toggleCheck(item));
+
+  const box = document.createElement("div");
+  box.className = "check-box";
+  box.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  const textNode = document.createElement("span");
+  textNode.className = "check-text";
+  textNode.textContent = text;
+
+  item.append(box, textNode, createChecklistWhoBadge(who));
+  return item;
+}
+
+function renderCustomChecklistItems() {
+  const customItems = getCustomChecklistItems();
+
+  getChecklistGroups().forEach((group) => {
+    group.querySelectorAll(".checklist-item[data-custom='true']").forEach((item) => item.remove());
+
+    const groupId = group.dataset.groupId;
+    const addForm = group.querySelector(".checklist-add");
+    const itemsForGroup = customItems.filter((item) => item.groupId === groupId);
+
+    itemsForGroup.forEach((item) => {
+      const element = createChecklistItemElement(item);
+      if (addForm) group.insertBefore(element, addForm);
+      else group.appendChild(element);
+    });
+  });
+}
+
+function handleChecklistAdd(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const group = form.closest(".checklist-group");
+  const input = form.querySelector(".checklist-add-input");
+  const assignee = form.querySelector(".checklist-add-assignee");
+  const text = input.value.trim();
+
+  if (!group || !text) return;
+
+  const groupId = group.dataset.groupId;
+  const who = assignee?.value || "all";
+  const customItems = getCustomChecklistItems();
+
+  customItems.push({
+    groupId,
+    id: `${groupId}-custom-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`,
+    text,
+    who
+  });
+
+  saveCustomChecklistItems(customItems);
+  renderCustomChecklistItems();
+  loadChecklist();
+  input.value = "";
+  if (assignee) assignee.value = "all";
+  input.focus();
+}
+
+function ensureChecklistAddControls() {
+  getChecklistGroups().forEach((group) => {
+    if (group.querySelector(".checklist-add")) return;
+
+    const form = document.createElement("form");
+    form.className = "checklist-add";
+    form.innerHTML = `
+      <div class="checklist-add-row">
+        <input class="checklist-add-input" type="text" placeholder="Add a checklist item" aria-label="Add a checklist item">
+        <select class="checklist-add-assignee" aria-label="Assign checklist item">
+          <option value="all">All</option>
+          <option value="hui">Hui</option>
+          <option value="di">Di</option>
+        </select>
+        <button class="checklist-add-button" type="submit">Add</button>
+      </div>
+    `;
+    form.addEventListener("submit", handleChecklistAdd);
+    group.appendChild(form);
+  });
+}
+
+function setupChecklist() {
+  assignChecklistBaseIds();
+  ensureChecklistAddControls();
+  renderCustomChecklistItems();
+  loadChecklist();
+}
+
+window.addEventListener("storage", (event) => {
+  if ([CHECKLIST_STATE_KEY, CHECKLIST_CUSTOM_KEY, CHECKLIST_SYNC_KEY].includes(event.key)) {
+    setupChecklist();
+  }
+});
+
+checklistChannel?.addEventListener("message", () => {
+  setupChecklist();
+});
 
 function applyCurrentTimelineDate() {
   const tripYear = 2026;
@@ -2826,7 +3033,7 @@ window.addEventListener("scroll", () => {
 });
 
 applyCurrentTimelineDate();
-loadChecklist();
+setupChecklist();
 loadPasscodeGate();
 </script>
 </body>
