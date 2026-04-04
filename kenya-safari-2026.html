@@ -2697,19 +2697,12 @@ body:not(.is-locked) .passcode-gate {
 
 <script>
 const PASSCODE = "0101";
-const PASSCODE_STORAGE_KEY = "kenya-safari-2026-passcode-ok";
 
 function unlockPage() {
   document.body.classList.remove("is-locked");
 }
 
 function loadPasscodeGate() {
-  const saved = sessionStorage.getItem(PASSCODE_STORAGE_KEY);
-  if (saved === "true") {
-    unlockPage();
-    return;
-  }
-
   const form = document.getElementById("passcode-form");
   const input = document.getElementById("passcode-input");
   const error = document.getElementById("passcode-error");
@@ -2723,7 +2716,6 @@ function loadPasscodeGate() {
     const value = input.value.trim();
 
     if (value === PASSCODE) {
-      sessionStorage.setItem(PASSCODE_STORAGE_KEY, "true");
       error.textContent = "";
       unlockPage();
       return;
