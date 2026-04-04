@@ -1376,6 +1376,47 @@ body:not(.is-locked) .passcode-gate {
   margin-top: 0.8rem;
 }
 
+.checklist-add-trigger {
+  align-items: center;
+  background: rgba(255, 252, 247, 0.88);
+  border: 1px solid rgba(142, 109, 60, 0.18);
+  border-radius: 999px;
+  color: var(--earth);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "Source Sans 3", Georgia, serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  gap: 0.45rem;
+  justify-self: start;
+  padding: 0.62rem 0.92rem;
+}
+
+.checklist-add-trigger:hover {
+  background: rgba(246, 239, 227, 0.98);
+  border-color: rgba(142, 109, 60, 0.28);
+}
+
+.checklist-add-plus {
+  color: var(--savanna-dark);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.checklist-add-editor {
+  display: none;
+  gap: 0.5rem;
+}
+
+.checklist-add.is-open .checklist-add-editor {
+  display: grid;
+}
+
+.checklist-add.is-open .checklist-add-trigger {
+  display: none;
+}
+
 .checklist-add-row {
   display: flex;
   gap: 0.5rem;
@@ -1407,7 +1448,23 @@ body:not(.is-locked) .passcode-gate {
 }
 
 .checklist-add-assignee {
-  padding: 0.7rem 0.8rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4.25 6 8l4-3.75' fill='none' stroke='%235e4832' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  background-size: 12px 12px;
+  padding: 0.7rem 2.5rem 0.7rem 0.8rem;
+}
+
+.checklist-add-assignee:focus,
+.checklist-add-input:focus {
+  border-color: rgba(142, 109, 60, 0.34);
+  box-shadow: 0 0 0 4px rgba(196, 163, 109, 0.12);
+  outline: none;
+}
+
+.checklist-add-assignee {
+  padding-left: 0.8rem;
 }
 
 .checklist-add-button {
@@ -2919,7 +2976,8 @@ function handleChecklistAdd(event) {
   loadChecklist();
   input.value = "";
   if (assignee) assignee.value = "all";
-  input.focus();
+  form.classList.remove("is-open");
+  form.querySelector(".checklist-add-trigger")?.setAttribute("aria-expanded", "false");
 }
 
 function ensureChecklistAddControls() {
@@ -2929,16 +2987,29 @@ function ensureChecklistAddControls() {
     const form = document.createElement("form");
     form.className = "checklist-add";
     form.innerHTML = `
-      <div class="checklist-add-row">
-        <input class="checklist-add-input" type="text" placeholder="Add a checklist item" aria-label="Add a checklist item">
-        <select class="checklist-add-assignee" aria-label="Assign checklist item">
-          <option value="all">All</option>
-          <option value="hui">Hui</option>
-          <option value="di">Di</option>
-        </select>
-        <button class="checklist-add-button" type="submit">Add</button>
+      <button class="checklist-add-trigger" type="button" aria-expanded="false">
+        <span class="checklist-add-plus">+</span>
+        <span>Add item</span>
+      </button>
+      <div class="checklist-add-editor">
+        <div class="checklist-add-row">
+          <input class="checklist-add-input" type="text" placeholder="Add a checklist item" aria-label="Add a checklist item">
+          <select class="checklist-add-assignee" aria-label="Assign checklist item">
+            <option value="all">All</option>
+            <option value="hui">Hui</option>
+            <option value="di">Di</option>
+          </select>
+          <button class="checklist-add-button" type="submit">Add</button>
+        </div>
       </div>
     `;
+    const trigger = form.querySelector(".checklist-add-trigger");
+    const input = form.querySelector(".checklist-add-input");
+    trigger?.addEventListener("click", () => {
+      form.classList.add("is-open");
+      trigger.setAttribute("aria-expanded", "true");
+      input?.focus();
+    });
     form.addEventListener("submit", handleChecklistAdd);
     group.appendChild(form);
   });
