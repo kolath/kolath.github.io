@@ -986,6 +986,11 @@ body:not(.is-locked) .passcode-gate {
   white-space: nowrap;
 }
 
+.check-who {
+  align-self: flex-start;
+  margin-left: auto;
+}
+
 .who-hui { background: var(--olive-pale); color: var(--olive); }
 .who-di { background: rgba(240, 230, 208, 0.92); color: var(--savanna-dark); }
 .who-all { background: var(--sand); color: var(--earth-light); }
@@ -1405,7 +1410,8 @@ body:not(.is-locked) .passcode-gate {
 }
 
 .checklist-item[data-custom="true"]:hover .checklist-item-delete,
-.checklist-item[data-custom="true"]:focus-within .checklist-item-delete {
+.checklist-item[data-custom="true"]:focus-within .checklist-item-delete,
+.checklist-item[data-custom="true"].show-delete .checklist-item-delete {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(-50%) translateX(0);
@@ -2959,6 +2965,12 @@ function createChecklistWhoBadge(who) {
   return badge;
 }
 
+function hideCustomChecklistDeleteActions() {
+  document.querySelectorAll(".checklist-item[data-custom='true'].show-delete").forEach((item) => {
+    item.classList.remove("show-delete");
+  });
+}
+
 function deleteCustomChecklistItem(itemId) {
   const customItems = getCustomChecklistItems().filter((item) => item.id !== itemId);
   localStorage.setItem(CHECKLIST_CUSTOM_KEY, JSON.stringify(customItems));
@@ -2980,7 +2992,13 @@ function createChecklistItemElement({ groupId, id, text, who }) {
   item.dataset.groupId = groupId;
   item.dataset.custom = "true";
   item.dataset.who = who;
-  item.addEventListener("click", () => toggleCheck(item));
+  item.addEventListener("click", () => {
+    if (item.dataset.preventToggle === "true") {
+      item.dataset.preventToggle = "false";
+      return;
+    }
+    toggleCheck(item);
+  });
 
   const box = document.createElement("div");
   box.className = "check-box";
@@ -2999,6 +3017,27 @@ function createChecklistItemElement({ groupId, id, text, who }) {
     event.stopPropagation();
     deleteCustomChecklistItem(id);
   });
+
+  let pressTimer;
+  const clearPressTimer = () => {
+    if (!pressTimer) return;
+    clearTimeout(pressTimer);
+    pressTimer = null;
+  };
+
+  item.addEventListener("touchstart", (event) => {
+    if (event.target.closest(".checklist-item-delete")) return;
+    clearPressTimer();
+    pressTimer = window.setTimeout(() => {
+      hideCustomChecklistDeleteActions();
+      item.classList.add("show-delete");
+      item.dataset.preventToggle = "true";
+    }, 420);
+  }, { passive: true });
+
+  item.addEventListener("touchend", clearPressTimer);
+  item.addEventListener("touchmove", clearPressTimer);
+  item.addEventListener("touchcancel", clearPressTimer);
 
   item.append(box, textNode, createChecklistWhoBadge(who), deleteButton);
   return item;
@@ -3102,6 +3141,11 @@ window.addEventListener("storage", (event) => {
 
 checklistChannel?.addEventListener("message", () => {
   setupChecklist();
+});
+
+document.addEventListener("pointerdown", (event) => {
+  if (event.target.closest(".checklist-item[data-custom='true']")) return;
+  hideCustomChecklistDeleteActions();
 });
 
 function applyCurrentTimelineDate() {
