@@ -1330,6 +1330,15 @@ body:not(.is-locked) .passcode-gate {
 
 .checklist-item:hover { opacity: 0.82; }
 
+.checklist-item[data-custom="true"] {
+  padding-right: 0.25rem;
+}
+
+.checklist-item[data-custom="true"]:hover,
+.checklist-item[data-custom="true"]:focus-within {
+  opacity: 1;
+}
+
 .check-box {
   align-items: center;
   border: 2px solid var(--savanna);
@@ -1368,6 +1377,39 @@ body:not(.is-locked) .passcode-gate {
   flex: 1;
   font-size: 0.88rem;
   line-height: 1.4;
+}
+
+.checklist-item-delete {
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  color: var(--ink-muted);
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-family: "Source Sans 3", Georgia, serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  justify-content: center;
+  margin-left: 0.15rem;
+  opacity: 0;
+  padding: 0.18rem 0.3rem;
+  pointer-events: none;
+  transition: opacity 0.18s ease, color 0.18s ease, background-color 0.18s ease;
+}
+
+.checklist-item[data-custom="true"]:hover .checklist-item-delete,
+.checklist-item[data-custom="true"]:focus-within .checklist-item-delete {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.checklist-item-delete:hover,
+.checklist-item-delete:focus-visible {
+  background: rgba(138, 102, 69, 0.1);
+  color: var(--rust);
+  outline: none;
 }
 
 .checklist-add {
@@ -2911,6 +2953,20 @@ function createChecklistWhoBadge(who) {
   return badge;
 }
 
+function deleteCustomChecklistItem(itemId) {
+  const customItems = getCustomChecklistItems().filter((item) => item.id !== itemId);
+  localStorage.setItem(CHECKLIST_CUSTOM_KEY, JSON.stringify(customItems));
+
+  const state = getChecklistState();
+  if (state?.checkedIds) {
+    const checkedIds = state.checkedIds.filter((id) => id !== itemId);
+    localStorage.setItem(CHECKLIST_STATE_KEY, JSON.stringify({ checkedIds }));
+  }
+
+  notifyChecklistSync();
+  setupChecklist();
+}
+
 function createChecklistItemElement({ groupId, id, text, who }) {
   const item = document.createElement("div");
   item.className = "checklist-item";
@@ -2928,7 +2984,17 @@ function createChecklistItemElement({ groupId, id, text, who }) {
   textNode.className = "check-text";
   textNode.textContent = text;
 
-  item.append(box, textNode, createChecklistWhoBadge(who));
+  const deleteButton = document.createElement("button");
+  deleteButton.className = "checklist-item-delete";
+  deleteButton.type = "button";
+  deleteButton.setAttribute("aria-label", "Delete checklist item");
+  deleteButton.textContent = "Delete";
+  deleteButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    deleteCustomChecklistItem(id);
+  });
+
+  item.append(box, textNode, createChecklistWhoBadge(who), deleteButton);
   return item;
 }
 
