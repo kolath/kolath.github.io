@@ -1336,7 +1336,7 @@ body:not(.is-locked) .passcode-gate {
 .checklist-item:hover { opacity: 0.82; }
 
 .checklist-item[data-custom="true"] {
-  padding-right: 4.5rem;
+  padding-right: 3.5rem;
   position: relative;
 }
 
@@ -1383,6 +1383,21 @@ body:not(.is-locked) .passcode-gate {
   flex: 1;
   font-size: 0.88rem;
   line-height: 1.4;
+}
+
+.checklist-item[data-custom="true"] .check-who {
+  margin-left: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity 0.18s ease;
+}
+
+.checklist-item[data-custom="true"]:hover .check-who,
+.checklist-item[data-custom="true"]:focus-within .check-who,
+.checklist-item[data-custom="true"].show-delete .check-who {
+  opacity: 0;
 }
 
 .checklist-item-delete {
