@@ -2853,6 +2853,7 @@ body:not(.is-locked) .passcode-gate {
 
 </div>
 
+<script src="./kenya-safari-2026-sync-config.js"></script>
 <script>
 const PASSCODE = "0101";
 
@@ -2895,7 +2896,19 @@ function toggleCheck(item) {
 const CHECKLIST_STATE_KEY = "safari2026-checklist-state-v2";
 const CHECKLIST_CUSTOM_KEY = "safari2026-checklist-custom-v2";
 const CHECKLIST_SYNC_KEY = "safari2026-checklist-sync-v2";
+const CHECKLIST_REMOTE_CACHE_KEY = "safari2026-checklist-remote-cache-v1";
+const CHECKLIST_REMOTE_POLL_MS = 12000;
+const syncConfig = {
+  pageSlug: "kenya-safari-2026",
+  supabaseUrl: "",
+  supabaseAnonKey: "",
+  ...(window.SAFARI_SYNC_CONFIG || {})
+};
+const remoteChecklistEnabled = Boolean(syncConfig.supabaseUrl && syncConfig.supabaseAnonKey);
 const checklistChannel = "BroadcastChannel" in window ? new BroadcastChannel("safari2026-checklist") : null;
+let latestRemoteUpdatedAt = null;
+let remoteChecklistPollHandle = null;
+let remoteChecklistWriteChain = Promise.resolve();
 
 function slugifyChecklistValue(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -2941,6 +2954,152 @@ function getCustomChecklistItems() {
   }
 }
 
+function getChecklistSnapshot() {
+  return {
+    checkedIds: getChecklistState()?.checkedIds || [],
+    customItems: getCustomChecklistItems()
+  };
+}
+
+function cacheRemoteChecklistState(snapshot) {
+  localStorage.setItem(CHECKLIST_REMOTE_CACHE_KEY, JSON.stringify(snapshot));
+}
+
+function getCachedRemoteChecklistState() {
+  try {
+    return JSON.parse(localStorage.getItem(CHECKLIST_REMOTE_CACHE_KEY) || "null");
+  } catch {
+    return null;
+  }
+}
+
+function buildSupabaseHeaders(extraHeaders = {}) {
+  return {
+    apikey: syncConfig.supabaseAnonKey,
+    Authorization: `Bearer ${syncConfig.supabaseAnonKey}`,
+    ...extraHeaders
+  };
+}
+
+function normalizeRemoteChecklistRow(row) {
+  return {
+    checkedIds: Array.isArray(row?.checked_ids) ? row.checked_ids : [],
+    customItems: Array.isArray(row?.custom_items) ? row.custom_items : [],
+    updatedAt: row?.updated_at || null
+  };
+}
+
+function applyChecklistSnapshot(snapshot) {
+  localStorage.setItem(CHECKLIST_STATE_KEY, JSON.stringify({ checkedIds: snapshot.checkedIds || [] }));
+  localStorage.setItem(CHECKLIST_CUSTOM_KEY, JSON.stringify(snapshot.customItems || []));
+  setupChecklist();
+}
+
+async function fetchChecklistStateFromRemote() {
+  if (!remoteChecklistEnabled) return null;
+
+  const url = `${syncConfig.supabaseUrl.replace(/\/$/, "")}/rest/v1/safari_checklist_state?page_slug=eq.${encodeURIComponent(syncConfig.pageSlug)}&select=page_slug,checked_ids,custom_items,updated_at&limit=1`;
+  const response = await fetch(url, {
+    headers: buildSupabaseHeaders()
+  });
+
+  if (!response.ok) {
+    throw new Error(`Supabase fetch failed: ${response.status}`);
+  }
+
+  const rows = await response.json();
+  if (!Array.isArray(rows) || !rows.length) return null;
+  return normalizeRemoteChecklistRow(rows[0]);
+}
+
+async function pushChecklistStateToRemote(snapshot = getChecklistSnapshot()) {
+  if (!remoteChecklistEnabled) return null;
+
+  const url = `${syncConfig.supabaseUrl.replace(/\/$/, "")}/rest/v1/safari_checklist_state?on_conflict=page_slug`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: buildSupabaseHeaders({
+      "Content-Type": "application/json",
+      Prefer: "resolution=merge-duplicates,return=representation"
+    }),
+    body: JSON.stringify([{
+      page_slug: syncConfig.pageSlug,
+      checked_ids: snapshot.checkedIds || [],
+      custom_items: snapshot.customItems || []
+    }])
+  });
+
+  if (!response.ok) {
+    throw new Error(`Supabase upsert failed: ${response.status}`);
+  }
+
+  const rows = await response.json();
+  if (!Array.isArray(rows) || !rows.length) return null;
+  return normalizeRemoteChecklistRow(rows[0]);
+}
+
+async function hydrateChecklistFromRemote(force = false) {
+  if (!remoteChecklistEnabled) return false;
+
+  try {
+    const remoteSnapshot = await fetchChecklistStateFromRemote();
+    if (!remoteSnapshot) return false;
+    if (!force && latestRemoteUpdatedAt && remoteSnapshot.updatedAt === latestRemoteUpdatedAt) return true;
+
+    latestRemoteUpdatedAt = remoteSnapshot.updatedAt || latestRemoteUpdatedAt;
+    cacheRemoteChecklistState(remoteSnapshot);
+    applyChecklistSnapshot(remoteSnapshot);
+    return true;
+  } catch (error) {
+    const cachedSnapshot = getCachedRemoteChecklistState();
+    if (force && cachedSnapshot) {
+      applyChecklistSnapshot(cachedSnapshot);
+      return true;
+    }
+    console.warn("Checklist remote hydrate skipped.", error);
+    return false;
+  }
+}
+
+function queueRemoteChecklistSync() {
+  if (!remoteChecklistEnabled) return;
+
+  remoteChecklistWriteChain = remoteChecklistWriteChain
+    .then(async () => {
+      const remoteSnapshot = await pushChecklistStateToRemote(getChecklistSnapshot());
+      if (!remoteSnapshot) return;
+      latestRemoteUpdatedAt = remoteSnapshot.updatedAt || latestRemoteUpdatedAt;
+      cacheRemoteChecklistState(remoteSnapshot);
+    })
+    .catch((error) => {
+      console.warn("Checklist remote sync failed.", error);
+    });
+}
+
+function startRemoteChecklistPolling() {
+  if (!remoteChecklistEnabled || remoteChecklistPollHandle) return;
+
+  remoteChecklistPollHandle = window.setInterval(() => {
+    hydrateChecklistFromRemote();
+  }, CHECKLIST_REMOTE_POLL_MS);
+}
+
+async function initializeChecklistSync() {
+  setupChecklist();
+
+  if (!remoteChecklistEnabled) return;
+
+  const hydrated = await hydrateChecklistFromRemote(true);
+  if (!hydrated) {
+    queueRemoteChecklistSync();
+  }
+
+  startRemoteChecklistPolling();
+  window.addEventListener("focus", () => {
+    hydrateChecklistFromRemote();
+  });
+}
+
 function notifyChecklistSync() {
   localStorage.setItem(CHECKLIST_SYNC_KEY, String(Date.now()));
   checklistChannel?.postMessage("sync");
@@ -2949,6 +3108,7 @@ function notifyChecklistSync() {
 function saveCustomChecklistItems(items) {
   localStorage.setItem(CHECKLIST_CUSTOM_KEY, JSON.stringify(items));
   notifyChecklistSync();
+  queueRemoteChecklistSync();
 }
 
 function saveChecklist() {
@@ -2959,6 +3119,7 @@ function saveChecklist() {
 
   localStorage.setItem(CHECKLIST_STATE_KEY, JSON.stringify({ checkedIds }));
   notifyChecklistSync();
+  queueRemoteChecklistSync();
 }
 
 function loadChecklist() {
@@ -2997,6 +3158,7 @@ function deleteCustomChecklistItem(itemId) {
   }
 
   notifyChecklistSync();
+  queueRemoteChecklistSync();
   setupChecklist();
 }
 
@@ -3155,6 +3317,10 @@ window.addEventListener("storage", (event) => {
 });
 
 checklistChannel?.addEventListener("message", () => {
+  if (remoteChecklistEnabled) {
+    hydrateChecklistFromRemote(true);
+    return;
+  }
   setupChecklist();
 });
 
@@ -3235,7 +3401,7 @@ window.addEventListener("scroll", () => {
 });
 
 applyCurrentTimelineDate();
-setupChecklist();
+initializeChecklistSync();
 loadPasscodeGate();
 </script>
 </body>
