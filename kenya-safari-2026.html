@@ -1664,12 +1664,18 @@ body:not(.is-locked) .passcode-gate {
   }
 
   .checklist-add-row {
-    flex-wrap: wrap;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .checklist-add-input {
+    grid-column: 1 / -1;
   }
 
   .checklist-add-assignee,
   .checklist-add-button {
-    flex: 1 1 140px;
+    width: 100%;
   }
 }
 
