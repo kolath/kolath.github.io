@@ -14,28 +14,20 @@
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=17" />
+    <link rel="stylesheet" href="./styles.css?v=19" />
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
   </head>
   <body>
     <div class="deck-shell">
       <!-- === PRESENTATION HUD === -->
       <header class="deck-hud" aria-label="Presentation status">
         <div class="deck-hud__meta">
-          <p class="deck-hud__meta-kicker">Case Study</p>
           <label class="sr-only" for="case-study-switcher">Case study switcher</label>
           <select class="case-switcher" id="case-study-switcher" data-case-switcher>
             <option value="./index.html" selected>Inventory Workflow</option>
             <option value="./brandbuilder.html">Brand Builder</option>
             <option value="./slingshot.html">Slingshot</option>
           </select>
-          <div class="deck-hud__status">
-            <p class="deck-hud__label" data-slide-title>Overview</p>
-            <p class="deck-hud__count">
-              <span data-current-slide>01</span>
-              <span>/</span>
-              <span data-total-slides>09</span>
-            </p>
-          </div>
         </div>
       </header>
 
@@ -44,12 +36,13 @@
         <button class="deck-dot is-active" type="button" data-slide-target="0" aria-label="Go to overview"></button>
         <button class="deck-dot" type="button" data-slide-target="1" aria-label="Go to the problem"></button>
         <button class="deck-dot" type="button" data-slide-target="2" aria-label="Go to research"></button>
-        <button class="deck-dot" type="button" data-slide-target="3" aria-label="Go to strategy"></button>
-        <button class="deck-dot" type="button" data-slide-target="4" aria-label="Go to receiving"></button>
-        <button class="deck-dot" type="button" data-slide-target="5" aria-label="Go to fulfillment"></button>
-        <button class="deck-dot" type="button" data-slide-target="6" aria-label="Go to stocktake milestone one"></button>
-        <button class="deck-dot" type="button" data-slide-target="7" aria-label="Go to stocktake milestone two"></button>
-        <button class="deck-dot" type="button" data-slide-target="8" aria-label="Go to outcome"></button>
+        <button class="deck-dot" type="button" data-slide-target="3" aria-label="Go to research findings"></button>
+        <button class="deck-dot" type="button" data-slide-target="4" aria-label="Go to cross-team collaboration"></button>
+        <button class="deck-dot" type="button" data-slide-target="5" aria-label="Go to stocktake"></button>
+        <button class="deck-dot" type="button" data-slide-target="6" aria-label="Go to receiving"></button>
+        <button class="deck-dot" type="button" data-slide-target="7" aria-label="Go to fulfillment"></button>
+        <button class="deck-dot" type="button" data-slide-target="8" aria-label="Go to inventory management"></button>
+        <button class="deck-dot" type="button" data-slide-target="9" aria-label="Go to outcome"></button>
       </nav>
 
       <!-- === PRESENTATION TRACK === -->
@@ -89,42 +82,31 @@
         <!-- === SLIDE 2: PROBLEM === -->
         <section class="slide slide--problem" id="slide-2" data-slide-title="The problem">
           <div class="slide__frame slide__frame--split">
-            <div class="content-panel reveal">
+            <div class="content-panel content-panel--split reveal">
               <p class="slide__eyebrow">The problem</p>
-              <h2 class="slide__title">High defect rates were a workflow problem, not a training problem.</h2>
+              <h2 class="slide__title">High order defect rates were driven by low inventory accuracy.</h2>
               <p class="slide__lede">
-                Inventory operations were seeing high order defect rates and low inventory accuracy
-                because the system did not support how work actually happened on the floor.
+                We were seeing consistently high order defect rates, with controllable ODR staying
+                above 4%, negatively impacting customers, merchants, and overall business
+                performance.
+              </p>
+              <p class="slide__lede">
+                Through our analysis, we found a strong correlation between ODR and low inventory
+                accuracy, making it a key driver of defects and a primary lever for reducing ODR.
               </p>
             </div>
 
-            <div class="problem-grid">
-              <article class="insight-card reveal">
-                <p class="insight-card__index">01</p>
-                <h3>Loose workflows</h3>
-                <p>
-                  Users had too much freedom in critical tasks, which made it easy to skip steps or
-                  improvise around guardrails.
-                </p>
-              </article>
-              <article class="insight-card reveal">
-                <p class="insight-card__index">02</p>
-                <h3>No physical mapping</h3>
-                <p>
-                  Staff had to translate between the warehouse and the interface manually because
-                  digital tasks were not anchored to real locations.
-                </p>
-              </article>
-              <article class="insight-card reveal">
-                <p class="insight-card__index">03</p>
-                <h3>Interrupted work</h3>
-                <p>
-                  Flows assumed uninterrupted, linear work even though tasks were fragmented and
-                  staff regularly switched context midstream.
-                </p>
-              </article>
-            </div>
-
+            <figure class="plain-visual plain-visual--split plain-visual--problem reveal">
+              <div class="plain-visual__content">
+                <div class="plain-visual__media plain-visual__media--problem">
+                  <img
+                    src="./assets/customer-review.png"
+                    alt="Customer review showing the impact of items being out of stock and substituted incorrectly."
+                  />
+                </div>
+                <figcaption>Customer review on missing items.</figcaption>
+              </div>
+            </figure>
           </div>
         </section>
 
@@ -132,76 +114,161 @@
         <section class="slide slide--research" id="slide-3" data-slide-title="Research">
           <div class="slide__frame slide__frame--research">
             <div class="content-panel reveal">
-              <p class="slide__eyebrow">Understanding the real workflow</p>
-              <h2 class="slide__title">The team researched movement, interruptions, and momentum instead of just screens.</h2>
+              <p class="slide__eyebrow">Research methods</p>
+              <h2 class="slide__title">We studied the work in the warehouse, not just the screens in the product.</h2>
               <p class="slide__lede">
-                Interviews, on-site observation, and working alongside facility staff revealed that
-                inventory work is location-based, fragmented, and dependent on continuity.
+                We studied active facilities through shadowing, live usability sessions, and
+                hands-on observation so the redesign reflected interruptions, movement, and
+                physical constraints.
               </p>
 
               <div class="bullet-stack">
                 <article class="bullet-card reveal">
-                  <h3>Methods</h3>
-                  <p>Mobile pop-up usability labs in facilities and hands-on observation as food runners.</p>
+                  <h3>On-site shadowing</h3>
+                  <p>We observed staff in active facilities to understand movement, handoffs, and interruptions.</p>
                 </article>
                 <article class="bullet-card reveal">
-                  <h3>Behavior</h3>
-                  <p>Staff navigated inventory by location, scanning, moving, and updating items as they went.</p>
+                  <h3>Live usability sessions</h3>
+                  <p>We tested with real devices in the warehouse to see where flows broke in context.</p>
                 </article>
                 <article class="bullet-card reveal">
-                  <h3>Design implication</h3>
-                  <p>The product needed to support non-linear work and preserve context between interruptions.</p>
+                  <h3>Workflow synthesis</h3>
+                  <p>We mapped where physical context was lost and where recovery broke down.</p>
                 </article>
               </div>
             </div>
 
-            <figure class="image-stage reveal">
-              <img
-                src="./assets/research-1.png"
-                alt="On-site mobile usability testing inside a warehouse facility."
-              />
-              <figcaption>
-                Research shifted the brief from “improve forms” to “design for real warehouse behavior.”
-              </figcaption>
+            <figure class="research-visual research-visual--inventory reveal">
+              <div class="research-visual__content">
+                <div class="research-visual__media">
+                  <img
+                    src="./assets/research.png"
+                    alt="On-site mobile usability testing inside a warehouse facility."
+                  />
+                </div>
+              </div>
             </figure>
           </div>
         </section>
 
-        <!-- === SLIDE 4: STRATEGY === -->
-        <section class="slide slide--strategy" id="slide-4" data-slide-title="Strategy">
-          <div class="slide__frame slide__frame--strategy">
+        <!-- === SLIDE 4: RESEARCH FINDINGS === -->
+        <section class="slide slide--problem" id="slide-4" data-slide-title="Research findings">
+          <div class="slide__frame slide__frame--split">
             <div class="content-panel reveal">
-              <p class="slide__eyebrow">Product definition</p>
-              <h2 class="slide__title">The redesign centered on three moments and one shared operating system.</h2>
+              <p class="slide__eyebrow">Research findings</p>
+              <h2 class="slide__title">The research showed that the errors were systemic, not individual.</h2>
               <p class="slide__lede">
-                Partnering with operations introduced a color-coded, QR-based location model so the
-                digital product could finally understand where work was happening.
+                Across sites, the same themes repeated: people worked by location, the system forced
+                manual translation, and interruptions made it easy for context to disappear, but
+                the system did not support how work actually happened on the floor.
               </p>
             </div>
 
-            <div class="moment-grid">
-              <article class="moment-card reveal">
-                <p class="moment-card__tag">Moment 1</p>
-                <h3>Receiving stock</h3>
-                <p>Inventory data was being lost before items were correctly placed and validated.</p>
+            <div class="problem-grid problem-grid--findings">
+              <article class="insight-card reveal">
+                <p class="insight-card__index">01</p>
+                <h3>Loose workflows</h3>
+                <p>Users had too much freedom in critical tasks, which made it easy to skip steps or improvise around guardrails.</p>
               </article>
-              <article class="moment-card reveal">
-                <p class="moment-card__tag">Moment 2</p>
-                <h3>Order scan-out</h3>
-                <p>Counts became inaccurate because fulfillment updates happened after the physical action.</p>
+              <article class="insight-card reveal">
+                <p class="insight-card__index">02</p>
+                <h3>No physical mapping</h3>
+                <p>Staff had to translate between the warehouse and the interface manually because digital tasks were not anchored to real locations.</p>
               </article>
-              <article class="moment-card reveal">
-                <p class="moment-card__tag">Moment 3</p>
-                <h3>Stocktake</h3>
-                <p>Counting was too disruptive and depended on people remembering what to do next.</p>
+              <article class="insight-card reveal">
+                <p class="insight-card__index">03</p>
+                <h3>Interrupted work</h3>
+                <p>Flows assumed uninterrupted, linear work even though tasks were fragmented and staff regularly switched context midstream.</p>
               </article>
             </div>
-
           </div>
         </section>
 
-        <!-- === SLIDE 5: RECEIVING === -->
-        <section class="slide slide--flow" id="slide-5" data-slide-title="Receiving">
+        <!-- === SLIDE 5: CROSS-TEAM COLLABORATION === -->
+        <section class="slide slide--strategy" id="slide-5" data-slide-title="Collaboration">
+          <div class="slide__frame slide__frame--strategy">
+            <div class="content-panel content-panel--split reveal">
+              <p class="slide__eyebrow">Cross-team collaboration</p>
+              <h2 class="slide__title">We partnered with operations to make the warehouse itself legible to the product.</h2>
+              <p class="slide__lede">
+                To close the gap, we introduced a color-coded space tracking system with QR-coded racks.
+                That created a direct mapping between the physical environment and the digital system,
+                so work could stay grounded in where actions were actually happening.
+              </p>
+            </div>
+
+            <figure class="plain-visual plain-visual--split plain-visual--inventory-collaboration reveal">
+              <div class="plain-visual__content">
+                <img
+                  src="./assets/colorcode.png"
+                  alt="Warehouse racks labeled with colors and QR-coded locations to support location-based tracking."
+                />
+              </div>
+            </figure>
+          </div>
+        </section>
+
+        <!-- === SLIDE 6: STOCKTAKE === -->
+        <section class="slide slide--flow" id="slide-6" data-slide-title="Stocktake">
+          <div class="slide__frame slide__frame--flow">
+            <div class="flow-copy">
+              <p class="slide__eyebrow reveal">Stocktake</p>
+              <h2 class="slide__title reveal">Stocktake became one location-based workflow instead of a special event.</h2>
+
+              <div class="flow-points">
+                <article class="flow-point reveal">
+                  <h3>Align counting with space</h3>
+                  <p>Staff counted by location using the color-coded system instead of navigating long SKU lists.</p>
+                </article>
+                <article class="flow-point reveal">
+                  <h3>Embed adjacent actions</h3>
+                  <p>Move-inventory and waste flows were built directly into counting so supporting work no longer broke the flow.</p>
+                </article>
+              </div>
+
+            </div>
+
+            <div class="media-switcher reveal" data-media-switcher>
+              <div class="media-switcher__toggle" role="toolbar" aria-label="Stocktake media view">
+                <button class="media-switcher__button is-active" type="button" data-media-toggle="screens" aria-pressed="true">
+                  Screens
+                </button>
+                <button class="media-switcher__button" type="button" data-media-toggle="video" aria-pressed="false">
+                  Video
+                </button>
+              </div>
+
+              <div class="media-switcher__panel" data-media-panel="screens">
+                <div class="screen-strip screen-strip--three">
+                  <figure class="screen-card">
+                    <img src="./assets/stocktake-1.png" alt="Manage inventory list grouped by physical locations." />
+                    <figcaption>Inventory by location</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/stocktake-2.png" alt="Stocktake counting screen for assigned locations." />
+                    <figcaption>Assigned counts</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/stocktake-3.png" alt="Stocktake counting screen for unassigned locations." />
+                    <figcaption>Unassigned counts</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <div class="media-switcher__panel" data-media-panel="video" hidden>
+                <figure class="media-switcher__video-card">
+                  <video class="media-switcher__video" controls playsinline preload="metadata">
+                    <source src="./assets/video_stocktake.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- === SLIDE 7: RECEIVING === -->
+        <section class="slide slide--flow" id="slide-7" data-slide-title="Receiving">
           <div class="slide__frame slide__frame--flow">
             <div class="flow-copy">
               <p class="slide__eyebrow reveal">Design solution</p>
@@ -224,25 +291,47 @@
 
             </div>
 
-            <div class="screen-strip screen-strip--three reveal">
-              <figure class="screen-card">
-                <img src="./assets/receiving-1.png" alt="Receiving list view with shipment statuses and contextual actions." />
-                <figcaption>Shipment queue with resumable statuses</figcaption>
-              </figure>
-              <figure class="screen-card">
-                <img src="./assets/receiving-2.png" alt="Receiving detail screen showing item details and context." />
-                <figcaption>Item-by-item receiving detail</figcaption>
-              </figure>
-              <figure class="screen-card">
-                <img src="./assets/receiving-3.png" alt="Receiving workflow screen for location-based stock placement." />
-                <figcaption>Location-guided completion steps</figcaption>
-              </figure>
+            <div class="media-switcher reveal" data-media-switcher>
+              <div class="media-switcher__toggle" role="toolbar" aria-label="Receiving media view">
+                <button class="media-switcher__button is-active" type="button" data-media-toggle="screens" aria-pressed="true">
+                  Screens
+                </button>
+                <button class="media-switcher__button" type="button" data-media-toggle="video" aria-pressed="false">
+                  Video
+                </button>
+              </div>
+
+              <div class="media-switcher__panel" data-media-panel="screens">
+                <div class="screen-strip screen-strip--three">
+                  <figure class="screen-card">
+                    <img src="./assets/receiving-1.png" alt="Receiving list view with shipment statuses and contextual actions." />
+                    <figcaption>Shipment queue</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/receiving-2.png" alt="Receiving detail screen showing item details and context." />
+                    <figcaption>Item detail</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/receiving-3.png" alt="Receiving workflow screen for location-based stock placement." />
+                    <figcaption>Guided placement</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <div class="media-switcher__panel" data-media-panel="video" hidden>
+                <figure class="media-switcher__video-card">
+                  <video class="media-switcher__video" controls playsinline preload="metadata">
+                    <source src="./assets/video_receiving.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </figure>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- === SLIDE 6: FULFILLMENT === -->
-        <section class="slide slide--flow slide--flow-accent" id="slide-6" data-slide-title="Fulfillment">
+        <!-- === SLIDE 8: FULFILLMENT === -->
+        <section class="slide slide--flow slide--flow-accent" id="slide-8" data-slide-title="Fulfillment">
           <div class="slide__frame slide__frame--flow">
             <div class="flow-copy">
               <p class="slide__eyebrow reveal">Scan-first fulfillment</p>
@@ -265,70 +354,51 @@
 
             </div>
 
-            <div class="screen-strip screen-strip--three reveal">
-              <figure class="screen-card">
-                <img src="./assets/fulfillment-1.png" alt="Guided order fulfillment screen with rack and shelf instructions." />
-                <figcaption>Location-first picking instructions</figcaption>
-              </figure>
-              <figure class="screen-card">
-                <img src="./assets/fulfillment-2.png" alt="Fulfillment screen showing quantity scan progress." />
-                <figcaption>Real-time scan validation</figcaption>
-              </figure>
-              <figure class="screen-card">
-                <img src="./assets/fulfillment-3.png" alt="Fulfillment exception handling screen for quantities and added units." />
-                <figcaption>Edge-case capture before the order closes</figcaption>
-              </figure>
-            </div>
-          </div>
-        </section>
-
-        <!-- === SLIDE 7: STOCKTAKE MILESTONE ONE === -->
-        <section class="slide slide--flow" id="slide-7" data-slide-title="Stocktake 1">
-          <div class="slide__frame slide__frame--flow">
-            <div class="flow-copy">
-              <p class="slide__eyebrow reveal">Stocktake milestone 1</p>
-              <h2 class="slide__title reveal">The first win was making stocktake executable in the physical space.</h2>
-
-              <div class="flow-points">
-                <article class="flow-point reveal">
-                  <h3>Align counting with space</h3>
-                  <p>Staff counted by location using the color-coded system instead of navigating long SKU lists.</p>
-                </article>
-                <article class="flow-point reveal">
-                  <h3>Embed adjacent actions</h3>
-                  <p>Move-inventory and waste flows were built directly into counting so extra workflows disappeared.</p>
-                </article>
-                <article class="flow-point reveal">
-                  <h3>Resolve discrepancies immediately</h3>
-                  <p>Errors were handled in the moment while people were already at the shelf.</p>
-                </article>
+            <div class="media-switcher reveal" data-media-switcher>
+              <div class="media-switcher__toggle" role="toolbar" aria-label="Fulfillment media view">
+                <button class="media-switcher__button is-active" type="button" data-media-toggle="screens" aria-pressed="true">
+                  Screens
+                </button>
+                <button class="media-switcher__button" type="button" data-media-toggle="video" aria-pressed="false">
+                  Video
+                </button>
               </div>
 
-            </div>
+              <div class="media-switcher__panel" data-media-panel="screens">
+                <div class="screen-strip screen-strip--three">
+                  <figure class="screen-card">
+                    <img src="./assets/fulfillment-1.png" alt="Guided order fulfillment screen with rack and shelf instructions." />
+                    <figcaption>Picking instructions</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/fulfillment-2.png" alt="Fulfillment screen showing quantity scan progress." />
+                    <figcaption>Exception handling</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/fulfillment-scan-validation-updated.png" alt="Fulfillment scan validation screen for an extra-unit exception." />
+                    <figcaption>Scan validation</figcaption>
+                  </figure>
+                </div>
+              </div>
 
-            <div class="screen-strip screen-strip--three reveal">
-              <figure class="screen-card">
-                <img src="./assets/stocktake-1.png" alt="Manage inventory list grouped by physical locations." />
-                <figcaption>Location-based inventory index</figcaption>
-              </figure>
-              <figure class="screen-card">
-                <img src="./assets/stocktake-2.png" alt="Stocktake counting screen for assigned locations." />
-                <figcaption>Count assigned locations</figcaption>
-              </figure>
-              <figure class="screen-card">
-                <img src="./assets/stocktake-3.png" alt="Stocktake counting screen for unassigned locations." />
-                <figcaption>Count unassigned locations</figcaption>
-              </figure>
+              <div class="media-switcher__panel" data-media-panel="video" hidden>
+                <figure class="media-switcher__video-card">
+                  <video class="media-switcher__video" controls playsinline preload="metadata">
+                    <source src="./assets/video_orderscanout.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </figure>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- === SLIDE 8: STOCKTAKE MILESTONE TWO === -->
-        <section class="slide slide--flow slide--flow-accent" id="slide-8" data-slide-title="Stocktake 2">
+        <!-- === SLIDE 9: INVENTORY MANAGEMENT === -->
+        <section class="slide slide--flow slide--flow-accent" id="slide-9" data-slide-title="Inventory management">
           <div class="slide__frame slide__frame--flow">
             <div class="flow-copy">
-              <p class="slide__eyebrow reveal">Stocktake milestone 2</p>
-              <h2 class="slide__title reveal">The bigger shift was turning stocktake into a system-driven daily workflow.</h2>
+              <p class="slide__eyebrow reveal">Daily inventory management</p>
+              <h2 class="slide__title reveal">The bigger shift was turning inventory management into a system-driven daily workflow.</h2>
 
               <div class="flow-points">
                 <article class="flow-point reveal">
@@ -347,36 +417,65 @@
 
             </div>
 
-            <div class="screen-strip screen-strip--three reveal">
-              <figure class="screen-card">
-                <img src="./assets/tasks-1.png" alt="Inventory task list showing high-priority work generated by the system." />
-                <figcaption>System-generated task list</figcaption>
-              </figure>
-              <figure class="screen-card">
-                <img src="./assets/tasks-2.png" alt="Location counting task view inside the task workflow." />
-                <figcaption>Count tasks anchored to location</figcaption>
-              </figure>
-              <figure class="screen-card">
-                <img src="./assets/tasks-3.png" alt="Move inventory task screen within the stocktake task flow." />
-                <figcaption>Related actions carried into the task flow</figcaption>
-              </figure>
+            <div class="media-switcher reveal" data-media-switcher>
+              <div class="media-switcher__toggle" role="toolbar" aria-label="Inventory management media view">
+                <button class="media-switcher__button is-active" type="button" data-media-toggle="screens" aria-pressed="true">
+                  Screens
+                </button>
+                <button class="media-switcher__button" type="button" data-media-toggle="video" aria-pressed="false">
+                  Video
+                </button>
+              </div>
+
+              <div class="media-switcher__panel" data-media-panel="screens">
+                <div class="screen-strip screen-strip--three">
+                  <figure class="screen-card">
+                    <img src="./assets/tasks-1.png" alt="Inventory task list showing high-priority work generated by the system." />
+                    <figcaption>Task list</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/tasks-2.png" alt="Location counting task view inside the task workflow." />
+                    <figcaption>Count by location</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/tasks-3.png" alt="Move inventory task screen within the stocktake task flow." />
+                    <figcaption>Related actions</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <div class="media-switcher__panel" data-media-panel="video" hidden>
+                <figure class="media-switcher__video-card">
+                  <video class="media-switcher__video" controls playsinline preload="metadata">
+                    <source src="./assets/video_tasks.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </figure>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- === SLIDE 9: OUTCOME === -->
-        <section class="slide slide--outcome" id="slide-9" data-slide-title="Outcome">
+        <!-- === SLIDE 10: OUTCOME === -->
+        <section class="slide slide--outcome" id="slide-10" data-slide-title="Outcome">
           <div class="slide__frame slide__frame--outcome">
-            <div class="content-panel reveal">
+            <div class="content-panel content-panel--split reveal">
               <p class="slide__eyebrow">Outcome</p>
-              <h2 class="slide__title">The tool became part of daily operations because it matched how the floor actually works.</h2>
+              <h2 class="slide__title">Improved inventory accuracy from ~70% to 95%+, while reducing controllable ODR by over 50%.</h2>
               <p class="slide__lede">
-                Facility staff adopted the redesigned workflows in daily use. Scan-first fulfillment
-                reduced order defects by preventing errors during action, and inventory tasks became
-                location-driven, consistent across shifts, and less dependent on individual memory.
+                The redesign enabled consistent, location-driven workflows across facilities,
+                reducing reliance on individual memory and minimizing picking errors.
               </p>
             </div>
 
+            <figure class="plain-visual plain-visual--split reveal">
+              <div class="plain-visual__content">
+                <img
+                  src="./assets/inventory-accuracy-chart.png"
+                  alt="Chart showing inventory accuracy rising while controllable order defect rate falls over time."
+                />
+              </div>
+            </figure>
           </div>
         </section>
       </main>

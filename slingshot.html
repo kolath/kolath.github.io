@@ -14,27 +14,18 @@
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=17" />
+    <link rel="stylesheet" href="./styles.css?v=19" />
   </head>
   <body>
     <div class="deck-shell">
       <header class="deck-hud" aria-label="Presentation status">
         <div class="deck-hud__meta">
-          <p class="deck-hud__meta-kicker">Case Study</p>
           <label class="sr-only" for="case-study-switcher">Case study switcher</label>
           <select class="case-switcher" id="case-study-switcher" data-case-switcher>
             <option value="./index.html">Inventory Workflow</option>
             <option value="./brandbuilder.html">Brand Builder</option>
             <option value="./slingshot.html" selected>Slingshot</option>
           </select>
-          <div class="deck-hud__status">
-            <p class="deck-hud__label" data-slide-title>Overview</p>
-            <p class="deck-hud__count">
-              <span data-current-slide>01</span>
-              <span>/</span>
-              <span data-total-slides>08</span>
-            </p>
-          </div>
         </div>
       </header>
 
@@ -138,16 +129,17 @@
               </div>
             </div>
 
-            <div class="screen-strip screen-strip--two reveal">
-              <figure class="screen-card">
-                <img src="./assets/slingshot-discovery-1.png" alt="Discovery artifact from Slingshot jam sessions." />
-                <figcaption>AE jam sessions surfaced where analysis stopped short of a decision.</figcaption>
-              </figure>
-              <figure class="screen-card">
-                <img src="./assets/slingshot-discovery-2.png" alt="Workflow exploration artifact for Slingshot." />
-                <figcaption>We mapped the gap between pitching support and broader deal-shaping needs.</figcaption>
-              </figure>
-            </div>
+            <figure class="research-visual research-visual--slingshot-discovery reveal">
+              <div class="research-visual__content">
+                <div class="research-visual__media">
+                  <img
+                    src="./assets/slingshot-discovery-replacement.png"
+                    alt="Opportunity map and action items created during the Slingshot discovery workshops."
+                  />
+                </div>
+                <figcaption>Discovery synthesis: opportunity map and action items.</figcaption>
+              </div>
+            </figure>
           </div>
         </section>
 
@@ -184,40 +176,33 @@
         </section>
 
         <section class="slide slide--flow" id="slide-5" data-slide-title="Market Analysis">
-          <div class="slide__frame slide__frame--flow">
-            <div class="flow-copy">
+          <div class="slide__frame slide__frame--flow-gallery">
+            <div class="flow-gallery-copy">
               <p class="slide__eyebrow reveal">Market analysis</p>
               <h2 class="slide__title reveal">Expand value in market analysis by making the signals recommendation-ready.</h2>
-
-              <div class="flow-points">
-                <article class="flow-point reveal">
-                  <h3>Market analysis</h3>
-                  <p>Analyze local demographics and demand signals to evaluate market potential.</p>
-                </article>
-                <article class="flow-point reveal">
-                  <h3>Point of interest</h3>
-                  <p>Reveal nearby traffic drivers that influence customer demand around a facility.</p>
-                </article>
-                <article class="flow-point reveal">
-                  <h3>Top brands nearby</h3>
-                  <p>Show the competitive landscape by highlighting strong brands already operating in the area.</p>
-                </article>
-              </div>
-
             </div>
 
-            <div class="screen-strip screen-strip--three reveal">
+            <div class="screen-strip screen-strip--three screen-strip--flow-gallery reveal">
               <figure class="screen-card">
                 <img src="./assets/slingshot-market-analysis.png" alt="Market analysis screen in Slingshot." />
-                <figcaption>Market analysis</figcaption>
+                <figcaption>
+                  <h3>Market analysis</h3>
+                  <p>Analyze local demographics and demand signals to evaluate market potential.</p>
+                </figcaption>
               </figure>
               <figure class="screen-card">
                 <img src="./assets/slingshot-point-of-interest.png" alt="Point of interest screen in Slingshot." />
-                <figcaption>Point of interest</figcaption>
+                <figcaption>
+                  <h3>Point of interest</h3>
+                  <p>Reveal nearby traffic drivers that influence customer demand around a facility.</p>
+                </figcaption>
               </figure>
               <figure class="screen-card">
                 <img src="./assets/slingshot-top-brands.png" alt="Top brands nearby screen in Slingshot." />
-                <figcaption>Top brands nearby</figcaption>
+                <figcaption>
+                  <h3>Top brands nearby</h3>
+                  <p>Show the competitive landscape by highlighting strong brands already operating in the area.</p>
+                </figcaption>
               </figure>
             </div>
           </div>
@@ -250,12 +235,14 @@
               </div>
             </div>
 
-            <figure class="image-stage reveal">
-              <img
-                src="./assets/slingshot-facility-score.png"
-                alt="Facility score interface in Slingshot."
-              />
-              <figcaption>Facility score concentrated multiple market signals into one recommendation layer.</figcaption>
+            <figure class="plain-visual reveal">
+              <div class="plain-visual__content">
+                <img
+                  src="./assets/slingshot-facility-score.png"
+                  alt="Facility score interface in Slingshot."
+                />
+                <figcaption>Facility score view.</figcaption>
+              </div>
             </figure>
           </div>
         </section>
@@ -283,18 +270,14 @@
 
             </div>
 
-            <div class="screen-strip screen-strip--three reveal">
+            <div class="screen-strip screen-strip--two reveal">
               <figure class="screen-card">
                 <img src="./assets/slingshot-pnl-desktop.png" alt="Desktop profit and loss calculator in Slingshot." />
-                <figcaption>Profit &amp; loss calculator</figcaption>
+                <figcaption>P&amp;L calculator</figcaption>
               </figure>
               <figure class="screen-card">
                 <img src="./assets/slingshot-pnl-mobile-1.png" alt="Shared PNL calculator mobile view." />
-                <figcaption>Shared PNL calculator</figcaption>
-              </figure>
-              <figure class="screen-card">
-                <img src="./assets/slingshot-pnl-mobile-2.png" alt="Shared PNL calculator mobile view while scrolled." />
-                <figcaption>Shared PNL calculator, scrolled</figcaption>
+                <figcaption>Shared calculator</figcaption>
               </figure>
             </div>
           </div>
@@ -327,12 +310,13 @@
               </div>
             </div>
 
-            <figure class="image-stage reveal">
-              <img
-                src="./assets/slingshot-results-quote.png"
-                alt="Positive team message about Slingshot's value in selling."
-              />
-              <figcaption>Strong internal feedback reinforced that the redesign made the product easier to trust and sell with.</figcaption>
+            <figure class="plain-visual plain-visual--messages reveal">
+              <div class="plain-visual__content plain-visual__content--messages">
+                <img
+                  src="./assets/messages.png"
+                  alt="Positive team message about Slingshot's value in selling."
+                />
+              </div>
             </figure>
           </div>
         </section>

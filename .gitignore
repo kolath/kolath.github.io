@@ -1,3 +1,9 @@
 .DS_Store
 .codex/
 project-2-slingshot.html
+captures/
+test-results/
+.impeccable.md
+designers-local*.png
+designers-file-protocol.png
+lighthouse-designers-accessibility.json

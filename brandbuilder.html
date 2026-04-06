@@ -14,27 +14,18 @@
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=17" />
+    <link rel="stylesheet" href="./styles.css?v=19" />
   </head>
   <body>
     <div class="deck-shell">
       <header class="deck-hud" aria-label="Presentation status">
         <div class="deck-hud__meta">
-          <p class="deck-hud__meta-kicker">Case Study</p>
           <label class="sr-only" for="case-study-switcher">Case study switcher</label>
           <select class="case-switcher" id="case-study-switcher" data-case-switcher>
             <option value="./index.html">Inventory Workflow</option>
             <option value="./brandbuilder.html" selected>Brand Builder</option>
             <option value="./slingshot.html">Slingshot</option>
           </select>
-          <div class="deck-hud__status">
-            <p class="deck-hud__label" data-slide-title>Overview</p>
-            <p class="deck-hud__count">
-              <span data-current-slide>01</span>
-              <span>/</span>
-              <span data-total-slides>08</span>
-            </p>
-          </div>
         </div>
       </header>
 
@@ -136,14 +127,14 @@
               </div>
             </div>
 
-            <figure class="image-stage reveal">
-              <img
-                src="./assets/brandbuilder-flow-1.png"
-                alt="Brand Builder interface used during the optimization workflow."
-              />
-              <figcaption>
-                The system’s value came from turning expert judgment into a guided product loop, not just generating text.
-              </figcaption>
+            <figure class="plain-visual reveal">
+              <div class="plain-visual__content">
+                <img
+                  src="./assets/brandbuilder-flow-1.png"
+                  alt="Brand Builder interface used during the optimization workflow."
+                />
+                <figcaption>Guided optimization loop.</figcaption>
+              </div>
             </figure>
           </div>
         </section>
@@ -182,76 +173,59 @@
         </section>
 
         <section class="slide slide--flow" id="slide-5" data-slide-title="Optimization Flow">
-          <div class="slide__frame slide__frame--flow">
-            <div class="flow-copy">
+          <div class="slide__frame slide__frame--flow-gallery">
+            <div class="flow-gallery-copy">
               <p class="slide__eyebrow reveal">Designing the optimization flow</p>
               <h2 class="slide__title reveal">The menu logic was sequenced so each AI step built on the last one.</h2>
-
-              <div class="flow-points">
-                <article class="flow-point reveal">
-                  <h3>Reorganize menu</h3>
-                  <p>Establish hierarchy and item positioning so all generated content is context-aware.</p>
-                </article>
-                <article class="flow-point reveal">
-                  <h3>Improve menu copy</h3>
-                  <p>Descriptions are generated based on item role within each category, improving consistency and reducing rework.</p>
-                </article>
-                <article class="flow-point reveal">
-                  <h3>Optimize modifiers</h3>
-                  <p>Modifier logic is layered on top of the finalized structure to support customization and upsell clarity.</p>
-                </article>
-              </div>
-
             </div>
 
-            <div class="screen-strip screen-strip--three reveal">
+            <div class="screen-strip screen-strip--three screen-strip--flow-gallery reveal">
               <figure class="screen-card">
                 <img src="./assets/brandbuilder-flow-1.png" alt="Brand Builder menu reorganization screen." />
-                <figcaption>Reorganize menu</figcaption>
+                <figcaption>
+                  <h3>Reorganize menu</h3>
+                  <p>Establish hierarchy and item positioning so every later AI edit has the right context.</p>
+                </figcaption>
               </figure>
               <figure class="screen-card">
                 <img src="./assets/brandbuilder-flow-2.png" alt="Brand Builder menu copy improvement screen." />
-                <figcaption>Improve menu copy</figcaption>
+                <figcaption>
+                  <h3>Improve menu copy</h3>
+                  <p>Descriptions are generated from each item’s role within the menu, improving consistency and reducing rework.</p>
+                </figcaption>
               </figure>
               <figure class="screen-card">
                 <img src="./assets/brandbuilder-flow-3.png" alt="Brand Builder modifier optimization screen." />
-                <figcaption>Optimize modifiers</figcaption>
+                <figcaption>
+                  <h3>Optimize modifiers</h3>
+                  <p>Modifier logic is layered on last so customization and upsell cues build on a stable menu.</p>
+                </figcaption>
               </figure>
             </div>
           </div>
         </section>
 
         <section class="slide slide--flow slide--flow-accent" id="slide-6" data-slide-title="Image Workflow">
-          <div class="slide__frame slide__frame--flow">
-            <div class="flow-copy">
+          <div class="slide__frame slide__frame--flow-gallery">
+            <div class="flow-gallery-copy">
               <p class="slide__eyebrow reveal">AI image workflow</p>
               <h2 class="slide__title reveal">Image generation stayed editable instead of becoming a one-shot asset pipeline.</h2>
-
-              <div class="flow-points">
-                <article class="flow-point reveal">
-                  <h3>Upstyle images</h3>
-                  <p>Images were generated only after the AI content was finalized, improving visual relevance and consistency.</p>
-                </article>
-                <article class="flow-point reveal">
-                  <h3>Regenerate on demand</h3>
-                  <p>Teams could regenerate imagery with the same context, enabling quick iteration without resetting the workflow.</p>
-                </article>
-                <article class="flow-point reveal">
-                  <h3>Keep the system flexible</h3>
-                  <p>The experience was designed so AI output could be revised rather than treated as precious or locked.</p>
-                </article>
-              </div>
-
             </div>
 
-            <div class="screen-strip screen-strip--two reveal">
+            <div class="screen-strip screen-strip--two screen-strip--flow-gallery screen-strip--flow-gallery-pair reveal">
               <figure class="screen-card">
                 <img src="./assets/brandbuilder-flow-4.png" alt="Brand Builder image upstyling screen." />
-                <figcaption>Upstyle images</figcaption>
+                <figcaption>
+                  <h3>Upstyle images</h3>
+                  <p>Images are generated only after the AI content is finalized, keeping visuals relevant to the updated menu.</p>
+                </figcaption>
               </figure>
               <figure class="screen-card">
                 <img src="./assets/brandbuilder-flow-5.png" alt="Brand Builder regenerate on demand interface." />
-                <figcaption>Regenerate on demand</figcaption>
+                <figcaption>
+                  <h3>Regenerate on demand</h3>
+                  <p>Teams can regenerate imagery with the same context, so the workflow stays flexible instead of one-shot.</p>
+                </figcaption>
               </figure>
             </div>
           </div>
@@ -280,9 +254,13 @@
               </div>
             </div>
 
-            <div class="screen-strip screen-strip--two reveal">
-              <figure class="screen-card">
-                <img src="./assets/brandbuilder-desktop.png" alt="Desktop review interface for Brand Builder." />
+            <div class="screen-strip screen-strip--two screen-strip--tight screen-strip--brandbuilder-review reveal">
+              <figure class="screen-card screen-card--brandbuilder-review-desktop">
+                <img
+                  class="screen-card__image--brandbuilder-review-desktop"
+                  src="./assets/brandbuilder-desktop.png"
+                  alt="Desktop review interface for Brand Builder."
+                />
                 <figcaption>Desktop review</figcaption>
               </figure>
               <figure class="screen-card">

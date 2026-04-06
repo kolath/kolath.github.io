@@ -1,14 +1,102 @@
-/* === PRESENTATION STATE === */
-document.addEventListener("DOMContentLoaded", () => {
+function initSharecarePage() {
+  const header = document.querySelector("[data-site-header]");
+  const navToggle = document.querySelector("[data-nav-toggle]");
+  const navPanel = document.querySelector("[data-nav-panel]");
+  const scrollLinks = Array.from(document.querySelectorAll("[data-scroll-link]"));
+  const scrollTopButton = document.querySelector("[data-scroll-top]");
+  const revealNodes = Array.from(document.querySelectorAll("[data-reveal]"));
+
+  const setScrolledState = () => {
+    const isScrolled = window.scrollY > 24;
+
+    if (header instanceof HTMLElement) {
+      header.classList.toggle("is-solid", isScrolled);
+    }
+
+    if (scrollTopButton instanceof HTMLElement) {
+      scrollTopButton.classList.toggle("is-visible", window.scrollY > 520);
+    }
+  };
+
+  const closeNav = () => {
+    if (navPanel instanceof HTMLElement) {
+      navPanel.classList.remove("is-open");
+    }
+
+    if (navToggle instanceof HTMLButtonElement) {
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  };
+
+  if (navToggle instanceof HTMLButtonElement && navPanel instanceof HTMLElement) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = navPanel.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  }
+
+  scrollLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const targetId = link.getAttribute("href");
+      const target =
+        typeof targetId === "string" && targetId.startsWith("#")
+          ? document.querySelector(targetId)
+          : null;
+
+      if (target instanceof HTMLElement) {
+        event.preventDefault();
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      closeNav();
+    });
+  });
+
+  if (scrollTopButton instanceof HTMLButtonElement) {
+    scrollTopButton.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  if ("IntersectionObserver" in window && revealNodes.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -8% 0px"
+      }
+    );
+
+    revealNodes.forEach((node) => observer.observe(node));
+  } else {
+    revealNodes.forEach((node) => node.classList.add("is-visible"));
+  }
+
+  window.addEventListener("scroll", setScrolledState, { passive: true });
+  window.addEventListener("resize", closeNav, { passive: true });
+  setScrolledState();
+}
+
+function initDeckPresentation() {
   const track = document.querySelector(".deck-track");
   const slides = Array.from(document.querySelectorAll(".slide"));
   const dots = Array.from(document.querySelectorAll(".deck-dot"));
-  const currentSlideNode = document.querySelector("[data-current-slide]");
-  const totalSlidesNode = document.querySelector("[data-total-slides]");
-  const slideTitleNode = document.querySelector("[data-slide-title]");
   const caseSwitcher = document.querySelector("[data-case-switcher]");
+  const mediaSwitchers = Array.from(document.querySelectorAll("[data-media-switcher]"));
 
-  if (!track || !slides.length) {
+  if (!(track instanceof HTMLElement) || !slides.length) {
     return;
   }
 
@@ -25,17 +113,41 @@ document.addEventListener("DOMContentLoaded", () => {
     caseSwitcher.addEventListener("input", navigateToCaseStudy);
   }
 
+  mediaSwitchers.forEach((switcher) => {
+    const buttons = Array.from(switcher.querySelectorAll("[data-media-toggle]"));
+    const panels = Array.from(switcher.querySelectorAll("[data-media-panel]"));
+
+    if (!buttons.length || !panels.length) {
+      return;
+    }
+
+    const setActivePanel = (panelName) => {
+      buttons.forEach((button) => {
+        const isActive = button.dataset.mediaToggle === panelName;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.mediaPanel !== panelName;
+      });
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setActivePanel(button.dataset.mediaToggle || "screens");
+      });
+    });
+
+    setActivePanel("screens");
+  });
+
   let activeIndex = 0;
   let wheelLocked = false;
   let touchStartY = 0;
   let touchStartX = 0;
   let rafId = 0;
 
-  if (totalSlidesNode) {
-    totalSlidesNode.textContent = String(slides.length).padStart(2, "0");
-  }
-
-  /* === UI SYNCHRONIZATION === */
   const syncUi = (index) => {
     const boundedIndex = Math.max(0, Math.min(index, slides.length - 1));
     activeIndex = boundedIndex;
@@ -49,17 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
       dot.classList.toggle("is-active", isActive);
       dot.setAttribute("aria-current", isActive ? "true" : "false");
     });
-
-    if (currentSlideNode) {
-      currentSlideNode.textContent = String(boundedIndex + 1).padStart(2, "0");
-    }
-
-    if (slideTitleNode) {
-      slideTitleNode.textContent = slides[boundedIndex].dataset.slideTitle ?? `Slide ${boundedIndex + 1}`;
-    }
   };
 
-  /* === ACTIVE SLIDE DETECTION === */
   const getClosestSlideIndex = () => {
     const viewportCenter = window.innerHeight / 2;
     let closestIndex = 0;
@@ -92,7 +195,6 @@ document.addEventListener("DOMContentLoaded", () => {
     rafId = window.requestAnimationFrame(updateFromViewport);
   };
 
-  /* === SLIDE MOVEMENT === */
   const goToSlide = (index, behavior = "smooth") => {
     const boundedIndex = Math.max(0, Math.min(index, slides.length - 1));
     slides[boundedIndex].scrollIntoView({
@@ -105,7 +207,6 @@ document.addEventListener("DOMContentLoaded", () => {
   syncUi(0);
   window.setTimeout(queueViewportUpdate, 120);
 
-  /* === DOT NAVIGATION === */
   dots.forEach((dot) => {
     dot.addEventListener("click", () => {
       const targetIndex = Number(dot.dataset.slideTarget || 0);
@@ -113,7 +214,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* === KEYBOARD NAVIGATION === */
   const nextKeys = new Set(["ArrowDown", "ArrowRight", "PageDown", " "]);
   const previousKeys = new Set(["ArrowUp", "ArrowLeft", "PageUp"]);
 
@@ -148,12 +248,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* === SCROLL TRACKING === */
   track.addEventListener("scroll", queueViewportUpdate, { passive: true });
   window.addEventListener("scroll", queueViewportUpdate, { passive: true });
   window.addEventListener("resize", queueViewportUpdate, { passive: true });
 
-  /* === WHEEL NAVIGATION === */
   track.addEventListener(
     "wheel",
     (event) => {
@@ -180,7 +278,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: true }
   );
 
-  /* === TOUCH NAVIGATION === */
   track.addEventListener(
     "touchstart",
     (event) => {
@@ -211,4 +308,13 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     { passive: true }
   );
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.querySelector("[data-sharecare-site]")) {
+    initSharecarePage();
+    return;
+  }
+
+  initDeckPresentation();
 });
