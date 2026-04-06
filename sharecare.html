@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sharecare AI</title>
+    <meta
+      name="description"
+      content="A static homepage implementation of the Sharecare AI old-version concept from Figma."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=20" />
+    <script type="module" src="./main.js"></script>
+  </head>
+  <body class="sharecare-site" data-sharecare-site>
+    <header class="sharecare-header" data-site-header>
+      <div class="sharecare-header__inner">
+        <a class="sharecare-logo-link" href="#top" aria-label="Sharecare AI home">
+          <img class="sharecare-logo" src="./assets/sharecare-logo.svg" alt="Sharecare AI" />
+        </a>
+
+        <button
+          class="sharecare-nav-toggle"
+          type="button"
+          aria-controls="sharecare-nav"
+          aria-expanded="false"
+          data-nav-toggle
+        >
+          Menu
+        </button>
+
+        <nav class="sharecare-nav" id="sharecare-nav" aria-label="Primary" data-nav-panel>
+          <a href="#story" data-scroll-link>About</a>
+          <a href="#focus" data-scroll-link>Careers</a>
+          <a href="#focus" data-scroll-link>Events</a>
+          <a href="#contact" data-scroll-link>Contact</a>
+          <a href="#updates" data-scroll-link>Blog</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="sharecare-main">
+      <section class="sharecare-hero" id="top" aria-labelledby="sharecare-hero-title">
+        <div class="sharecare-hero__field" aria-hidden="true">
+          <div class="sharecare-hero__gradient"></div>
+          <div class="sharecare-hero__vertical-base"></div>
+          <div class="sharecare-hero__grain"></div>
+          <div class="sharecare-hero__red-glow sharecare-hero__red-glow--left"></div>
+          <div class="sharecare-hero__red-glow sharecare-hero__red-glow--center"></div>
+          <div class="sharecare-hero__blue-glow sharecare-hero__blue-glow--top"></div>
+          <div class="sharecare-hero__blue-glow sharecare-hero__blue-glow--core"></div>
+          <div class="sharecare-hero__shine"></div>
+          <div class="sharecare-hero__sun-glow"></div>
+          <div class="sharecare-hero__orb"></div>
+          <div class="sharecare-hero__pattern sharecare-hero__pattern--top"></div>
+          <div class="sharecare-hero__pattern sharecare-hero__pattern--bottom"></div>
+        </div>
+
+        <div class="sharecare-hero__content" data-reveal>
+          <h1 class="sharecare-hero__title" id="sharecare-hero-title">
+            The future of healthcare is here
+          </h1>
+          <p class="sharecare-hero__lede">
+            All together, we can unlock the value of health data and continuously
+            optimize the algorithms of our health
+          </p>
+        </div>
+      </section>
+
+      <section class="sharecare-story" id="story" aria-labelledby="sharecare-story-title">
+        <div class="sharecare-section-shell">
+          <div class="sharecare-section-heading" data-reveal>
+            <p class="sharecare-section-label">Our story</p>
+            <h2 class="sharecare-section-title" id="sharecare-story-title">
+              This is our story, and this is why AI and deep tech matter in healthcare.
+            </h2>
+          </div>
+
+          <div class="sharecare-story-grid">
+            <article class="sharecare-story-card" data-reveal>
+              <img
+                class="sharecare-story-card__icon"
+                src="./assets/sharecare-card-1.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <p class="sharecare-story-card__text">
+                We give people the power to collect, own and train their own health
+                data to generate models to help themselves and their communities in
+                real-time using their phones all the while treating privacy as a
+                first-class citizen.
+              </p>
+            </article>
+
+            <article class="sharecare-story-card" data-reveal>
+              <img
+                class="sharecare-story-card__icon"
+                src="./assets/sharecare-card-2.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <p class="sharecare-story-card__text">
+                We give people and organizations the tools and the choice to exchange
+                learnings without moving the data: by breaking data silos you impact
+                the quality and cost of care in real time.
+              </p>
+            </article>
+
+            <article class="sharecare-story-card" data-reveal>
+              <img
+                class="sharecare-story-card__icon"
+                src="./assets/sharecare-card-3.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <p class="sharecare-story-card__text">
+                We give organizations powerful data fluency tools to unlock the value
+                on their data and generate actionable insights immediately using our
+                Toniq platform.
+              </p>
+            </article>
+
+            <article class="sharecare-story-card" data-reveal>
+              <img
+                class="sharecare-story-card__icon"
+                src="./assets/sharecare-card-4.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <p class="sharecare-story-card__text">
+                We give organizations the dynamic environment that automates and
+                scales security and compliance for a world that will soon count in
+                yottabytes.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="sharecare-focus" id="focus" aria-labelledby="sharecare-focus-title">
+        <div class="sharecare-section-shell sharecare-section-shell--split">
+          <div class="sharecare-focus__intro" data-reveal>
+            <p class="sharecare-section-label">What this unlocks</p>
+            <h2 class="sharecare-section-title" id="sharecare-focus-title">
+              A clearer way to think about the platform behind the homepage.
+            </h2>
+            <p class="sharecare-focus__lede">
+              The visual system is futuristic and luminous, but the product message is
+              grounded in something practical: better ownership, safer collaboration,
+              faster insight, and infrastructure that can scale with trust.
+            </p>
+          </div>
+
+          <div class="sharecare-focus__list">
+            <article class="sharecare-focus-card" data-reveal>
+              <p class="sharecare-focus-card__index">01</p>
+              <h3>Personal data ownership</h3>
+              <p>People can collect, own, and train their own health data models.</p>
+            </article>
+
+            <article class="sharecare-focus-card" data-reveal>
+              <p class="sharecare-focus-card__index">02</p>
+              <h3>Learning without data movement</h3>
+              <p>Teams exchange learnings without pulling sensitive data into one place.</p>
+            </article>
+
+            <article class="sharecare-focus-card" data-reveal>
+              <p class="sharecare-focus-card__index">03</p>
+              <h3>Immediate operational insight</h3>
+              <p>Toniq turns raw medical information into actionable product signals.</p>
+            </article>
+
+            <article class="sharecare-focus-card" data-reveal>
+              <p class="sharecare-focus-card__index">04</p>
+              <h3>Compliance by design</h3>
+              <p>Security and privacy scale with the system instead of being bolted on.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="sharecare-updates" id="updates" aria-labelledby="sharecare-updates-title">
+        <div class="sharecare-section-shell">
+          <div class="sharecare-updates__panel" data-reveal>
+            <div class="sharecare-updates__copy">
+              <p class="sharecare-section-label">Blog</p>
+              <h2 class="sharecare-section-title" id="sharecare-updates-title">
+                Deep tech only earns trust when the story stays human-scale.
+              </h2>
+              <p class="sharecare-updates__text">
+                This prototype homepage keeps the message concise, but the visual
+                language suggests a larger system underneath it: one that makes
+                healthcare intelligence feel approachable instead of abstract.
+              </p>
+            </div>
+
+            <a class="sharecare-button" href="#contact" data-scroll-link>Contact us</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="sharecare-footer" id="contact">
+      <div class="sharecare-section-shell">
+        <div class="sharecare-footer__top">
+          <img class="sharecare-footer__logo" src="./assets/sharecare-logo.svg" alt="Sharecare AI" />
+
+          <nav class="sharecare-footer__nav" aria-label="Footer">
+            <a href="#story" data-scroll-link>About</a>
+            <a href="#focus" data-scroll-link>Careers</a>
+            <a href="#focus" data-scroll-link>Events</a>
+            <a href="#contact" data-scroll-link>Contact us</a>
+            <a href="#updates" data-scroll-link>Blog</a>
+          </nav>
+        </div>
+
+        <div class="sharecare-footer__bottom">
+          <p class="sharecare-footer__caption">
+            Unlock the value of health data while keeping privacy and clarity at the
+            center of the experience.
+          </p>
+          <p class="sharecare-footer__copyright">
+            © 2020 Sharecare, Inc. All Rights Reserved
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <button class="sharecare-top" type="button" aria-label="Back to top" data-scroll-top>
+      Top
+    </button>
+  </body>
+</html>
