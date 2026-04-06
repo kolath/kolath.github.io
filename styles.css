@@ -32,8 +32,8 @@
   --space-11: 80px;
   --radius-xl: 12px;
   --radius-pill: 999px;
-  --font-sans: "Manrope", "SF Pro Text", sans-serif;
-  --font-display: "Instrument Sans", "SF Pro Display", sans-serif;
+  --font-sans: "Inter", "SF Pro Text", sans-serif;
+  --font-display: "Inter Display", "Inter", "SF Pro Display", sans-serif;
   --color-hero-glow: rgb(0 191 165 / 0.22);
   --color-hero-glow-secondary: rgb(99 102 241 / 0.18);
   --color-slide-shell: #f8fbff;
@@ -56,9 +56,12 @@
   --slide-gap: clamp(0.65rem, 1.5vw, 1.15rem);
   --slide-radius: clamp(1.25rem, 2vw, 2rem);
   --slide-paragraph-radius: calc(var(--slide-radius) * 0.75);
-  --slide-title-size: clamp(2rem, 4.6vw, 4.8rem);
+  --slide-title-size: 54px;
   --slide-body-size: clamp(0.96rem, 1.4vw, 1.16rem);
   --slide-caption-size: clamp(0.72rem, 0.9vw, 0.92rem);
+  --tracking-body-18: -0.0026em;
+  --tracking-body-16: -0.0018em;
+  --tracking-body-14: -0.0009em;
   --color-sharecare-page: #f4f8fb;
   --color-sharecare-page-strong: #f8faff;
   --color-sharecare-ink: #1c2a46;
@@ -88,6 +91,7 @@ body {
 body {
   overflow: hidden;
   font-family: var(--font-sans);
+  font-weight: 300;
   color: var(--color-slide-ink);
   background:
     radial-gradient(circle at 14% 18%, rgb(223 244 241 / 0.95), transparent 25%),
@@ -101,6 +105,7 @@ input,
 textarea,
 select {
   font: inherit;
+  font-weight: 400;
 }
 
 img {
@@ -1090,6 +1095,10 @@ body.sharecare-site img {
   padding: var(--slide-padding-y) var(--slide-padding-x);
 }
 
+.slide--slingshot-results {
+  overflow: visible;
+}
+
 .slide::after {
   content: "";
   position: absolute;
@@ -1151,7 +1160,7 @@ body.sharecare-site img {
   margin: 0;
   font-family: var(--font-display);
   font-size: var(--slide-title-size);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 0.95;
   letter-spacing: -0.06em;
   max-width: 50rem;
@@ -1167,6 +1176,7 @@ body.sharecare-site img {
   max-width: 42rem;
   color: var(--color-slide-ink-muted);
   font-size: var(--slide-body-size);
+  letter-spacing: var(--tracking-body-18);
   line-height: 1.55;
 }
 
@@ -1195,6 +1205,7 @@ body.sharecare-site img {
   border-radius: var(--slide-paragraph-radius);
   background: rgb(255 255 255 / 0.72);
   font-size: clamp(0.92rem, 1.25vw, 1.05rem);
+  letter-spacing: var(--tracking-body-18);
   line-height: 1.55;
 }
 
@@ -1238,7 +1249,7 @@ body.sharecare-site img {
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.7rem, 2.6vw, 2.4rem);
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .metric-card__label {
@@ -1314,6 +1325,7 @@ body.sharecare-site img {
   margin: 0.35rem 0 0;
   font-family: var(--font-display);
   font-size: clamp(0.95rem, 1.3vw, 1.2rem);
+  letter-spacing: var(--tracking-body-18);
   line-height: 1.2;
 }
 
@@ -1402,7 +1414,7 @@ body.sharecare-site img {
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1rem, 1.35vw, 1.22rem);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .insight-card p,
@@ -1412,6 +1424,7 @@ body.sharecare-site img {
   margin: 0.55rem 0 0;
   color: var(--color-slide-ink-muted);
   font-size: clamp(0.8rem, 1.05vw, 0.95rem);
+  letter-spacing: var(--tracking-body-16);
   line-height: 1.5;
 }
 
@@ -1438,6 +1451,7 @@ body.sharecare-site img {
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 1.65vw, 1.5rem);
+  font-weight: 400;
   line-height: 1.2;
 }
 
@@ -1533,6 +1547,7 @@ body.sharecare-site img {
   max-width: min(100%, 24rem);
   color: var(--color-slide-ink-muted);
   font-size: clamp(0.76rem, 0.94vw, 0.9rem);
+  letter-spacing: var(--tracking-body-14);
   line-height: 1.45;
   text-align: center;
 }
@@ -1563,8 +1578,10 @@ body.sharecare-site img {
 }
 
 .plain-visual__content--messages {
-  width: min(100%, 27rem);
-  padding: clamp(0.35rem, 0.7vw, 0.55rem);
+  width: fit-content;
+  max-width: min(100%, 29rem);
+  padding: clamp(0.45rem, 0.8vw, 0.7rem);
+  overflow: visible;
 }
 
 .plain-visual__media {
@@ -1597,10 +1614,20 @@ body.sharecare-site img {
 }
 
 .plain-visual--messages img {
+  width: auto;
   max-width: min(100%, 26rem);
   height: auto;
   max-height: min(25vh, 210px);
   border-radius: 0;
+}
+
+.plain-visual--slingshot-results-message {
+  padding-right: clamp(0.5rem, 0.9vw, 0.8rem);
+  overflow: visible;
+}
+
+.plain-visual--slingshot-results-message .plain-visual__content--messages {
+  max-width: min(100%, 29.8rem);
 }
 
 .plain-visual--problem figcaption {
@@ -1630,6 +1657,7 @@ body.sharecare-site img {
   max-width: min(100%, 24rem);
   color: var(--color-slide-ink-muted);
   font-size: clamp(0.76rem, 0.94vw, 0.9rem);
+  letter-spacing: var(--tracking-body-14);
   line-height: 1.45;
   text-align: center;
 }
@@ -1662,6 +1690,7 @@ body.sharecare-site img {
   max-width: min(100%, 24rem);
   color: var(--color-slide-ink-muted);
   font-size: clamp(0.76rem, 0.94vw, 0.9rem);
+  letter-spacing: var(--tracking-body-14);
   line-height: 1.45;
   text-align: center;
 }
@@ -1759,6 +1788,7 @@ body.sharecare-site img {
   margin: 0;
   color: var(--color-slide-ink-muted);
   font-size: clamp(0.88rem, 1.08vw, 0.96rem);
+  letter-spacing: var(--tracking-body-16);
   line-height: 1.5;
   text-align: center;
 }
@@ -1815,6 +1845,7 @@ body.sharecare-site img {
   margin: 0;
   color: var(--color-slide-ink);
   font-size: clamp(0.88rem, 1.15vw, 1rem);
+  letter-spacing: var(--tracking-body-16);
   line-height: 1.5;
 }
 
@@ -1839,6 +1870,7 @@ body.sharecare-site img {
   color: var(--color-slide-ink);
   font-size: clamp(0.8rem, 1vw, 0.92rem);
   font-weight: 700;
+  letter-spacing: var(--tracking-body-14);
   line-height: 1.45;
 }
 
@@ -1926,6 +1958,7 @@ body.sharecare-site img {
   max-width: min(100%, 18rem);
   color: var(--color-slide-ink-muted);
   font-size: clamp(0.72rem, 0.88vw, 0.84rem);
+  letter-spacing: var(--tracking-body-14);
   line-height: 1.4;
   text-align: center;
 }
@@ -1959,7 +1992,7 @@ body.sharecare-site img {
   color: var(--color-slide-ink);
   font-family: var(--font-display);
   font-size: clamp(0.98rem, 1.18vw, 1.1rem);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.15;
 }
 
@@ -1967,6 +2000,7 @@ body.sharecare-site img {
   margin: 0.45rem 0 0;
   color: var(--color-slide-ink-muted);
   font-size: clamp(0.78rem, 0.98vw, 0.9rem);
+  letter-spacing: var(--tracking-body-14);
   line-height: 1.45;
 }
 
@@ -1997,6 +2031,7 @@ body.sharecare-site img {
   margin: 0.6rem 0 0;
   color: var(--color-slide-ink-muted);
   font-size: clamp(0.82rem, 1vw, 0.95rem);
+  letter-spacing: var(--tracking-body-16);
   line-height: 1.5;
 }
 
@@ -2005,6 +2040,7 @@ body.sharecare-site img {
   color: var(--color-slide-ink);
   font-size: clamp(0.76rem, 0.96vw, 0.9rem);
   font-weight: 700;
+  letter-spacing: var(--tracking-body-14);
   line-height: 1.45;
 }
 
