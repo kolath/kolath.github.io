@@ -116,10 +116,116 @@ function initDeckPresentation() {
   mediaSwitchers.forEach((switcher) => {
     const buttons = Array.from(switcher.querySelectorAll("[data-media-toggle]"));
     const panels = Array.from(switcher.querySelectorAll("[data-media-panel]"));
+    const screenCarousels = Array.from(switcher.querySelectorAll("[data-screen-carousel]"));
 
     if (!buttons.length || !panels.length) {
       return;
     }
+
+    screenCarousels.forEach((screenCarousel) => {
+      const cards = Array.from(screenCarousel.querySelectorAll(".screen-card"));
+      const pageSize = 3;
+      const totalPages = Math.ceil(cards.length / pageSize);
+
+      if (totalPages <= 1) {
+        return;
+      }
+
+      const carousel = document.createElement("div");
+      carousel.className = "media-carousel";
+
+      const pages = document.createElement("div");
+      pages.className = "media-carousel__pages";
+
+      for (let pageIndex = 0; pageIndex < totalPages; pageIndex += 1) {
+        const pageCards = cards.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize);
+        const pageStrip = screenCarousel.cloneNode(false);
+        pageStrip.removeAttribute("data-screen-carousel");
+        pageStrip.classList.add("media-carousel__page");
+
+        if (pageCards.length === 2) {
+          pageStrip.classList.remove("screen-strip--three");
+          pageStrip.classList.add("screen-strip--two");
+        }
+
+        if (pageCards.length === 1) {
+          pageStrip.classList.remove("screen-strip--three");
+          pageStrip.classList.add("media-carousel__page--single");
+        }
+
+        pageCards.forEach((card) => pageStrip.appendChild(card));
+        pages.appendChild(pageStrip);
+      }
+
+      const controls = document.createElement("div");
+      controls.className = "media-carousel__controls";
+      controls.setAttribute("aria-label", "Screen carousel controls");
+
+      const previousButton = document.createElement("button");
+      previousButton.type = "button";
+      previousButton.className = "media-carousel__nav";
+      previousButton.setAttribute("aria-label", "Show previous screens");
+      previousButton.textContent = "Previous";
+
+      const dots = document.createElement("div");
+      dots.className = "media-carousel__dots";
+
+      const nextButton = document.createElement("button");
+      nextButton.type = "button";
+      nextButton.className = "media-carousel__nav";
+      nextButton.setAttribute("aria-label", "Show next screens");
+      nextButton.textContent = "Next";
+
+      const dotButtons = Array.from({ length: totalPages }, (_, pageIndex) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "media-carousel__dot";
+        dot.setAttribute("aria-label", `Show screen set ${pageIndex + 1}`);
+        dot.dataset.carouselPage = String(pageIndex);
+        dots.appendChild(dot);
+        return dot;
+      });
+
+      controls.append(previousButton, dots, nextButton);
+      carousel.append(pages, controls);
+      screenCarousel.replaceWith(carousel);
+
+      const pageNodes = Array.from(pages.children);
+      let activePage = 0;
+
+      const setActivePage = (pageIndex) => {
+        activePage = Math.max(0, Math.min(pageIndex, totalPages - 1));
+
+        pageNodes.forEach((pageNode, index) => {
+          pageNode.hidden = index !== activePage;
+        });
+
+        dotButtons.forEach((dotButton, index) => {
+          const isActive = index === activePage;
+          dotButton.classList.toggle("is-active", isActive);
+          dotButton.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
+
+        previousButton.disabled = activePage === 0;
+        nextButton.disabled = activePage === totalPages - 1;
+      };
+
+      previousButton.addEventListener("click", () => {
+        setActivePage(activePage - 1);
+      });
+
+      nextButton.addEventListener("click", () => {
+        setActivePage(activePage + 1);
+      });
+
+      dotButtons.forEach((dotButton) => {
+        dotButton.addEventListener("click", () => {
+          setActivePage(Number(dotButton.dataset.carouselPage || 0));
+        });
+      });
+
+      setActivePage(0);
+    });
 
     const setActivePanel = (panelName) => {
       buttons.forEach((button) => {

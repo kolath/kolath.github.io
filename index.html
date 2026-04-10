@@ -67,8 +67,8 @@
 
             </div>
 
-            <div class="hero-visual reveal">
-              <div class="visual-panel visual-panel--hero">
+            <div class="hero-visual hero-visual--inventory reveal">
+              <div class="visual-panel visual-panel--hero visual-panel--hero-inventory">
                 <img
                   class="visual-panel__image visual-panel__image--hero"
                   src="./assets/hero-phone.png"
@@ -236,18 +236,42 @@
               </div>
 
               <div class="media-switcher__panel" data-media-panel="screens">
-                <div class="screen-strip screen-strip--three">
+                <div class="screen-strip screen-strip--three" data-screen-carousel>
                   <figure class="screen-card">
                     <img src="./assets/stocktake-1.png" alt="Manage inventory list grouped by physical locations." />
-                    <figcaption>Inventory by location</figcaption>
+                    <figcaption>Location inventory list</figcaption>
                   </figure>
                   <figure class="screen-card">
                     <img src="./assets/stocktake-2.png" alt="Stocktake counting screen for assigned locations." />
-                    <figcaption>Assigned counts</figcaption>
+                    <figcaption>Assigned count entry</figcaption>
                   </figure>
                   <figure class="screen-card">
                     <img src="./assets/stocktake-3.png" alt="Stocktake counting screen for unassigned locations." />
-                    <figcaption>Unassigned counts</figcaption>
+                    <figcaption>Unassigned count entry</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/stocktake-move-1.png" alt="Move inventory flow for selecting which units to move." />
+                    <figcaption>Move unit selection</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/stocktake-move-2.png" alt="Move inventory flow prompting the user to scan and confirm the pickup location." />
+                    <figcaption>Pickup location scan</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/stocktake-move-3.png" alt="Move inventory flow for choosing the destination location." />
+                    <figcaption>Move destination</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/stocktake-waste-1.png" alt="Waste inventory flow for selecting which units to waste." />
+                    <figcaption>Waste unit selection</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/stocktake-waste-2.png" alt="Waste inventory flow for choosing the reason for wastage." />
+                    <figcaption>Waste reason selection</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/stocktake-waste-3.png" alt="Waste inventory flow for adding photos before confirming the waste action." />
+                    <figcaption>Waste photo capture</figcaption>
                   </figure>
                 </div>
               </div>
@@ -299,18 +323,30 @@
               </div>
 
               <div class="media-switcher__panel" data-media-panel="screens">
-                <div class="screen-strip screen-strip--three">
+                <div class="screen-strip screen-strip--three" data-screen-carousel>
                   <figure class="screen-card">
                     <img src="./assets/receiving-1.png" alt="Receiving list view with shipment statuses and contextual actions." />
                     <figcaption>Shipment queue</figcaption>
                   </figure>
                   <figure class="screen-card">
-                    <img src="./assets/receiving-2.png" alt="Receiving detail screen showing item details and context." />
-                    <figcaption>Item detail</figcaption>
+                    <img src="./assets/receiving-2.png" alt="Scheduled shipment details with delivery metadata and receiving actions." />
+                    <figcaption>Shipment details</figcaption>
                   </figure>
                   <figure class="screen-card">
-                    <img src="./assets/receiving-3.png" alt="Receiving workflow screen for location-based stock placement." />
-                    <figcaption>Guided placement</figcaption>
+                    <img src="./assets/receiving-3.png" alt="Receiving progress screen showing SKU counts and item quantities." />
+                    <figcaption>Receiving progress</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/receiving-4.png" alt="Receiving item count screen with location, expiration date, and quantity controls." />
+                    <figcaption>Expiration count entry</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/receiving-5.png" alt="Calendar date picker for selecting an expiration date during receiving." />
+                    <figcaption>Expiration date picker</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/receiving-6.png" alt="Review screen listing received items and quantities before confirmation." />
+                    <figcaption>Review received items</figcaption>
                   </figure>
                 </div>
               </div>
@@ -362,18 +398,30 @@
               </div>
 
               <div class="media-switcher__panel" data-media-panel="screens">
-                <div class="screen-strip screen-strip--three">
+                <div class="screen-strip screen-strip--three" data-screen-carousel>
                   <figure class="screen-card">
-                    <img src="./assets/fulfillment-1.png" alt="Guided order fulfillment screen with rack and shelf instructions." />
-                    <figcaption>Picking instructions</figcaption>
+                    <img src="./assets/fulfillment-1.png" alt="Inventory home screen with entry points for order scanout, receiving, and stocktake." />
+                    <figcaption>Inventory home</figcaption>
                   </figure>
                   <figure class="screen-card">
-                    <img src="./assets/fulfillment-2.png" alt="Fulfillment screen showing quantity scan progress." />
-                    <figcaption>Exception handling</figcaption>
+                    <img src="./assets/fulfillment-2.png" alt="Guided fulfillment picking screen with item quantities and shelf location." />
+                    <figcaption>Pick quantity scan</figcaption>
                   </figure>
                   <figure class="screen-card">
-                    <img src="./assets/fulfillment-scan-validation-updated.png" alt="Fulfillment scan validation screen for an extra-unit exception." />
-                    <figcaption>Scan validation</figcaption>
+                    <img src="./assets/fulfillment-3.png" alt="Wrong quantity reason sheet for a short-picked item." />
+                    <figcaption>Exception reason</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/fulfillment-4.png" alt="Alternate pickup location sheet after selecting a different shelf." />
+                    <figcaption>Alternate location pickup</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/fulfillment-5.png" alt="Extra-unit validation dialog after scanning more units than expected." />
+                    <figcaption>Extra-unit validation</figcaption>
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="./assets/fulfillment-6.png" alt="Review items screen showing picked quantities before fulfillment confirmation." />
+                    <figcaption>Review picked items</figcaption>
                   </figure>
                 </div>
               </div>
@@ -425,18 +473,18 @@
               </div>
 
               <div class="media-switcher__panel" data-media-panel="screens">
-                <div class="screen-strip screen-strip--three">
+                <div class="screen-strip screen-strip--three" data-screen-carousel>
                   <figure class="screen-card">
                     <img src="./assets/tasks-1.png" alt="Inventory task list showing high-priority work generated by the system." />
-                    <figcaption>Task list</figcaption>
+                    <figcaption>Filtered task queue</figcaption>
                   </figure>
                   <figure class="screen-card">
                     <img src="./assets/tasks-2.png" alt="Location counting task view inside the task workflow." />
-                    <figcaption>Count by location</figcaption>
+                    <figcaption>Location count task</figcaption>
                   </figure>
                   <figure class="screen-card">
-                    <img src="./assets/tasks-3.png" alt="Move inventory task screen within the stocktake task flow." />
-                    <figcaption>Related actions</figcaption>
+                    <img src="./assets/tasks-3.png" alt="Waste expired units task with photo capture and quantity confirmation." />
+                    <figcaption>Waste task completion</figcaption>
                   </figure>
                 </div>
               </div>
