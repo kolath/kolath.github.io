@@ -2041,7 +2041,16 @@ body.sharecare-site img {
 #slide-7 .media-switcher .screen-card img,
 #slide-8 .media-switcher .screen-card img,
 #slide-9 .media-switcher .screen-card img {
+  width: auto;
+  max-width: min(100%, clamp(11.2rem, 13.9vw, 13.2rem));
   max-height: min(57.6vh, 456px);
+}
+
+#slide-6 .media-switcher .screen-card,
+#slide-7 .media-switcher .screen-card,
+#slide-8 .media-switcher .screen-card,
+#slide-9 .media-switcher .screen-card {
+  width: auto;
 }
 
 .screen-card--brandbuilder-review-desktop {
@@ -2346,6 +2355,22 @@ body.sharecare-site img {
     align-self: center;
     gap: clamp(1.2rem, 1.65vw, 1.5rem);
   }
+
+  #slide-6 .media-switcher .screen-strip--three,
+  #slide-7 .media-switcher .screen-strip--three,
+  #slide-8 .media-switcher .screen-strip--three,
+  #slide-9 .media-switcher .screen-strip--three,
+  #slide-6 .media-switcher .media-carousel__page.screen-strip--three,
+  #slide-7 .media-switcher .media-carousel__page.screen-strip--three,
+  #slide-8 .media-switcher .media-carousel__page.screen-strip--three,
+  #slide-9 .media-switcher .media-carousel__page.screen-strip--three {
+    grid-template-columns: repeat(3, auto);
+    width: fit-content;
+    max-width: 100%;
+    justify-self: center;
+    align-self: start;
+    gap: clamp(0.8rem, 1vw, 0.95rem);
+  }
 }
 
 @media (max-width: 900px) {
@@ -2483,6 +2508,13 @@ body.sharecare-site img {
 }
 
 @media (max-width: 900px) {
+  #slide-6 .media-switcher .screen-card,
+  #slide-7 .media-switcher .screen-card,
+  #slide-8 .media-switcher .screen-card,
+  #slide-9 .media-switcher .screen-card {
+    width: auto;
+  }
+
   #slide-6 .media-switcher .screen-card img,
   #slide-7 .media-switcher .screen-card img,
   #slide-8 .media-switcher .screen-card img,
