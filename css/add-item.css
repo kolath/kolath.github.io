@@ -740,7 +740,16 @@
 
 .preview-header__nav {
   display: flex;
+  align-items: center;
   gap: 4px;
+}
+
+.preview-header__nav-count {
+  font-size: 12px;
+  color: var(--color-text-weak);
+  min-width: 40px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .preview-header__nav-btn {
