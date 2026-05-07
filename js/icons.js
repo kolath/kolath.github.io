@@ -93,10 +93,11 @@
     span.className = 'ms-icon'; // base class (sized + positioned in CSS)
     if (filled) span.setAttribute('data-fill', '1');
 
-    // Font variation — outlined by default, filled on demand
+    // opsz must be within font range 20–48
+    var opsz = Math.min(48, Math.max(20, Math.round(size)));
     var fillVal = filled ? 1 : 0;
     span.style.fontVariationSettings =
-      "'FILL' " + fillVal + ", 'wght' 400, 'GRAD' 0, 'opsz' " + Math.round(size);
+      "'FILL' " + fillVal + ", 'wght' 400, 'GRAD' 0, 'opsz' " + opsz;
     span.style.fontSize = size + 'px';
     if (color) span.style.color = color;
 
