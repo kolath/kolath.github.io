@@ -29,13 +29,11 @@ img, svg {
   flex-shrink: 0;
 }
 
-/* CSDS custom inline-SVG icons (arrow_drop_down etc.) */
-.csds-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  vertical-align: middle;
-  flex-shrink: 0;
+/* CSDS custom inline-SVG icons (arrow_drop_down etc.)
+   display is intentionally NOT set here — inherited classes like
+   multiselect__chevron (position:absolute) must not be overridden */
+.csds-icon svg {
+  display: block;
 }
 
 button, input, select, textarea {
