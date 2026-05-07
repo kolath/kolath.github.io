@@ -635,9 +635,10 @@
 
 .data-table thead th {
   height: var(--table-header-height);
+  font-family: var(--font-body);
   font-weight: var(--fw-medium);
-  font-size: var(--text-body-small);
-  line-height: var(--lh-body-small);
+  font-size: var(--text-body-medium); /* 16px */
+  line-height: var(--lh-body-medium);
   color: var(--color-text-strong);
   letter-spacing: -0.0126px;
   border-bottom: 2px solid var(--color-divider-weak);
