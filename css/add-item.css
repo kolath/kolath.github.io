@@ -1088,7 +1088,7 @@
   border-radius: var(--radius-large);
   display: flex;
   align-items: center;
-  padding: 4px 32px 4px 4px;
+  padding: 4px 26px 4px 4px;
   cursor: pointer;
   position: relative;
   background: var(--color-bg-standard);
@@ -1151,7 +1151,7 @@
 
 .multiselect__chevron {
   position: absolute;
-  right: 6px;
+  right: 2px;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;

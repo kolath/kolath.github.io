@@ -209,11 +209,15 @@
 }
 
 .btn__icon--leading {
-  width: 12px;
+  width: 16px;
 }
 
 .btn__icon--trailing {
-  width: 12px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -4px; /* tuck arrow_drop_down flush to right edge */
 }
 
 /* ===== PILL TABS ===== */
@@ -405,11 +409,13 @@
 }
 
 .filter-btn__arrow {
-  width: 12px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  margin-right: -4px; /* tuck arrow_drop_down flush to right edge */
 }
 
 .filter-btn__arrow img {
