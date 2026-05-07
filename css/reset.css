@@ -21,28 +21,21 @@ img, svg {
   max-width: 100%;
 }
 
-/* ── Material Symbols icon base ─────────────────────────────────────────── */
-.ms-icon {
-  font-family: 'Material Symbols Outlined';
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;          /* overridden per-instance via inline style */
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  /* inline-block is required — inline-flex breaks font ligatures */
+/* Lucide SVG icon base */
+.lucide-icon,
+.lucide {
   display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
   vertical-align: middle;
   flex-shrink: 0;
-  /* enable ligature substitution (maps "add" → + glyph, etc.) */
-  font-feature-settings: 'liga';
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  user-select: none;
+}
+
+/* CSDS custom inline-SVG icons (arrow_drop_down etc.) */
+.csds-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  flex-shrink: 0;
 }
 
 button, input, select, textarea {
