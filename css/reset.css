@@ -21,169 +21,26 @@ img, svg {
   max-width: 100%;
 }
 
-/* Lucide icon default styling */
-.lucide-icon {
-  display: inline-block;
+/* ── Material Symbols icon base ─────────────────────────────────────────── */
+.ms-icon {
+  font-family: 'Material Symbols Outlined', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;          /* overridden per-instance via inline style */
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
   vertical-align: middle;
   flex-shrink: 0;
-}
-
-.lucide {
-  display: inline-block;
-  vertical-align: middle;
-  flex-shrink: 0;
-}
-
-/* ===== Filled icon style (override Lucide outline defaults) ===== */
-.lucide > * {
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-
-/* Icons that should keep stroke-only (directional / structural) */
-.lucide-chevron-up > *,
-.lucide-chevron-down > *,
-.lucide-chevron-left > *,
-.lucide-chevron-right > *,
-.lucide-plus > *,
-.lucide-minus > *,
-.lucide-x > *,
-.lucide-arrow-left > *,
-.lucide-external-link > *,
-.lucide-link > *,
-.lucide-dollar-sign > *,
-.lucide-percent > * {
-  fill: none !important;
-}
-
-/* Circle-based icons: fill circle, keep inner glyph readable */
-.lucide-circle-check > circle,
-.lucide-info > circle,
-.lucide-help-circle > circle,
-.lucide-minus-circle > circle {
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-.lucide-circle-check > path,
-.lucide-circle-check > polyline,
-.lucide-info > line,
-.lucide-info > path,
-.lucide-help-circle > path,
-.lucide-help-circle > circle:not(:first-child),
-.lucide-minus-circle > line,
-.lucide-minus-circle > path {
-  fill: none !important;
-  stroke: #fff !important;
-  stroke-width: 2.5 !important;
-}
-
-/* Search: keep outline style */
-.lucide-search > * {
-  fill: none !important;
-  stroke: currentColor !important;
-}
-
-/* Eye: fill the outer shape, keep the iris circle outlined */
-.lucide-eye > path {
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-.lucide-eye > circle {
-  fill: #fff !important;
-  stroke: #fff !important;
-  stroke-width: 1 !important;
-}
-
-/* Clock: fill the circle, keep hands visible */
-.lucide-clock > circle {
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-.lucide-clock > polyline,
-.lucide-clock > path {
-  fill: none !important;
-  stroke: #fff !important;
-  stroke-width: 2.5 !important;
-}
-
-/* Settings gear: fill the outer, keep center circle hollow */
-.lucide-settings > path {
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-.lucide-settings > circle {
-  fill: #fff !important;
-  stroke: #fff !important;
-}
-
-/* Columns-3: keep as outline (fills into solid blob) */
-.lucide-columns-3 > * {
-  fill: none !important;
-}
-
-/* Copy: fill the front rect, outline the back */
-.lucide-copy > * {
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-.lucide-copy > rect:first-of-type {
-  fill: none !important;
-  stroke: currentColor !important;
-}
-
-/* Trash: fill the body path */
-.lucide-trash-2 > path {
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-.lucide-trash-2 > line {
-  fill: none !important;
-  stroke: currentColor !important;
-}
-
-/* Pencil: fill the shape */
-.lucide-pencil > * {
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-
-/* Image placeholder: keep outline (used large as placeholder, filled looks too heavy) */
-.lucide-image > * {
-  fill: none !important;
-  stroke: currentColor !important;
-}
-
-/* Upload: keep as stroke (arrow + line) */
-.lucide-upload > * {
-  fill: none !important;
-}
-
-/* Sliders: fill the circles/knobs */
-.lucide-sliders-horizontal > circle {
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-.lucide-sliders-horizontal > line {
-  fill: none !important;
-}
-
-/* Grip horizontal: dots are already filled */
-.lucide-grip-horizontal > * {
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-
-/* Ellipsis: dots filled */
-.lucide-ellipsis > *,
-.lucide-ellipsis-vertical > * {
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-
-/* Utensils crossed: fill shapes */
-.lucide-utensils-crossed > * {
-  fill: currentColor !important;
-  stroke: currentColor !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
 }
 
 button, input, select, textarea {

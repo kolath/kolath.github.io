@@ -2,42 +2,63 @@
 (function () {
   'use strict';
 
+  const SHARED_LOCATIONS = [
+    'USA - TX - Dallas - Trinity Groves - 921 W Commerce St',
+    'USA - TX - Fort Worth - Downtown - 3004 Cullen St',
+    "PT's Fried Chicken and Fish - Dallas O",
+    "PT's Fried Chicken and Fish - Dallas",
+    'USA - TX - Austin - Sixth Street - 512 E 6th St',
+    'USA - TX - Houston - Midtown - 2109 Bagby St',
+    'USA - TX - San Antonio - Riverwalk - 200 S Alamo St',
+  ];
+
+  const SHARED_CHANNELS = [
+    'DoorDash',
+    'Uber Eats',
+    'Grubhub',
+    'Otter POS',
+    'Otter Direct Orders',
+    'Caviar',
+    'Postmates',
+  ];
+
+  const SHARED_MENU_ITEMS = [
+    'Waffle Breakfast Plate',
+    'Chicken and Waffles Plate',
+    'Pancake Breakfast Plate',
+    'Big Breakfast Plate',
+    'French Toast Plate',
+    'Cakes',
+    'Eggy Taco',
+    'Hammy Eggy Taco',
+    'Porky Eggy Taco',
+    'Eggy Sausage Taco',
+    'Veggie Eggy Taco',
+    'Biggy Eggy Taco',
+    'Coke Can',
+    'Sprite Can',
+    'Kool-Aid',
+    'Salsa',
+    'Toast (Two)',
+  ];
+
   const MULTISELECT_OPTIONS = {
-    locations: [
-      'USA - TX - Dallas - Trinity Groves - 921 W Commerce St',
-      'USA - TX - Fort Worth - Downtown - 3004 Cullen St',
-      "PT's Fried Chicken and Fish - Dallas O",
-      "PT's Fried Chicken and Fish - Dallas"
-    ],
+    locations: SHARED_LOCATIONS,
     stations: [
       'Drink Station',
       'Fried Station',
-      'Grill Station'
+      'Grill Station',
     ],
-    channels: [
-      'Doordash',
-      'UberEats',
-      'Grubhub',
-      'Otter POS',
-      'Otter Direct Orders'
-    ],
+    channels: SHARED_CHANNELS,
     'cat-menus': [
       'All Day Menu',
-      'Drink Menu'
+      'Drink Menu',
     ],
-    'cat-locations': [
-      'USA - TX - Dallas - Trinity Groves - 921 W Commerce St',
-      'USA - TX - Fort Worth - Downtown - 3004 Cullen St',
-      "PT's Fried Chicken and Fish - Dallas O",
-      "PT's Fried Chicken and Fish - Dallas"
-    ],
-    'cat-channels': [
-      'Doordash',
-      'UberEats',
-      'Grubhub',
-      'Otter POS',
-      'Otter Direct Orders'
-    ]
+    'cat-locations': SHARED_LOCATIONS,
+    'cat-channels': SHARED_CHANNELS,
+    'mg-locations': SHARED_LOCATIONS,
+    'mg-channels': SHARED_CHANNELS,
+    'mg-menu-items': SHARED_MENU_ITEMS,
   };
 
   /** Build option elements inside the .multiselect__options container */
@@ -46,6 +67,20 @@
     var items = MULTISELECT_OPTIONS[field] || [];
     var container = multiselect.querySelector('.multiselect__options');
     container.innerHTML = '';
+
+    // Update "Select / deselect all" label and count
+    var selectAllOption = multiselect.querySelector('.multiselect__option--select-all');
+    if (selectAllOption) {
+      var labelSpan = selectAllOption.querySelector('span:not(.multiselect__select-all-count)');
+      if (labelSpan) labelSpan.textContent = 'Select / deselect all';
+      var countSpan = selectAllOption.querySelector('.multiselect__select-all-count');
+      if (!countSpan) {
+        countSpan = document.createElement('span');
+        countSpan.className = 'multiselect__select-all-count';
+        selectAllOption.appendChild(countSpan);
+      }
+      countSpan.textContent = items.length;
+    }
 
     items.forEach(function (label) {
       var opt = document.createElement('div');
@@ -142,6 +177,39 @@
     selectAllCb.indeterminate = checked > 0 && checked < total;
   }
 
+  /** Position dropdown using fixed coords to escape overflow clipping */
+  function positionDropdown(multiselect) {
+    var trigger = multiselect.querySelector('.multiselect__trigger');
+    var dropdown = multiselect.querySelector('.multiselect__dropdown');
+    if (!trigger || !dropdown) return;
+
+    var rect = trigger.getBoundingClientRect();
+    var spaceBelow = window.innerHeight - rect.bottom;
+    var dropdownHeight = 280; // approximate max height
+
+    dropdown.style.position = 'fixed';
+    dropdown.style.left = rect.left + 'px';
+    dropdown.style.width = rect.width + 'px';
+    dropdown.style.right = 'auto';
+    dropdown.style.zIndex = '9990';
+
+    var spaceAbove = rect.top;
+    if (spaceBelow >= dropdownHeight) {
+      // Enough room below — open downward
+      dropdown.style.top = (rect.bottom + 4) + 'px';
+      dropdown.style.bottom = 'auto';
+    } else if (spaceAbove >= spaceBelow) {
+      // More room above — open upward
+      dropdown.style.bottom = (window.innerHeight - rect.top + 4) + 'px';
+      dropdown.style.top = 'auto';
+    } else {
+      // Default downward, constrain height
+      dropdown.style.top = (rect.bottom + 4) + 'px';
+      dropdown.style.bottom = 'auto';
+      dropdown.style.maxHeight = spaceBelow - 8 + 'px';
+    }
+  }
+
   /** Toggle open/close */
   function toggleOpen(multiselect, forceOpen) {
     var isOpen = multiselect.classList.contains('multiselect--open');
@@ -156,6 +224,7 @@
 
     if (shouldOpen) {
       multiselect.classList.add('multiselect--open');
+      positionDropdown(multiselect);
       // Focus search input
       var search = multiselect.querySelector('.multiselect__search');
       if (search) {

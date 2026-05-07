@@ -6,19 +6,20 @@
   <title>Menu Entity - Otter</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/reset.css?v=102">
-  <link rel="stylesheet" href="css/layout.css?v=5">
-  <link rel="stylesheet" href="css/components.css?v=13">
-  <link rel="stylesheet" href="css/add-item.css?v=15">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Inter+Tight:wght@500&family=Inter+Display:wght@500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css?v=2">
+  <link rel="stylesheet" href="css/publish-panel.css">
+  <link rel="stylesheet" href="css/reset.css?v=103">
+  <link rel="stylesheet" href="css/layout.css?v=8">
+  <link rel="stylesheet" href="css/components.css?v=17">
+  <link rel="stylesheet" href="css/add-item.css?v=26">
   <link rel="stylesheet" href="css/edit-menu.css?v=7">
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="js/icons.js?v=1"></script>
 </head>
 <body>
   <div class="app">
 
-    <!-- ===== GLOBAL NAV BAR (using exported image) ===== -->
+    <!-- ===== GLOBAL NAV BAR ===== -->
     <nav class="global-nav global-nav--image">
       <img src="assets/top nav.png" alt="Global Navigation" class="global-nav__img">
     </nav>
@@ -78,11 +79,6 @@
           <!-- Other nav items -->
           <div class="sidebar-item">
             <div class="sidebar-item__container">
-              <span class="sidebar-item__label">Location settings</span>
-            </div>
-          </div>
-          <div class="sidebar-item">
-            <div class="sidebar-item__container">
               <span class="sidebar-item__label">Menu hours</span>
             </div>
           </div>
@@ -101,6 +97,16 @@
               <span class="sidebar-item__label">Pricing rules</span>
             </div>
           </div>
+          <div class="sidebar-item">
+            <div class="sidebar-item__container">
+              <span class="sidebar-item__label">Tax rates</span>
+            </div>
+          </div>
+          <div class="sidebar-item sidebar-item--bottom">
+            <div class="sidebar-item__container">
+              <span class="sidebar-item__label">Location settings</span>
+            </div>
+          </div>
         </nav>
       </aside>
 
@@ -116,10 +122,17 @@
           <!-- TEMPLATE: Page Header -->
           <div class="page-header">
             <div class="page-header__left">
-              <h1 class="page-header__title">Breakfast Beauties menus</h1>
-              <div class="status-badge status-badge--info">
-                <i data-lucide="info" class="lucide-icon" style="width:16px;height:16px;color:var(--color-info-text)"></i>
-                <span class="status-badge__text">Unpublished changes</span>
+              <nav class="breadcrumb" id="pageBreadcrumb">
+                <span class="breadcrumb__item">Menus</span>
+                <span class="breadcrumb__sep">›</span>
+                <span class="breadcrumb__item breadcrumb__item--current" id="breadcrumbCurrent">Breakfast Beauties menus</span>
+              </nav>
+              <div class="page-header__title-row">
+                <h1 class="page-header__title" id="pageHeaderTitle">Breakfast Beauties menus</h1>
+                <div class="status-badge status-badge--info">
+                  <i data-lucide="info" class="lucide-icon" style="width:16px;height:16px;color:var(--color-info-text)"></i>
+                  <span class="status-badge__text">Unpublished changes</span>
+                </div>
               </div>
             </div>
             <div class="page-header__actions">
@@ -145,7 +158,7 @@
                 </button>
               </div>
               <div class="page-header__cta">
-                <button class="btn btn--primary">Publish</button>
+                <button class="btn btn--primary pp-trigger-btn" onclick="openPanel()">Publish</button>
               </div>
               <div class="page-header__settings">
                 <button class="btn btn--icon-only">
@@ -2255,7 +2268,7 @@
               <span class="btn__icon btn__icon--leading">
                 <i data-lucide="link" class="lucide-icon" style="width:14px;height:14px"></i>
               </span>
-              <span>Assign to menu items</span>
+              <span>Add to menu items</span>
             </button>
             <button class="btn btn--danger-secondary" data-action="delete">
               <span class="btn__icon btn__icon--leading">
@@ -3150,6 +3163,8 @@
 
         </div><!-- /page-sku-library -->
 
+        <div id="page-pricing-rules" style="display:none"></div>
+
       </main>
     </div>
   </div>
@@ -3834,50 +3849,22 @@
           </div>
         </div>
 
-        <!-- Section: Locations, station profiles, channels -->
+        <!-- Section: Kitchen stations -->
         <div class="form-section">
           <div class="form-section__header">
-            <h3 class="form-section__title">Locations, station profiles, channels</h3>
+            <h3 class="form-section__title">Kitchen stations</h3>
             <div class="form-section__action">
               <button class="btn btn--secondary">
                 <i data-lucide="external-link" class="lucide-icon" style="width:14px;height:14px"></i>
-                <span>Edit station profile</span>
+                <span>Edit assigned details</span>
               </button>
             </div>
           </div>
           <div class="form-section__card">
             <div class="form-field">
               <div class="form-field__label-group">
-                <label class="form-field__label">Locations</label>
-              </div>
-              <div class="form-field__control">
-                <div class="multiselect" data-field="locations">
-                  <div class="multiselect__trigger">
-                    <div class="multiselect__pills">
-                      <span class="multiselect__placeholder">Select</span>
-                    </div>
-                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
-                  </div>
-                  <div class="multiselect__dropdown">
-                    <div class="multiselect__search-wrap">
-                      <i data-lucide="search" class="lucide-icon" style="width:14px;height:14px;color:var(--color-text-weak)"></i>
-                      <input type="text" class="multiselect__search" placeholder="Search...">
-                    </div>
-                    <div class="multiselect__option multiselect__option--select-all" data-value="__all__">
-                      <input type="checkbox" class="multiselect__checkbox">
-                      <span>Select all</span>
-                    </div>
-                    <div class="multiselect__divider"></div>
-                    <div class="multiselect__options">
-                      <!-- populated by js/multiselect.js -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-field">
-              <div class="form-field__label-group">
-                <label class="form-field__label">Station profiles</label>
+                <label class="form-field__label">Station profile</label>
+                <span class="form-field__desc">You can manage your station profiles <a href="#" style="color:var(--color-primary)">here</a></span>
               </div>
               <div class="form-field__control">
                 <div class="multiselect" data-field="stations">
@@ -3897,9 +3884,44 @@
                       <span>Select all</span>
                     </div>
                     <div class="multiselect__divider"></div>
-                    <div class="multiselect__options">
-                      <!-- populated by js/multiselect.js -->
+                    <div class="multiselect__options"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Item visibility -->
+        <div class="form-section">
+          <div class="form-section__header">
+            <h3 class="form-section__title">Item visibility</h3>
+          </div>
+          <div class="form-section__card">
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Locations</label>
+                <span class="form-field__desc">Locations this item will be used in</span>
+              </div>
+              <div class="form-field__control">
+                <div class="multiselect" data-field="locations">
+                  <div class="multiselect__trigger">
+                    <div class="multiselect__pills">
+                      <span class="multiselect__placeholder">Select</span>
                     </div>
+                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                  </div>
+                  <div class="multiselect__dropdown">
+                    <div class="multiselect__search-wrap">
+                      <i data-lucide="search" class="lucide-icon" style="width:14px;height:14px;color:var(--color-text-weak)"></i>
+                      <input type="text" class="multiselect__search" placeholder="Search...">
+                    </div>
+                    <div class="multiselect__option multiselect__option--select-all" data-value="__all__">
+                      <input type="checkbox" class="multiselect__checkbox">
+                      <span>Select all</span>
+                    </div>
+                    <div class="multiselect__divider"></div>
+                    <div class="multiselect__options"></div>
                   </div>
                 </div>
               </div>
@@ -3907,6 +3929,7 @@
             <div class="form-field">
               <div class="form-field__label-group">
                 <label class="form-field__label">Channels</label>
+                <span class="form-field__desc">Channels this item is offered on</span>
               </div>
               <div class="form-field__control">
                 <div class="multiselect" data-field="channels">
@@ -3926,9 +3949,7 @@
                       <span>Select all</span>
                     </div>
                     <div class="multiselect__divider"></div>
-                    <div class="multiselect__options">
-                      <!-- populated by js/multiselect.js -->
-                    </div>
+                    <div class="multiselect__options"></div>
                   </div>
                 </div>
               </div>
@@ -4329,49 +4350,22 @@
           </div>
         </div>
 
-        <!-- Section: Locations, station profiles, channels -->
+        <!-- Section: Kitchen stations -->
         <div class="form-section">
           <div class="form-section__header">
-            <h3 class="form-section__title">Locations, station profiles, channels</h3>
+            <h3 class="form-section__title">Kitchen stations</h3>
             <div class="form-section__action">
               <button class="btn btn--secondary">
                 <i data-lucide="external-link" class="lucide-icon" style="width:14px;height:14px"></i>
-                <span>Edit station profile</span>
+                <span>Edit assigned details</span>
               </button>
             </div>
           </div>
           <div class="form-section__card">
             <div class="form-field">
               <div class="form-field__label-group">
-                <label class="form-field__label">Locations</label>
-              </div>
-              <div class="form-field__control">
-                <div class="multiselect" data-field="locations">
-                  <div class="multiselect__trigger">
-                    <div class="multiselect__pills">
-                      <span class="multiselect__placeholder">Select</span>
-                    </div>
-                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
-                  </div>
-                  <div class="multiselect__dropdown">
-                    <div class="multiselect__search-wrap">
-                      <i data-lucide="search" class="lucide-icon" style="width:14px;height:14px;color:var(--color-text-weak)"></i>
-                      <input type="text" class="multiselect__search" placeholder="Search...">
-                    </div>
-                    <div class="multiselect__option multiselect__option--select-all" data-value="__all__">
-                      <input type="checkbox" class="multiselect__checkbox">
-                      <span>Select all</span>
-                    </div>
-                    <div class="multiselect__divider"></div>
-                    <div class="multiselect__options">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-field">
-              <div class="form-field__label-group">
-                <label class="form-field__label">Station profiles</label>
+                <label class="form-field__label">Station profile</label>
+                <span class="form-field__desc">You can manage your station profiles <a href="#" style="color:var(--color-primary)">here</a></span>
               </div>
               <div class="form-field__control">
                 <div class="multiselect" data-field="stations">
@@ -4391,8 +4385,44 @@
                       <span>Select all</span>
                     </div>
                     <div class="multiselect__divider"></div>
-                    <div class="multiselect__options">
+                    <div class="multiselect__options"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Item visibility -->
+        <div class="form-section">
+          <div class="form-section__header">
+            <h3 class="form-section__title">Item visibility</h3>
+          </div>
+          <div class="form-section__card">
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Locations</label>
+                <span class="form-field__desc">Locations this item will be used in</span>
+              </div>
+              <div class="form-field__control">
+                <div class="multiselect" data-field="locations">
+                  <div class="multiselect__trigger">
+                    <div class="multiselect__pills">
+                      <span class="multiselect__placeholder">Select</span>
                     </div>
+                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                  </div>
+                  <div class="multiselect__dropdown">
+                    <div class="multiselect__search-wrap">
+                      <i data-lucide="search" class="lucide-icon" style="width:14px;height:14px;color:var(--color-text-weak)"></i>
+                      <input type="text" class="multiselect__search" placeholder="Search...">
+                    </div>
+                    <div class="multiselect__option multiselect__option--select-all" data-value="__all__">
+                      <input type="checkbox" class="multiselect__checkbox">
+                      <span>Select all</span>
+                    </div>
+                    <div class="multiselect__divider"></div>
+                    <div class="multiselect__options"></div>
                   </div>
                 </div>
               </div>
@@ -4400,6 +4430,7 @@
             <div class="form-field">
               <div class="form-field__label-group">
                 <label class="form-field__label">Channels</label>
+                <span class="form-field__desc">Channels this item is offered on</span>
               </div>
               <div class="form-field__control">
                 <div class="multiselect" data-field="channels">
@@ -4419,8 +4450,7 @@
                       <span>Select all</span>
                     </div>
                     <div class="multiselect__divider"></div>
-                    <div class="multiselect__options">
-                    </div>
+                    <div class="multiselect__options"></div>
                   </div>
                 </div>
               </div>
@@ -4892,11 +4922,11 @@
         <button class="takeover__nav-close" id="mg-takeover-close" aria-label="Close">
           <i data-lucide="x" class="lucide-icon" style="width:20px;height:20px"></i>
         </button>
-        <span class="takeover__nav-title" id="mg-takeover-nav-title">Add modifier group</span>
+        <span class="takeover__nav-title" id="mg-takeover-nav-title">Create new modifier group</span>
       </div>
       <div class="takeover__nav-right">
-        <span class="takeover__nav-help">Save keeps your changes in draft. Publish updates your live menu across selected locations and channels.</span>
-        <button class="btn btn--secondary" id="mg-takeover-save-publish">Save and publish</button>
+        <span class="takeover__nav-help">Save keeps your changes. To make them take effect, go back to the Menus page and publish your changes.</span>
+        <button class="btn btn--secondary" id="mg-takeover-cancel">Cancel</button>
         <button class="btn btn--primary" id="mg-takeover-save">Save</button>
         <button class="btn btn--icon-only">
           <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i>
@@ -4905,7 +4935,7 @@
     </div>
 
     <!-- Takeover Content -->
-    <div class="takeover__content takeover__content--single">
+    <div class="takeover__content">
       <div class="takeover__form">
 
         <!-- Section: Modifier group details -->
@@ -4918,16 +4948,16 @@
             <div class="form-field">
               <div class="form-field__label-group">
                 <label class="form-field__label">Display name</label>
-                <span class="form-field__desc">Customer-facing name shown when ordering.</span>
+                <span class="form-field__desc">Customer-facing name shown when ordering. Example: "Choose your sides"</span>
               </div>
               <div class="form-field__control">
-                <input type="text" class="form-input" id="mg-field-display-name" placeholder="Enter modifier group name">
+                <input type="text" class="form-input" id="mg-field-display-name" placeholder="Enter modifier group name here">
               </div>
             </div>
             <!-- Internal name -->
             <div class="form-field">
               <div class="form-field__label-group">
-                <label class="form-field__label">Internal name</label>
+                <label class="form-field__label">Internal name <span class="form-field__optional">(Optional)</span></label>
                 <span class="form-field__desc">Used for internal reference only. Not shown to customers.</span>
               </div>
               <div class="form-field__control">
@@ -4937,8 +4967,8 @@
             <!-- Description -->
             <div class="form-field">
               <div class="form-field__label-group">
-                <label class="form-field__label">Description</label>
-                <span class="form-field__desc">Add a description to help manage and organize this modifier group internally.</span>
+                <label class="form-field__label">Description <span class="form-field__optional">(Optional)</span></label>
+                <span class="form-field__desc">Description for additional context.</span>
               </div>
               <div class="form-field__control">
                 <textarea class="form-textarea" id="mg-field-description" placeholder="Add your description here" maxlength="200"></textarea>
@@ -4948,13 +4978,16 @@
           </div>
         </div>
 
-        <!-- Section: Modifier group type + Selection rule (combined) -->
+        <!-- Section: Modifier group selections -->
         <div class="form-section">
           <div class="form-section__header">
-            <h3 class="form-section__title">Modifier group type <i data-lucide="help-circle" class="lucide-icon mgc-field__hint-icon" style="width:16px;height:16px"></i></h3>
+            <h3 class="form-section__title">Modifier group selections</h3>
           </div>
-          <div class="form-section__card" style="padding:24px">
-            <div class="form-field__desc" style="margin-bottom:12px">Choose the type that best matches what the customer is deciding here.</div>
+          <div class="form-section__card" style="padding:24px;gap:0">
+
+            <!-- Sub-section: Modifier group type -->
+            <div class="mgc-section-label">Modifier group type</div>
+            <div class="mgc-section-desc" style="margin-bottom:16px">Choosing a type pre-fills the selection rules below. You can adjust them afterwards.</div>
             <div class="mgc-type-grid" id="mg-type-grid">
               <div class="mgc-type-card" data-type="Size"><div class="mgc-type-card__name">Size</div><div class="mgc-type-card__eg">E.g. Large, Medium, Small</div></div>
               <div class="mgc-type-card" data-type="Product variation"><div class="mgc-type-card__name">Product variation</div><div class="mgc-type-card__eg">E.g. Wheat bun, Brioche bun</div></div>
@@ -4968,12 +5001,12 @@
               <div class="mgc-type-card" data-type="Custom"><div class="mgc-type-card__name">Didn't see your option?</div><div class="mgc-type-card__eg">Customize your own</div></div>
             </div>
 
+            <!-- Sub-section: Total selections -->
             <div style="border-top:1px solid var(--color-divider-weak);margin-top:20px;padding-top:20px">
-              <!-- Total selections (min-max) -->
-              <div class="form-field">
+              <div class="mgc-section-label" style="margin-bottom:4px">Total selections</div>
+              <div class="form-field" style="gap:8px">
                 <div class="form-field__label-group">
-                  <label class="form-field__label" style="font-weight:var(--fw-medium)">Total selections (min–max)</label>
-                  <span class="form-field__desc">Define the Minimum and maximum number of modifiers customers can select from this group.</span>
+                  <span class="form-field__desc">Define the Minimum and maximum number of modifier items customers can select from this group.</span>
                 </div>
                 <div class="form-field__control">
                   <div class="mgc-selects-row">
@@ -4981,7 +5014,7 @@
                       <label class="mgc-select-label">Minimum</label>
                       <select class="mgc-select" id="mg-total-min">
                         <option value="0">0</option>
-                        <option value="1">1</option>
+                        <option value="1" selected>1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
@@ -4992,7 +5025,7 @@
                     <div class="mgc-select-group">
                       <label class="mgc-select-label">Maximum</label>
                       <select class="mgc-select" id="mg-total-max">
-                        <option value="1">1</option>
+                        <option value="1" selected>1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
@@ -5001,101 +5034,104 @@
                       </select>
                     </div>
                   </div>
-                  <div class="mgc-rule-hint" id="mg-total-hint">Optional – customers can select any number of options.</div>
+                  <div class="mgc-rule-hint" id="mg-total-hint">Required – customers must select 1 option.</div>
                 </div>
               </div>
-              <!-- Max per options -->
-              <div class="form-field" id="mg-maxper-field">
-                <div class="form-field__label-group">
-                  <label class="form-field__label" style="font-weight:var(--fw-medium)">Max per options</label>
-                  <span class="form-field__desc">Define the maximum times each modifier can be selected.</span>
+            </div>
+
+            <!-- Sub-section: Add modifier items -->
+            <div style="border-top:1px solid var(--color-divider-weak);margin-top:20px;padding-top:20px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+                <div>
+                  <div class="mgc-section-label">Add modifier items</div>
+                  <div class="mgc-section-desc">Modifier items are the options customers can choose from this group.</div>
                 </div>
-                <div class="form-field__control">
-                  <div class="mgc-select-group mgc-select-group--wide">
-                    <label class="mgc-select-label">Maximum per options</label>
-                    <select class="mgc-select" id="mg-max-per">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="Unlimited">Unlimited</option>
-                    </select>
+                <button class="btn btn--secondary mgc-add-sku-btn" id="mg-add-sku-btn">
+                  <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
+                  <span>Add from SKU library</span>
+                </button>
+              </div>
+              <div class="mgc-items-table" id="mg-items-table">
+                <div class="mgc-items-table__head">
+                  <span class="mgc-items-table__col mgc-items-table__col--name">Modifier items</span>
+                  <span class="mgc-items-table__col mgc-items-table__col--price">Price</span>
+                  <span class="mgc-items-table__col mgc-items-table__col--sku">Item SKU</span>
+                  <span class="mgc-items-table__col mgc-items-table__col--default">Default <i data-lucide="circle-help" class="lucide-icon" style="width:14px;height:14px;color:var(--color-text-weak);vertical-align:middle"></i></span>
+                  <span class="mgc-items-table__col mgc-items-table__col--actions"></span>
+                </div>
+                <div class="mgc-items-table__body" id="mg-items-body">
+                  <!-- Populated by JS -->
+                </div>
+                <div class="mgc-items-table__input-row">
+                  <span class="mgc-items-table__col mgc-items-table__col--name" style="position:relative">
+                    <input type="text" class="mgc-input mgc-input--sm" id="mg-search-modifier" placeholder="Search to add" autocomplete="off">
+                    <div class="mgc-search-dropdown" id="mg-search-dropdown">
+                      <div class="mgc-search-dropdown__results" id="mg-search-dropdown-results"></div>
+                      <div class="mgc-search-dropdown__create" id="mg-search-dropdown-create" style="display:none">
+                        <div class="mgc-search-dropdown__create-icon">
+                          <i data-lucide="plus-circle" class="lucide-icon" style="width:18px;height:18px"></i>
+                        </div>
+                        <span id="mg-search-create-label">Create "" as a new modifier</span>
+                      </div>
+                    </div>
+                  </span>
+                  <span class="mgc-items-table__col mgc-items-table__col--price"></span>
+                  <span class="mgc-items-table__col mgc-items-table__col--sku"></span>
+                  <span class="mgc-items-table__col mgc-items-table__col--default"></span>
+                  <span class="mgc-items-table__col mgc-items-table__col--actions"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Add to menu items -->
+        <div class="form-section">
+          <div class="form-section__header">
+            <h3 class="form-section__title">Add to menu items</h3>
+          </div>
+          <div class="form-section__card">
+            <div class="form-field">
+              <div class="form-field__label-group">
+                <label class="form-field__label">Add to menu items</label>
+                <span class="form-field__desc">Add this modifier group to menu items to make it available for ordering.</span>
+              </div>
+              <div class="form-field__control">
+                <div class="multiselect" data-field="mg-menu-items">
+                  <div class="multiselect__trigger">
+                    <div class="multiselect__pills">
+                      <span class="multiselect__placeholder">Select menu items</span>
+                    </div>
+                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
                   </div>
-                  <div class="mgc-rule-hint" id="mg-maxper-hint">Each option can be selected multiple times.</div>
+                  <div class="multiselect__dropdown">
+                    <div class="multiselect__search-wrap">
+                      <i data-lucide="search" class="lucide-icon" style="width:14px;height:14px;color:var(--color-text-weak)"></i>
+                      <input type="text" class="multiselect__search" placeholder="Search...">
+                    </div>
+                    <div class="multiselect__option multiselect__option--select-all" data-value="__all__">
+                      <input type="checkbox" class="multiselect__checkbox">
+                      <span>Select all</span>
+                    </div>
+                    <div class="multiselect__divider"></div>
+                    <div class="multiselect__options"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Section: Add modifier items (inline table) -->
+        <!-- Section: Visibility -->
         <div class="form-section">
           <div class="form-section__header">
-            <h3 class="form-section__title">Add modifier items <i data-lucide="help-circle" class="lucide-icon mgc-field__hint-icon" style="width:16px;height:16px"></i></h3>
-            <div class="form-section__action">
-              <button class="btn btn--secondary mgc-add-sku-btn" id="mg-add-sku-btn">
-                <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
-                <span>Add from SKU library</span>
-              </button>
-            </div>
-          </div>
-          <div class="mgc-items-table" id="mg-items-table">
-            <div class="mgc-items-table__head">
-              <span class="mgc-items-table__col mgc-items-table__col--name">Modifier items</span>
-              <span class="mgc-items-table__col mgc-items-table__col--price">Price</span>
-              <span class="mgc-items-table__col mgc-items-table__col--sku">Item SKU</span>
-              <span class="mgc-items-table__col mgc-items-table__col--default">Default</span>
-            </div>
-            <div class="mgc-items-table__body" id="mg-items-body">
-              <!-- Populated by JS -->
-            </div>
-            <div class="mgc-items-table__input-row">
-              <span class="mgc-items-table__col mgc-items-table__col--name" style="position:relative">
-                <input type="text" class="mgc-input mgc-input--sm" id="mg-search-modifier" placeholder="Search to add" autocomplete="off">
-              </span>
-              <span class="mgc-items-table__col mgc-items-table__col--price"><input type="text" class="mgc-input mgc-input--sm" id="mg-input-price" placeholder="$ 0.00"></span>
-              <span class="mgc-items-table__col mgc-items-table__col--sku"></span>
-              <span class="mgc-items-table__col mgc-items-table__col--default"></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Section: Assign to menu items -->
-        <div class="form-section">
-          <div class="form-section__header">
-            <h3 class="form-section__title">Assign to menu items</h3>
-            <div class="form-section__action" id="mg-menu-items-add-action" style="display:none">
-              <button class="btn btn--secondary" id="mg-menu-items-edit-btn">
-                <i data-lucide="pencil" class="lucide-icon" style="width:14px;height:14px"></i>
-                <span>Edit menu items</span>
-              </button>
-            </div>
-          </div>
-          <!-- Empty state -->
-          <div class="form-empty-card" id="mg-menu-items-empty">
-            <span class="form-empty-card__text">Assign this modifier group to menu items to make it available.</span>
-            <button class="btn btn--secondary" id="mg-menu-items-add-btn">
-              <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
-              <span>Assign to menu items</span>
-            </button>
-          </div>
-          <!-- Filled state -->
-          <div class="category-filled-card" id="mg-menu-items-filled" style="display:none">
-            <div class="category-filled-card__header" id="mg-menu-items-filled-header"></div>
-            <div class="category-filled-card__list" id="mg-menu-items-filled-list"></div>
-          </div>
-        </div>
-
-        <!-- Section: Locations, channels -->
-        <div class="form-section">
-          <div class="form-section__header">
-            <h3 class="form-section__title">Locations, channels</h3>
+            <h3 class="form-section__title">Visibility</h3>
           </div>
           <div class="form-section__card">
             <div class="form-field">
               <div class="form-field__label-group">
                 <label class="form-field__label">Locations</label>
+                <span class="form-field__desc">Locations this item will be used in</span>
               </div>
               <div class="form-field__control">
                 <div class="multiselect" data-field="mg-locations">
@@ -5115,8 +5151,7 @@
                       <span>Select all</span>
                     </div>
                     <div class="multiselect__divider"></div>
-                    <div class="multiselect__options">
-                    </div>
+                    <div class="multiselect__options"></div>
                   </div>
                 </div>
               </div>
@@ -5124,6 +5159,7 @@
             <div class="form-field">
               <div class="form-field__label-group">
                 <label class="form-field__label">Channels</label>
+                <span class="form-field__desc">Channels this item is offered on</span>
               </div>
               <div class="form-field__control">
                 <div class="multiselect" data-field="mg-channels">
@@ -5143,8 +5179,7 @@
                       <span>Select all</span>
                     </div>
                     <div class="multiselect__divider"></div>
-                    <div class="multiselect__options">
-                    </div>
+                    <div class="multiselect__options"></div>
                   </div>
                 </div>
               </div>
@@ -5153,6 +5188,70 @@
         </div>
 
       </div>
+
+      <!-- RIGHT: Preview -->
+      <div class="takeover__preview">
+        <div class="preview-header">
+          <h3 class="preview-header__title">Preview</h3>
+          <div class="preview-header__nav">
+            <span style="font-size:13px;color:var(--color-text-weak)">3 of 86</span>
+            <button class="preview-header__nav-btn"><i data-lucide="chevron-left" class="lucide-icon" style="width:16px;height:16px"></i></button>
+            <button class="preview-header__nav-btn"><i data-lucide="chevron-right" class="lucide-icon" style="width:16px;height:16px"></i></button>
+          </div>
+        </div>
+        <div class="preview-disclaimer">This preview is for illustration purposes. Actual pricing and modifier behavior may vary by location and channel on live platforms.</div>
+        <div class="preview-card">
+          <div class="preview-card__image">
+            <i data-lucide="image" class="lucide-icon preview-card__image-placeholder" style="width:48px;height:48px"></i>
+          </div>
+          <div class="preview-card__body">
+            <div class="preview-card__name">Menu item name</div>
+            <div class="preview-card__description">Menu item description</div>
+            <div class="preview-card__price">$00.00</div>
+          </div>
+          <!-- Modifier group preview -->
+          <div class="preview-card__section">
+            <div class="preview-card__section-header">
+              <div>
+                <div class="preview-card__section-title" id="mg-preview-title">Side Choice</div>
+                <div class="preview-card__section-subtitle">Select up to 3</div>
+              </div>
+              <i data-lucide="chevron-up" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+            </div>
+            <div class="preview-card__section-options">
+              <label class="preview-card__option">
+                <input type="checkbox" class="preview-card__option-cb">
+                <span class="preview-card__option-name">French Fries</span>
+                <span class="preview-card__option-price">$5.00</span>
+              </label>
+              <label class="preview-card__option">
+                <input type="checkbox" class="preview-card__option-cb">
+                <span class="preview-card__option-name">Side Salad</span>
+                <span class="preview-card__option-price">$3.00</span>
+              </label>
+              <label class="preview-card__option">
+                <input type="checkbox" class="preview-card__option-cb">
+                <span class="preview-card__option-name">Cookies</span>
+                <span class="preview-card__option-price">$2.00</span>
+              </label>
+            </div>
+          </div>
+          <!-- Footer -->
+          <div class="preview-card__footer">
+            <div class="preview-card__quantity">
+              <button class="preview-card__qty-btn"><i data-lucide="minus" class="lucide-icon" style="width:14px;height:14px"></i></button>
+              <div class="preview-card__qty-value">1</div>
+              <button class="preview-card__qty-btn"><i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i></button>
+            </div>
+            <button class="preview-card__add-to-cart">Add to cart &middot; $17.49</button>
+          </div>
+          <div class="preview-card__dots">
+            <div class="preview-card__dot preview-card__dot--active"></div>
+            <div class="preview-card__dot"></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -5482,7 +5581,7 @@
   </div><!-- /edit-menu-takeover -->
 
   <!-- JavaScript -->
-  <script src="js/sidebar.js?v=2"></script>
+  <script src="js/sidebar.js?v=4"></script>
   <script src="js/tabs.js?v=2"></script>
   <script src="js/table.js?v=2"></script>
   <script src="js/filters.js"></script>
@@ -5494,15 +5593,486 @@
   <script src="js/mg-table.js"></script>
   <script src="js/menus-table.js"></script>
   <script src="js/mi-table.js?v=2"></script>
+  <script src="js/cat-table.js?v=1"></script>
+  <script src="js/bulk-actions.js?v=1"></script>
+  <script src="js/toast.js?v=3"></script>
   <script src="js/add-item.js?v=23"></script>
   <script src="js/add-modifier-item.js?v=10"></script>
   <script src="js/add-category.js?v=7"></script>
-  <script src="js/add-modifier-group.js?v=1"></script>
-  <script src="js/multiselect.js?v=4"></script>
+  <script src="js/add-modifier-group.js?v=9"></script>
+  <script src="js/multiselect.js?v=8"></script>
   <script src="js/edit-menu.js?v=10"></script>
   <script>
     // Initialize Lucide icons
     lucide.createIcons();
   </script>
+
+  <!-- ── Publish panel overlay ── -->
+  <div class="scrim" id="ppScrim" onclick="closePanel()"></div>
+
+  <div class="panel" id="ppPanel">
+  <div class="panel-pages" id="ppPanelPages">
+
+    <!-- PAGE 1: Pre-publish -->
+    <div class="panel-page" id="ppPagePrepub">
+      <div class="panel-header">
+        <h2>Where do you want to publish this menu?</h2>
+        <button class="pp-close-btn" onclick="closePanel()" aria-label="Close">
+          <span class="ms sz16" style="color:currentColor">close</span>
+        </button>
+      </div>
+      <div class="panel-body">
+        <div class="pp-error-banner">
+          <span class="ms sz20 filled pp-error-banner-icon" style="color:#DC2626">error</span>
+          <p class="pp-error-banner-text">There are issues with your menu. Address these issues to publish to your channels.</p>
+          <button class="view-issues-btn" onclick="showIssuesPage()">View issues</button>
+        </div>
+        <div class="pp-search-row">
+          <div class="pp-search-wrap">
+            <span class="pp-search-icon">
+              <span class="ms sz16" style="color:#6C6C6C">search</span>
+            </span>
+            <input class="pp-search-input" type="search" placeholder="Search locations" />
+          </div>
+          <button class="pp-filter-chip" id="ppChannelsBtn" onclick="ppToggleChannels(this)">
+            Channels
+            <span id="ppChannelsChevron" class="ms sz16" style="flex-shrink:0">expand_more</span>
+          </button>
+        </div>
+        <div class="pp-select-all-row">
+          <label class="cb">
+            <input type="checkbox" id="ppSelectAll" checked onchange="ppToggleAll(this)"/>
+            <span class="cb-box">
+              <svg class="cb-check" width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3L3.5 5.5L8 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="cb-minus" width="7" height="2" viewBox="0 0 7 2" fill="none"><path d="M0.5 1H6.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </label>
+          <span>All 10 locations</span>
+        </div>
+        <div class="locations" id="ppLocations"></div>
+      </div>
+      <div class="panel-footer">
+        <div class="pub-banner">
+          <span class="pub-icon">
+            <span class="ms sz24" style="color:#1C69E8">published_with_changes</span>
+          </span>
+          <span class="pub-text">Publish to selected channels.</span>
+          <button class="add-note-btn">
+            Add note
+            <span class="ms sz16">expand_more</span>
+          </button>
+          <button class="pub-btn" onclick="doPublish()">Publish</button>
+        </div>
+      </div>
+    </div><!-- /ppPagePrepub -->
+
+    <!-- PAGE 2: Publish issues -->
+    <div class="panel-page" id="ppPageIssues">
+      <div class="panel-header" style="align-items:center;">
+        <div style="display:flex;align-items:center;gap:12px;flex:1;min-width:0;">
+          <button class="back-btn" onclick="showPrepubPage()" aria-label="Back">
+            <span class="ms sz16" style="color:currentColor">arrow_back</span>
+          </button>
+          <h2 style="font-size:20px;line-height:22px;letter-spacing:-0.2px;">Publish issues</h2>
+        </div>
+        <button class="pp-close-btn" onclick="closePanel()" aria-label="Close">
+          <span class="ms sz16" style="color:currentColor">close</span>
+        </button>
+      </div>
+      <div class="issues-body">
+        <div class="issues-section-header">
+          <p class="issues-section-title">Critical issues</p>
+          <p class="issues-section-subtitle">Address these issues to publish to channels</p>
+        </div>
+        <div class="inline-banner" id="taxIssueBanner">
+          <span class="ms sz20 filled" style="color:#C5232B;flex-shrink:0;margin-top:1px;">error</span>
+          <div class="inline-banner-body-col">
+            <p class="inline-banner-title">Your tax settings are missing or incomplete</p>
+            <p class="inline-banner-desc">Please confirm that your tax settings are up to date. Update them before publishing the menu.</p>
+          </div>
+          <button class="inline-banner-view-btn" onclick="openTaxModal()">View all</button>
+        </div>
+        <div class="inline-banner">
+          <span class="ms sz20 filled" style="color:#C5232B;flex-shrink:0;margin-top:1px;">error</span>
+          <div class="inline-banner-body-col">
+            <p class="inline-banner-title">32 items don't have tax rates</p>
+            <p class="inline-banner-desc">Please ensure these items have accurate tax rates</p>
+          </div>
+          <button class="inline-banner-view-btn">View all</button>
+        </div>
+        <div class="issues-placeholder"></div>
+        <div class="issues-section-header">
+          <p class="issues-section-title">Suggestions</p>
+          <p class="issues-section-subtitle">You can still publish, but we highly suggest addressing these issues</p>
+        </div>
+        <div class="issues-placeholder"></div>
+      </div>
+    </div><!-- /ppPageIssues -->
+
+  </div><!-- /ppPanelPages -->
+  </div>
+
+  <div id="queuePanel"></div>
+  <script src="js/publish-panel.js?v=4"></script>
+
+  <!-- ── Tax Settings Modal ── -->
+  <div class="modal-scrim" id="taxModalScrim" onclick="closeTaxModal()"></div>
+  <div class="tax-modal" id="taxModal">
+    <div class="tax-modal__header">
+      <h2 class="tax-modal__title">Send taxes to channels?</h2>
+      <button class="pp-close-btn" onclick="closeTaxModal()"><span class="ms sz16">close</span></button>
+    </div>
+    <div class="tax-modal__body">
+
+      <!-- Section: Online channels -->
+      <div>
+        <div class="tax-section__header">
+          <p class="tax-section__title">Online channels</p>
+          <p class="tax-section__desc">Some channels are responsible for setting taxes directly on your behalf. Tax regulations can differ by region and channel, so if enabled, tax rates sent through Otter might not be accepted everywhere. We recommend reviewing your taxes to ensure compliance.</p>
+        </div>
+        <div class="tax-section__divider"></div>
+        <div class="tax-platform-rows">
+
+          <div class="tax-platform-row">
+            <div class="platform-logo-sm" style="background:#FF3008">D</div>
+            <div class="platform-info-col"><span class="platform-name-sm">DoorDash</span></div>
+            <div class="tax-select has-error" data-channel="doordash" onclick="openTaxDropdown(this)">
+              <span class="ms tax-select__icon" style="display:none"></span>
+              <span class="tax-select__text">Select</span>
+              <span class="ms tax-select__caret">expand_more</span>
+            </div>
+          </div>
+
+          <div class="tax-platform-row">
+            <div class="platform-logo-sm" style="background:#FF8001">G</div>
+            <div class="platform-info-col"><span class="platform-name-sm">Grubhub</span></div>
+            <div class="tax-select has-error" data-channel="grubhub" onclick="openTaxDropdown(this)">
+              <span class="ms tax-select__icon" style="display:none"></span>
+              <span class="tax-select__text">Select</span>
+              <span class="ms tax-select__caret">expand_more</span>
+            </div>
+          </div>
+
+          <div class="tax-platform-row">
+            <div class="platform-logo-sm" style="background:#06C167">U</div>
+            <div class="platform-info-col"><span class="platform-name-sm">Uber Eats</span></div>
+            <div class="tax-select has-error" data-channel="ubereats" onclick="openTaxDropdown(this)">
+              <span class="ms tax-select__icon" style="display:none"></span>
+              <span class="tax-select__text">Select</span>
+              <span class="ms tax-select__caret">expand_more</span>
+            </div>
+          </div>
+
+          <div class="tax-platform-row">
+            <div class="platform-logo-sm" style="background:#00CCBC">D</div>
+            <div class="platform-info-col">
+              <span class="platform-name-sm">Deliveroo</span>
+              <span class="platform-sublabel">Tax rates must be sent via Otter's service or entered manually</span>
+            </div>
+            <div class="tax-select tax-select--disabled">
+              <span class="ms tax-select__icon tax-select__icon--muted">check</span>
+              <span class="tax-select__text tax-select__text--muted">Send tax rates to channel</span>
+              <span class="ms tax-select__caret tax-select__caret--muted">expand_more</span>
+            </div>
+          </div>
+
+          <div class="tax-platform-row">
+            <div class="platform-logo-sm" style="background:#FF441F">R</div>
+            <div class="platform-info-col">
+              <span class="platform-name-sm">Rappi</span>
+              <span class="platform-sublabel">Sending custom tax rate is not supported by Rappi</span>
+            </div>
+            <div class="tax-select tax-select--disabled">
+              <span class="ms tax-select__icon tax-select__icon--muted">block</span>
+              <span class="tax-select__text tax-select__text--muted">Don't send tax rates to channel</span>
+              <span class="ms tax-select__caret tax-select__caret--muted">expand_more</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section: Otter channels -->
+      <div>
+        <div class="tax-section__header">
+          <p class="tax-section__title">Otter channels</p>
+          <p class="tax-section__desc">Otter is required to always send taxes for these channels</p>
+        </div>
+        <div class="tax-section__divider"></div>
+        <div class="tax-platform-rows">
+
+          <div class="tax-platform-row">
+            <div class="platform-logo-sm" style="background:#C5C948"><span class="ms" style="font-size:13px;color:#fff">storefront</span></div>
+            <div class="platform-info-col"><span class="platform-name-sm">Direct Orders</span></div>
+            <div class="tax-select tax-select--disabled">
+              <span class="ms tax-select__icon tax-select__icon--muted">check</span>
+              <span class="tax-select__text tax-select__text--muted">Send tax rates to channel</span>
+              <span class="ms tax-select__caret tax-select__caret--muted">expand_more</span>
+            </div>
+          </div>
+
+          <div class="tax-platform-row">
+            <div class="platform-logo-sm" style="background:#E03975"><span class="ms" style="font-size:13px;color:#fff">point_of_sale</span></div>
+            <div class="platform-info-col"><span class="platform-name-sm">Otter POS</span></div>
+            <div class="tax-select tax-select--disabled">
+              <span class="ms tax-select__icon tax-select__icon--muted">check</span>
+              <span class="tax-select__text tax-select__text--muted">Send tax rates to channel</span>
+              <span class="ms tax-select__caret tax-select__caret--muted">expand_more</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="tax-modal__footer">
+      <button class="btn btn--primary" id="taxConfirmBtn" disabled onclick="confirmTaxSettings()">Confirm</button>
+    </div>
+  </div>
+
+  <!-- ===== BULK ACTION MODALS ===== -->
+  <div class="ba-scrim" id="ba-scrim"></div>
+
+  <!-- Delete confirmation -->
+  <div class="ba-modal" id="ba-delete-modal">
+    <div class="ba-modal__header">
+      <div>
+        <h2 class="ba-modal__title">Delete items?</h2>
+      </div>
+      <button class="ba-modal__close" aria-label="Close"><i data-lucide="x" class="lucide-icon" style="width:18px;height:18px"></i></button>
+    </div>
+    <div class="ba-modal__body">
+      <p class="ba-modal__desc">This will permanently delete the selected items. This action cannot be undone.</p>
+    </div>
+    <div class="ba-modal__footer">
+      <button class="btn btn--secondary" id="ba-delete-cancel">Cancel</button>
+      <button class="btn btn--danger" id="ba-delete-confirm">Delete</button>
+    </div>
+  </div>
+
+  <!-- Archive confirmation -->
+  <div class="ba-modal" id="ba-archive-modal">
+    <div class="ba-modal__header">
+      <div>
+        <h2 class="ba-modal__title">Archive menus?</h2>
+      </div>
+      <button class="ba-modal__close" aria-label="Close"><i data-lucide="x" class="lucide-icon" style="width:18px;height:18px"></i></button>
+    </div>
+    <div class="ba-modal__body">
+      <p class="ba-modal__desc">Archived menus won't be visible to customers. You can restore them later from the archive.</p>
+    </div>
+    <div class="ba-modal__footer">
+      <button class="btn btn--secondary" id="ba-archive-cancel">Cancel</button>
+      <button class="btn btn--primary" id="ba-archive-confirm">Archive</button>
+    </div>
+  </div>
+
+  <!-- Edit price -->
+  <div class="ba-modal ba-modal--wide" id="ba-price-modal">
+    <div class="ba-modal__header">
+      <div>
+        <h2 class="ba-modal__title">Edit price</h2>
+        <p class="ba-modal__subtitle">Update price for selected items</p>
+      </div>
+      <button class="ba-modal__close" aria-label="Close"><i data-lucide="x" class="lucide-icon" style="width:18px;height:18px"></i></button>
+    </div>
+    <div class="ba-modal__body">
+      <div class="ba-form-group">
+        <label class="ba-form-label">Adjust price</label>
+        <div class="ba-radio-group">
+          <label class="ba-radio-item">
+            <input type="radio" name="price-adjust" value="set" checked>
+            <span>Set a specific price</span>
+          </label>
+          <label class="ba-radio-item">
+            <input type="radio" name="price-adjust" value="increase">
+            <span>Increase by amount</span>
+          </label>
+          <label class="ba-radio-item">
+            <input type="radio" name="price-adjust" value="decrease">
+            <span>Decrease by amount</span>
+          </label>
+          <label class="ba-radio-item">
+            <input type="radio" name="price-adjust" value="increase-pct">
+            <span>Increase by percentage</span>
+          </label>
+          <label class="ba-radio-item">
+            <input type="radio" name="price-adjust" value="decrease-pct">
+            <span>Decrease by percentage</span>
+          </label>
+        </div>
+      </div>
+      <div class="ba-form-group">
+        <label class="ba-form-label" id="ba-price-adjust-label">New price</label>
+        <div class="ba-input-with-affix">
+          <span class="ba-input-prefix" id="ba-price-prefix">$</span>
+          <input type="number" class="ba-input" id="ba-price-input" placeholder="0.00" min="0" step="0.01">
+          <span class="ba-input-suffix" id="ba-price-suffix"></span>
+        </div>
+      </div>
+    </div>
+    <div class="ba-modal__footer">
+      <button class="btn btn--secondary" id="ba-price-cancel">Cancel</button>
+      <button class="btn btn--primary" id="ba-price-confirm">Apply</button>
+    </div>
+  </div>
+
+  <!-- Edit tax rate -->
+  <div class="ba-modal ba-modal--wide" id="ba-tax-modal">
+    <div class="ba-modal__header">
+      <div>
+        <h2 class="ba-modal__title">Edit tax rate</h2>
+        <p class="ba-modal__subtitle">Update tax rate for selected items</p>
+      </div>
+      <button class="ba-modal__close" aria-label="Close"><i data-lucide="x" class="lucide-icon" style="width:18px;height:18px"></i></button>
+    </div>
+    <div class="ba-modal__body">
+      <div class="ba-form-group">
+        <label class="ba-form-label">Tax rate</label>
+        <select class="ba-select">
+          <option value="">Select a tax rate</option>
+          <option value="standard">Standard rate — 10%</option>
+          <option value="reduced">Reduced rate — 5%</option>
+          <option value="zero">Zero rate — 0%</option>
+          <option value="custom">Custom rate</option>
+        </select>
+      </div>
+      <div class="ba-form-group">
+        <label class="ba-form-label">Apply to channels</label>
+        <div class="ba-checkbox-group">
+          <label class="ba-checkbox-item"><input type="checkbox" checked><span>All channels</span></label>
+          <label class="ba-checkbox-item ba-checkbox-item--sub"><input type="checkbox" checked><span>DoorDash</span></label>
+          <label class="ba-checkbox-item ba-checkbox-item--sub"><input type="checkbox" checked><span>Uber Eats</span></label>
+          <label class="ba-checkbox-item ba-checkbox-item--sub"><input type="checkbox" checked><span>Grubhub</span></label>
+          <label class="ba-checkbox-item ba-checkbox-item--sub"><input type="checkbox" checked><span>Direct Orders</span></label>
+        </div>
+      </div>
+    </div>
+    <div class="ba-modal__footer">
+      <button class="btn btn--secondary" id="ba-tax-cancel">Cancel</button>
+      <button class="btn btn--primary" id="ba-tax-confirm">Apply</button>
+    </div>
+  </div>
+
+  <!-- Edit station profiles -->
+  <div class="ba-modal ba-modal--wide" id="ba-station-modal">
+    <div class="ba-modal__header">
+      <div>
+        <h2 class="ba-modal__title">Edit station profiles</h2>
+        <p class="ba-modal__subtitle">Update station profiles for selected items</p>
+      </div>
+      <button class="ba-modal__close" aria-label="Close"><i data-lucide="x" class="lucide-icon" style="width:18px;height:18px"></i></button>
+    </div>
+    <div class="ba-modal__body">
+      <div class="ba-form-group">
+        <label class="ba-form-label">Update mode</label>
+        <div class="ba-radio-group ba-radio-group--horizontal">
+          <label class="ba-radio-item">
+            <input type="radio" name="station-mode" value="add" checked>
+            <span>Add to current</span>
+          </label>
+          <label class="ba-radio-item">
+            <input type="radio" name="station-mode" value="replace">
+            <span>Replace current</span>
+          </label>
+        </div>
+      </div>
+      <div class="ba-form-group">
+        <label class="ba-form-label">Station profiles</label>
+        <div class="ba-checkbox-group">
+          <label class="ba-checkbox-item"><input type="checkbox"><span>Fryer Station</span></label>
+          <label class="ba-checkbox-item"><input type="checkbox"><span>Grill Station</span></label>
+          <label class="ba-checkbox-item"><input type="checkbox"><span>Cold Station</span></label>
+          <label class="ba-checkbox-item"><input type="checkbox"><span>Salad Station</span></label>
+          <label class="ba-checkbox-item"><input type="checkbox"><span>Expediting Station</span></label>
+        </div>
+      </div>
+    </div>
+    <div class="ba-modal__footer">
+      <button class="btn btn--secondary" id="ba-station-cancel">Cancel</button>
+      <button class="btn btn--primary" id="ba-station-confirm">Apply</button>
+    </div>
+  </div>
+
+  <!-- Edit availability -->
+  <div class="ba-modal" id="ba-availability-modal">
+    <div class="ba-modal__header">
+      <div>
+        <h2 class="ba-modal__title">Edit availability</h2>
+        <p class="ba-modal__subtitle">Update availability for selected items</p>
+      </div>
+      <button class="ba-modal__close" aria-label="Close"><i data-lucide="x" class="lucide-icon" style="width:18px;height:18px"></i></button>
+    </div>
+    <div class="ba-modal__body">
+      <div class="ba-form-group">
+        <label class="ba-form-label">Availability status</label>
+        <div class="ba-radio-group">
+          <label class="ba-radio-item ba-radio-item--card">
+            <input type="radio" name="availability" value="available" checked>
+            <span class="ba-radio-item__content">
+              <span class="ba-radio-item__title">Available</span>
+              <span class="ba-radio-item__desc">Item is visible and available to order</span>
+            </span>
+          </label>
+          <label class="ba-radio-item ba-radio-item--card">
+            <input type="radio" name="availability" value="unavailable">
+            <span class="ba-radio-item__content">
+              <span class="ba-radio-item__title">Unavailable</span>
+              <span class="ba-radio-item__desc">Item is hidden and cannot be ordered</span>
+            </span>
+          </label>
+          <label class="ba-radio-item ba-radio-item--card">
+            <input type="radio" name="availability" value="partial">
+            <span class="ba-radio-item__content">
+              <span class="ba-radio-item__title">Partially available</span>
+              <span class="ba-radio-item__desc">Item is available at some locations only</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="ba-modal__footer">
+      <button class="btn btn--secondary" id="ba-availability-cancel">Cancel</button>
+      <button class="btn btn--primary" id="ba-availability-confirm">Apply</button>
+    </div>
+  </div>
+
+  <!-- Assign to menu items -->
+  <div class="ba-modal ba-modal--wide" id="ba-assign-modal">
+    <div class="ba-modal__header">
+      <div>
+        <h2 class="ba-modal__title">Add to menu items</h2>
+        <p class="ba-modal__subtitle">Add modifier groups to menu items</p>
+      </div>
+      <button class="ba-modal__close" aria-label="Close"><i data-lucide="x" class="lucide-icon" style="width:18px;height:18px"></i></button>
+    </div>
+    <div class="ba-modal__body">
+      <p class="ba-modal__info-note">Existing connections will not be changed.</p>
+      <div class="ba-search-wrap">
+        <i data-lucide="search" class="lucide-icon ba-search-icon" style="width:16px;height:16px"></i>
+        <input type="text" class="ba-search-input" placeholder="Search menu items..." id="ba-assign-search">
+      </div>
+      <div class="ba-checkbox-group ba-checkbox-group--scroll" id="ba-assign-list">
+        <label class="ba-checkbox-item"><input type="checkbox"><span>Avocado Toast <span class="ba-checkbox-item__price">$14.00</span></span></label>
+        <label class="ba-checkbox-item"><input type="checkbox"><span>Berry Bliss Smoothie <span class="ba-checkbox-item__price">$9.00</span></span></label>
+        <label class="ba-checkbox-item"><input type="checkbox"><span>Breakfast Burrito <span class="ba-checkbox-item__price">$13.50</span></span></label>
+        <label class="ba-checkbox-item"><input type="checkbox"><span>Classic Eggs Benedict <span class="ba-checkbox-item__price">$16.00</span></span></label>
+        <label class="ba-checkbox-item"><input type="checkbox"><span>French Toast Stack <span class="ba-checkbox-item__price">$12.00</span></span></label>
+        <label class="ba-checkbox-item"><input type="checkbox"><span>Garden Omelette <span class="ba-checkbox-item__price">$13.00</span></span></label>
+        <label class="ba-checkbox-item"><input type="checkbox"><span>Granola Bowl <span class="ba-checkbox-item__price">$10.00</span></span></label>
+        <label class="ba-checkbox-item"><input type="checkbox"><span>Matcha Latte <span class="ba-checkbox-item__price">$6.50</span></span></label>
+        <label class="ba-checkbox-item"><input type="checkbox"><span>Smoked Salmon Bagel <span class="ba-checkbox-item__price">$15.00</span></span></label>
+        <label class="ba-checkbox-item"><input type="checkbox"><span>Sourdough Pancakes <span class="ba-checkbox-item__price">$11.00</span></span></label>
+      </div>
+    </div>
+    <div class="ba-modal__footer">
+      <button class="btn btn--secondary" id="ba-assign-cancel">Cancel</button>
+      <button class="btn btn--primary" id="ba-assign-confirm">Assign</button>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
 </body>
 </html>

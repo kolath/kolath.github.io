@@ -41,25 +41,33 @@ document.addEventListener('DOMContentLoaded', () => {
         // Page switching: SKU library vs Brand menus
         const brandMenusPage = document.getElementById('page-brand-menus');
         const skuLibraryPage = document.getElementById('page-sku-library');
+        const pricingRulesPage = document.getElementById('page-pricing-rules');
+
+        const hideAll = () => {
+          if (brandMenusPage) brandMenusPage.style.display = 'none';
+          if (skuLibraryPage) skuLibraryPage.style.display = 'none';
+          if (pricingRulesPage) pricingRulesPage.style.display = 'none';
+        };
 
         if (label === 'SKU library') {
-          if (brandMenusPage) brandMenusPage.style.display = 'none';
-          if (skuLibraryPage) {
-            skuLibraryPage.style.display = '';
-            if (window.lucide) lucide.createIcons();
-          }
+          hideAll();
+          skuLibraryPage.style.display = '';
+          if (window.lucide) lucide.createIcons();
+        } else if (label === 'Pricing rules' || label === 'Tax rates' || label === 'Location settings') {
+          hideAll();
+          pricingRulesPage.style.display = '';
         } else if (parentItem.classList.contains('sidebar-item--nested')) {
           // Brand menu item selected
-          if (skuLibraryPage) skuLibraryPage.style.display = 'none';
+          hideAll();
           if (brandMenusPage) brandMenusPage.style.display = '';
           const brandName = label;
-          const pageTitle = document.querySelector('.page-header__title');
-          if (pageTitle) {
-            pageTitle.textContent = brandName + ' menus';
-          }
+          const pageTitle = document.getElementById('pageHeaderTitle');
+          if (pageTitle) pageTitle.textContent = brandName + ' menus';
+          const breadcrumbCurrent = document.getElementById('breadcrumbCurrent');
+          if (breadcrumbCurrent) breadcrumbCurrent.textContent = brandName + ' menus';
+          if (window.switchMenu) switchMenu(brandName);
         } else {
-          // Other sidebar items - show brand menus page by default
-          if (skuLibraryPage) skuLibraryPage.style.display = 'none';
+          hideAll();
           if (brandMenusPage) brandMenusPage.style.display = '';
         }
       }
