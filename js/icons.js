@@ -17,6 +17,8 @@
     'arrow-up-from-line':     'upload',
     'book-open':              'menu_book',
     'check':                  'check',
+    'arrow-drop-down':        ['arrow_drop_down', true],
+    'arrow-drop-up':          ['arrow_drop_up', true],
     'chevron-down':           'expand_more',
     'chevron-left':           'chevron_left',
     'chevron-right':          'chevron_right',

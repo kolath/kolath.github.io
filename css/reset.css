@@ -23,21 +23,23 @@ img, svg {
 
 /* ── Material Symbols icon base ─────────────────────────────────────────── */
 .ms-icon {
-  font-family: 'Material Symbols Outlined', sans-serif;
+  font-family: 'Material Symbols Outlined';
   font-style: normal;
   font-weight: normal;
   font-size: 20px;          /* overridden per-instance via inline style */
   line-height: 1;
   letter-spacing: normal;
   text-transform: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  /* inline-block is required — inline-flex breaks font ligatures */
+  display: inline-block;
   white-space: nowrap;
   word-wrap: normal;
   direction: ltr;
   vertical-align: middle;
   flex-shrink: 0;
+  /* enable ligature substitution (maps "add" → + glyph, etc.) */
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   user-select: none;
