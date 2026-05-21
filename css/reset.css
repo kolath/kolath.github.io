@@ -21,26 +21,19 @@ img, svg {
   max-width: 100%;
 }
 
-/* ── Material Symbols icon base ─────────────────────────────────────────── */
-.ms-icon {
-  font-family: 'Material Symbols Outlined', sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;          /* overridden per-instance via inline style */
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
+/* Lucide SVG icon base */
+.lucide-icon,
+.lucide {
+  display: inline-block;
   vertical-align: middle;
   flex-shrink: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  user-select: none;
+}
+
+/* CSDS custom inline-SVG icons (arrow_drop_down etc.)
+   display is intentionally NOT set here — inherited classes like
+   multiselect__chevron (position:absolute) must not be overridden */
+.csds-icon svg {
+  display: block;
 }
 
 button, input, select, textarea {

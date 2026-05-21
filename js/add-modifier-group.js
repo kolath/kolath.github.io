@@ -44,7 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
   var editingRow = null; // null = creating new; TR = editing existing row
 
   // ── Preview ──
-  var mgPreviewTitle = document.getElementById('mg-preview-title');
+  var mgPreviewTitle    = document.getElementById('mg-preview-title');
+  var mgPreviewSubtitle = document.getElementById('mg-preview-subtitle');
+  var mgPreviewOptions  = document.getElementById('mg-preview-options');
 
   // ── Data maps from modifier-groups.md ──
   var MG_ITEMS_DATA = {
@@ -233,10 +235,68 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  totalMin.addEventListener('change', updateTotalHint);
+  // ── Preview subtitle: customer-facing selection rule ──
+  function syncPreviewSubtitle() {
+    if (!mgPreviewSubtitle) return;
+    var minVal = totalMin ? totalMin.value : '0';
+    var maxVal = totalMax ? totalMax.value : 'Unlimited';
+    var isRequired = minVal && minVal !== '0';
+
+    var text;
+    if (isRequired) {
+      if (maxVal === 'Unlimited' || maxVal === '') {
+        text = 'Required — select at least ' + minVal;
+      } else if (minVal === maxVal) {
+        text = 'Required — select exactly ' + minVal;
+      } else {
+        text = 'Required — select ' + minVal + '–' + maxVal;
+      }
+    } else {
+      if (maxVal === 'Unlimited' || maxVal === '' || maxVal === '0') {
+        text = 'Select any number (optional)';
+      } else {
+        text = 'Select up to ' + maxVal;
+      }
+    }
+    mgPreviewSubtitle.textContent = text;
+  }
+
+  // ── Preview options: mirror modifier items table ──
+  function syncPreviewOptions() {
+    if (!mgPreviewOptions || !itemsBody) return;
+    var rows = itemsBody.querySelectorAll('.mgc-items-table__row');
+    if (rows.length === 0) {
+      mgPreviewOptions.innerHTML =
+        '<label class="preview-card__option preview-card__option--placeholder">' +
+          '<span class="preview-card__option-name" style="color:var(--color-text-weak)">No items added yet</span>' +
+        '</label>';
+      return;
+    }
+    var html = '';
+    Array.prototype.forEach.call(rows, function(row) {
+      var nameEl  = row.querySelector('.mgc-row-name-input') || row.querySelector('.mgc-row-name-text');
+      var priceEl = row.querySelector('.mgc-price-input')    || row.querySelector('.mgc-row-price-text');
+      var name  = nameEl  ? (nameEl.value !== undefined ? nameEl.value : nameEl.textContent).trim() : '';
+      var price = priceEl ? (priceEl.value !== undefined ? priceEl.value : priceEl.textContent).trim() : '0.00';
+      if (!name) return;
+      // Normalise price display
+      var priceNum = parseFloat(price.replace(/[^0-9.]/g, ''));
+      var priceStr = isNaN(priceNum) || priceNum === 0 ? '' : '$' + priceNum.toFixed(2);
+      html +=
+        '<label class="preview-card__option">' +
+          '<input type="checkbox" class="preview-card__option-cb">' +
+          '<span class="preview-card__option-name">' + escapeHtml(name) + '</span>' +
+          (priceStr ? '<span class="preview-card__option-price">' + priceStr + '</span>' : '') +
+        '</label>';
+    });
+    mgPreviewOptions.innerHTML = html || '<label class="preview-card__option"><span class="preview-card__option-name" style="color:var(--color-text-weak)">No items added yet</span></label>';
+  }
+
+  totalMin.addEventListener('change', function() { updateTotalHint(); syncPreviewSubtitle(); });
   totalMax.addEventListener('change', function() {
     updateTotalHint();
     updateMaxPerVisibility();
+    syncPreviewSubtitle();
   });
   if (maxPer) maxPer.addEventListener('change', updateMaxPerHint);
 
@@ -283,6 +343,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Remove handler
       row.querySelector('.mgc-row-remove').addEventListener('click', function() {
         row.parentNode && row.parentNode.removeChild(row);
+        syncPreviewOptions();
       });
 
     } else {
@@ -314,12 +375,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function renderItemsTable(items) {
     itemsBody.innerHTML = '';
-    if (!items || items.length === 0) return;
+    if (!items || items.length === 0) { syncPreviewOptions(); return; }
     items.forEach(function(item, idx) {
       // Prefilled items from data are existing shared items → read-only
       itemsBody.appendChild(makeRow(item, idx === 0, true));
     });
     if (window.lucide) lucide.createIcons();
+    syncPreviewOptions();
   }
 
   function addRowToTable(item, isShared) {
@@ -327,6 +389,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var row = makeRow(item, isFirst, isShared || false);
     itemsBody.appendChild(row);
     if (window.lucide) lucide.createIcons({ nodes: [row] });
+    syncPreviewOptions();
   }
 
   // ══════════════════════════════════════════════
@@ -388,8 +451,10 @@ document.addEventListener('DOMContentLoaded', function() {
       ms.querySelectorAll('.multiselect__checkbox').forEach(function(cb) { cb.checked = false; });
     });
 
-    // Reset preview title
+    // Reset preview
     if (mgPreviewTitle) mgPreviewTitle.textContent = 'Side Choice';
+    syncPreviewSubtitle();
+    syncPreviewOptions();
   }
 
   function prefillFromItem(data) {
@@ -437,8 +502,10 @@ document.addEventListener('DOMContentLoaded', function() {
       window.multiselectSetValues('mg-menu-items', usedByMs, takeover);
     }
 
-    // Sync preview title
+    // Sync preview
     if (mgPreviewTitle) mgPreviewTitle.textContent = data.name || 'Side Choice';
+    syncPreviewSubtitle();
+    // syncPreviewOptions is called inside renderItemsTable above
   }
 
   // ══════════════════════════════════════════════
@@ -800,6 +867,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     rowContextMenu = null;
   }
+
+  // Live-update preview when editable item name or price changes
+  itemsBody.addEventListener('input', function(e) {
+    if (e.target.matches('.mgc-row-name-input') || e.target.matches('.mgc-price-input')) {
+      syncPreviewOptions();
+    }
+  });
 
   itemsBody.addEventListener('click', function(e) {
     var moreBtn = e.target.closest('.mgc-row-more');

@@ -9,12 +9,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Inter+Tight:wght@500&family=Inter+Display:wght@500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/tokens.css?v=2">
   <link rel="stylesheet" href="css/publish-panel.css">
-  <link rel="stylesheet" href="css/reset.css?v=103">
-  <link rel="stylesheet" href="css/layout.css?v=8">
-  <link rel="stylesheet" href="css/components.css?v=17">
-  <link rel="stylesheet" href="css/add-item.css?v=26">
+  <link rel="stylesheet" href="css/reset.css?v=106">
+  <link rel="stylesheet" href="css/layout.css?v=18">
+  <link rel="stylesheet" href="css/components.css?v=20">
+  <link rel="stylesheet" href="css/add-item.css?v=30">
   <link rel="stylesheet" href="css/edit-menu.css?v=7">
-  <script src="js/icons.js?v=1"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="js/icons.js?v=5"></script>
 </head>
 <body>
   <div class="app">
@@ -28,85 +29,125 @@
     <div class="app-body">
 
       <!-- ===== LEFT SIDEBAR ===== -->
-      <aside class="sidebar">
+      <aside class="sidebar" id="sidebar">
+
+        <!-- Collapse toggle -->
+        <div class="sidebar__toggle-row">
+          <button class="sidebar__toggle-btn" id="sidebar-toggle" title="Toggle sidebar">
+            <span class="material-symbols-outlined sidebar__toggle-icon">left_panel_close</span>
+          </button>
+        </div>
+
+        <div class="sidebar-nav-divider"></div>
+
         <nav class="sidebar__nav">
-          <!-- Overview -->
-          <div class="sidebar-item">
-            <div class="sidebar-item__container">
-              <span class="sidebar-item__label">Overview</span>
-            </div>
-          </div>
 
-          <!-- Brand menus (expandable) -->
+          <!-- ── Group 1: Brand menus ───────────────────────────── -->
           <div class="sidebar-item sidebar-item--expandable">
-            <div class="sidebar-item__container" data-toggle="brand-menus">
+            <div class="sidebar-item__container" data-toggle="brand-menus" title="Brand menus">
+              <span class="material-symbols-outlined sidebar-item__icon">menu_book</span>
               <span class="sidebar-item__label">Brand menus</span>
-              <div class="sidebar-item__arrow">
-                <i data-lucide="chevron-up" class="lucide-icon" style="width:20px;height:20px;color:var(--color-text-standard)"></i>
-              </div>
+              <span class="material-symbols-outlined sidebar-item__chevron">expand_less</span>
             </div>
           </div>
 
-          <!-- Brand menus children -->
           <div class="sidebar-children" id="brand-menus">
-            <div class="sidebar-item sidebar-item--nested sidebar-item--selected">
+            <div class="sidebar-item sidebar-item--nested sidebar-item--selected" data-brand="Aloha Hibachi">
               <div class="sidebar-item__container">
-                <span class="sidebar-item__label">Breakfast Beauties</span>
+                <span class="sidebar-brand-avatar"><img src="assets/logo-aloha-hibachi.png" alt="Aloha Hibachi"></span>
+                <span class="sidebar-item__label">Aloha Hibachi</span>
               </div>
             </div>
-            <div class="sidebar-item sidebar-item--nested">
+            <div class="sidebar-item sidebar-item--nested" data-brand="alpha bowls">
               <div class="sidebar-item__container">
-                <span class="sidebar-item__label">PT's Brekkie Time</span>
+                <span class="sidebar-brand-avatar"><img src="assets/logo-alpha-bowls.png" alt="alpha bowls"></span>
+                <span class="sidebar-item__label">alpha bowls</span>
               </div>
             </div>
-            <div class="sidebar-item sidebar-item--nested">
+            <div class="sidebar-item sidebar-item--nested" data-brand="Big Daddy's">
               <div class="sidebar-item__container">
-                <span class="sidebar-item__label">PT's Fried Chicken & Fish</span>
+                <span class="sidebar-brand-avatar"><img src="assets/logo-big-daddys.png" alt="Big Daddy's"></span>
+                <span class="sidebar-item__label">Big Daddy's</span>
               </div>
             </div>
-            <div class="sidebar-item sidebar-item--nested">
+            <div class="sidebar-item sidebar-item--nested" data-brand="Farmstand">
               <div class="sidebar-item__container">
-                <span class="sidebar-item__label">PT's Premium Burgers & Sandwiches</span>
+                <span class="sidebar-brand-avatar" style="background:#b1e5bf">F</span>
+                <span class="sidebar-item__label">Farmstand</span>
               </div>
             </div>
-            <div class="sidebar-item sidebar-item--nested">
+            <div class="sidebar-item sidebar-item--nested" data-brand="Fatty's Teriyaki">
               <div class="sidebar-item__container">
-                <span class="sidebar-item__label">Saladbox</span>
+                <span class="sidebar-brand-avatar"><img src="assets/logo-fattys-teriyaki.png" alt="Fatty's Teriyaki"></span>
+                <span class="sidebar-item__label">Fatty's Teriyaki</span>
               </div>
+            </div>
+            <div class="sidebar-viewall">
+              <button class="sidebar-viewall__btn" id="view-all-brands-btn">View all brands (129)</button>
             </div>
           </div>
 
-          <!-- Other nav items -->
+          <div class="sidebar-divider"></div>
+
+          <!-- ── Group 2: Content tools ─────────────────────────── -->
           <div class="sidebar-item">
-            <div class="sidebar-item__container">
+            <div class="sidebar-item__container" title="Menu hours">
+              <span class="material-symbols-outlined sidebar-item__icon">schedule</span>
               <span class="sidebar-item__label">Menu hours</span>
             </div>
           </div>
           <div class="sidebar-item">
-            <div class="sidebar-item__container">
-              <span class="sidebar-item__label">Photos</span>
+            <div class="sidebar-item__container" title="Photo library">
+              <span class="material-symbols-outlined sidebar-item__icon">photo_library</span>
+              <span class="sidebar-item__label">Photo library</span>
             </div>
           </div>
           <div class="sidebar-item">
-            <div class="sidebar-item__container">
+            <div class="sidebar-item__container" title="SKU library">
+              <span class="material-symbols-outlined sidebar-item__icon">grid_on</span>
               <span class="sidebar-item__label">SKU library</span>
             </div>
           </div>
+
+          <div class="sidebar-divider"></div>
+
+          <!-- ── Group 3: Activity ──────────────────────────────── -->
           <div class="sidebar-item">
-            <div class="sidebar-item__container">
+            <div class="sidebar-item__container" title="Activity log">
+              <span class="material-symbols-outlined sidebar-item__icon">monitoring</span>
+              <span class="sidebar-item__label">Activity log</span>
+            </div>
+          </div>
+          <div class="sidebar-item">
+            <div class="sidebar-item__container" title="Edit history">
+              <span class="material-symbols-outlined sidebar-item__icon">history</span>
+              <span class="sidebar-item__label">Edit history</span>
+            </div>
+          </div>
+
+          <div class="sidebar-divider"></div>
+
+          <!-- ── Group 4: Rules & archive ───────────────────────── -->
+          <div class="sidebar-item">
+            <div class="sidebar-item__container" title="Pricing rules">
+              <span class="material-symbols-outlined sidebar-item__icon">sell</span>
               <span class="sidebar-item__label">Pricing rules</span>
             </div>
           </div>
           <div class="sidebar-item">
-            <div class="sidebar-item__container">
-              <span class="sidebar-item__label">Tax rates</span>
+            <div class="sidebar-item__container" title="Tax rules">
+              <span class="material-symbols-outlined sidebar-item__icon">receipt_long</span>
+              <span class="sidebar-item__label">Tax rules</span>
             </div>
           </div>
-          <div class="sidebar-item sidebar-item--bottom">
-            <div class="sidebar-item__container">
-              <span class="sidebar-item__label">Location settings</span>
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-item">
+            <div class="sidebar-item__container" title="Archived menus">
+              <span class="material-symbols-outlined sidebar-item__icon">inventory_2</span>
+              <span class="sidebar-item__label">Archived menus</span>
             </div>
           </div>
+
         </nav>
       </aside>
 
@@ -122,11 +163,6 @@
           <!-- TEMPLATE: Page Header -->
           <div class="page-header">
             <div class="page-header__left">
-              <nav class="breadcrumb" id="pageBreadcrumb">
-                <span class="breadcrumb__item">Menus</span>
-                <span class="breadcrumb__sep">›</span>
-                <span class="breadcrumb__item breadcrumb__item--current" id="breadcrumbCurrent">Breakfast Beauties menus</span>
-              </nav>
               <div class="page-header__title-row">
                 <h1 class="page-header__title" id="pageHeaderTitle">Breakfast Beauties menus</h1>
                 <div class="status-badge status-badge--info">
@@ -141,7 +177,7 @@
                 <button class="btn btn--secondary">
                   <span>Edit price in excel</span>
                   <span class="btn__icon btn__icon--trailing">
-                    <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
                   </span>
                 </button>
                 <button class="btn btn--secondary">
@@ -197,7 +233,7 @@
         <!-- TEMPLATE: Info Banner -->
         <div class="info-banner">
           <div class="info-banner__illustration">
-            <img src="assets/menu icon.png" alt="Menu items illustration">
+            <img src="assets/illus-add-menus.png" alt="Menu items illustration">
           </div>
           <div class="info-banner__content">
             <div class="info-banner__text">
@@ -226,25 +262,25 @@
             <button class="filter-btn">
               <span>Locations</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
             <button class="filter-btn">
               <span>Station profiles</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
             <button class="filter-btn">
               <span>Channels</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
             <button class="filter-btn">
               <span>Availability</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
           </div>
@@ -1264,7 +1300,7 @@
         <!-- Info Banner -->
         <div class="info-banner">
           <div class="info-banner__illustration">
-            <img src="assets/menu icon.png" alt="Menus illustration">
+            <img src="assets/illus-edit-menu.svg" alt="Menus illustration">
           </div>
           <div class="info-banner__content">
             <div class="info-banner__text">
@@ -1287,13 +1323,13 @@
             <button class="filter-btn">
               <span>Locations</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
             <button class="filter-btn">
               <span>Channels</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
           </div>
@@ -1411,7 +1447,7 @@
         <!-- Info Banner -->
         <div class="info-banner">
           <div class="info-banner__illustration">
-            <img src="assets/menu icon.png" alt="Modifier items illustration">
+            <img src="assets/illus-add-menus.png" alt="Modifier items illustration">
           </div>
           <div class="info-banner__content">
             <div class="info-banner__text">
@@ -1434,25 +1470,25 @@
             <button class="filter-btn">
               <span>Modifier groups</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
             <button class="filter-btn">
               <span>Locations</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
             <button class="filter-btn">
               <span>Station profiles</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
             <button class="filter-btn">
               <span>Channels</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
           </div>
@@ -1862,7 +1898,7 @@
         <!-- Info Banner -->
         <div class="info-banner">
           <div class="info-banner__illustration">
-            <img src="assets/menu icon.png" alt="Categories illustration">
+            <img src="assets/illus-edit-menu.svg" alt="Categories illustration">
           </div>
           <div class="info-banner__content">
             <div class="info-banner__text">
@@ -1885,19 +1921,19 @@
             <button class="filter-btn">
               <span>Menus</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
             <button class="filter-btn">
               <span>Locations</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
             <button class="filter-btn">
               <span>Channels</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
           </div>
@@ -2065,7 +2101,7 @@
         <!-- Info Banner -->
         <div class="info-banner">
           <div class="info-banner__illustration">
-            <img src="assets/menu icon.png" alt="Modifier groups illustration">
+            <img src="assets/illus-add-menus.png" alt="Modifier groups illustration">
           </div>
           <div class="info-banner__content">
             <div class="info-banner__text">
@@ -2088,19 +2124,19 @@
             <button class="filter-btn">
               <span>Modifier group type</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
             <button class="filter-btn">
               <span>Locations</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
             <button class="filter-btn">
               <span>Channels</span>
               <span class="filter-btn__arrow">
-                <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
               </span>
             </button>
           </div>
@@ -2306,7 +2342,7 @@
           <!-- Info Banner -->
           <div class="info-banner">
             <div class="info-banner__illustration">
-              <img src="assets/menu icon.png" alt="SKU library illustration">
+              <img src="assets/illus-edit-menu.svg" alt="SKU library illustration">
             </div>
             <div class="info-banner__content">
               <div class="info-banner__text">
@@ -2336,13 +2372,13 @@
               <button class="filter-btn">
                 <span>Brand</span>
                 <span class="filter-btn__arrow">
-                  <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                  <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
                 </span>
               </button>
               <button class="filter-btn">
                 <span>Locations</span>
                 <span class="filter-btn__arrow">
-                  <i data-lucide="chevron-down" class="lucide-icon" style="width:14px;height:14px"></i>
+                  <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
                 </span>
               </button>
             </div>
@@ -3872,7 +3908,7 @@
                     <div class="multiselect__pills">
                       <span class="multiselect__placeholder">Select</span>
                     </div>
-                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                    <i data-lucide="arrow-drop-down" class="lucide-icon multiselect__chevron" style="width:20px;height:20px;color:var(--color-text-weak)"></i>
                   </div>
                   <div class="multiselect__dropdown">
                     <div class="multiselect__search-wrap">
@@ -3909,7 +3945,7 @@
                     <div class="multiselect__pills">
                       <span class="multiselect__placeholder">Select</span>
                     </div>
-                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                    <i data-lucide="arrow-drop-down" class="lucide-icon multiselect__chevron" style="width:20px;height:20px;color:var(--color-text-weak)"></i>
                   </div>
                   <div class="multiselect__dropdown">
                     <div class="multiselect__search-wrap">
@@ -3937,7 +3973,7 @@
                     <div class="multiselect__pills">
                       <span class="multiselect__placeholder">Select</span>
                     </div>
-                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                    <i data-lucide="arrow-drop-down" class="lucide-icon multiselect__chevron" style="width:20px;height:20px;color:var(--color-text-weak)"></i>
                   </div>
                   <div class="multiselect__dropdown">
                     <div class="multiselect__search-wrap">
@@ -3965,6 +4001,7 @@
           <h3 class="preview-header__title">Preview</h3>
           <div class="preview-header__nav">
             <button class="preview-header__nav-btn"><i data-lucide="chevron-left" class="lucide-icon" style="width:16px;height:16px"></i></button>
+            <span class="preview-header__nav-count">1 of 86</span>
             <button class="preview-header__nav-btn"><i data-lucide="chevron-right" class="lucide-icon" style="width:16px;height:16px"></i></button>
           </div>
         </div>
@@ -3987,7 +4024,7 @@
                 <div class="preview-card__section-title">Allergens</div>
                 <div class="preview-card__section-subtitle">Allergens</div>
               </div>
-              <i data-lucide="chevron-down" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+              <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px;color:var(--color-text-weak)"></i>
             </div>
           </div>
           <!-- Footer -->
@@ -3998,10 +4035,6 @@
               <button class="preview-card__qty-btn"><i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i></button>
             </div>
             <button class="preview-card__add-to-cart" id="preview-add-to-cart">Add to cart &middot; $00.00</button>
-          </div>
-          <div class="preview-card__dots">
-            <div class="preview-card__dot preview-card__dot--active"></div>
-            <div class="preview-card__dot"></div>
           </div>
         </div>
       </div>
@@ -4373,7 +4406,7 @@
                     <div class="multiselect__pills">
                       <span class="multiselect__placeholder">Select</span>
                     </div>
-                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                    <i data-lucide="arrow-drop-down" class="lucide-icon multiselect__chevron" style="width:20px;height:20px;color:var(--color-text-weak)"></i>
                   </div>
                   <div class="multiselect__dropdown">
                     <div class="multiselect__search-wrap">
@@ -4410,7 +4443,7 @@
                     <div class="multiselect__pills">
                       <span class="multiselect__placeholder">Select</span>
                     </div>
-                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                    <i data-lucide="arrow-drop-down" class="lucide-icon multiselect__chevron" style="width:20px;height:20px;color:var(--color-text-weak)"></i>
                   </div>
                   <div class="multiselect__dropdown">
                     <div class="multiselect__search-wrap">
@@ -4438,7 +4471,7 @@
                     <div class="multiselect__pills">
                       <span class="multiselect__placeholder">Select</span>
                     </div>
-                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                    <i data-lucide="arrow-drop-down" class="lucide-icon multiselect__chevron" style="width:20px;height:20px;color:var(--color-text-weak)"></i>
                   </div>
                   <div class="multiselect__dropdown">
                     <div class="multiselect__search-wrap">
@@ -4584,7 +4617,7 @@
                     <div class="multiselect__pills">
                       <span class="multiselect__placeholder">Select menus</span>
                     </div>
-                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                    <i data-lucide="arrow-drop-down" class="lucide-icon multiselect__chevron" style="width:20px;height:20px;color:var(--color-text-weak)"></i>
                   </div>
                   <div class="multiselect__dropdown">
                     <div class="multiselect__search-wrap">
@@ -4621,7 +4654,7 @@
                     <div class="multiselect__pills">
                       <span class="multiselect__placeholder">Select</span>
                     </div>
-                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                    <i data-lucide="arrow-drop-down" class="lucide-icon multiselect__chevron" style="width:20px;height:20px;color:var(--color-text-weak)"></i>
                   </div>
                   <div class="multiselect__dropdown">
                     <div class="multiselect__search-wrap">
@@ -4649,7 +4682,7 @@
                     <div class="multiselect__pills">
                       <span class="multiselect__placeholder">Select</span>
                     </div>
-                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                    <i data-lucide="arrow-drop-down" class="lucide-icon multiselect__chevron" style="width:20px;height:20px;color:var(--color-text-weak)"></i>
                   </div>
                   <div class="multiselect__dropdown">
                     <div class="multiselect__search-wrap">
@@ -5102,7 +5135,7 @@
                     <div class="multiselect__pills">
                       <span class="multiselect__placeholder">Select menu items</span>
                     </div>
-                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                    <i data-lucide="arrow-drop-down" class="lucide-icon multiselect__chevron" style="width:20px;height:20px;color:var(--color-text-weak)"></i>
                   </div>
                   <div class="multiselect__dropdown">
                     <div class="multiselect__search-wrap">
@@ -5139,7 +5172,7 @@
                     <div class="multiselect__pills">
                       <span class="multiselect__placeholder">Select</span>
                     </div>
-                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                    <i data-lucide="arrow-drop-down" class="lucide-icon multiselect__chevron" style="width:20px;height:20px;color:var(--color-text-weak)"></i>
                   </div>
                   <div class="multiselect__dropdown">
                     <div class="multiselect__search-wrap">
@@ -5167,7 +5200,7 @@
                     <div class="multiselect__pills">
                       <span class="multiselect__placeholder">Select</span>
                     </div>
-                    <i data-lucide="chevron-down" class="lucide-icon multiselect__chevron" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
+                    <i data-lucide="arrow-drop-down" class="lucide-icon multiselect__chevron" style="width:20px;height:20px;color:var(--color-text-weak)"></i>
                   </div>
                   <div class="multiselect__dropdown">
                     <div class="multiselect__search-wrap">
@@ -5194,8 +5227,8 @@
         <div class="preview-header">
           <h3 class="preview-header__title">Preview</h3>
           <div class="preview-header__nav">
-            <span style="font-size:13px;color:var(--color-text-weak)">3 of 86</span>
             <button class="preview-header__nav-btn"><i data-lucide="chevron-left" class="lucide-icon" style="width:16px;height:16px"></i></button>
+            <span class="preview-header__nav-count">3 of 86</span>
             <button class="preview-header__nav-btn"><i data-lucide="chevron-right" class="lucide-icon" style="width:16px;height:16px"></i></button>
           </div>
         </div>
@@ -5214,11 +5247,11 @@
             <div class="preview-card__section-header">
               <div>
                 <div class="preview-card__section-title" id="mg-preview-title">Side Choice</div>
-                <div class="preview-card__section-subtitle">Select up to 3</div>
+                <div class="preview-card__section-subtitle" id="mg-preview-subtitle">Select up to 3</div>
               </div>
               <i data-lucide="chevron-up" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i>
             </div>
-            <div class="preview-card__section-options">
+            <div class="preview-card__section-options" id="mg-preview-options">
               <label class="preview-card__option">
                 <input type="checkbox" class="preview-card__option-cb">
                 <span class="preview-card__option-name">French Fries</span>
@@ -5244,10 +5277,6 @@
               <button class="preview-card__qty-btn"><i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i></button>
             </div>
             <button class="preview-card__add-to-cart">Add to cart &middot; $17.49</button>
-          </div>
-          <div class="preview-card__dots">
-            <div class="preview-card__dot preview-card__dot--active"></div>
-            <div class="preview-card__dot"></div>
           </div>
         </div>
       </div>
@@ -5581,7 +5610,7 @@
   </div><!-- /edit-menu-takeover -->
 
   <!-- JavaScript -->
-  <script src="js/sidebar.js?v=4"></script>
+  <script src="js/sidebar.js?v=6"></script>
   <script src="js/tabs.js?v=2"></script>
   <script src="js/table.js?v=2"></script>
   <script src="js/filters.js"></script>
@@ -5599,7 +5628,7 @@
   <script src="js/add-item.js?v=23"></script>
   <script src="js/add-modifier-item.js?v=10"></script>
   <script src="js/add-category.js?v=7"></script>
-  <script src="js/add-modifier-group.js?v=9"></script>
+  <script src="js/add-modifier-group.js?v=10"></script>
   <script src="js/multiselect.js?v=8"></script>
   <script src="js/edit-menu.js?v=10"></script>
   <script>
@@ -6073,6 +6102,52 @@
 
   <!-- Toast container -->
   <div id="toast-container"></div>
+
+  <!-- ===== VIEW ALL BRANDS MODAL ===== -->
+  <div class="brands-modal-overlay" id="brands-modal-overlay">
+    <div class="brands-modal">
+      <div class="brands-modal__header">
+        <span class="brands-modal__title">All brands</span>
+        <button class="brands-modal__close" id="brands-modal-close">
+          <span class="material-symbols-outlined" style="font-size:20px">close</span>
+        </button>
+      </div>
+
+      <div class="brands-modal__filters">
+        <button class="btn btn--secondary btn--sm brands-filter-btn">
+          <span>Locations</span>
+          <span class="material-symbols-outlined" style="font-size:20px">expand_more</span>
+        </button>
+        <button class="btn btn--secondary btn--sm brands-filter-btn">
+          <span>Publish status</span>
+          <span class="material-symbols-outlined" style="font-size:20px">expand_more</span>
+        </button>
+        <button class="btn btn--secondary btn--sm brands-filter-btn">
+          <span>Menu sync status</span>
+          <span class="material-symbols-outlined" style="font-size:20px">expand_more</span>
+        </button>
+        <button class="btn btn--secondary btn--sm brands-filter-btn">
+          <span>+3 more</span>
+          <span class="material-symbols-outlined" style="font-size:20px">expand_more</span>
+        </button>
+        <div class="brands-modal__count-search">
+          <span class="brands-modal__count">129 brands</span>
+          <div class="brands-modal__search">
+            <span class="material-symbols-outlined" style="font-size:16px;color:var(--color-text-weak)">search</span>
+            <input type="text" class="brands-modal__search-input" placeholder="Search brands" id="brands-search-input">
+          </div>
+        </div>
+      </div>
+
+      <div class="brands-modal__body">
+        <table class="brands-modal__table">
+          <tbody id="brands-modal-tbody">
+            <!-- rows injected by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

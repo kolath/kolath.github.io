@@ -23,7 +23,7 @@
 .global-nav--image {
   padding: 0;
   height: auto;
-  border-bottom: none;
+  border-bottom: 1px solid var(--color-divider-weak);
 }
 
 .global-nav__img {
@@ -260,35 +260,71 @@
   width: var(--sidebar-width);
   flex-shrink: 0;
   background: white;
+  border-right: 1px solid var(--color-divider-weak);
   padding-bottom: 24px;
-  padding-right: 8px;
   overflow-y: auto;
+  transition: width 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Collapsed state */
+.sidebar--collapsed {
+  width: 64px;
+}
+
+/* Toggle row */
+.sidebar__toggle-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 8px 4px;
+  flex-shrink: 0;
+}
+
+.sidebar__toggle-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-large);
+  color: var(--color-text-standard);
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.sidebar__toggle-btn:hover {
+  background: var(--color-bg-alpha-weak);
 }
 
 .sidebar__nav {
   display: flex;
   flex-direction: column;
-  padding-left: 24px;
-  padding-top: 24px;
-  min-height: calc(100% - 24px);
+  padding: 8px 8px 8px 8px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
+.sidebar--collapsed .sidebar__nav {
+  padding: 8px;
+  align-items: center;
+}
 
 /* Sidebar nav items */
 .sidebar-item {
   display: flex;
   flex-direction: column;
-  padding: 2px 0;
-  border-radius: var(--radius-large);
   width: 100%;
+  padding: 2px 0; /* CSDS Menu Item Container: 2px vertical */
 }
 
 .sidebar-item__container {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 12px; /* CSDS Menu Item Gap: 12px */
   height: 40px;
-  padding: 6px 8px;
+  padding: 0 12px; /* CSDS Menu Item Horizontal Padding: 12px */
   border-radius: var(--radius-large);
   cursor: pointer;
   width: 100%;
@@ -302,52 +338,423 @@
   background: var(--color-secondary-selected-overlay);
 }
 
-.sidebar-item__label {
-  flex: 1;
-  font-weight: var(--fw-medium);
-  font-size: var(--text-body-medium);
-  line-height: var(--lh-body-medium);
-  color: var(--color-text-strong);
-  letter-spacing: -0.0288px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.sidebar-item__arrow {
+/* Icon — works for both Lucide <i> and Material Symbols <span> */
+.sidebar-item__icon {
+  flex-shrink: 0;
+  color: var(--color-text-standard);
+  font-size: 24px;
   width: 24px;
   height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+
+.sidebar-item__label {
+  flex: 1;
+  font-weight: var(--fw-medium);
+  font-size: var(--text-body-small);
+  line-height: var(--lh-body-small);
+  color: var(--color-text-strong); /* text/Strong: #141414 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Selected item: icon uses text/Strong */
+.sidebar-item--selected .sidebar-item__icon {
+  color: var(--color-text-strong);
+}
+
+.sidebar-item__chevron {
+  flex-shrink: 0;
+  color: var(--color-text-standard);
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+  transition: transform 0.2s;
+}
+
+.sidebar-children--collapsed .sidebar-item__chevron {
+  transform: rotate(180deg);
+}
+
+/* Sidebar section divider */
+.sidebar-divider {
+  height: 1px;
+  background: var(--color-divider-weak);
+  margin: 4px 8px;
   flex-shrink: 0;
 }
 
-.sidebar-item__arrow img {
-  width: 100%;
-  height: 100%;
+/* Keep group dividers visible and full-width when collapsed */
+.sidebar--collapsed .sidebar-divider {
+  align-self: stretch;
+  margin: 4px 0;
 }
 
-/* Nested sidebar items */
+/* Divider between toggle row and nav */
+.sidebar-nav-divider {
+  height: 1px;
+  background: var(--color-divider-weak);
+  margin: 4px 0;
+  flex-shrink: 0;
+}
+
+/* Toggle button icon */
+.sidebar__toggle-icon {
+  font-size: 24px;
+  color: var(--color-text-standard);
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+  transition: transform 0.2s;
+}
+
+/* Flip toggle icon when sidebar is collapsed */
+.sidebar--collapsed .sidebar__toggle-icon {
+  transform: scaleX(-1);
+}
+
+/* Collapsed sidebar — hide text labels, chevrons, viewall, children */
+.sidebar--collapsed .sidebar-item__label,
+.sidebar--collapsed .sidebar-item__chevron,
+.sidebar--collapsed .sidebar-viewall,
+.sidebar--collapsed .sidebar-children {
+  display: none;
+}
+
+.sidebar--collapsed .sidebar-item__container {
+  width: 100%;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Brand avatar — system/100 bg, text/standard color, medium weight */
+.sidebar-brand-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  color: var(--color-text-standard);
+  background: var(--color-bg-weak);
+  letter-spacing: 0;
+  overflow: hidden;
+}
+
+.sidebar-brand-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Nested sidebar items — 28px indent */
 .sidebar-item--nested {
-  padding-left: 20px;
+  padding-left: 28px;
+}
+
+.sidebar-item--nested .sidebar-item__container {
+  gap: 8px;
+}
+
+/* View all brands link */
+.sidebar-viewall {
+  padding: 2px 8px;
+}
+
+.sidebar-viewall__btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  font-size: var(--text-body-small);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-strong);
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: left;
+  border-radius: var(--radius-large);
+}
+
+.sidebar-viewall__btn:hover {
+  background: var(--color-bg-alpha-weak);
 }
 
 .sidebar-children {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: max-height 0.2s ease;
+  transition: max-height 0.3s ease;
+  max-height: 800px;
+  flex-shrink: 0;
 }
 
 .sidebar-children--collapsed {
   max-height: 0;
 }
 
+/* ===== VIEW ALL BRANDS MODAL ===== */
+.brands-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(20,20,20,0.5);
+  z-index: 1200;
+  align-items: center;
+  justify-content: center;
+}
+
+.brands-modal-overlay--visible {
+  display: flex;
+}
+
+.brands-modal {
+  width: 960px;
+  max-height: 80vh;
+  background: var(--color-bg-standard);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.brands-modal__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--color-divider-weak);
+  flex-shrink: 0;
+}
+
+.brands-modal__close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-large);
+  color: var(--color-text-standard);
+  transition: background 0.15s;
+}
+
+.brands-modal__close:hover {
+  background: var(--color-bg-alpha-weak);
+}
+
+.brands-modal__title {
+  flex: 1;
+  font-weight: var(--fw-medium);
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--color-text-strong);
+}
+
+.brands-modal__filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--color-divider-weak);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.brands-filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.brands-modal__count-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.brands-modal__count {
+  font-size: var(--text-body-small);
+  color: var(--color-text-weak);
+  white-space: nowrap;
+}
+
+.brands-modal__search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--color-secondary-outline);
+  border-radius: var(--radius-large);
+  background: var(--color-bg-standard);
+  min-width: 180px;
+}
+
+.brands-modal__search-input {
+  flex: 1;
+  font-size: var(--text-body-small);
+  color: var(--color-text-standard);
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.brands-modal__body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.brands-modal__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.brands-modal__row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px;
+  height: 56px;
+  border-bottom: 1px solid var(--color-border-standard);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.brands-modal__row:hover {
+  background: var(--color-bg-alpha-weak);
+}
+
+.brands-modal__brand-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: var(--fw-medium);
+  color: var(--color-text-standard);
+  overflow: hidden;
+}
+
+.brands-modal__brand-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.brands-modal__brand-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.brands-modal__brand-name {
+  font-size: var(--text-body-small);
+  font-weight: 600;
+  color: var(--color-text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.brands-modal__brand-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-body-small);
+  font-weight: 600;
+  color: rgb(61, 61, 61);
+  background: rgba(61, 61, 61, 0.10);
+  border-radius: var(--radius-medium);
+  padding: 4px 6px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* ── Publish status badge (CSDS StatusBadge, emphasis: low, size: small) */
+/* Low emphasis = no background, icon + text in status color only */
+.bm-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  font-size: var(--text-body-small);  /* 14px */
+  line-height: var(--lh-body-medium); /* 18px */
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  width: 168px;
+  background: none;
+}
+.bm-status .ms {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  flex-shrink: 0;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+}
+/* Exact colors from CSDS StatusBadge component */
+.bm-status--success { color: rgb(42, 126, 61); }
+.bm-status--warning { color: rgb(134, 105, 30); }
+.bm-status--info    { color: rgb(18, 88, 210); }
+.bm-status--neutral { color: rgb(61, 61, 61); }
+
+/* ── Sync status column (icon only, emphasis: medium) */
+.bm-sync {
+  width: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bm-sync .ms {
+  font-size: 18px;
+  color: var(--color-text-weak);
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+}
+
+/* ── Meta columns (locations, channels) */
+.brands-modal__meta {
+  font-size: var(--text-body-small);
+  color: var(--color-text-strong);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  width: 88px;
+  text-align: right;
+}
+
+/* ── Arrow icon */
+.brands-modal__arrow {
+  font-size: 20px;
+  color: var(--color-text-standard);
+  flex-shrink: 0;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+}
+
 /* ===== PAGE CONTAINER ===== */
 .page-container {
   flex: 1;
-  padding: 0 var(--space-8) var(--space-8);
+  padding: 0 var(--space-6) var(--space-8);
   overflow-x: hidden;
   overflow-y: auto;
   min-width: 0;
@@ -357,4 +764,26 @@
 /* ===== RESPONSIVE PAGE HEADER ===== */
 @media (max-width: 600px) {
   .page-header__filters { display: none; }
+}
+
+/* ===== SIDEBAR COLLAPSED ICON TOOLTIPS ===== */
+.sidebar-tooltip {
+  position: fixed;
+  background: #141414;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 300;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity 0.12s ease;
+}
+
+.sidebar-tooltip--visible {
+  opacity: 1;
 }

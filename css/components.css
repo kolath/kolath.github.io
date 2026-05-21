@@ -22,7 +22,6 @@
   gap: 2px;
   flex: 1 1 auto;
   min-width: 0;
-  overflow: hidden;
 }
 
 .page-header__title-row {
@@ -63,10 +62,6 @@
   line-height: var(--lh-title-large);
   color: var(--color-text-strong);
   letter-spacing: -0.476px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
 }
 
 /* Status Badge */
@@ -209,11 +204,15 @@
 }
 
 .btn__icon--leading {
-  width: 12px;
+  width: 16px;
 }
 
 .btn__icon--trailing {
-  width: 12px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -4px; /* tuck arrow_drop_down flush to right edge */
 }
 
 /* ===== PILL TABS ===== */
@@ -405,11 +404,13 @@
 }
 
 .filter-btn__arrow {
-  width: 12px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  margin-right: -4px; /* tuck arrow_drop_down flush to right edge */
 }
 
 .filter-btn__arrow img {
@@ -629,9 +630,10 @@
 
 .data-table thead th {
   height: var(--table-header-height);
+  font-family: var(--font-body);
   font-weight: var(--fw-medium);
-  font-size: var(--text-body-small);
-  line-height: var(--lh-body-small);
+  font-size: var(--text-body-medium); /* 16px */
+  line-height: var(--lh-body-medium);
   color: var(--color-text-strong);
   letter-spacing: -0.0126px;
   border-bottom: 2px solid var(--color-divider-weak);
