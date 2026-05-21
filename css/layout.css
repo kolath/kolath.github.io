@@ -471,7 +471,7 @@
 
 /* View all brands link */
 .sidebar-viewall {
-  padding: 2px 8px;
+  padding: 2px 8px 2px 0;
 }
 
 .sidebar-viewall__btn {
@@ -479,7 +479,7 @@
   align-items: center;
   width: 100%;
   height: 40px;
-  padding: 0 12px;
+  padding: 0 12px 0 48px;
   font-size: var(--text-body-small);
   font-weight: var(--fw-medium);
   color: var(--color-text-strong);
