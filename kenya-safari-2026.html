@@ -1559,6 +1559,61 @@ body:not(.is-locked) .passcode-gate {
   font-size: 0.76rem;
 }
 
+.itinerary-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.itinerary-tab {
+  align-items: center;
+  background: rgba(255, 252, 247, 0.88);
+  border: 1.5px solid rgba(142, 109, 60, 0.22);
+  border-radius: 999px;
+  color: var(--earth-light);
+  cursor: pointer;
+  display: flex;
+  font-family: "Source Sans 3", Georgia, serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.itinerary-tab:hover {
+  background: rgba(246, 239, 227, 0.98);
+  border-color: rgba(142, 109, 60, 0.38);
+}
+
+.itinerary-tab.active-hui {
+  background: var(--olive-pale);
+  border-color: var(--olive);
+  box-shadow: 0 2px 8px rgba(103, 113, 79, 0.15);
+  color: var(--olive);
+}
+
+.itinerary-tab.active-di {
+  background: rgba(240, 230, 208, 0.92);
+  border-color: var(--savanna-dark);
+  box-shadow: 0 2px 8px rgba(142, 109, 60, 0.15);
+  color: var(--savanna-dark);
+}
+
+.itinerary-tab-dot {
+  border-radius: 50%;
+  flex-shrink: 0;
+  height: 9px;
+  width: 9px;
+}
+
+.tab-dot-hui { background: var(--olive); }
+.tab-dot-di { background: var(--savanna-dark); }
+
+.day-content[data-family-hide="true"] {
+  display: none;
+}
+
 .footer {
   color: var(--ink-muted);
   padding: 3rem 1.5rem 4rem;
@@ -1783,6 +1838,16 @@ body:not(.is-locked) .passcode-gate {
       <p class="section-label">Day by Day</p>
       <h2 class="section-title">The Journey</h2>
       <p class="section-intro">Transit days stay split until both families are together in Nairobi, then the shared safari route takes over. Location cards link out to Google Maps so each stop is easier to picture and open.</p>
+      <div class="itinerary-tabs" role="tablist" aria-label="Family view">
+        <button class="itinerary-tab active-hui" id="tab-hui" role="tab" aria-selected="true" onclick="switchItineraryTab('hui')">
+          <span class="itinerary-tab-dot tab-dot-hui"></span>
+          Hui Family
+        </button>
+        <button class="itinerary-tab" id="tab-di" role="tab" aria-selected="false" onclick="switchItineraryTab('di')">
+          <span class="itinerary-tab-dot tab-dot-di"></span>
+          Di Family
+        </button>
+      </div>
     </div>
 
     <div class="itinerary-list">
@@ -3374,6 +3439,26 @@ window.addEventListener("scroll", () => {
   });
 });
 
+function switchItineraryTab(family) {
+  const tabHui = document.getElementById("tab-hui");
+  const tabDi = document.getElementById("tab-di");
+
+  tabHui.classList.toggle("active-hui", family === "hui");
+  tabDi.classList.toggle("active-di", family === "di");
+  tabHui.setAttribute("aria-selected", family === "hui");
+  tabDi.setAttribute("aria-selected", family === "di");
+
+  document.querySelectorAll(".family-day-stack .day-content").forEach((block) => {
+    const label = block.querySelector(".family-day-label");
+    if (!label) return;
+    const isHui = label.classList.contains("hui");
+    const isDi = label.classList.contains("di");
+    const hide = (family === "hui" && isDi) || (family === "di" && isHui);
+    block.dataset.familyHide = hide ? "true" : "false";
+  });
+}
+
+switchItineraryTab("hui");
 applyCurrentTimelineDate();
 initializeChecklistSync();
 loadPasscodeGate();
