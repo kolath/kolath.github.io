@@ -6,31 +6,93 @@
   overflow: hidden;
 }
 
-/* ===== GLOBAL NAV BAR ===== */
+/* ===== GLOBAL NAV BAR — Figma 10455:363420 (1440×64) ===== */
 .global-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: var(--nav-height);
   padding: 0 20px;
-  background: var(--color-bg-standard);
-  border-bottom: 1px solid var(--color-divider-weak);
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
   flex-shrink: 0;
   z-index: 10;
-  overflow: hidden;
 }
 
-.global-nav--image {
-  padding: 0;
-  height: auto;
-  border-bottom: 1px solid var(--color-divider-weak);
+.gnav__left { display: flex; align-items: center; }
+.gnav__home {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 8px;
+  border-radius: 8px;
+  text-decoration: none;
 }
+.gnav__mark { width: 22px; height: 22px; display: block; flex-shrink: 0; }
+.gnav__wordmark { width: 56px; height: 18px; display: block; flex-shrink: 0; }
 
-.global-nav__img {
-  width: 100%;
-  height: var(--nav-height);
-  object-fit: cover;
-  display: block;
+.gnav__right { display: flex; align-items: center; gap: 8px; }
+
+/* 40px icon buttons */
+.gnav__icon-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #141414;
+  transition: background 0.12s;
+}
+.gnav__icon-btn:hover { background: rgba(0,0,0,0.06); }
+
+/* Critical "2 issues" badge — red bg, 40px tall, 16px padding */
+.gnav__issues {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(218,37,47,0.14);
+  color: #141414;
+  font: 500 14px/16px 'Inter', sans-serif;
+  letter-spacing: -0.0126px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s;
+}
+.gnav__issues:hover { background: rgba(218,37,47,0.20); }
+
+/* Bell icon wrapper with small dot badge */
+.gnav__issues-icon {
+  position: relative;
+  width: 16px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.gnav__issues-icon .material-symbols-outlined {
+  font-size: 20px;
+  color: #141414;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.gnav__issues-dot {
+  position: absolute;
+  top: 1px;
+  right: -2px;
+  width: 5px;
+  height: 5px;
+  background: #DA252F;
+  border-radius: 50%;
+  border: 1.5px solid rgba(218,37,47,0.14);
 }
 
 .global-nav__left {
@@ -273,12 +335,112 @@
   width: 64px;
 }
 
-/* Toggle row */
-.sidebar__toggle-row {
+/* App switcher and collapse row */
+.sidebar__top-row {
   display: flex;
   align-items: center;
-  padding: 8px 8px 4px;
+  gap: 4px;
+  padding: 8px 12px 10px;
   flex-shrink: 0;
+}
+
+.sidebar-app-switcher {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  height: 40px;
+  flex: 0 0 auto;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--radius-large);
+  background: transparent;
+  color: var(--color-text-strong);
+  cursor: pointer;
+  font: inherit;
+}
+
+.sidebar-app-switcher:hover,
+.sidebar__collapse-btn:hover {
+  background: var(--color-bg-alpha-weak);
+}
+
+.sidebar-app-switcher__icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #f98a53;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.sidebar-app-switcher__icon img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.sidebar-app-switcher__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: var(--fw-medium);
+  font-size: var(--text-body-small);
+  line-height: var(--lh-body-small);
+  color: var(--color-text-strong);
+}
+
+.sidebar-app-switcher__chevron {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  color: var(--color-text-standard);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+}
+
+.sidebar__collapse-btn {
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: var(--radius-large);
+  background: transparent;
+  color: var(--color-text-standard);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Collapsed: keep the app icon and collapse affordance in the icon rail */
+.sidebar--collapsed .sidebar__top-row {
+  flex-direction: column;
+  padding: 8px 8px 10px;
+}
+
+.sidebar--collapsed .sidebar-app-switcher {
+  width: 100%;
+  flex: 0 0 40px;
+  justify-content: center;
+  padding: 0;
+}
+
+.sidebar--collapsed .sidebar__collapse-btn {
+  display: none;
+}
+
+.sidebar--collapsed .sidebar-app-switcher__label,
+.sidebar--collapsed .sidebar-app-switcher__chevron {
+  display: none;
 }
 
 .sidebar__toggle-btn {
@@ -363,6 +525,20 @@
   text-overflow: ellipsis;
 }
 
+.sidebar-item__status-dot {
+  display: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+body.has-ongoing-publish .sidebar-item__status-dot {
+  display: block;
+}
+
 /* Selected item: icon uses text/Strong */
 .sidebar-item--selected .sidebar-item__icon {
   color: var(--color-text-strong);
@@ -434,6 +610,14 @@
   width: 100%;
   justify-content: center;
   padding: 0;
+  position: relative;
+}
+
+.sidebar--collapsed .sidebar-item__status-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  margin-left: 0;
 }
 
 /* Brand avatar — system/100 bg, text/standard color, medium weight */

@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand menus — Otter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&family=Inter+Display:wght@500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css?v=2">
+  <link rel="stylesheet" href="css/reset.css?v=106">
+  <link rel="stylesheet" href="css/layout.css?v=22">
+  <link rel="stylesheet" href="css/components.css?v=21">
+  <style>
+    /* ── Page header ── */
+    .bm-page-header {
+      display: flex;
+      align-items: center;
+      padding: 24px 0 16px;
+      gap: 8px;
+    }
+    .bm-page-header__title {
+      font-family: var(--font-heading);
+      font-size: 26px;
+      line-height: 28px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      color: var(--color-text-strong);
+      flex: 1;
+    }
+    .bm-page-header__actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: var(--radius-large);
+      font: 500 14px/16px 'Inter', sans-serif;
+      letter-spacing: -0.013px;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .btn--primary {
+      background: var(--color-primary);
+      color: #fff;
+      border: none;
+      transition: background 0.12s;
+    }
+    .btn--primary:hover { background: var(--color-primary-hover); }
+    .btn--ghost {
+      background: transparent;
+      border: 1px solid var(--color-secondary-outline);
+      color: var(--color-text-strong);
+      transition: background 0.1s;
+    }
+    .btn--ghost:hover { background: var(--color-bg-alpha-weak); }
+    .btn .btn-icon {
+      font-size: 16px;
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+
+    /* ── Filter bar ── */
+    .bm-filters {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 12px;
+    }
+    .bm-filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      height: 32px;
+      padding: 0 10px;
+      border: 1px solid var(--color-secondary-outline);
+      border-radius: var(--radius-large);
+      background: white;
+      font: 500 14px/16px 'Inter', sans-serif;
+      color: var(--color-text-strong);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.1s;
+    }
+    .bm-filter-btn:hover { background: var(--color-bg-alpha-weak); }
+    .bm-filter-btn .btn-icon {
+      font-size: 18px;
+      color: var(--color-text-standard);
+    }
+    .bm-filter-spacer { flex: 1; }
+    .bm-search {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      padding: 0 10px;
+      border: 1px solid var(--color-secondary-outline);
+      border-radius: var(--radius-large);
+      background: white;
+      min-width: 240px;
+    }
+    .bm-search .btn-icon { font-size: 16px; color: var(--color-text-standard); flex-shrink: 0; }
+    .bm-search input {
+      flex: 1;
+      border: none;
+      background: none;
+      outline: none;
+      font: 400 14px/16px 'Inter', sans-serif;
+      color: var(--color-text-strong);
+    }
+    .bm-search input::placeholder { color: var(--color-text-standard); }
+
+    /* ── Brand list ── */
+    .bm-brand-list { padding: 0 24px 40px 16px; }
+
+    /* Brand header row */
+    .bm-brand-row {
+      display: flex;
+      align-items: center;
+      height: 56px;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.1s;
+      border-radius: 6px;
+      margin: 0 -24px 0 -16px;
+      padding: 0 24px 0 16px;
+    }
+    .bm-brand-row:hover { background: var(--color-bg-alpha-weak); }
+
+    .bm-brand-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      background: var(--color-bg-weak);
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: 500 9px/1 'Inter', sans-serif;
+      color: var(--color-text-standard);
+    }
+    .bm-brand-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Brand name + Virtual Brand badge sit together, take remaining space */
+    .bm-brand-name-group {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+    }
+    .bm-brand-name {
+      font: 500 18px/20px 'Inter Display', sans-serif;
+      letter-spacing: -0.144px;
+      color: var(--color-text-strong);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .bm-virtual-badge {
+      display: inline-flex;
+      align-items: center;
+      height: 20px;
+      padding: 0 7px;
+      border-radius: var(--radius-medium);
+      background: rgba(0,0,0,0.07);
+      font: 500 11px/12px 'Inter', sans-serif;
+      color: var(--color-text-standard);
+      flex-shrink: 0;
+    }
+    .bm-brand-row__expand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .bm-menu-count {
+      font: 400 13px/16px 'Inter', sans-serif;
+      color: var(--color-text-standard);
+    }
+    .bm-chevron {
+      font-size: 20px;
+      color: var(--color-text-standard);
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      transition: transform 0.22s ease;
+      line-height: 1;
+    }
+
+    /* ── Expandable menu list ── */
+    .bm-menu-list {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .bm-brand-section[data-expanded="true"] .bm-menu-list {
+      max-height: 600px;
+      padding-bottom: 24px;
+    }
+
+    /* ── Menu row: name | status(168px) | sync(40px) | locations(88px) | actions ── */
+    .bm-menu-row {
+      display: flex;
+      align-items: center;
+      height: 56px;
+      padding-left: 32px;
+      border-top: 1px solid var(--color-divider-weak);
+      gap: 12px;
+      transition: background 0.1s;
+    }
+    .bm-menu-row:hover { background: var(--color-bg-alpha-weak); }
+
+    .bm-menu-name {
+      flex: 1;
+      font: 400 14px/18px 'Inter', sans-serif;
+      color: var(--color-text-strong);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+
+    /* Low-emphasis status colors (layout.css provides base styles for success/warning/info/neutral) */
+    .bm-status--danger    { color: #c5232b; }
+    .bm-status--publishing { color: rgb(18, 88, 210); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .bm-status--publishing .status-icon { animation: spin 1.2s linear infinite; }
+
+    /* Unpublished menu icon */
+    .bm-status--neutral .bm-unpublished-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      opacity: 0.55;
+    }
+
+    /* 2px divider below brand header when expanded (Figma border-b-2) */
+    .bm-brand-section[data-expanded="true"] .bm-brand-row {
+      border-bottom: 2px solid rgba(0,0,0,0.12);
+    }
+
+    /* ── Locations col (layout.css bm-sync is already 40px) ── */
+    .bm-locations {
+      font: 400 14px/18px 'Inter', sans-serif;
+      color: var(--color-text-strong);
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 2px;
+      text-decoration-color: rgba(0,0,0,0.25);
+      white-space: nowrap;
+      width: 88px;
+      text-align: right;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    /* Sync icon color: blue = actively syncing */
+    .bm-sync .sync-icon {
+      font-size: 18px;
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      color: rgb(42, 126, 61);
+    }
+
+    /* ── Row action buttons (always visible) ── */
+    .bm-row-actions {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding-right: 4px;
+      flex-shrink: 0;
+    }
+    .bm-icon-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: var(--radius-large);
+      background: transparent;
+      cursor: pointer;
+      color: var(--color-text-standard);
+      transition: background 0.1s;
+    }
+    .bm-icon-btn:hover { background: rgba(0,0,0,0.06); }
+    .bm-icon-btn .action-icon {
+      font-size: 18px;
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+
+    /* ── Filled icon helper ── */
+    .icon-filled {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+
+
+    /* ── Brand sections: border-top only; first has none ── */
+    .bm-filters { border-bottom: none; }
+    .bm-brand-section {
+      border-bottom: none;
+      border-top: 1px solid var(--color-divider-weak);
+    }
+    .bm-brand-section:first-child { border-top: none; }
+
+    /* ── Chevron: down collapsed, up expanded ── */
+    .bm-chevron { transform: rotate(0deg); }
+    .bm-brand-section[data-expanded="true"] .bm-chevron { transform: rotate(180deg); }
+  </style>
+</head>
+<body>
+  <div class="app">
+
+    <!-- ═══ GLOBAL NAV ═══ -->
+    <nav class="global-nav">
+      <div class="gnav__left">
+        <a class="gnav__home" href="index.html">
+          <img class="gnav__mark" src="assets/otter-mark.svg" alt="">
+          <img class="gnav__wordmark" src="assets/otter-wordmark.svg" alt="Otter">
+        </a>
+        <div class="app-switcher">
+          <div class="app-switcher__icon" style="background:transparent;overflow:visible">
+            <img src="assets/Icons/App Icons/Menus.svg" alt="" style="width:24px;height:24px">
+          </div>
+          <span class="app-switcher__label">Menus</span>
+          <span class="material-symbols-outlined" style="font-size:18px;color:var(--color-text-standard)">arrow_drop_down</span>
+        </div>
+        <div class="breadcrumbs">
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-link breadcrumb-link--current">Brand menus</span>
+        </div>
+      </div>
+      <div class="gnav__right">
+        <button class="gnav__icon-btn" aria-label="Search">
+          <span class="material-symbols-outlined" style="font-size:20px">search</span>
+        </button>
+        <button class="gnav__issues">
+          <img src="assets/Icons/System/Notification/Unread.svg" alt="" style="width:20px;height:20px;flex-shrink:0">
+          2 issues
+        </button>
+        <button class="gnav__icon-btn" aria-label="Profile">
+          <img src="assets/Icons/System/Profile.svg" alt="" style="width:20px;height:20px">
+        </button>
+      </div>
+    </nav>
+
+    <!-- ═══ APP BODY ═══ -->
+    <div class="app-body">
+
+      <!-- ═══ SIDEBAR ═══ -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar__toggle-row">
+          <div class="sidebar-item">
+            <div class="sidebar-item__container" id="sidebar-toggle">
+              <span class="material-symbols-outlined sidebar-item__icon sidebar__toggle-icon">left_panel_close</span>
+              <span class="sidebar-item__label">Collapse</span>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-nav-divider"></div>
+        <nav class="sidebar__nav">
+          <!-- Brand menus (expandable) -->
+          <div class="sidebar-item sidebar-item--selected sidebar-item--expandable">
+            <div class="sidebar-item__container" data-toggle="brand-menus">
+              <span class="material-symbols-outlined sidebar-item__icon">menu_book</span>
+              <span class="sidebar-item__label">Brand menus</span>
+              <span class="material-symbols-outlined sidebar-item__chevron">expand_less</span>
+            </div>
+            <div class="sidebar-children" id="brand-menus">
+              <div class="sidebar-item sidebar-item--nested" data-brand="Aloha Hibachi">
+                <div class="sidebar-item__container">
+                  <span class="sidebar-brand-avatar"><img src="assets/logo-aloha-hibachi.png" alt="AH" onerror="this.parentElement.textContent='AH'"></span>
+                  <span class="sidebar-item__label">Aloha Hibachi</span>
+                </div>
+              </div>
+              <div class="sidebar-item sidebar-item--nested" data-brand="alpha bowls">
+                <div class="sidebar-item__container">
+                  <span class="sidebar-brand-avatar" style="background:rgba(28,105,232,0.16)"><img src="assets/logo-alpha-bowls.png" alt="AB" onerror="this.parentElement.textContent='AB'"></span>
+                  <span class="sidebar-item__label">alpha bowls</span>
+                </div>
+              </div>
+              <div class="sidebar-item sidebar-item--nested" data-brand="Big Daddy's">
+                <div class="sidebar-item__container">
+                  <span class="sidebar-brand-avatar" style="background:rgba(214,85,143,0.16)"><img src="assets/logo-big-daddys.png" alt="BD" onerror="this.parentElement.textContent='BD'"></span>
+                  <span class="sidebar-item__label">Big Daddy's</span>
+                </div>
+              </div>
+              <div class="sidebar-item sidebar-item--nested" data-brand="Farmstand">
+                <div class="sidebar-item__container">
+                  <span class="sidebar-brand-avatar" style="background:#b1e5bf">F</span>
+                  <span class="sidebar-item__label">Farmstand</span>
+                </div>
+              </div>
+              <div class="sidebar-item sidebar-item--nested" data-brand="Fatty's Teriyaki">
+                <div class="sidebar-item__container">
+                  <span class="sidebar-brand-avatar" style="background:rgba(140,66,224,0.16)"><img src="assets/logo-fattys-teriyaki.png" alt="FT" onerror="this.parentElement.textContent='FT'"></span>
+                  <span class="sidebar-item__label">Fatty's Teriyaki</span>
+                </div>
+              </div>
+              <div class="sidebar-viewall">
+                <button class="sidebar-viewall__btn" id="view-all-brands-btn">View all brands (13)</button>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-item">
+            <div class="sidebar-item__container">
+              <span class="material-symbols-outlined sidebar-item__icon">access_time</span>
+              <span class="sidebar-item__label">Menu hours</span>
+            </div>
+          </div>
+          <div class="sidebar-item">
+            <div class="sidebar-item__container">
+              <span class="material-symbols-outlined sidebar-item__icon">photo</span>
+              <span class="sidebar-item__label">Photo library</span>
+            </div>
+          </div>
+          <div class="sidebar-item">
+            <div class="sidebar-item__container">
+              <span class="material-symbols-outlined sidebar-item__icon">inventory_2</span>
+              <span class="sidebar-item__label">SKU library</span>
+            </div>
+          </div>
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-item">
+            <div class="sidebar-item__container">
+              <span class="material-symbols-outlined sidebar-item__icon">history</span>
+              <span class="sidebar-item__label">Activity log</span>
+            </div>
+          </div>
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-item">
+            <div class="sidebar-item__container">
+              <span class="material-symbols-outlined sidebar-item__icon">local_offer</span>
+              <span class="sidebar-item__label">Pricing rules</span>
+            </div>
+          </div>
+          <div class="sidebar-item">
+            <div class="sidebar-item__container">
+              <span class="material-symbols-outlined sidebar-item__icon">heap_snapshot_large</span>
+              <span class="sidebar-item__label">Tax rules</span>
+            </div>
+          </div>
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-item">
+            <div class="sidebar-item__container">
+              <span class="material-symbols-outlined sidebar-item__icon">archive</span>
+              <span class="sidebar-item__label">Archived menus</span>
+            </div>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- ═══ MAIN CONTENT ═══ -->
+      <main class="page-container">
+
+        <!-- Page header -->
+        <div class="bm-page-header">
+          <h1 class="bm-page-header__title">Brand menus</h1>
+          <div class="bm-page-header__actions">
+            <button class="btn btn--ghost">
+              <span class="material-symbols-outlined btn-icon">schedule</span>
+              Bulk edit hours
+            </button>
+            <button class="btn btn--primary">
+              <span class="material-symbols-outlined btn-icon">add</span>
+              Add menu
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter bar -->
+        <div class="bm-filters">
+          <button class="bm-filter-btn">
+            Locations
+            <span class="material-symbols-outlined btn-icon">arrow_drop_down</span>
+          </button>
+          <button class="bm-filter-btn">
+            Publish status
+            <span class="material-symbols-outlined btn-icon">arrow_drop_down</span>
+          </button>
+          <button class="bm-filter-btn">
+            Menu sync status
+            <span class="material-symbols-outlined btn-icon">arrow_drop_down</span>
+          </button>
+          <div class="bm-filter-spacer"></div>
+          <div class="bm-search">
+            <span class="material-symbols-outlined btn-icon">search</span>
+            <input type="text" placeholder="Search brands and menus">
+          </div>
+        </div>
+
+        <!-- ═══ BRAND LIST ═══ -->
+        <div class="bm-brand-list">
+
+          <!-- ── Take a Bao ── -->
+          <div class="bm-brand-section" data-expanded="false">
+            <div class="bm-brand-row" onclick="toggleBrand(this.parentElement)">
+              <div class="bm-brand-name-group">
+                <span class="bm-brand-name">Take a Bao</span>
+              </div>
+              <div class="bm-brand-row__expand">
+                <span class="bm-menu-count">2 menus</span>
+                <span class="material-symbols-outlined bm-chevron">expand_more</span>
+              </div>
+            </div>
+            <div class="bm-menu-list">
+              <!-- name | status(168px) | sync(40px) | locations(88px) | actions -->
+              <div class="bm-menu-row">
+                <span class="bm-menu-name">Take a Bao Eats — Avondale</span>
+                <span class="bm-status bm-status--success">
+                  <span class="material-symbols-outlined ms status-icon icon-filled" style="font-size:16px">check_circle</span>
+                  Published
+                </span>
+                <span class="bm-locations">3 locations</span>
+                <div class="bm-sync"></div>
+                <div class="bm-row-actions">
+                  <button class="bm-icon-btn" title="Copy menu"><span class="material-symbols-outlined action-icon">content_copy</span></button>
+                </div>
+              </div>
+              <div class="bm-menu-row">
+                <span class="bm-menu-name">Take a Bao Eats — Westlake</span>
+                <span class="bm-status bm-status--neutral">
+                  <img class="bm-unpublished-icon" src="assets/Icons/Dashed Circle.svg" alt="">
+                  Unpublished menu
+                </span>
+                <span class="bm-locations">3 locations</span>
+                <div class="bm-sync"></div>
+                <div class="bm-row-actions">
+                  <button class="bm-icon-btn" title="Copy menu"><span class="material-symbols-outlined action-icon">content_copy</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Breakfast Beauties (Virtual) ── -->
+          <div class="bm-brand-section" data-expanded="false">
+            <div class="bm-brand-row" onclick="toggleBrand(this.parentElement)">
+              <div class="bm-brand-avatar" style="background:#FEF2E6">BB</div>
+              <div class="bm-brand-name-group">
+                <span class="bm-brand-name">Breakfast Beauties</span>
+                <span class="bm-virtual-badge">Virtual Brand</span>
+              </div>
+              <div class="bm-brand-row__expand">
+                <span class="bm-menu-count">3 menus</span>
+                <span class="material-symbols-outlined bm-chevron">expand_more</span>
+              </div>
+            </div>
+            <div class="bm-menu-list">
+              <!-- Fairdale: only row with active sync icon -->
+              <div class="bm-menu-row">
+                <span class="bm-menu-name">Breakfast Beauties — 5832 Fairdale Ln, Houston</span>
+                <span class="bm-status bm-status--danger">
+                  <span class="material-symbols-outlined ms status-icon icon-filled" style="font-size:16px">warning</span>
+                  Publish failed
+                </span>
+                <span class="bm-locations">1 location</span>
+                <div class="bm-sync">
+                  <span class="material-symbols-outlined sync-icon">sync</span>
+                </div>
+                <div class="bm-row-actions">
+                  <button class="bm-icon-btn" title="Copy menu"><span class="material-symbols-outlined action-icon">content_copy</span></button>
+                </div>
+              </div>
+              <div class="bm-menu-row">
+                <span class="bm-menu-name">Breakfast Beauties — Towerwood Dr, Farmers Branch</span>
+                <span class="bm-status bm-status--success">
+                  <span class="material-symbols-outlined ms status-icon icon-filled" style="font-size:16px">check_circle</span>
+                  Published
+                </span>
+                <span class="bm-locations">1 location</span>
+                <div class="bm-sync"></div>
+                <div class="bm-row-actions">
+                  <button class="bm-icon-btn" title="Copy menu"><span class="material-symbols-outlined action-icon">content_copy</span></button>
+                </div>
+              </div>
+              <div class="bm-menu-row">
+                <span class="bm-menu-name">Breakfast Beauties — 3004 Cullen St, Fort Worth</span>
+                <span class="bm-status bm-status--publishing">
+                  <span class="material-symbols-outlined ms status-icon" style="font-size:16px">progress_activity</span>
+                  Publishing...
+                </span>
+                <span class="bm-locations">1 location</span>
+                <div class="bm-sync"></div>
+                <div class="bm-row-actions">
+                  <button class="bm-icon-btn" title="Copy menu"><span class="material-symbols-outlined action-icon">content_copy</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Aloha Hibachi ── -->
+          <div class="bm-brand-section" data-expanded="false">
+            <div class="bm-brand-row" onclick="toggleBrand(this.parentElement)">
+              <div class="bm-brand-avatar">
+                <img src="assets/logo-aloha-hibachi.png" alt="AH" onerror="this.style.display='none'">
+              </div>
+              <div class="bm-brand-name-group">
+                <span class="bm-brand-name">Aloha Hibachi</span>
+              </div>
+              <div class="bm-brand-row__expand">
+                <span class="bm-menu-count">2 menus</span>
+                <span class="material-symbols-outlined bm-chevron">expand_more</span>
+              </div>
+            </div>
+            <div class="bm-menu-list">
+              <div class="bm-menu-row">
+                <span class="bm-menu-name">Aloha Hibachi — Avondale</span>
+                <span class="bm-status bm-status--success">
+                  <span class="material-symbols-outlined ms status-icon icon-filled" style="font-size:16px">check_circle</span>
+                  Published
+                </span>
+                <span class="bm-locations">4 locations</span>
+                <div class="bm-sync"></div>
+                <div class="bm-row-actions">
+                  <button class="bm-icon-btn" title="Copy menu"><span class="material-symbols-outlined action-icon">content_copy</span></button>
+                </div>
+              </div>
+              <div class="bm-menu-row">
+                <span class="bm-menu-name">Aloha Hibachi — East Side</span>
+                <span class="bm-status bm-status--danger">
+                  <span class="material-symbols-outlined ms status-icon icon-filled" style="font-size:16px">warning</span>
+                  Publish failed
+                </span>
+                <span class="bm-locations">2 locations</span>
+                <div class="bm-sync"></div>
+                <div class="bm-row-actions">
+                  <button class="bm-icon-btn" title="Copy menu"><span class="material-symbols-outlined action-icon">content_copy</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Fatty's Teriyaki ── -->
+          <div class="bm-brand-section" data-expanded="false">
+            <div class="bm-brand-row" onclick="toggleBrand(this.parentElement)">
+              <div class="bm-brand-avatar">
+                <img src="assets/logo-fattys-teriyaki.png" alt="FT" onerror="this.outerHTML='FT'">
+              </div>
+              <div class="bm-brand-name-group">
+                <span class="bm-brand-name">Fatty's Teriyaki</span>
+              </div>
+              <div class="bm-brand-row__expand">
+                <span class="bm-menu-count">2 menus</span>
+                <span class="material-symbols-outlined bm-chevron">expand_more</span>
+              </div>
+            </div>
+            <div class="bm-menu-list">
+              <div class="bm-menu-row">
+                <span class="bm-menu-name">Fatty's Teriyaki — Main Location</span>
+                <span class="bm-status bm-status--success">
+                  <span class="material-symbols-outlined ms status-icon icon-filled" style="font-size:16px">check_circle</span>
+                  Published
+                </span>
+                <span class="bm-locations">5 locations</span>
+                <div class="bm-sync"></div>
+                <div class="bm-row-actions">
+                  <button class="bm-icon-btn" title="Copy menu"><span class="material-symbols-outlined action-icon">content_copy</span></button>
+                </div>
+              </div>
+              <div class="bm-menu-row">
+                <span class="bm-menu-name">Fatty's Teriyaki — Downtown</span>
+                <span class="bm-status bm-status--info">
+                  <span class="material-symbols-outlined ms status-icon" style="font-size:16px">edit</span>
+                  Unpublished changes
+                </span>
+                <span class="bm-locations">3 locations</span>
+                <div class="bm-sync"></div>
+                <div class="bm-row-actions">
+                  <button class="bm-icon-btn" title="Copy menu"><span class="material-symbols-outlined action-icon">content_copy</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Alpha Bowls (Virtual) ── -->
+          <div class="bm-brand-section" data-expanded="false">
+            <div class="bm-brand-row" onclick="toggleBrand(this.parentElement)">
+              <div class="bm-brand-avatar">
+                <img src="assets/logo-alpha-bowls.png" alt="AB" onerror="this.outerHTML='AB'">
+              </div>
+              <div class="bm-brand-name-group">
+                <span class="bm-brand-name">Alpha Bowls</span>
+                <span class="bm-virtual-badge">Virtual Brand</span>
+              </div>
+              <div class="bm-brand-row__expand">
+                <span class="bm-menu-count">1 menu</span>
+                <span class="material-symbols-outlined bm-chevron">expand_more</span>
+              </div>
+            </div>
+            <div class="bm-menu-list">
+              <div class="bm-menu-row">
+                <span class="bm-menu-name">Alpha Bowls — Greek Protein Menu</span>
+                <span class="bm-status bm-status--info">
+                  <span class="material-symbols-outlined ms status-icon" style="font-size:16px">edit</span>
+                  Unpublished changes
+                </span>
+                <span class="bm-locations">2 locations</span>
+                <div class="bm-sync"></div>
+                <div class="bm-row-actions">
+                  <button class="bm-icon-btn" title="Copy menu"><span class="material-symbols-outlined action-icon">content_copy</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Big Daddy's Cajun Bowls ── -->
+          <div class="bm-brand-section" data-expanded="false">
+            <div class="bm-brand-row" onclick="toggleBrand(this.parentElement)">
+              <div class="bm-brand-avatar">
+                <img src="assets/logo-big-daddys.png" alt="BD" onerror="this.outerHTML='BD'">
+              </div>
+              <div class="bm-brand-name-group">
+                <span class="bm-brand-name">Big Daddy's Cajun Bowls</span>
+              </div>
+              <div class="bm-brand-row__expand">
+                <span class="bm-menu-count">2 menus</span>
+                <span class="material-symbols-outlined bm-chevron">expand_more</span>
+              </div>
+            </div>
+            <div class="bm-menu-list">
+              <div class="bm-menu-row">
+                <span class="bm-menu-name">Big Daddy's Cajun — Full Menu</span>
+                <span class="bm-status bm-status--success">
+                  <span class="material-symbols-outlined ms status-icon icon-filled" style="font-size:16px">check_circle</span>
+                  Published
+                </span>
+                <span class="bm-locations">3 locations</span>
+                <div class="bm-sync"></div>
+                <div class="bm-row-actions">
+                  <button class="bm-icon-btn" title="Copy menu"><span class="material-symbols-outlined action-icon">content_copy</span></button>
+                </div>
+              </div>
+              <div class="bm-menu-row">
+                <span class="bm-menu-name">Big Daddy's Cajun — Lunch Special</span>
+                <span class="bm-status bm-status--neutral">
+                  <img class="bm-unpublished-icon" src="assets/Icons/Dashed Circle.svg" alt="">
+                  Unpublished menu
+                </span>
+                <span class="bm-locations">1 location</span>
+                <div class="bm-sync"></div>
+                <div class="bm-row-actions">
+                  <button class="bm-icon-btn" title="Copy menu"><span class="material-symbols-outlined action-icon">content_copy</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.bm-brand-list -->
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // ── Brand section expand/collapse (main content) ──────────────────
+    function toggleBrand(section) {
+      const isExpanded = section.dataset.expanded === 'true';
+      section.dataset.expanded = isExpanded ? 'false' : 'true';
+    }
+
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+
+    // ── Tooltip ───────────────────────────────────────────────────────
+    const tipEl = document.createElement('div');
+    tipEl.className = 'sidebar-tooltip';
+    document.body.appendChild(tipEl);
+
+    function showTip(text, el) {
+      if (!sidebar.classList.contains('sidebar--collapsed')) return;
+      tipEl.textContent = text;
+      tipEl.classList.add('sidebar-tooltip--visible');
+      const rect = el.getBoundingClientRect();
+      tipEl.style.left = (rect.right + 8) + 'px';
+      tipEl.style.top  = (rect.top + rect.height / 2) + 'px';
+    }
+
+    function hideTip() {
+      tipEl.classList.remove('sidebar-tooltip--visible');
+    }
+
+    document.querySelectorAll('.sidebar-item__container').forEach(function(container) {
+      const isToggle = container.id === 'sidebar-toggle';
+      container.addEventListener('mouseenter', function() {
+        const text = isToggle
+          ? 'Expand sidebar'
+          : (container.querySelector('.sidebar-item__label') || {}).textContent || '';
+        showTip(text.trim(), container);
+      });
+      container.addEventListener('mouseleave', hideTip);
+    });
+
+    // ── Sidebar collapse toggle ───────────────────────────────────────
+    if (sidebarToggle) {
+      sidebarToggle.addEventListener('click', () => {
+        hideTip();
+        sidebar.classList.toggle('sidebar--collapsed');
+      });
+    }
+
+    // ── Brand menus accordion (sidebar) ──────────────────────────────
+    document.querySelectorAll('[data-toggle="brand-menus"]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const target = document.getElementById('brand-menus');
+        if (!target) return;
+        const collapsed = target.classList.toggle('sidebar-children--collapsed');
+        const chevron = btn.querySelector('.sidebar-item__chevron');
+        if (chevron) chevron.style.transform = collapsed ? 'rotate(180deg)' : '';
+      });
+    });
+  </script>
+</body>
+</html>

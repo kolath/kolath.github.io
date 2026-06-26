@@ -1,0 +1,66 @@
+/* Minimal CSS Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-body);
+  font-size: var(--text-body-small);
+  line-height: var(--lh-body-small);
+  color: var(--color-text-standard);
+  background: var(--color-bg-standard);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Lucide SVG icon base */
+.lucide-icon,
+.lucide {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* CSDS custom inline-SVG icons (arrow_drop_down etc.)
+   display is intentionally NOT set here — inherited classes like
+   multiselect__chevron (position:absolute) must not be overridden */
+.csds-icon svg {
+  display: block;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+p {
+  margin: 0;
+}

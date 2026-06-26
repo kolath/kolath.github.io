@@ -6,14 +6,16 @@
   <title>Menu Entity - Otter</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Inter+Tight:wght@500&family=Inter+Display:wght@500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/publish-panel.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500&family=Inter+Display:wght@500;600&family=EB+Garamond:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css?v=3">
+  <link rel="stylesheet" href="css/publish-panel.css?v=4">
   <link rel="stylesheet" href="css/reset.css?v=106">
-  <link rel="stylesheet" href="css/layout.css?v=18">
-  <link rel="stylesheet" href="css/components.css?v=20">
-  <link rel="stylesheet" href="css/add-item.css?v=30">
+  <link rel="stylesheet" href="css/layout.css?v=29">
+  <link rel="stylesheet" href="css/components.css?v=87">
+  <link rel="stylesheet" href="css/add-item.css?v=31">
   <link rel="stylesheet" href="css/edit-menu.css?v=7">
+  <link rel="stylesheet" href="css/publish-queue.css?v=32">
+  <link rel="stylesheet" href="css/publish-status-overlay.css?v=3">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="js/icons.js?v=5"></script>
 </head>
@@ -21,8 +23,28 @@
   <div class="app">
 
     <!-- ===== GLOBAL NAV BAR ===== -->
-    <nav class="global-nav global-nav--image">
-      <img src="assets/top nav.png" alt="Global Navigation" class="global-nav__img">
+    <nav class="global-nav">
+      <div class="gnav__left">
+        <a class="gnav__home" href="#">
+          <img class="gnav__mark" src="assets/otter-mark.svg" alt="">
+          <img class="gnav__wordmark" src="assets/otter-wordmark.svg" alt="Otter">
+        </a>
+      </div>
+      <div class="gnav__right">
+        <button class="gnav__icon-btn" aria-label="Search">
+          <span class="material-symbols-outlined" style="font-size:20px">search</span>
+        </button>
+        <button class="gnav__icon-btn" aria-label="Otter AI" onclick="toggleAssistant('')">
+          <img src="assets/Icons/Otter_ai.svg" alt="" style="width:20px;height:20px">
+        </button>
+        <button class="gnav__issues" aria-label="2 issues">
+          <img src="assets/Icons/System/Notification/Unread.svg" alt="" style="width:20px;height:20px;flex-shrink:0">
+          2 issues
+        </button>
+        <button class="gnav__icon-btn" aria-label="Profile">
+          <img src="assets/Icons/System/Profile.svg" alt="" style="width:20px;height:20px">
+        </button>
+      </div>
     </nav>
 
     <!-- ===== APP BODY ===== -->
@@ -31,10 +53,17 @@
       <!-- ===== LEFT SIDEBAR ===== -->
       <aside class="sidebar" id="sidebar">
 
-        <!-- Collapse toggle -->
-        <div class="sidebar__toggle-row">
-          <button class="sidebar__toggle-btn" id="sidebar-toggle" title="Toggle sidebar">
-            <span class="material-symbols-outlined sidebar__toggle-icon">left_panel_close</span>
+        <!-- App switcher and collapse toggle -->
+        <div class="sidebar__top-row">
+          <button class="sidebar-app-switcher" type="button" aria-label="Open app switcher" id="sidebar-app-switcher">
+            <span class="sidebar-app-switcher__icon">
+              <img src="assets/menu-app-icon.svg" alt="">
+            </span>
+            <span class="sidebar-app-switcher__label">Menus</span>
+            <span class="material-symbols-outlined sidebar-app-switcher__chevron">expand_more</span>
+          </button>
+          <button class="sidebar__collapse-btn" id="sidebar-toggle" type="button" aria-label="Collapse sidebar">
+            <span class="material-symbols-outlined sidebar-item__icon sidebar__toggle-icon">left_panel_close</span>
           </button>
         </div>
 
@@ -49,9 +78,7 @@
               <span class="sidebar-item__label">Brand menus</span>
               <span class="material-symbols-outlined sidebar-item__chevron">expand_less</span>
             </div>
-          </div>
-
-          <div class="sidebar-children" id="brand-menus">
+            <div class="sidebar-children" id="brand-menus">
             <div class="sidebar-item sidebar-item--nested sidebar-item--selected" data-brand="Aloha Hibachi">
               <div class="sidebar-item__container">
                 <span class="sidebar-brand-avatar"><img src="assets/logo-aloha-hibachi.png" alt="Aloha Hibachi"></span>
@@ -86,25 +113,26 @@
               <button class="sidebar-viewall__btn" id="view-all-brands-btn">View all brands (129)</button>
             </div>
           </div>
+          </div>
 
           <div class="sidebar-divider"></div>
 
           <!-- ── Group 2: Content tools ─────────────────────────── -->
           <div class="sidebar-item">
             <div class="sidebar-item__container" title="Menu hours">
-              <span class="material-symbols-outlined sidebar-item__icon">schedule</span>
+              <span class="material-symbols-outlined sidebar-item__icon">access_time</span>
               <span class="sidebar-item__label">Menu hours</span>
             </div>
           </div>
           <div class="sidebar-item">
             <div class="sidebar-item__container" title="Photo library">
-              <span class="material-symbols-outlined sidebar-item__icon">photo_library</span>
+              <span class="material-symbols-outlined sidebar-item__icon">photo</span>
               <span class="sidebar-item__label">Photo library</span>
             </div>
           </div>
           <div class="sidebar-item">
             <div class="sidebar-item__container" title="SKU library">
-              <span class="material-symbols-outlined sidebar-item__icon">grid_on</span>
+              <span class="material-symbols-outlined sidebar-item__icon">inventory_2</span>
               <span class="sidebar-item__label">SKU library</span>
             </div>
           </div>
@@ -112,16 +140,11 @@
           <div class="sidebar-divider"></div>
 
           <!-- ── Group 3: Activity ──────────────────────────────── -->
-          <div class="sidebar-item">
+          <div class="sidebar-item sidebar-item--has-status">
             <div class="sidebar-item__container" title="Activity log">
-              <span class="material-symbols-outlined sidebar-item__icon">monitoring</span>
-              <span class="sidebar-item__label">Activity log</span>
-            </div>
-          </div>
-          <div class="sidebar-item">
-            <div class="sidebar-item__container" title="Edit history">
               <span class="material-symbols-outlined sidebar-item__icon">history</span>
-              <span class="sidebar-item__label">Edit history</span>
+              <span class="sidebar-item__label">Activity log</span>
+              <span class="sidebar-item__status-dot" aria-label="Ongoing publish"></span>
             </div>
           </div>
 
@@ -130,20 +153,20 @@
           <!-- ── Group 4: Rules & archive ───────────────────────── -->
           <div class="sidebar-item">
             <div class="sidebar-item__container" title="Pricing rules">
-              <span class="material-symbols-outlined sidebar-item__icon">sell</span>
+              <span class="material-symbols-outlined sidebar-item__icon">local_offer</span>
               <span class="sidebar-item__label">Pricing rules</span>
             </div>
           </div>
           <div class="sidebar-item">
             <div class="sidebar-item__container" title="Tax rules">
-              <span class="material-symbols-outlined sidebar-item__icon">receipt_long</span>
+              <span class="material-symbols-outlined sidebar-item__icon">heap_snapshot_large</span>
               <span class="sidebar-item__label">Tax rules</span>
             </div>
           </div>
           <div class="sidebar-divider"></div>
           <div class="sidebar-item">
             <div class="sidebar-item__container" title="Archived menus">
-              <span class="material-symbols-outlined sidebar-item__icon">inventory_2</span>
+              <span class="material-symbols-outlined sidebar-item__icon">archive</span>
               <span class="sidebar-item__label">Archived menus</span>
             </div>
           </div>
@@ -227,8 +250,514 @@
           </div>
         </div>
 
+        <!-- ===== TAB: MENUS ===== -->
+        <div id="tab-menus" class="tab-content">
+          <div class="section-header overview-section-header">
+            <h2 class="section-header__title">Menus</h2>
+            <div class="section-header__actions">
+              <button class="btn btn--secondary" type="button">
+                <span class="btn__icon btn__icon--leading">
+                  <i data-lucide="link" class="lucide-icon" style="width:14px;height:14px"></i>
+                </span>
+                <span>Connect POS</span>
+              </button>
+              <button class="btn btn--secondary" type="button">
+                <span class="btn__icon btn__icon--leading">
+                  <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
+                </span>
+                <span>Add menu</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="overview-shared-banner" id="overview-shared-banner"></div>
+
+          <div class="overview-toolbar">
+            <div class="overview-view-toggle" role="group" aria-label="Overview view">
+              <button class="overview-view-toggle__btn overview-view-toggle__btn--active" type="button" data-overview-view="list">
+                <i data-lucide="list" class="lucide-icon" style="width:16px;height:16px"></i>
+                <span>List view</span>
+              </button>
+              <button class="overview-view-toggle__btn" type="button" data-overview-view="table">
+                <i data-lucide="table-2" class="lucide-icon" style="width:16px;height:16px"></i>
+                <span>Table view</span>
+              </button>
+            </div>
+            <div class="filter-control" data-filter-control>
+              <button class="filter-btn" type="button" data-filter-trigger="location" aria-expanded="false">
+                <span>Location</span>
+                <span class="filter-btn__arrow">
+                  <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
+                </span>
+              </button>
+              <div class="filter-popover filter-popover--location" data-filter-popover="location" hidden>
+                <div class="filter-popover__header">
+                  <h3 class="filter-popover__title">Location</h3>
+                  <button class="filter-popover__close" type="button" aria-label="Close location filter">
+                    <i data-lucide="x" class="lucide-icon" style="width:20px;height:20px"></i>
+                  </button>
+                </div>
+                <div class="filter-popover__search search-input">
+                  <i data-lucide="search" class="lucide-icon search-input__icon" style="width:18px;height:18px;color:var(--color-text-weak)"></i>
+                  <input class="search-input__field" type="text" placeholder="Search locations">
+                </div>
+                <button class="filter-option filter-option--location" type="button">
+                  <span class="filter-option__primary">509 Philly Stop - Main St...</span>
+                  <span class="filter-option__secondary">108 Main St, Kittitas, WA 98934, USA</span>
+                </button>
+              </div>
+            </div>
+            <div class="filter-control" data-filter-control>
+              <button class="filter-btn" type="button" data-filter-trigger="channels" aria-expanded="false">
+                <span>Channels</span>
+                <span class="filter-btn__count" hidden>0</span>
+                <span class="filter-btn__arrow">
+                  <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
+                </span>
+              </button>
+              <div class="filter-popover filter-popover--channels" data-filter-popover="channels" hidden>
+                <div class="filter-popover__header">
+                  <h3 class="filter-popover__title">Channels</h3>
+                  <button class="filter-popover__close" type="button" aria-label="Close channels filter">
+                    <i data-lucide="x" class="lucide-icon" style="width:20px;height:20px"></i>
+                  </button>
+                </div>
+                <label class="filter-option filter-option--channel">
+                  <input type="checkbox" class="filter-option__checkbox">
+                  <img src="assets/thumbnails/DoorDash.svg" alt="" class="filter-option__thumbnail">
+                  <span class="filter-option__primary">DoorDash</span>
+                </label>
+                <label class="filter-option filter-option--channel">
+                  <input type="checkbox" class="filter-option__checkbox">
+                  <img src="assets/thumbnails/Uber Eats.svg" alt="" class="filter-option__thumbnail">
+                  <span class="filter-option__primary">Uber Eats</span>
+                </label>
+              </div>
+            </div>
+            <button class="btn btn--secondary overview-context-preview" type="button" data-context-preview hidden aria-label="Preview selected menu">
+              <span class="btn__icon btn__icon--leading">
+                <i data-lucide="eye" class="lucide-icon" style="width:14px;height:14px"></i>
+              </span>
+              <span>Preview selected menu</span>
+            </button>
+            <div class="overview-toolbar__spacer"></div>
+            <div class="overview-toolbar__actions">
+              <div class="search-input overview-toolbar__search">
+                <i data-lucide="search" class="lucide-icon search-input__icon" style="width:14px;height:14px;color:var(--color-text-weak)"></i>
+                <input class="search-input__field" type="text" placeholder="Search menus">
+              </div>
+              <div class="overview-table-actions" id="overview-table-actions"></div>
+            </div>
+          </div>
+
+          <div class="overview-view-panel overview-view-panel--active" id="overview-list-view" data-overview-view-panel="list">
+          <section class="overview-menu-group">
+            <div class="overview-menu-group__header">
+              <div class="overview-menu-group__title-wrap">
+                <button class="btn btn--icon-only overview-collapse-btn overview-collapse-btn--large" data-overview-toggle="menu" aria-label="Collapse All day menu" aria-expanded="true">
+                  <i data-lucide="chevron-down" class="lucide-icon" style="width:18px;height:18px"></i>
+                </button>
+                <h3 class="overview-menu-group__title">All day menu</h3>
+              </div>
+              <div class="overview-menu-group__actions">
+                <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Reorder categories" data-tooltip="Reorder categories">
+                  <img src="assets/Icons/reorder.svg" alt="" aria-hidden="true">
+                </button>
+                <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Edit menu" data-tooltip="Edit menu">
+                  <img src="assets/Icons/edit.svg" alt="" aria-hidden="true">
+                </button>
+                <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Create category" data-tooltip="Create category">
+                  <i data-lucide="plus" class="lucide-icon" style="width:16px;height:16px"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="overview-menu-content">
+            <section class="overview-category">
+              <div class="overview-category__header">
+                <div class="overview-category__title-wrap">
+                  <button class="btn btn--icon-only overview-collapse-btn overview-collapse-btn--small" data-overview-toggle="category" aria-label="Collapse Breakfast Bowls" aria-expanded="true">
+                    <i data-lucide="chevron-down" class="lucide-icon" style="width:16px;height:16px"></i>
+                  </button>
+                  <h4 class="overview-category__title">Breakfast Bowls</h4>
+                </div>
+                <div class="overview-category__actions">
+                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Reorder menu items" data-tooltip="Reorder menu items">
+                    <img src="assets/Icons/reorder.svg" alt="" aria-hidden="true">
+                  </button>
+                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Edit category" data-tooltip="Edit category">
+                    <img src="assets/Icons/edit.svg" alt="" aria-hidden="true">
+                  </button>
+                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Create menu item" data-tooltip="Create menu item">
+                    <i data-lucide="plus" class="lucide-icon" style="width:16px;height:16px"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="overview-category-content">
+              <label class="overview-select-all"><input type="checkbox" class="table-checkbox"> Select all menu items in this category</label>
+              <div class="data-table-wrapper overview-table-wrapper">
+                <table class="data-table overview-table">
+                  <thead>
+                    <tr>
+                      <th class="col-checkbox"><input type="checkbox" class="table-checkbox"></th>
+                      <th class="col-overview-item">Menu items</th>
+                      <th class="col-overview-availability">Availability</th>
+                      <th class="col-overview-price">Price</th>
+                      <th class="col-overview-contains">Contains</th>
+                      <th class="col-overview-locations">Locations</th>
+                      <th class="col-overview-offered">Offered on</th>
+                      <th class="col-actions"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/a50338f1-11fa-473a-9258-dc1eebbb12bf.avif" alt="The Classic Breakfast Bowl"><span class="overview-item-name">The Classic Breakfast Bowl</span></div></td>
+                      <td><span class="availability availability--unavailable"><i data-lucide="circle-x" class="lucide-icon" style="width:14px;height:14px"></i>Unavailable</span></td>
+                      <td>$12.99</td>
+                      <td>1 modifier group</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/92c2ea5f-bb5f-4338-9429-12a1047cea38.avif" alt="The Basic B*tch Bowl"><span class="overview-item-name">The Basic B*tch Bowl</span></div></td>
+                      <td><span class="availability availability--unavailable"><i data-lucide="circle-x" class="lucide-icon" style="width:14px;height:14px"></i>Unavailable</span></td>
+                      <td>$14.99</td>
+                      <td>1 modifier group</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/0548845b-8654-4a03-a595-6033e1746fe7.avif" alt="The Italian Stallion Bowl"><span class="overview-item-name">The Italian Stallion Bowl</span></div></td>
+                      <td><span class="availability availability--unavailable"><i data-lucide="circle-x" class="lucide-icon" style="width:14px;height:14px"></i>Unavailable</span></td>
+                      <td>$13.99</td>
+                      <td>1 modifier group</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/266b1f78-f98f-40e6-a641-31b1e36a2ec9.avif" alt="The Wake n' Bake Bowl"><span class="overview-item-name">The Wake n' Bake Bowl</span></div></td>
+                      <td><span class="availability availability--unavailable"><i data-lucide="circle-x" class="lucide-icon" style="width:14px;height:14px"></i>Unavailable</span></td>
+                      <td>$14.99</td>
+                      <td>1 modifier group</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/db8ea970-9dd9-426b-9cf6-b91f4b8742bf.avif" alt="The Hangover Bowl"><span class="overview-item-name">The Hangover Bowl</span></div></td>
+                      <td><span class="availability availability--unavailable"><i data-lucide="circle-x" class="lucide-icon" style="width:14px;height:14px"></i>Unavailable</span></td>
+                      <td>$14.99</td>
+                      <td>2 modifier groups</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              </div>
+            </section>
+
+            <section class="overview-category">
+              <div class="overview-category__header">
+                <div class="overview-category__title-wrap">
+                  <button class="btn btn--icon-only overview-collapse-btn overview-collapse-btn--small" data-overview-toggle="category" aria-label="Collapse Breakfast Burritos" aria-expanded="true">
+                    <i data-lucide="chevron-down" class="lucide-icon" style="width:16px;height:16px"></i>
+                  </button>
+                  <h4 class="overview-category__title">Breakfast Burritos</h4>
+                </div>
+                <div class="overview-category__actions">
+                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Reorder menu items" data-tooltip="Reorder menu items"><img src="assets/Icons/reorder.svg" alt="" aria-hidden="true"></button>
+                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Edit category" data-tooltip="Edit category"><img src="assets/Icons/edit.svg" alt="" aria-hidden="true"></button>
+                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Create menu item" data-tooltip="Create menu item"><i data-lucide="plus" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                </div>
+              </div>
+              <div class="overview-category-content">
+              <label class="overview-select-all"><input type="checkbox" class="table-checkbox"> Select all menu items in this category</label>
+              <div class="data-table-wrapper overview-table-wrapper">
+                <table class="data-table overview-table">
+                  <thead>
+                    <tr>
+                      <th class="col-checkbox"><input type="checkbox" class="table-checkbox"></th>
+                      <th class="col-overview-item">Menu items</th>
+                      <th class="col-overview-availability">Availability</th>
+                      <th class="col-overview-price">Price</th>
+                      <th class="col-overview-contains">Contains</th>
+                      <th class="col-overview-locations">Locations</th>
+                      <th class="col-overview-offered">Offered on</th>
+                      <th class="col-actions"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/0ec3993f-95cc-40d8-91df-1bd7ac1c0cbb.avif" alt="The Classic Breakfast Burrito"><span class="overview-item-name">The Classic Breakfast Burrito</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$12.99</td>
+                      <td>1 modifier group</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/0beb023d-6259-4bb2-b2fa-c22718655d8e.avif" alt="The Basic B*tch Burrito"><span class="overview-item-name">The Basic B*tch Burrito</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$13.99</td>
+                      <td>1 modifier group</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/18a617c0-f057-4fbb-8bc5-0f927aa4b75d.avif" alt="The Italian Stallion Burrito"><span class="overview-item-name">The Italian Stallion Burrito</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$13.99</td>
+                      <td>1 modifier group</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/cd339240-25be-4926-b138-8e1a85dff21d.avif" alt="The Wake n' Bake Burrito"><span class="overview-item-name">The Wake n' Bake Burrito</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$13.99</td>
+                      <td>1 modifier group</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/04a12edc-175c-4b19-a7e8-8db289ed8342.avif" alt="The Hangover Burrito"><span class="overview-item-name">The Hangover Burrito</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$14.99</td>
+                      <td>2 modifier groups</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              </div>
+            </section>
+
+            <section class="overview-category">
+              <div class="overview-category__header">
+                <div class="overview-category__title-wrap">
+                  <button class="btn btn--icon-only overview-collapse-btn overview-collapse-btn--small" data-overview-toggle="category" aria-label="Collapse Sides" aria-expanded="true">
+                    <i data-lucide="chevron-down" class="lucide-icon" style="width:16px;height:16px"></i>
+                  </button>
+                  <h4 class="overview-category__title">Sides</h4>
+                </div>
+                <div class="overview-category__actions">
+                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Reorder menu items" data-tooltip="Reorder menu items"><img src="assets/Icons/reorder.svg" alt="" aria-hidden="true"></button>
+                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Edit category" data-tooltip="Edit category"><img src="assets/Icons/edit.svg" alt="" aria-hidden="true"></button>
+                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Create menu item" data-tooltip="Create menu item"><i data-lucide="plus" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                </div>
+              </div>
+              <div class="overview-category-content">
+              <label class="overview-select-all"><input type="checkbox" class="table-checkbox"> Select all menu items in this category</label>
+              <div class="data-table-wrapper overview-table-wrapper">
+                <table class="data-table overview-table">
+                  <thead>
+                    <tr>
+                      <th class="col-checkbox"><input type="checkbox" class="table-checkbox"></th>
+                      <th class="col-overview-item">Menu items</th>
+                      <th class="col-overview-availability">Availability</th>
+                      <th class="col-overview-price">Price</th>
+                      <th class="col-overview-contains">Contains</th>
+                      <th class="col-overview-locations">Locations</th>
+                      <th class="col-overview-offered">Offered on</th>
+                      <th class="col-actions"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/a3190fa3-9a9c-43d4-8b42-6e3ce05e872b.avif" alt="Side of White Toast"><span class="overview-item-name">Side of White Toast (2 pieces)</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$2.99</td>
+                      <td>0 modifier groups</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/c3f05008-ca11-4801-b042-d00c18f11fea.avif" alt="Side of Wheat Toast"><span class="overview-item-name">Side of Wheat Toast (2 pieces)</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$2.99</td>
+                      <td>0 modifier groups</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/153c58e2-ca0b-487f-817a-d2cd4421a238.avif" alt="Side English Muffin"><span class="overview-item-name">Side English Muffin</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$3.25</td>
+                      <td>0 modifier groups</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/5ed97ca5-5f66-49e7-9344-a06ffb613919.avif" alt="Side Bagel and Cream Cheese"><span class="overview-item-name">Side Bagel &amp; Cream Cheese</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$3.99</td>
+                      <td>0 modifier groups</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/5ccf9738-7ca8-4e2f-8caf-d9a7bebf5278.avif" alt="Side of Bacon"><span class="overview-item-name">Side of Bacon (2 pieces)</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$4.99</td>
+                      <td>0 modifier groups</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/60ec0216-0970-4293-a3ff-a1fd36423a22.avif" alt="Side of Sausage"><span class="overview-item-name">Side of Sausage (2 pieces)</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$6.99</td>
+                      <td>0 modifier groups</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/df766456-8389-4534-a4f8-588dded26bd2.avif" alt="Side of Tater Tots"><span class="overview-item-name">Side of Tater Tots</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$4.99</td>
+                      <td>0 modifier groups</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              </div>
+            </section>
+            </div>
+          </section>
+
+          <section class="overview-menu-group">
+            <div class="overview-menu-group__header">
+              <div class="overview-menu-group__title-wrap">
+                <button class="btn btn--icon-only overview-collapse-btn overview-collapse-btn--large" data-overview-toggle="menu" aria-label="Collapse Drink menu" aria-expanded="true">
+                  <i data-lucide="chevron-down" class="lucide-icon" style="width:18px;height:18px"></i>
+                </button>
+                <h3 class="overview-menu-group__title">Drink menu</h3>
+              </div>
+              <div class="overview-menu-group__actions">
+                <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Reorder categories" data-tooltip="Reorder categories">
+                  <img src="assets/Icons/reorder.svg" alt="" aria-hidden="true">
+                </button>
+                <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Edit menu" data-tooltip="Edit menu">
+                  <img src="assets/Icons/edit.svg" alt="" aria-hidden="true">
+                </button>
+                <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Create category" data-tooltip="Create category">
+                  <i data-lucide="plus" class="lucide-icon" style="width:16px;height:16px"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="overview-menu-content">
+            <section class="overview-category">
+              <div class="overview-category__header">
+                <div class="overview-category__title-wrap">
+                  <button class="btn btn--icon-only overview-collapse-btn overview-collapse-btn--small" data-overview-toggle="category" aria-label="Collapse Beverages" aria-expanded="true">
+                    <i data-lucide="chevron-down" class="lucide-icon" style="width:16px;height:16px"></i>
+                  </button>
+                  <h4 class="overview-category__title">Beverages</h4>
+                </div>
+                <div class="overview-category__actions">
+                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Reorder menu items" data-tooltip="Reorder menu items"><img src="assets/Icons/reorder.svg" alt="" aria-hidden="true"></button>
+                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Edit category" data-tooltip="Edit category"><img src="assets/Icons/edit.svg" alt="" aria-hidden="true"></button>
+                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Create menu item" data-tooltip="Create menu item"><i data-lucide="plus" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                </div>
+              </div>
+              <div class="overview-category-content">
+              <label class="overview-select-all"><input type="checkbox" class="table-checkbox"> Select all menu items in this category</label>
+              <div class="data-table-wrapper overview-table-wrapper">
+                <table class="data-table overview-table">
+                  <thead>
+                    <tr>
+                      <th class="col-checkbox"><input type="checkbox" class="table-checkbox"></th>
+                      <th class="col-overview-item">Menu items</th>
+                      <th class="col-overview-availability">Availability</th>
+                      <th class="col-overview-price">Price</th>
+                      <th class="col-overview-contains">Contains</th>
+                      <th class="col-overview-locations">Locations</th>
+                      <th class="col-overview-offered">Offered on</th>
+                      <th class="col-actions"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/thumbnails/cola.jpg" alt="Coke Can"><span class="overview-item-name">Coke Can</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$2.99</td>
+                      <td>0 modifier groups</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/thumbnails/sprite.jpg" alt="Sprite Can"><span class="overview-item-name">Sprite Can</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$2.99</td>
+                      <td>0 modifier groups</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                    <tr>
+                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/thumbnails/juice.jpg" alt="Orange Juice"><span class="overview-item-name">Orange Juice</span></div></td>
+                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td>$3.99</td>
+                      <td>0 modifier groups</td>
+                      <td>1 location</td>
+                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              </div>
+            </section>
+            </div>
+          </section>
+          </div>
+          <div class="overview-view-panel" id="overview-table-view" data-overview-view-panel="table" hidden></div>
+        </div>
+
         <!-- ===== TAB: MENU ITEMS ===== -->
-        <div id="tab-menu-items" class="tab-content">
+        <div id="tab-menu-items" class="tab-content" style="display:none">
 
         <!-- TEMPLATE: Info Banner -->
         <div class="info-banner">
@@ -1294,8 +1823,8 @@
 
         </div><!-- /tab-menu-items -->
 
-        <!-- ===== TAB: MENUS ===== -->
-        <div id="tab-menus" class="tab-content" style="display:none">
+        <!-- ===== SOURCE: MENUS TABLE VIEW ===== -->
+        <div id="tab-menus-source" class="tab-content" style="display:none">
 
         <!-- Info Banner -->
         <div class="info-banner">
@@ -1339,8 +1868,8 @@
               <input class="search-input__field" type="text" placeholder="Search...">
             </div>
             <div class="column-toggle" id="menus-column-toggle">
-              <button class="btn btn--icon-only column-toggle__trigger" id="menus-column-toggle-btn" aria-label="Toggle columns">
-                <i data-lucide="columns-3" class="lucide-icon" style="width:16px;height:16px"></i>
+              <button class="btn btn--secondary btn--icon-only column-toggle__trigger" id="menus-column-toggle-btn" aria-label="Toggle columns">
+                <i data-lucide="columns-3" class="lucide-icon" style="width:16px;height:16px;color:currentColor"></i>
               </button>
               <div class="column-toggle__dropdown" id="menus-column-toggle-dropdown">
                 <div class="column-toggle__header">
@@ -1439,7 +1968,7 @@
           </button>
         </div>
 
-        </div><!-- /tab-menus -->
+        </div><!-- /tab-menus-source -->
 
         <!-- ===== TAB: MODIFIER ITEMS ===== -->
         <div id="tab-modifier-items" class="tab-content" style="display:none">
@@ -3200,6 +3729,20 @@
         </div><!-- /page-sku-library -->
 
         <div id="page-pricing-rules" style="display:none"></div>
+        <div id="page-archived-menus" style="display:none"></div>
+
+        <!-- ===== ACTIVITY PAGE ===== -->
+        <div id="page-activity" style="display:none">
+          <div class="page-nav">
+            <div class="page-header">
+              <div class="page-header__left">
+                <div class="page-header__title-row">
+                  <h1 class="page-header__title">Activity</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /page-activity -->
 
       </main>
     </div>
@@ -5609,20 +6152,49 @@
 
   </div><!-- /edit-menu-takeover -->
 
+  <!-- Customize Columns Modal -->
+  <div class="reorder-modal-overlay" id="columns-modal-overlay">
+    <div class="reorder-modal columns-modal">
+      <div class="reorder-modal__header">
+        <span class="reorder-modal__title">Customize columns</span>
+        <button class="reorder-modal__close" id="columns-modal-close" aria-label="Close">
+          <i data-lucide="x" class="lucide-icon" style="width:16px;height:16px;color:#141414"></i>
+        </button>
+      </div>
+      <div class="reorder-modal__body">
+        <div class="reorder-modal__menu-card">
+          <div class="reorder-modal__menu-icon">
+            <i data-lucide="columns-3" class="lucide-icon" style="width:20px;height:20px;color:#141414"></i>
+          </div>
+          <div class="reorder-modal__menu-info">
+            <span class="reorder-modal__menu-name">Menus table</span>
+            <span class="reorder-modal__menu-count" id="columns-modal-count">6 columns</span>
+          </div>
+        </div>
+        <div class="reorder-modal__list columns-modal__list" id="columns-modal-list"></div>
+      </div>
+      <div class="reorder-modal__footer">
+        <button class="btn btn--secondary" id="columns-modal-cancel">Cancel</button>
+        <button class="btn btn--primary" id="columns-modal-save">Save</button>
+      </div>
+    </div>
+  </div>
+
   <!-- JavaScript -->
-  <script src="js/sidebar.js?v=6"></script>
-  <script src="js/tabs.js?v=2"></script>
-  <script src="js/table.js?v=2"></script>
-  <script src="js/filters.js"></script>
+  <script src="js/sidebar.js?v=9"></script>
+  <script src="js/tabs.js?v=14"></script>
+  <script src="js/table.js?v=3"></script>
+  <script src="js/filters.js?v=8"></script>
   <script src="js/columns.js"></script>
   <script src="js/row-actions.js"></script>
-  <script src="js/sort.js"></script>
+  <script src="js/sort.js?v=5"></script>
   <script src="js/sticky-header.js?v=2"></script>
-  <script src="js/tooltips.js?v=8"></script>
-  <script src="js/mg-table.js"></script>
-  <script src="js/menus-table.js"></script>
-  <script src="js/mi-table.js?v=2"></script>
+  <script src="js/tooltips.js?v=9"></script>
+  <script src="js/mg-table.js?v=3"></script>
+  <script src="js/menus-table.js?v=4"></script>
+  <script src="js/mi-table.js?v=4"></script>
   <script src="js/cat-table.js?v=1"></script>
+  <script src="js/channel-thumbnails.js?v=3"></script>
   <script src="js/bulk-actions.js?v=1"></script>
   <script src="js/toast.js?v=3"></script>
   <script src="js/add-item.js?v=23"></script>
@@ -5642,10 +6214,46 @@
   <div class="panel" id="ppPanel">
   <div class="panel-pages" id="ppPanelPages">
 
-    <!-- PAGE 1: Pre-publish -->
+    <!-- PAGE 0: Fix issues before publish -->
+    <div class="panel-page" id="ppPageStep1">
+      <div class="panel-header">
+        <h2>Fix issues before publish</h2>
+        <button class="pp-close-btn" onclick="closePanel()" aria-label="Close">
+          <span class="ms sz16" style="color:currentColor">close</span>
+        </button>
+      </div>
+      <div class="panel-body">
+        <div class="issues-section-header" style="margin-bottom:4px">
+          <p class="issues-section-title">Suggestions</p>
+          <p class="issues-section-subtitle">You can still publish, but we highly suggest addressing these issues</p>
+        </div>
+        <div class="pp-suggestion-card">
+          <span class="ms sz16 filled pp-suggestion-card__icon" style="color:#A88020">warning</span>
+          <div class="pp-suggestion-card__body">
+            <p class="pp-suggestion-card__title">Settings need review</p>
+            <p class="pp-suggestion-card__desc">Review these settings before publishing.</p>
+          </div>
+          <button class="view-issues-btn">View all</button>
+        </div>
+        <div class="pp-suggestion-card">
+          <span class="ms sz16 filled pp-suggestion-card__icon" style="color:#A88020">warning</span>
+          <div class="pp-suggestion-card__body">
+            <p class="pp-suggestion-card__title">Items need review</p>
+            <p class="pp-suggestion-card__desc">Review these items before publishing.</p>
+          </div>
+          <button class="view-issues-btn">View all</button>
+        </div>
+      </div>
+      <div class="pp-step1-footer">
+        <span class="pp-step1-note">Fix 2 critical issues to unblock publish</span>
+        <button class="pp-continue-btn" onclick="goToStep2()">Continue to publish menu</button>
+      </div>
+    </div><!-- /ppPageStep1 -->
+
+    <!-- PAGE 1: Publish version to stores -->
     <div class="panel-page" id="ppPagePrepub">
       <div class="panel-header">
-        <h2>Where do you want to publish this menu?</h2>
+        <h2>Publish version to stores</h2>
         <button class="pp-close-btn" onclick="closePanel()" aria-label="Close">
           <span class="ms sz16" style="color:currentColor">close</span>
         </button>
@@ -5683,12 +6291,12 @@
       <div class="panel-footer">
         <div class="pub-banner">
           <span class="pub-icon">
-            <span class="ms sz24" style="color:#1C69E8">published_with_changes</span>
+            <span class="ms sz24" style="color:#141414">published_with_changes</span>
           </span>
           <span class="pub-text">Publish to selected channels.</span>
           <button class="add-note-btn">
             Add note
-            <span class="ms sz16">expand_more</span>
+            <span class="ms sz24">arrow_drop_down</span>
           </button>
           <button class="pub-btn" onclick="doPublish()">Publish</button>
         </div>
@@ -5742,7 +6350,7 @@
   </div>
 
   <div id="queuePanel"></div>
-  <script src="js/publish-panel.js?v=4"></script>
+  <script src="js/publish-panel.js?v=8"></script>
 
   <!-- ── Tax Settings Modal ── -->
   <div class="modal-scrim" id="taxModalScrim" onclick="closeTaxModal()"></div>
@@ -6149,5 +6757,209 @@
     </div>
   </div>
 
+
+  <!-- ===== PUBLISH QUEUE WIDGET ===== -->
+  <div id="publish-queue" style="display:none">
+
+    <!-- Pill (collapsed) -->
+    <div class="pq-pill" id="pq-pill" style="display:none">
+      <span id="pq-pill-icon" class="pq-pill__icon pq-ring pq-ring--pill"></span>
+      <span class="pq-pill__label" id="pq-pill-label">1/3 publishing</span>
+      <button class="pq-pill__close" id="pq-pill-close">
+        <span class="material-symbols-outlined" style="font-size:20px">close</span>
+      </button>
+    </div>
+
+    <!-- Card (expanded) -->
+    <div class="pq-card" id="pq-card">
+      <div class="pq-card__header" id="pq-drag-handle">
+        <div class="pq-card__header-left">
+          <span class="pq-card__title" id="pq-card-title">1/3 publishing</span>
+        </div>
+        <div class="pq-card__header-actions">
+          <button class="pq-card__showless" id="pq-showless">
+            <span class="material-symbols-outlined" style="font-size:16px">expand_more</span>
+            Show less
+          </button>
+          <button class="pq-card__close" id="pq-card-close">
+            <span class="material-symbols-outlined" style="font-size:16px">close</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="pq-task-list" id="pq-task-list"></div>
+    </div>
+
+  </div>
+
+  <!-- ===== PUBLISH SIDE PANEL ===== -->
+  <div class="psp-overlay" id="psp-overlay"></div>
+  <div class="psp-panel" id="psp-panel">
+  <div class="psp-pages" id="psp-pages">
+
+  <!-- PAGE 1: Main (Status / Information) -->
+  <div class="psp-page" id="psp-page-main">
+
+    <!-- Header -->
+    <div class="psp-header">
+      <div class="psp-header__title">Publish menu: <span id="psp-brand-name">Breakfast Beauties</span></div>
+      <button class="psp-close" id="psp-close">
+        <span class="material-symbols-outlined" style="font-size:20px;color:#141414">close</span>
+      </button>
+    </div>
+
+    <!-- Pill Tabs -->
+    <div class="psp-pill-tabs">
+      <button class="psp-pill-tab psp-pill-tab--selected" data-psp-tab="status">Status</button>
+      <button class="psp-pill-tab" data-psp-tab="information">Information</button>
+    </div>
+
+    <!-- STATUS TAB -->
+    <div class="psp-tab-panel" id="psp-tab-status">
+
+      <!-- Banner (state-dependent) -->
+      <div id="psp-banner"></div>
+
+      <!-- Progress bar (in-progress only) -->
+      <div id="psp-progress-summary" style="display:none"></div>
+
+      <!-- Content group: search + view by + locations (16px gap) -->
+      <div class="psp-content-group">
+
+        <!-- Row 1: Search + Status filter -->
+        <div class="psp-search-row">
+          <div class="psp-search">
+            <img src="assets/icons/Style=Filled.svg" alt="">
+            <input type="text" placeholder="Search" class="psp-search__input">
+          </div>
+          <button class="psp-status-filter" id="psp-status-filter">
+            Status
+            <span class="material-symbols-outlined" style="font-size:16px">expand_more</span>
+          </button>
+        </div>
+
+        <!-- Row 2: Location count + View by -->
+        <div class="psp-viewby-row">
+          <span class="psp-loc-count" id="psp-loc-count">5 locations</span>
+          <div class="psp-viewby-controls">
+            <span class="psp-view-label">View by</span>
+            <div class="psp-seg-control">
+              <button class="psp-view-btn psp-view-btn--active">Location</button>
+              <button class="psp-view-btn">Channel</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Locations list -->
+        <div class="psp-locations" id="psp-locations"></div>
+
+      </div>
+
+    </div>
+
+    <!-- INFORMATION TAB -->
+    <div class="psp-tab-panel" id="psp-tab-information" style="display:none">
+      <div class="psp-info-list" id="psp-info-list"></div>
+    </div>
+
+  </div><!-- /psp-page-main -->
+
+  <!-- PAGE 2: AI Publish Insights -->
+  <div class="psp-page" id="psp-page-issues">
+
+    <div class="psp-header" style="align-items:center">
+      <div style="display:flex;align-items:center;gap:12px;flex:1;min-width:0">
+        <button class="psp-close" onclick="pspShowMain()" style="border:1px solid #CCC">
+          <span class="material-symbols-outlined" style="font-size:18px;color:#141414">arrow_back</span>
+        </button>
+        <span class="psp-header__title" style="padding-top:0">AI publish insights</span>
+      </div>
+      <button class="psp-close" id="psp-issues-close" style="border:1px solid #CCC">
+        <span class="material-symbols-outlined" style="font-size:20px;color:#141414">close</span>
+      </button>
+    </div>
+
+    <div class="psp-issues-body">
+      <p class="psp-issues-subtitle" id="psp-issues-subtitle">Last publish attempted on May 23 12:07 PM</p>
+      <div id="psp-issues-list"></div>
+    </div>
+
+  </div><!-- /psp-page-issues -->
+
+  </div><!-- /psp-pages -->
+  </div>
+
+  <!-- Cancel Publish Modal -->
+  <div class="psp-modal-scrim" id="psp-modal-scrim"></div>
+  <div class="psp-modal" id="psp-modal">
+    <div class="psp-modal__header">
+      <span class="psp-modal__title">Cancel publish</span>
+      <button class="psp-modal__close" onclick="closeCancelModal()">
+        <span class="material-symbols-outlined" style="font-size:20px">close</span>
+      </button>
+    </div>
+    <div class="psp-modal__body">
+      <p class="psp-modal__text">Are you sure you want to cancel publishing? This will stop all pending publishes.</p>
+    </div>
+    <div class="psp-modal__footer">
+      <button class="psp-modal__btn-secondary" onclick="closeCancelModal()">Keep publishing</button>
+      <button class="psp-modal__btn-primary" onclick="confirmCancelPublish()">Cancel publish</button>
+    </div>
+  </div>
+
+  <!-- AI Insights Popover (failed channel row) -->
+  <div class="psp-popover" id="psp-popover">
+    <div class="psp-popover__header">
+      <span class="psp-popover__title">AI publish insights</span>
+      <button class="psp-popover__close" id="psp-popover-close">
+        <span class="material-symbols-outlined" style="font-size:20px">close</span>
+      </button>
+    </div>
+    <div class="psp-popover__content" id="psp-popover-content"></div>
+  </div>
+
+  <!-- ===== OTTER ASSISTANT CHAT PANEL ===== -->
+  <div class="otter-assistant" id="otter-assistant">
+    <div class="oa-header">
+      <button class="oa-icon-btn"><span class="material-symbols-outlined" style="font-size:22px">menu</span></button>
+      <span class="oa-title">Otter Assistant</span>
+      <div class="oa-header-actions">
+        <button class="oa-icon-btn oa-icon-btn--bordered"><span class="material-symbols-outlined" style="font-size:18px">open_in_full</span></button>
+        <button class="oa-icon-btn oa-icon-btn--bordered" id="oa-close"><span class="material-symbols-outlined" style="font-size:18px">close</span></button>
+      </div>
+    </div>
+
+    <div class="oa-body" id="oa-body">
+      <!-- Empty state -->
+      <div class="oa-empty" id="oa-empty">
+        <img class="oa-empty-icon" src="assets/Icons/Otter_ai.svg" alt="">
+        <p class="oa-greeting">Good morning, Olivia. How can I help you today?</p>
+        <button class="oa-chat-data">
+          <img class="oa-chat-data-icon" src="assets/Icons/App Icons/Analytics.svg" alt="">
+          <span class="oa-chat-data-label">Chat with data</span>
+          <span class="oa-beta"><span class="material-symbols-outlined" style="font-size:12px">science</span>Beta</span>
+          <span class="material-symbols-outlined oa-chat-data-arrow" style="font-size:18px">arrow_forward</span>
+        </button>
+      </div>
+      <!-- Messages render here -->
+      <div class="oa-messages" id="oa-messages"></div>
+    </div>
+
+    <div class="oa-input-area">
+      <div class="oa-input-box">
+        <textarea class="oa-textarea" id="oa-textarea" placeholder="Message Otter Assistant" rows="1"></textarea>
+        <div class="oa-input-actions">
+          <button class="oa-plus"><span class="material-symbols-outlined" style="font-size:20px">add</span></button>
+          <span style="flex:1"></span>
+          <button class="oa-mic"><span class="material-symbols-outlined" style="font-size:20px">mic</span></button>
+          <button class="oa-send" id="oa-send"><span class="material-symbols-outlined" style="font-size:18px">arrow_upward</span></button>
+        </div>
+      </div>
+      <p class="oa-disclaimer">Please be aware that AI may make errors.</p>
+    </div>
+  </div>
+
+  <script src="js/publish-queue.js?v=24"></script>
+  <script src="js/publish-status-overlay.js?v=6"></script>
 </body>
 </html>

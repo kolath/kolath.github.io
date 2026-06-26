@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publish Status Overlay - Otter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Display:wght@500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css?v=3">
+  <link rel="stylesheet" href="css/reset.css?v=106">
+  <link rel="stylesheet" href="css/publish-status-overlay.css?v=1">
+</head>
+<body class="overlay-page">
+  <main class="overlay-stage" aria-label="Publish menu overlay prototype">
+    <button class="stage-reopen" id="stage-reopen" type="button">Open overlay</button>
+
+    <div class="entity-scrim" id="entity-scrim"></div>
+
+    <section class="entity-panel entity-panel--visible" id="entity-panel" role="dialog" aria-modal="true" aria-labelledby="entity-title">
+      <div class="entity-pages" id="entity-pages">
+        <article class="entity-page" id="entity-page-main">
+          <header class="entity-header">
+            <h1 class="entity-header__title" id="entity-title">Publish menu: [Brand name]</h1>
+            <button class="entity-icon-button" id="entity-close" type="button" aria-label="Close overlay">
+              <span class="material-symbols-outlined" aria-hidden="true">close</span>
+            </button>
+          </header>
+
+          <div class="entity-body">
+            <nav class="entity-pill-tabs" aria-label="Publish details">
+              <button class="entity-pill entity-pill--active" type="button" data-tab="status">Status</button>
+              <button class="entity-pill" type="button" data-tab="information">Information</button>
+            </nav>
+
+            <section class="entity-tab-panel" id="tab-status">
+              <div class="entity-notice">
+                <span class="material-symbols-outlined entity-notice__icon" aria-hidden="true">warning</span>
+                <p>Otter assistant identified 2 likely causes behind the failed publishes.</p>
+                <button class="entity-secondary-button" id="view-issues" type="button">View issues</button>
+              </div>
+
+              <section class="entity-progress" aria-label="Publishing progress">
+                <p class="entity-progress__label">Publishing menu to 25 destinations</p>
+                <div class="stack-bar" id="stack-bar" role="img" aria-label="13 completed, 7 in progress, 2 failed, 6 pending">
+                  <button class="stack-bar__segment stack-bar__segment--completed" type="button" data-status="completed" style="width:52%" aria-label="13 completed"></button>
+                  <button class="stack-bar__segment stack-bar__segment--progress" type="button" data-status="progress" style="width:28%" aria-label="7 in progress"></button>
+                  <button class="stack-bar__segment stack-bar__segment--failed" type="button" data-status="failed" style="width:8%" aria-label="2 failed"></button>
+                  <button class="stack-bar__segment stack-bar__segment--pending" type="button" data-status="pending" style="width:12%" aria-label="6 pending"></button>
+                </div>
+                <div class="entity-progress__legend">
+                  <button class="legend-item" type="button" data-status-filter="completed"><span class="legend-dot legend-dot--completed"></span>13 completed</button>
+                  <button class="legend-item" type="button" data-status-filter="progress"><span class="legend-dot legend-dot--progress"></span>7 in progress</button>
+                  <button class="legend-item" type="button" data-status-filter="failed"><span class="legend-dot legend-dot--failed"></span>2 failed</button>
+                  <button class="legend-item" type="button" data-status-filter="pending"><span class="legend-dot legend-dot--pending"></span>6 pending</button>
+                </div>
+              </section>
+
+              <section class="entity-list-area">
+                <div class="entity-toolbar">
+                  <label class="entity-search">
+                    <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                    <input id="entity-search" type="search" placeholder="Search..." autocomplete="off">
+                  </label>
+                  <div class="entity-filter-wrap">
+                    <button class="entity-filter" id="status-filter-button" type="button" aria-haspopup="listbox" aria-expanded="false">
+                      <span id="status-filter-label">Status</span>
+                      <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                    </button>
+                    <div class="entity-menu" id="status-menu" role="listbox" aria-label="Status filter">
+                      <button type="button" data-menu-status="all">All statuses</button>
+                      <button type="button" data-menu-status="failed">Failed</button>
+                      <button type="button" data-menu-status="progress">In progress</button>
+                      <button type="button" data-menu-status="pending">Pending</button>
+                      <button type="button" data-menu-status="completed">Completed</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="entity-view-row">
+                  <strong id="result-count">5 locations</strong>
+                  <div class="entity-view-switch">
+                    <span>View by</span>
+                    <div class="segment-control" role="group" aria-label="View by">
+                      <button class="segment-control__button segment-control__button--active" type="button" data-view="location">Location</button>
+                      <button class="segment-control__button" type="button" data-view="channel">Channel</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="entity-results" id="entity-results"></div>
+              </section>
+            </section>
+
+            <section class="entity-tab-panel entity-tab-panel--hidden" id="tab-information">
+              <div class="information-list" id="information-list"></div>
+            </section>
+          </div>
+        </article>
+
+        <article class="entity-page" id="entity-page-issues">
+          <header class="entity-header entity-header--compact">
+            <div class="entity-header__left">
+              <button class="entity-icon-button" id="back-to-main" type="button" aria-label="Back to status">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+              </button>
+              <h2 class="entity-header__title">AI publish insights</h2>
+            </div>
+            <button class="entity-icon-button" id="issues-close" type="button" aria-label="Close overlay">
+              <span class="material-symbols-outlined" aria-hidden="true">close</span>
+            </button>
+          </header>
+
+          <div class="issues-body">
+            <p class="issues-eyebrow">Last publish attempted on May 23 12:07 PM</p>
+            <div class="issue-card">
+              <div class="issue-card__header">
+                <img src="assets/icons/Otter_ai.svg" alt="" class="issue-card__icon">
+                <h3>Modifier group "Fruit Toppings" has no items</h3>
+              </div>
+              <p>This issue prevented publishing to 2 locations across 4 channels.</p>
+              <h4>Affected locations</h4>
+              <ul>
+                <li>Greens - Culver City</li>
+                <li>Greens - Santa Monica</li>
+              </ul>
+              <h4>How to fix</h4>
+              <p>Add at least one item to the modifier group, then publish again.</p>
+              <button class="entity-primary-button" type="button">Fix with Otter Assistant</button>
+            </div>
+            <div class="issue-card">
+              <div class="issue-card__header">
+                <img src="assets/icons/Otter_ai.svg" alt="" class="issue-card__icon">
+                <h3>Nested modifier groups aren't supported</h3>
+              </div>
+              <p>Direct Orders could not be updated because several menu items contain nested modifier groups.</p>
+              <h4>Affected items</h4>
+              <ul>
+                <li>Fiji Water</li>
+                <li>Banana Chia Pudding</li>
+                <li>Vegan - The Impossible Pizza</li>
+              </ul>
+              <h4>How to fix</h4>
+              <p>Remove nested modifier groups from the affected menu items, then publish again.</p>
+              <button class="entity-primary-button" type="button">Fix with Otter Assistant</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <aside class="insight-popover" id="insight-popover" aria-live="polite">
+      <div class="insight-popover__header">
+        <strong>AI publish insights</strong>
+        <button class="entity-icon-button entity-icon-button--ghost" id="popover-close" type="button" aria-label="Close insight">
+          <span class="material-symbols-outlined" aria-hidden="true">close</span>
+        </button>
+      </div>
+      <div class="insight-popover__content" id="insight-content"></div>
+    </aside>
+  </main>
+
+  <script src="js/publish-status-overlay.js?v=1"></script>
+</body>
+</html>

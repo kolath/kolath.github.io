@@ -1,50 +1,41 @@
 // ── Checkbox SVG snippets ──────────────────────────────────
 const svgCheck = `<svg class="cb-check" width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3L3.5 5.5L8 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="cb-minus" width="7" height="2" viewBox="0 0 7 2" fill="none"><path d="M0.5 1H6.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>`;
 
-function makeCb(cls = '') {
-  return `<label class="cb ${cls}"><input type="checkbox" checked class="loc-cb"/><span class="cb-box">${svgCheck}</span></label>`;
+function makeCb(cls = '', checked = true, disabled = false) {
+  return `<label class="cb ${cls}${disabled ? ' cb--disabled' : ''}"><input type="checkbox" ${checked ? 'checked' : ''} ${disabled ? 'disabled' : ''} class="loc-cb"/><span class="cb-box">${svgCheck}</span></label>`;
 }
 
 // ── Warning icon ──────────────────────────────────────────
 const warnIcon = `<span class="ms sz14 filled" style="color:#A88020;font-size:14px">warning</span>`;
 
-// ── Platform logo assets ──────────────────────────────────
+// ── Platform logo assets (local thumbnail SVGs) ───────────
+function makeLogo(src, alt) {
+  return `<img src="${src}" alt="${alt}" style="width:32px;height:32px;border-radius:8px;object-fit:contain;flex-shrink:0">`;
+}
+
 const logos = {
-  doordash: `<div style="width:32px;height:32px;border-radius:8px;background:#ff3008;overflow:hidden;position:relative;flex-shrink:0">
-    <img src="https://www.figma.com/api/mcp/asset/056394aa-330f-4ed8-a015-b0e1ced87607" alt="DoorDash"
-         style="position:absolute;top:32%;left:18%;width:64%;height:36%;object-fit:contain"/>
-  </div>`,
-  grubhub: `<div style="width:32px;height:32px;border-radius:8px;background:#ff8001;overflow:hidden;position:relative;flex-shrink:0">
-    <img src="https://www.figma.com/api/mcp/asset/cc6f93ab-ee5c-4897-a652-f4345e7d7a60" alt="Grubhub"
-         style="position:absolute;top:42%;left:10%;width:80%;height:16%;object-fit:contain"/>
-  </div>`,
-  ubereats: `<div style="width:32px;height:32px;border-radius:8px;background:#06c167;overflow:hidden;position:relative;flex-shrink:0">
-    <img src="https://www.figma.com/api/mcp/asset/e12da584-f9b9-4422-8304-d461a645330f" alt="Uber"
-         style="position:absolute;top:26%;left:20%;width:60%;height:22%;object-fit:contain"/>
-    <img src="https://www.figma.com/api/mcp/asset/5a2e8c88-a937-4753-898f-68bea03483ea" alt="Eats"
-         style="position:absolute;top:52%;left:20%;width:60%;height:22%;object-fit:contain"/>
-  </div>`,
+  doordash:       makeLogo('assets/thumbnails/DoorDash.svg',                  'DoorDash'),
+  grubhub:        makeLogo('assets/thumbnails/Grubhub.svg',                   'Grubhub'),
+  ubereats:       makeLogo('assets/thumbnails/Uber Eats.svg',                 'Uber Eats'),
+  'otter-orders': makeLogo('assets/Icons/App Icons/Online Ordering.svg',    'Otter Online Orders'),
+  'otter-pos':    makeLogo('assets/Icons/App Icons/POS.svg',              'Otter POS'),
+  caviar:         makeLogo('assets/thumbnails/Caviar.svg',                    'Caviar'),
+  postmates:      makeLogo('assets/thumbnails/Postmates.svg',                 'Postmates'),
+  ezcater:        makeLogo('assets/thumbnails/EZcater.svg',                   'EZcater'),
 };
 
-logos.caviar = `<div style="width:32px;height:32px;border-radius:8px;background:#1A1A1A;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-    <path d="M9 3C5.7 3 3 5.7 3 9s2.7 6 6 6 6-2.7 6-6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
-    <path d="M12 3l1.5 1.5L12 6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</div>`;
-
 // ── Pre-publish: platform sub-row ─────────────────────────
-function makePlatformRow({ key, name, hasSuggestion }) {
-  const suggestion = hasSuggestion
+function makePlatformRow({ key, name, hasSuggestion, blocked }) {
+  const suggestion = hasSuggestion && !blocked
     ? `<span class="psuggestion">${warnIcon} View suggestion</span>` : '';
   return `
-    <div class="platform-row">
-      ${makeCb()}
+    <div class="platform-row${blocked ? ' platform-row--blocked' : ''}">
+      ${makeCb('', !blocked, !!blocked)}
       <div class="plogo">${logos[key]}</div>
       <div class="pinfo">
         <div class="pname">${name}</div>
         <div class="pmeta">
-          <span class="ptime">Published at 2:48 PM</span>
+          <span class="ptime">${blocked ? 'Blocked by critical issue' : 'Published at 2:48 PM'}</span>
           ${suggestion}
         </div>
       </div>
@@ -52,25 +43,33 @@ function makePlatformRow({ key, name, hasSuggestion }) {
 }
 
 // ── Pre-publish: location tile ────────────────────────────
-function makeTile({ name, addr, badge, platforms, expanded }) {
+function makeTile({ name, addr, badge, critical, platforms, expanded }) {
   const badgeHtml = badge
     ? `<span class="pp-badge">
         <span class="ms sz16 filled" style="color:#86691e;font-size:15px">warning</span>
         Suggestion
       </span>` : '';
-  const platformsHtml = platforms && platforms.length ? platforms.map(makePlatformRow).join('') : '';
+  const criticalHtml = critical
+    ? `<span class="pp-badge pp-badge--critical">
+        <span class="ms sz16 filled" style="color:#C5232B;font-size:15px">error</span>
+        Critical issue
+      </span>` : '';
+  const platformsHtml = platforms && platforms.length
+    ? platforms.map(platform => makePlatformRow({ ...platform, blocked: critical })).join('')
+    : '';
   const expandBtn = `<button class="expand-btn${expanded ? ' open' : ''}" onclick="ppToggleExpand(this)" aria-label="Expand">
       <span class="ms sz16">expand_more</span>
     </button>`;
   return `
-    <div class="tile">
+    <div class="tile${critical ? ' tile--blocked' : ''}">
       <div class="tile-header">
-        ${makeCb('loc-parent-cb')}
+        ${makeCb('loc-parent-cb', !critical, !!critical)}
         <div class="tile-info">
           <div class="tile-name">${name}</div>
-          <div class="tile-addr">${addr}</div>
+          <div class="tile-addr">${critical ? 'Blocked: tax settings must be fixed before publishing this location' : addr}</div>
         </div>
         <div class="tile-actions">
+          ${criticalHtml}
           ${badgeHtml}
           ${expandBtn}
         </div>
@@ -82,17 +81,19 @@ function makeTile({ name, addr, badge, platforms, expanded }) {
 }
 
 // ── Pre-publish: location data ────────────────────────────
+const defaultPlatforms = [
+  { key: 'doordash',       name: 'DoorDash',             hasSuggestion: false },
+  { key: 'ubereats',       name: 'Uber Eats',             hasSuggestion: false },
+  { key: 'grubhub',        name: 'Grubhub',               hasSuggestion: false },
+  { key: 'otter-orders',   name: 'Otter Online Orders',   hasSuggestion: false },
+  { key: 'otter-pos',      name: 'Otter POS',             hasSuggestion: false },
+];
 const locationData = [
-  { name: 'Greens - Queen St.',      addr: '7630 Queen Street, Toronto ON, M5V0J9',       badge: true,  platforms: [{ key: 'doordash', name: 'DoorDash', hasSuggestion: true }, { key: 'grubhub', name: 'Grubhub', hasSuggestion: false }, { key: 'ubereats', name: 'Ubereats', hasSuggestion: false }], expanded: false },
-  { name: 'Greens - Ossington Ave.', addr: '98 Ossington Avenue, Toronto ON, M6J2Z4',     badge: true,  platforms: [{ key: 'doordash', name: 'DoorDash', hasSuggestion: false }, { key: 'ubereats', name: 'Ubereats', hasSuggestion: false }], expanded: false },
-  { name: 'Greens - Charlotte St.',  addr: '2 Charlotte Street, Toronto ON, M5V0J9',      badge: true,  platforms: [{ key: 'doordash', name: 'DoorDash', hasSuggestion: true }, { key: 'grubhub', name: 'Grubhub', hasSuggestion: true }, { key: 'ubereats', name: 'Ubereats', hasSuggestion: false }], expanded: true },
-  { name: 'Greens - Duncan St.',     addr: '6709 Duncan Street, Toronto ON, M5V1W3',      badge: true,  platforms: [{ key: 'doordash', name: 'DoorDash', hasSuggestion: false }, { key: 'grubhub', name: 'Grubhub', hasSuggestion: false }], expanded: false },
-  { name: 'Greens - Culver City',    addr: '4423 Culver Drive, Los Angeles CA, 90230',    badge: false, platforms: [{ key: 'doordash', name: 'DoorDash', hasSuggestion: false }, { key: 'ubereats', name: 'Ubereats', hasSuggestion: false }], expanded: false },
-  { name: 'Greens - King West',      addr: '550 King Street West, Toronto ON, M5V1M3',    badge: false, platforms: [{ key: 'doordash', name: 'DoorDash', hasSuggestion: false }, { key: 'grubhub', name: 'Grubhub', hasSuggestion: false }, { key: 'ubereats', name: 'Ubereats', hasSuggestion: false }], expanded: false },
-  { name: 'Greens - Yorkville',      addr: '88 Yorkville Avenue, Toronto ON, M5R1B9',     badge: false, platforms: [{ key: 'doordash', name: 'DoorDash', hasSuggestion: false }], expanded: false },
-  { name: 'Greens - Midtown',        addr: '212 Bloor Street West, Toronto ON, M5S1T8',   badge: false, platforms: [], expanded: false },
-  { name: 'Greens - Distillery',     addr: '55 Mill Street, Toronto ON, M5A3C4',          badge: false, platforms: [], expanded: false },
-  { name: 'Greens - Liberty Village',addr: '171 East Liberty Street, Toronto ON, M6K3P6', badge: false, platforms: [], expanded: false },
+  { name: 'Greens – Culver City',    addr: '7630 Milky Way, Culver City, CA 60099, USA',  badge: false, critical: true,  platforms: defaultPlatforms, expanded: true },
+  { name: 'Greens – Santa Monica',   addr: '412 Ocean Ave, Santa Monica, CA 90401, USA',   badge: true,  critical: false, platforms: defaultPlatforms, expanded: false },
+  { name: 'Greens – Venice',         addr: '1800 Lincoln Blvd, Venice, CA 90291, USA',     badge: false, platforms: defaultPlatforms, expanded: false },
+  { name: 'Greens – West Hollywood', addr: '8000 Sunset Blvd, West Hollywood, CA 90046',   badge: false, platforms: defaultPlatforms, expanded: false },
+  { name: 'Greens – Pasadena',       addr: '280 E Colorado Blvd, Pasadena, CA 91101, USA', badge: false, platforms: defaultPlatforms, expanded: false },
 ];
 
 document.getElementById('ppLocations').innerHTML = locationData.map(makeTile).join('');
@@ -105,11 +106,11 @@ function ppToggleExpand(btn) {
 
 // ── Pre-publish select all ────────────────────────────────
 function ppToggleAll(cb) {
-  document.querySelectorAll('.loc-cb').forEach(b => b.checked = cb.checked);
+  document.querySelectorAll('.loc-cb:not(:disabled)').forEach(b => b.checked = cb.checked);
 }
 document.getElementById('ppLocations').addEventListener('change', e => {
   if (!e.target.classList.contains('loc-cb')) return;
-  const all = [...document.querySelectorAll('.loc-cb')];
+  const all = [...document.querySelectorAll('.loc-cb:not(:disabled)')];
   const n = all.filter(b => b.checked).length;
   const master = document.getElementById('ppSelectAll');
   if (n === 0) { master.checked = false; master.indeterminate = false; }
@@ -320,7 +321,11 @@ let lastPublishedCardId = null;
 function updatePublishTrigger() {
   const myCard = publishQueue.find(c => c.brand === currentMenuBrand);
   document.querySelectorAll('.pp-trigger-btn').forEach(btn => {
-    if (myCard) {
+    if (window.pqHasActiveMenuPublish && window.pqHasActiveMenuPublish()) {
+      btn.classList.add('btn--publishing');
+      btn.innerHTML = `<span class="pp-btn-spinner">progress_activity</span>Publishing`;
+      btn.onclick = () => window.pqOpenQueueCard && window.pqOpenQueueCard();
+    } else if (myCard) {
       btn.classList.add('btn--publishing');
       btn.innerHTML = `<span class="pp-btn-spinner">progress_activity</span>Publishing`;
       btn.dataset.publishedCardId = myCard.id;
@@ -474,22 +479,25 @@ function generatePendingLocations() {
   ];
 }
 
-let publishQueue = [
-  { id: 'q1', type: 'menu',             brand: 'Breakfast Beauties', name: 'Weekday Menu',                   expanded: true,  locations: postLocQ1 },
-  { id: 'q2', type: 'menu_hours',       brand: 'Breakfast Beauties', name: 'Special Hours for Weekday Menu', expanded: false, locations: postLocQ2 },
-  { id: 'q3', type: 'item_availability',brand: 'Breakfast Beauties', name: 'Avocado Toast',                  expanded: false, locations: postLocQ3 },
-];
+let publishQueue = [];
 
 // ── Panel page navigation ─────────────────────────────────
+function goToStep2() {
+  document.getElementById('ppPanelPages').classList.add('show-step2');
+}
 function showIssuesPage() {
   document.getElementById('ppPanelPages').classList.add('show-issues');
 }
 function showPrepubPage() {
   document.getElementById('ppPanelPages').classList.remove('show-issues');
+  document.getElementById('ppPanelPages').classList.add('show-step2');
 }
 
 // ── Panel open/close ──────────────────────────────────────
 function openPanel() {
+  // Start directly at location selection; the old pre-publish gate is skipped.
+  document.getElementById('ppPanelPages').classList.add('show-step2');
+  document.getElementById('ppPanelPages').classList.remove('show-issues');
   document.getElementById('ppPanel').classList.add('open');
   document.getElementById('ppScrim').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -501,29 +509,19 @@ function closePanel() {
   setTimeout(() => showPrepubPage(), 350);
 }
 
-// ── Publish → slide to queue panel ───────────────────────
+// ── Publish → close panel, add task to pq-card widget ────
 function doPublish() {
-  const newId = 'brand-' + Date.now();
-  const newCard = {
-    id: newId,
-    type: 'menu',
-    brand: currentMenuBrand,
-    name: currentMenuBrand + ' menu',
-    expanded: true,
-    locations: generatePendingLocations(),
-  };
-  // Collapse all existing expanded cards, add new one at bottom
-  publishQueue.forEach(c => { c.expanded = false; });
-  publishQueue.push(newCard);
-  lastPublishedCardId = newId;
-
+  const panelRect = document.getElementById('ppPanel').getBoundingClientRect();
   document.getElementById('ppPanel').classList.remove('open');
   document.getElementById('ppScrim').classList.remove('open');
   document.body.style.overflow = '';
-  setTimeout(() => {
-    renderQueue();
-    document.getElementById('queuePanel').classList.add('open');
-  }, 300);
+  setTimeout(function() {
+    showPrepubPage();
+    // Add "Publish menu" task to the pq widget and show card expanded
+    if (window.pqAddPublishMenuTask) {
+      window.pqAddPublishMenuTask({ startRect: panelRect });
+    }
+  }, 350);
 }
 
 // ── Tax Settings Modal ────────────────────────────────────
