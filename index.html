@@ -8,16 +8,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500&family=Inter+Display:wght@500;600&family=EB+Garamond:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/tokens.css?v=3">
-  <link rel="stylesheet" href="css/publish-panel.css?v=4">
+  <link rel="stylesheet" href="css/publish-panel.css?v=34">
   <link rel="stylesheet" href="css/reset.css?v=106">
-  <link rel="stylesheet" href="css/layout.css?v=29">
-  <link rel="stylesheet" href="css/components.css?v=87">
+  <link rel="stylesheet" href="css/layout.css?v=30">
+  <link rel="stylesheet" href="css/components.css?v=105">
   <link rel="stylesheet" href="css/add-item.css?v=31">
   <link rel="stylesheet" href="css/edit-menu.css?v=7">
-  <link rel="stylesheet" href="css/publish-queue.css?v=32">
-  <link rel="stylesheet" href="css/publish-status-overlay.css?v=3">
+  <link rel="stylesheet" href="css/publish-queue.css?v=96">
+  <link rel="stylesheet" href="css/publish-status-overlay.css?v=17">
+  <link rel="stylesheet" href="css/activity-log.css?v=17">
+  <link rel="stylesheet" href="css/menu-hours.css?v=31">
+  <link rel="stylesheet" href="css/ods-bridge.css?v=46">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <script src="js/icons.js?v=5"></script>
+  <script src="js/ods-icon-svgs.generated.js?v=3"></script>
+  <script src="js/icons.js?v=34"></script>
 </head>
 <body>
   <div class="app">
@@ -32,17 +36,16 @@
       </div>
       <div class="gnav__right">
         <button class="gnav__icon-btn" aria-label="Search">
-          <span class="material-symbols-outlined" style="font-size:20px">search</span>
+          <img class="gnav__system-icon" src="assets/Icons/System/Search.svg" alt="" aria-hidden="true">
         </button>
         <button class="gnav__icon-btn" aria-label="Otter AI" onclick="toggleAssistant('')">
           <img src="assets/Icons/Otter_ai.svg" alt="" style="width:20px;height:20px">
         </button>
-        <button class="gnav__issues" aria-label="2 issues">
-          <img src="assets/Icons/System/Notification/Unread.svg" alt="" style="width:20px;height:20px;flex-shrink:0">
-          2 issues
+        <button class="gnav__icon-btn" aria-label="Notifications">
+          <img class="gnav__system-icon" src="assets/Icons/System/notification_Default.svg" alt="" aria-hidden="true">
         </button>
         <button class="gnav__icon-btn" aria-label="Profile">
-          <img src="assets/Icons/System/Profile.svg" alt="" style="width:20px;height:20px">
+          <img class="gnav__system-icon" src="assets/Icons/System/Profile.svg" alt="" aria-hidden="true">
         </button>
       </div>
     </nav>
@@ -158,9 +161,9 @@
             </div>
           </div>
           <div class="sidebar-item">
-            <div class="sidebar-item__container" title="Tax rules">
+            <div class="sidebar-item__container" title="Tax rates">
               <span class="material-symbols-outlined sidebar-item__icon">heap_snapshot_large</span>
-              <span class="sidebar-item__label">Tax rules</span>
+              <span class="sidebar-item__label">Tax rates</span>
             </div>
           </div>
           <div class="sidebar-divider"></div>
@@ -188,8 +191,8 @@
             <div class="page-header__left">
               <div class="page-header__title-row">
                 <h1 class="page-header__title" id="pageHeaderTitle">Breakfast Beauties menus</h1>
-                <div class="status-badge status-badge--info">
-                  <i data-lucide="info" class="lucide-icon" style="width:16px;height:16px;color:var(--color-info-text)"></i>
+                <div class="status-badge status-badge--info page-header__title-badge">
+                  <img src="assets/Icons/info.svg" class="status-badge__icon" alt="" aria-hidden="true">
                   <span class="status-badge__text">Unpublished changes</span>
                 </div>
               </div>
@@ -197,39 +200,28 @@
             <div class="page-header__actions">
               <!-- TEMPLATE: Action Buttons -->
               <div class="page-header__filters">
-                <button class="btn btn--secondary">
-                  <span>Edit price in excel</span>
-                  <span class="btn__icon btn__icon--trailing">
-                    <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
-                  </span>
+                <button class="btn btn--secondary btn--icon-only" type="button" aria-label="Version history" data-tooltip="Version history">
+                  <img src="assets/Icons/History.svg" alt="" aria-hidden="true">
                 </button>
-                <button class="btn btn--secondary">
-                  <span class="btn__icon btn__icon--leading">
-                    <i data-lucide="clock" class="lucide-icon" style="width:14px;height:14px"></i>
-                  </span>
-                  <span>Version history</span>
+                <button class="btn btn--secondary btn--icon-only" type="button" aria-label="Preview menu" data-tooltip="Preview menu">
+                  <i data-lucide="eye" class="lucide-icon" style="width:16px;height:16px"></i>
                 </button>
-                <button class="btn btn--secondary">
-                  <span class="btn__icon btn__icon--leading">
-                    <i data-lucide="eye" class="lucide-icon" style="width:14px;height:14px"></i>
-                  </span>
-                  <span>Preview menu</span>
+              </div>
+              <div class="page-header__settings">
+                <button class="btn btn--secondary btn--icon-only" type="button" aria-label="Settings" data-tooltip="Settings">
+                  <img src="assets/Icons/System/Settings.svg" alt="" aria-hidden="true">
                 </button>
               </div>
               <div class="page-header__cta">
                 <button class="btn btn--primary pp-trigger-btn" onclick="openPanel()">Publish</button>
-              </div>
-              <div class="page-header__settings">
-                <button class="btn btn--icon-only">
-                  <i data-lucide="settings" class="lucide-icon" style="width:16px;height:16px"></i>
-                </button>
               </div>
             </div>
           </div>
 
           <!-- TEMPLATE: Pill Tab Bar -->
           <div class="pill-tabs">
-            <button class="pill-tab pill-tab--selected" data-tab="menus">Menus</button>
+            <button class="pill-tab pill-tab--selected" data-tab="overview">Overview</button>
+            <button class="pill-tab pill-tab--default" data-tab="menus">Menus</button>
             <button class="pill-tab pill-tab--default" data-tab="menu-items">Menu items</button>
             <button class="pill-tab pill-tab--default" data-tab="modifier-items">Modifier items</button>
             <button class="pill-tab pill-tab--default" data-tab="categories">Categories</button>
@@ -241,26 +233,20 @@
         <div class="section-header">
           <h2 class="section-header__title">Section header</h2>
           <div class="section-header__actions">
-            <button class="btn btn--secondary">
+            <button class="btn btn--secondary" type="button" data-add-entity-button data-add-entity="menu">
               <span class="btn__icon btn__icon--leading">
                 <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
               </span>
-              <span>Add entity</span>
+              <span class="section-header__action-label">Add menu</span>
             </button>
           </div>
         </div>
 
-        <!-- ===== TAB: MENUS ===== -->
-        <div id="tab-menus" class="tab-content">
+        <!-- ===== TAB: OVERVIEW ===== -->
+        <div id="tab-overview" class="tab-content">
           <div class="section-header overview-section-header">
-            <h2 class="section-header__title">Menus</h2>
+            <h2 class="section-header__title">Overview</h2>
             <div class="section-header__actions">
-              <button class="btn btn--secondary" type="button">
-                <span class="btn__icon btn__icon--leading">
-                  <i data-lucide="link" class="lucide-icon" style="width:14px;height:14px"></i>
-                </span>
-                <span>Connect POS</span>
-              </button>
               <button class="btn btn--secondary" type="button">
                 <span class="btn__icon btn__icon--leading">
                   <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
@@ -270,19 +256,28 @@
             </div>
           </div>
 
-          <div class="overview-shared-banner" id="overview-shared-banner"></div>
+          <div class="overview-shared-banner" id="overview-shared-banner">
+            <div class="info-banner">
+              <div class="info-banner__illustration">
+                <img src="assets/illus-edit-menu.svg" alt="Overview illustration">
+              </div>
+              <div class="info-banner__content">
+                <div class="info-banner__text">
+                  <p class="info-banner__title">This overview will show AI generated insights and high-priority menu updates across your menus, items, categories, and modifiers.</p>
+                </div>
+                <div class="info-banner__actions">
+                  <button class="btn btn--secondary" type="button">
+                    <span>Learn more</span>
+                    <span class="btn__icon btn__icon--trailing">
+                      <i data-lucide="external-link" class="lucide-icon" style="width:14px;height:14px"></i>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="overview-toolbar">
-            <div class="overview-view-toggle" role="group" aria-label="Overview view">
-              <button class="overview-view-toggle__btn overview-view-toggle__btn--active" type="button" data-overview-view="list">
-                <i data-lucide="list" class="lucide-icon" style="width:16px;height:16px"></i>
-                <span>List view</span>
-              </button>
-              <button class="overview-view-toggle__btn" type="button" data-overview-view="table">
-                <i data-lucide="table-2" class="lucide-icon" style="width:16px;height:16px"></i>
-                <span>Table view</span>
-              </button>
-            </div>
             <div class="filter-control" data-filter-control>
               <button class="filter-btn" type="button" data-filter-trigger="location" aria-expanded="false">
                 <span>Location</span>
@@ -302,8 +297,11 @@
                   <input class="search-input__field" type="text" placeholder="Search locations">
                 </div>
                 <button class="filter-option filter-option--location" type="button">
-                  <span class="filter-option__primary">509 Philly Stop - Main St...</span>
-                  <span class="filter-option__secondary">108 Main St, Kittitas, WA 98934, USA</span>
+                  <img class="filter-option__location-icon" src="assets/Icons/location.svg" alt="" aria-hidden="true">
+                  <span class="filter-option__content">
+                    <span class="filter-option__primary">509 Philly Stop - Main St...</span>
+                    <span class="filter-option__secondary">108 Main St, Kittitas, WA 98934, USA</span>
+                  </span>
                 </button>
               </div>
             </div>
@@ -350,8 +348,23 @@
             </div>
           </div>
 
+          <div class="overview-menu-tabs-row">
+            <div class="overview-menu-tabs" role="tablist" aria-label="Menus">
+              <button class="overview-menu-tab overview-menu-tab--active" type="button" role="tab" aria-selected="true" data-overview-menu-tab="all-day">All day menu</button>
+              <button class="overview-menu-tab" type="button" role="tab" aria-selected="false" data-overview-menu-tab="drink">Drink menu</button>
+            </div>
+            <div class="overview-menu-tab-actions">
+              <button class="btn btn--secondary btn--icon-only overview-action-btn" type="button" aria-label="Reorder categories" data-tooltip="Reorder categories">
+                <img src="assets/Icons/reorder.svg" alt="" aria-hidden="true">
+              </button>
+              <button class="btn btn--secondary btn--icon-only overview-action-btn" type="button" aria-label="Edit menu" data-tooltip="Edit menu">
+                <img src="assets/Icons/edit.svg" alt="" aria-hidden="true">
+              </button>
+            </div>
+          </div>
+
           <div class="overview-view-panel overview-view-panel--active" id="overview-list-view" data-overview-view-panel="list">
-          <section class="overview-menu-group">
+          <section class="overview-menu-group" data-overview-menu-panel="all-day">
             <div class="overview-menu-group__header">
               <div class="overview-menu-group__title-wrap">
                 <button class="btn btn--icon-only overview-collapse-btn overview-collapse-btn--large" data-overview-toggle="menu" aria-label="Collapse All day menu" aria-expanded="true">
@@ -413,7 +426,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/a50338f1-11fa-473a-9258-dc1eebbb12bf.avif" alt="The Classic Breakfast Bowl"><span class="overview-item-name">The Classic Breakfast Bowl</span></div></td>
-                      <td><span class="availability availability--unavailable"><i data-lucide="circle-x" class="lucide-icon" style="width:14px;height:14px"></i>Unavailable</span></td>
+                      <td><span class="availability availability--unavailable"><img src="assets/Icons/mark_unavailable.svg" class="availability__icon" alt="" aria-hidden="true">Unavailable</span></td>
                       <td>$12.99</td>
                       <td>1 modifier group</td>
                       <td>1 location</td>
@@ -423,7 +436,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/92c2ea5f-bb5f-4338-9429-12a1047cea38.avif" alt="The Basic B*tch Bowl"><span class="overview-item-name">The Basic B*tch Bowl</span></div></td>
-                      <td><span class="availability availability--unavailable"><i data-lucide="circle-x" class="lucide-icon" style="width:14px;height:14px"></i>Unavailable</span></td>
+                      <td><span class="availability availability--unavailable"><img src="assets/Icons/mark_unavailable.svg" class="availability__icon" alt="" aria-hidden="true">Unavailable</span></td>
                       <td>$14.99</td>
                       <td>1 modifier group</td>
                       <td>1 location</td>
@@ -433,7 +446,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/0548845b-8654-4a03-a595-6033e1746fe7.avif" alt="The Italian Stallion Bowl"><span class="overview-item-name">The Italian Stallion Bowl</span></div></td>
-                      <td><span class="availability availability--unavailable"><i data-lucide="circle-x" class="lucide-icon" style="width:14px;height:14px"></i>Unavailable</span></td>
+                      <td><span class="availability availability--unavailable"><img src="assets/Icons/mark_unavailable.svg" class="availability__icon" alt="" aria-hidden="true">Unavailable</span></td>
                       <td>$13.99</td>
                       <td>1 modifier group</td>
                       <td>1 location</td>
@@ -443,7 +456,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/266b1f78-f98f-40e6-a641-31b1e36a2ec9.avif" alt="The Wake n' Bake Bowl"><span class="overview-item-name">The Wake n' Bake Bowl</span></div></td>
-                      <td><span class="availability availability--unavailable"><i data-lucide="circle-x" class="lucide-icon" style="width:14px;height:14px"></i>Unavailable</span></td>
+                      <td><span class="availability availability--unavailable"><img src="assets/Icons/mark_unavailable.svg" class="availability__icon" alt="" aria-hidden="true">Unavailable</span></td>
                       <td>$14.99</td>
                       <td>1 modifier group</td>
                       <td>1 location</td>
@@ -453,7 +466,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/db8ea970-9dd9-426b-9cf6-b91f4b8742bf.avif" alt="The Hangover Bowl"><span class="overview-item-name">The Hangover Bowl</span></div></td>
-                      <td><span class="availability availability--unavailable"><i data-lucide="circle-x" class="lucide-icon" style="width:14px;height:14px"></i>Unavailable</span></td>
+                      <td><span class="availability availability--unavailable"><img src="assets/Icons/mark_unavailable.svg" class="availability__icon" alt="" aria-hidden="true">Unavailable</span></td>
                       <td>$14.99</td>
                       <td>2 modifier groups</td>
                       <td>1 location</td>
@@ -500,7 +513,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/0ec3993f-95cc-40d8-91df-1bd7ac1c0cbb.avif" alt="The Classic Breakfast Burrito"><span class="overview-item-name">The Classic Breakfast Burrito</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                       <td>$12.99</td>
                       <td>1 modifier group</td>
                       <td>1 location</td>
@@ -510,7 +523,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/0beb023d-6259-4bb2-b2fa-c22718655d8e.avif" alt="The Basic B*tch Burrito"><span class="overview-item-name">The Basic B*tch Burrito</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                       <td>$13.99</td>
                       <td>1 modifier group</td>
                       <td>1 location</td>
@@ -520,7 +533,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/18a617c0-f057-4fbb-8bc5-0f927aa4b75d.avif" alt="The Italian Stallion Burrito"><span class="overview-item-name">The Italian Stallion Burrito</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                       <td>$13.99</td>
                       <td>1 modifier group</td>
                       <td>1 location</td>
@@ -530,7 +543,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/cd339240-25be-4926-b138-8e1a85dff21d.avif" alt="The Wake n' Bake Burrito"><span class="overview-item-name">The Wake n' Bake Burrito</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                       <td>$13.99</td>
                       <td>1 modifier group</td>
                       <td>1 location</td>
@@ -540,7 +553,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/04a12edc-175c-4b19-a7e8-8db289ed8342.avif" alt="The Hangover Burrito"><span class="overview-item-name">The Hangover Burrito</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                       <td>$14.99</td>
                       <td>2 modifier groups</td>
                       <td>1 location</td>
@@ -587,7 +600,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/a3190fa3-9a9c-43d4-8b42-6e3ce05e872b.avif" alt="Side of White Toast"><span class="overview-item-name">Side of White Toast (2 pieces)</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                       <td>$2.99</td>
                       <td>0 modifier groups</td>
                       <td>1 location</td>
@@ -597,7 +610,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/c3f05008-ca11-4801-b042-d00c18f11fea.avif" alt="Side of Wheat Toast"><span class="overview-item-name">Side of Wheat Toast (2 pieces)</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                       <td>$2.99</td>
                       <td>0 modifier groups</td>
                       <td>1 location</td>
@@ -607,7 +620,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/153c58e2-ca0b-487f-817a-d2cd4421a238.avif" alt="Side English Muffin"><span class="overview-item-name">Side English Muffin</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                       <td>$3.25</td>
                       <td>0 modifier groups</td>
                       <td>1 location</td>
@@ -617,7 +630,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/5ed97ca5-5f66-49e7-9344-a06ffb613919.avif" alt="Side Bagel and Cream Cheese"><span class="overview-item-name">Side Bagel &amp; Cream Cheese</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                       <td>$3.99</td>
                       <td>0 modifier groups</td>
                       <td>1 location</td>
@@ -627,7 +640,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/5ccf9738-7ca8-4e2f-8caf-d9a7bebf5278.avif" alt="Side of Bacon"><span class="overview-item-name">Side of Bacon (2 pieces)</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                       <td>$4.99</td>
                       <td>0 modifier groups</td>
                       <td>1 location</td>
@@ -637,7 +650,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/60ec0216-0970-4293-a3ff-a1fd36423a22.avif" alt="Side of Sausage"><span class="overview-item-name">Side of Sausage (2 pieces)</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                       <td>$6.99</td>
                       <td>0 modifier groups</td>
                       <td>1 location</td>
@@ -647,7 +660,7 @@
                     <tr>
                       <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
                       <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/menu_photo/df766456-8389-4534-a4f8-588dded26bd2.avif" alt="Side of Tater Tots"><span class="overview-item-name">Side of Tater Tots</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                      <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                       <td>$4.99</td>
                       <td>0 modifier groups</td>
                       <td>1 location</td>
@@ -662,7 +675,7 @@
             </div>
           </section>
 
-          <section class="overview-menu-group">
+          <section class="overview-menu-group" data-overview-menu-panel="drink" hidden>
             <div class="overview-menu-group__header">
               <div class="overview-menu-group__title-wrap">
                 <button class="btn btn--icon-only overview-collapse-btn overview-collapse-btn--large" data-overview-toggle="menu" aria-label="Collapse Drink menu" aria-expanded="true">
@@ -670,91 +683,80 @@
                 </button>
                 <h3 class="overview-menu-group__title">Drink menu</h3>
               </div>
-              <div class="overview-menu-group__actions">
-                <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Reorder categories" data-tooltip="Reorder categories">
-                  <img src="assets/Icons/reorder.svg" alt="" aria-hidden="true">
-                </button>
-                <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Edit menu" data-tooltip="Edit menu">
-                  <img src="assets/Icons/edit.svg" alt="" aria-hidden="true">
-                </button>
-                <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Create category" data-tooltip="Create category">
-                  <i data-lucide="plus" class="lucide-icon" style="width:16px;height:16px"></i>
-                </button>
-              </div>
             </div>
 
             <div class="overview-menu-content">
-            <section class="overview-category">
-              <div class="overview-category__header">
-                <div class="overview-category__title-wrap">
-                  <button class="btn btn--icon-only overview-collapse-btn overview-collapse-btn--small" data-overview-toggle="category" aria-label="Collapse Beverages" aria-expanded="true">
-                    <i data-lucide="chevron-down" class="lucide-icon" style="width:16px;height:16px"></i>
-                  </button>
-                  <h4 class="overview-category__title">Beverages</h4>
+              <section class="overview-category">
+                <div class="overview-category__header">
+                  <div class="overview-category__title-wrap">
+                    <button class="btn btn--icon-only overview-collapse-btn overview-collapse-btn--small" data-overview-toggle="category" aria-label="Collapse Beverages" aria-expanded="true">
+                      <i data-lucide="chevron-down" class="lucide-icon" style="width:16px;height:16px"></i>
+                    </button>
+                    <h4 class="overview-category__title">Beverages</h4>
+                  </div>
+                  <div class="overview-category__actions">
+                    <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Reorder menu items" data-tooltip="Reorder menu items"><img src="assets/Icons/reorder.svg" alt="" aria-hidden="true"></button>
+                    <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Edit category" data-tooltip="Edit category"><img src="assets/Icons/edit.svg" alt="" aria-hidden="true"></button>
+                    <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Create menu item" data-tooltip="Create menu item"><i data-lucide="plus" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                  </div>
                 </div>
-                <div class="overview-category__actions">
-                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Reorder menu items" data-tooltip="Reorder menu items"><img src="assets/Icons/reorder.svg" alt="" aria-hidden="true"></button>
-                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Edit category" data-tooltip="Edit category"><img src="assets/Icons/edit.svg" alt="" aria-hidden="true"></button>
-                  <button class="btn btn--secondary btn--icon-only overview-action-btn" aria-label="Create menu item" data-tooltip="Create menu item"><i data-lucide="plus" class="lucide-icon" style="width:16px;height:16px"></i></button>
+                <div class="overview-category-content">
+                  <label class="overview-select-all"><input type="checkbox" class="table-checkbox"> Select all menu items in this category</label>
+                  <div class="data-table-wrapper overview-table-wrapper">
+                    <table class="data-table overview-table">
+                      <thead>
+                        <tr>
+                          <th class="col-checkbox"><input type="checkbox" class="table-checkbox"></th>
+                          <th class="col-overview-item">Menu items</th>
+                          <th class="col-overview-availability">Availability</th>
+                          <th class="col-overview-price">Price</th>
+                          <th class="col-overview-contains">Contains</th>
+                          <th class="col-overview-locations">Locations</th>
+                          <th class="col-overview-offered">Offered on</th>
+                          <th class="col-actions"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                          <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/thumbnails/cola.jpg" alt="Coke Can"><span class="overview-item-name">Coke Can</span></div></td>
+                          <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
+                          <td>$2.99</td>
+                          <td>0 modifier groups</td>
+                          <td>1 location</td>
+                          <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                          <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                        </tr>
+                        <tr>
+                          <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                          <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/thumbnails/sprite.jpg" alt="Sprite Can"><span class="overview-item-name">Sprite Can</span></div></td>
+                          <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
+                          <td>$2.99</td>
+                          <td>0 modifier groups</td>
+                          <td>1 location</td>
+                          <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                          <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                        </tr>
+                        <tr>
+                          <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
+                          <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/thumbnails/juice.jpg" alt="Kool-Aid"><span class="overview-item-name">Kool-Aid</span></div></td>
+                          <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
+                          <td>$3.99</td>
+                          <td>0 modifier groups</td>
+                          <td>1 location</td>
+                          <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
+                          <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
-              <div class="overview-category-content">
-              <label class="overview-select-all"><input type="checkbox" class="table-checkbox"> Select all menu items in this category</label>
-              <div class="data-table-wrapper overview-table-wrapper">
-                <table class="data-table overview-table">
-                  <thead>
-                    <tr>
-                      <th class="col-checkbox"><input type="checkbox" class="table-checkbox"></th>
-                      <th class="col-overview-item">Menu items</th>
-                      <th class="col-overview-availability">Availability</th>
-                      <th class="col-overview-price">Price</th>
-                      <th class="col-overview-contains">Contains</th>
-                      <th class="col-overview-locations">Locations</th>
-                      <th class="col-overview-offered">Offered on</th>
-                      <th class="col-actions"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
-                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/thumbnails/cola.jpg" alt="Coke Can"><span class="overview-item-name">Coke Can</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
-                      <td>$2.99</td>
-                      <td>0 modifier groups</td>
-                      <td>1 location</td>
-                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
-                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
-                    </tr>
-                    <tr>
-                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
-                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/thumbnails/sprite.jpg" alt="Sprite Can"><span class="overview-item-name">Sprite Can</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
-                      <td>$2.99</td>
-                      <td>0 modifier groups</td>
-                      <td>1 location</td>
-                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
-                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
-                    </tr>
-                    <tr>
-                      <td class="col-checkbox"><input type="checkbox" class="table-checkbox"></td>
-                      <td><div class="overview-item-cell"><img class="overview-item-photo" src="assets/thumbnails/juice.jpg" alt="Orange Juice"><span class="overview-item-name">Orange Juice</span></div></td>
-                      <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
-                      <td>$3.99</td>
-                      <td>0 modifier groups</td>
-                      <td>1 location</td>
-                      <td><span class="channel-stack"><img src="assets/thumbnails/DoorDash.svg" alt="DoorDash"><img src="assets/thumbnails/Uber Eats.svg" alt="Uber Eats"></span></td>
-                      <td class="col-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate menu item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete menu item</span></button></div></div></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              </div>
-            </section>
+              </section>
             </div>
           </section>
           </div>
           <div class="overview-view-panel" id="overview-table-view" data-overview-view-panel="table" hidden></div>
-        </div>
+        </div><!-- /tab-overview -->
 
         <!-- ===== TAB: MENU ITEMS ===== -->
         <div id="tab-menu-items" class="tab-content" style="display:none">
@@ -821,7 +823,7 @@
             <!-- Column Visibility Toggle -->
             <div class="column-toggle" id="column-toggle">
               <button class="btn btn--icon-only column-toggle__trigger" id="column-toggle-btn" aria-label="Toggle columns">
-                <i data-lucide="columns-3" class="lucide-icon" style="width:16px;height:16px"></i>
+                <img src="assets/Icons/view_column.svg" alt="" aria-hidden="true" style="width:16px;height:16px">
               </button>
               <div class="column-toggle__dropdown" id="column-toggle-dropdown">
                 <div class="column-toggle__header">
@@ -879,7 +881,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -919,7 +921,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -959,7 +961,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -999,7 +1001,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1039,7 +1041,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1079,7 +1081,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1119,7 +1121,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--partial">
-                    <i data-lucide="minus-circle" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_unavailable.svg" class="availability__icon" alt="" aria-hidden="true">
                     1/4 Unavailable
                   </span>
                 </td>
@@ -1159,7 +1161,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1199,7 +1201,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1239,7 +1241,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1279,7 +1281,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1319,7 +1321,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1359,7 +1361,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1399,7 +1401,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1439,7 +1441,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--partial">
-                    <i data-lucide="minus-circle" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_unavailable.svg" class="availability__icon" alt="" aria-hidden="true">
                     Today
                   </span>
                 </td>
@@ -1479,7 +1481,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1519,7 +1521,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1559,7 +1561,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1599,7 +1601,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1639,7 +1641,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1679,7 +1681,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1719,7 +1721,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1759,7 +1761,7 @@
                 <td>3 channels</td>
                 <td>
                   <span class="availability availability--available">
-                    <i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>
+                    <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
                     Available
                   </span>
                 </td>
@@ -1824,7 +1826,7 @@
         </div><!-- /tab-menu-items -->
 
         <!-- ===== SOURCE: MENUS TABLE VIEW ===== -->
-        <div id="tab-menus-source" class="tab-content" style="display:none">
+        <div id="tab-menus" class="tab-content" style="display:none">
 
         <!-- Info Banner -->
         <div class="info-banner">
@@ -1869,7 +1871,7 @@
             </div>
             <div class="column-toggle" id="menus-column-toggle">
               <button class="btn btn--secondary btn--icon-only column-toggle__trigger" id="menus-column-toggle-btn" aria-label="Toggle columns">
-                <i data-lucide="columns-3" class="lucide-icon" style="width:16px;height:16px;color:currentColor"></i>
+                <img src="assets/Icons/view_column.svg" alt="" aria-hidden="true" style="width:16px;height:16px">
               </button>
               <div class="column-toggle__dropdown" id="menus-column-toggle-dropdown">
                 <div class="column-toggle__header">
@@ -1968,7 +1970,7 @@
           </button>
         </div>
 
-        </div><!-- /tab-menus-source -->
+        </div><!-- /tab-menus -->
 
         <!-- ===== TAB: MODIFIER ITEMS ===== -->
         <div id="tab-modifier-items" class="tab-content" style="display:none">
@@ -2028,7 +2030,7 @@
             </div>
             <div class="column-toggle" id="mi-column-toggle">
               <button class="btn btn--icon-only column-toggle__trigger" id="mi-column-toggle-btn" aria-label="Toggle columns">
-                <i data-lucide="columns-3" class="lucide-icon" style="width:16px;height:16px"></i>
+                <img src="assets/Icons/view_column.svg" alt="" aria-hidden="true" style="width:16px;height:16px">
               </button>
               <div class="column-toggle__dropdown" id="mi-column-toggle-dropdown">
                 <div class="column-toggle__header">
@@ -2072,7 +2074,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 2 -->
@@ -2087,7 +2089,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 3 -->
@@ -2102,7 +2104,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 4 -->
@@ -2117,7 +2119,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--partial"><i data-lucide="minus-circle" class="lucide-icon" style="width:14px;height:14px"></i>1/4 Unavailable</span></td>
+                <td><span class="availability availability--partial"><img src="assets/Icons/mark_unavailable.svg" class="availability__icon" alt="" aria-hidden="true">1/4 Unavailable</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 5 -->
@@ -2132,7 +2134,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 6 -->
@@ -2147,7 +2149,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 7 -->
@@ -2162,7 +2164,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 8 -->
@@ -2177,7 +2179,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 9 -->
@@ -2192,7 +2194,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 10 -->
@@ -2207,7 +2209,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 11 -->
@@ -2222,7 +2224,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 12 -->
@@ -2237,7 +2239,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 13 -->
@@ -2252,7 +2254,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 14 -->
@@ -2267,7 +2269,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 15 -->
@@ -2282,7 +2284,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 16 -->
@@ -2297,7 +2299,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 17 -->
@@ -2312,7 +2314,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 18 -->
@@ -2327,7 +2329,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 19 -->
@@ -2342,7 +2344,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--partial"><i data-lucide="minus-circle" class="lucide-icon" style="width:14px;height:14px"></i>1/4 Unavailable</span></td>
+                <td><span class="availability availability--partial"><img src="assets/Icons/mark_unavailable.svg" class="availability__icon" alt="" aria-hidden="true">1/4 Unavailable</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 20 -->
@@ -2357,7 +2359,7 @@
                 <td>1 station profile</td>
                 <td>1 location</td>
                 <td>2 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
               <!-- Row 21: Coke Can (Menu Item used as Modifier Item) -->
@@ -2377,7 +2379,7 @@
                 <td>10 locations</td>
                 <td>3 station profiles</td>
                 <td>3 channels</td>
-                <td><span class="availability availability--available"><i data-lucide="circle-check" class="lucide-icon" style="width:14px;height:14px"></i>Available</span></td>
+                <td><span class="availability availability--available"><img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">Available</span></td>
                 <td class="col-mi-actions"><div class="row-action"><button class="row-action__trigger" aria-label="Row actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px;color:var(--color-text-weak)"></i></button><div class="row-action__menu"><button class="row-action__item"><i data-lucide="copy" class="lucide-icon" style="width:14px;height:14px"></i><span>Duplicate modifier item</span></button><button class="row-action__item row-action__item--danger"><i data-lucide="trash-2" class="lucide-icon" style="width:14px;height:14px"></i><span>Delete modifier item</span></button></div></div></td>
               </tr>
             </tbody>
@@ -2676,7 +2678,7 @@
             </div>
             <div class="column-toggle" id="mg-column-toggle">
               <button class="btn btn--icon-only column-toggle__trigger" id="mg-column-toggle-btn" aria-label="Toggle columns">
-                <i data-lucide="columns-3" class="lucide-icon" style="width:16px;height:16px"></i>
+                <img src="assets/Icons/view_column.svg" alt="" aria-hidden="true" style="width:16px;height:16px">
               </button>
               <div class="column-toggle__dropdown" id="mg-column-toggle-dropdown">
                 <div class="column-toggle__header">
@@ -2918,7 +2920,7 @@
               </div>
               <div class="column-toggle" id="sku-column-toggle">
                 <button class="btn btn--icon-only column-toggle__trigger" id="sku-column-toggle-btn" aria-label="Toggle columns">
-                  <i data-lucide="columns-3" class="lucide-icon" style="width:16px;height:16px"></i>
+                  <img src="assets/Icons/view_column.svg" alt="" aria-hidden="true" style="width:16px;height:16px">
                 </button>
                 <div class="column-toggle__dropdown" id="sku-column-toggle-dropdown">
                   <div class="column-toggle__header">
@@ -3728,19 +3730,1140 @@
 
         </div><!-- /page-sku-library -->
 
-        <div id="page-pricing-rules" style="display:none"></div>
-        <div id="page-archived-menus" style="display:none"></div>
+        <!-- ===== PHOTO LIBRARY PAGE ===== -->
+        <div id="page-photo-library" class="library-placeholder-page" style="display:none">
+          <div class="sku-page-header">
+            <h1 class="sku-page-header__title">Photo library</h1>
+            <div class="sku-page-header__actions">
+              <button class="btn btn--secondary" type="button">
+                <span class="btn__icon btn__icon--leading">
+                  <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
+                </span>
+                <span>Add photo</span>
+              </button>
+            </div>
+          </div>
 
-        <!-- ===== ACTIVITY PAGE ===== -->
-        <div id="page-activity" style="display:none">
+          <div class="info-banner">
+            <div class="info-banner__illustration">
+              <img src="assets/illus-edit-menu.svg" alt="Photo library illustration">
+            </div>
+            <div class="info-banner__content">
+              <div class="info-banner__text">
+                <p class="info-banner__title">Photo library will help you manage reusable menu photography across brands, menus, and menu items.</p>
+              </div>
+              <div class="info-banner__actions">
+                <button class="btn btn--secondary" type="button">
+                  <span>Learn more</span>
+                  <span class="btn__icon btn__icon--trailing">
+                    <i data-lucide="external-link" class="lucide-icon" style="width:14px;height:14px"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-bar">
+            <div class="filter-bar__filters">
+              <button class="filter-btn" type="button">
+                <span>Filter</span>
+                <span class="filter-btn__arrow">
+                  <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
+                </span>
+              </button>
+              <button class="filter-btn" type="button">
+                <span>Filter</span>
+                <span class="filter-btn__arrow">
+                  <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
+                </span>
+              </button>
+            </div>
+            <div class="filter-bar__search-area">
+              <div class="search-input">
+                <i data-lucide="search" class="lucide-icon search-input__icon" style="width:14px;height:14px;color:var(--color-text-weak)"></i>
+                <input class="search-input__field" type="text" placeholder="Search...">
+              </div>
+            </div>
+          </div>
+
+          <div class="library-placeholder-page__body" aria-hidden="true"></div>
+        </div><!-- /page-photo-library -->
+
+        <!-- ===== MENU HOURS PAGE ===== -->
+        <div id="page-menu-hours" class="menu-hours-page" style="display:none">
           <div class="page-nav">
             <div class="page-header">
               <div class="page-header__left">
                 <div class="page-header__title-row">
-                  <h1 class="page-header__title">Activity</h1>
+                  <h1 class="page-header__title">Menu hours</h1>
+                </div>
+              </div>
+              <div class="page-header__actions">
+                <button class="btn btn--primary" type="button">
+                  <span>Bulk edit hours</span>
+                  <span class="btn__icon btn__icon--trailing">
+                    <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-hours-toolbar">
+            <div class="menu-hours-toolbar__left">
+              <div class="overview-view-toggle menu-hours-view-toggle" aria-label="View mode">
+                <button class="overview-view-toggle__btn overview-view-toggle__btn--active menu-hours-view-toggle__btn" type="button">
+                  <i data-lucide="list" class="lucide-icon" style="width:14px;height:14px"></i>
+                  <span>List view</span>
+                </button>
+                <button class="overview-view-toggle__btn menu-hours-view-toggle__btn" type="button">
+                  <img src="assets/Icons/date.svg" alt="" aria-hidden="true" class="lucide-icon menu-hours-view-toggle__icon" style="width:14px;height:14px">
+                  <span>Calendar view</span>
+                </button>
+              </div>
+            </div>
+            <div class="menu-hours-toolbar__right">
+              <div class="search-input menu-hours-search">
+                <i data-lucide="search" class="lucide-icon search-input__icon" style="width:14px;height:14px;color:var(--color-text-weak)"></i>
+                <input class="search-input__field" type="text" placeholder="Search for brand or location">
+              </div>
+              <button class="filter-btn" type="button">
+                <span>Brand</span>
+                <span class="filter-btn__arrow">
+                  <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
+                </span>
+              </button>
+              <button class="filter-btn" type="button">
+                <span class="filter-btn__icon">
+                  <i data-lucide="filter" class="lucide-icon" style="width:14px;height:14px"></i>
+                </span>
+                <span>All filters</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="menu-hours-list">
+            <section class="menu-hours-brand" aria-labelledby="menu-hours-aloha-title">
+              <div class="menu-hours-brand__header">
+                <img class="menu-hours-brand__logo" src="assets/logo-aloha-hibachi.png" alt="">
+                <h2 class="menu-hours-brand__title" id="menu-hours-aloha-title">Aloha Hibachi</h2>
+              </div>
+
+              <article class="menu-hours-card menu-hours-card--collapsed">
+                <div class="menu-hours-card__summary">
+                  <button class="menu-hours-card__summary-btn" type="button" aria-label="Expand Aloha Hibachi main hours" aria-expanded="false" data-menu-hours-toggle>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                  </button>
+                  <div class="menu-hours-card__title">
+                    <div class="menu-hours-card__name">Aloha Hibachi main hours</div>
+                    <div class="menu-hours-card__meta">3 menus · 4 locations</div>
+                  </div>
+                  <span class="status-badge status-badge--positive">
+                    <span class="status-badge__text">Published</span>
+                  </span>
+                  <button class="btn btn--secondary" type="button">
+                    <span>Edit hours</span>
+                    <span class="btn__icon btn__icon--trailing">
+                      <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
+                    </span>
+                  </button>
+                  <button class="btn btn--icon-only" type="button" aria-label="More actions">
+                    <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i>
+                  </button>
+                </div>
+                <div class="menu-hours-card__body">
+                  <div class="menu-hours-panel">
+                    <div class="menu-hours-panel__tabs">
+                      <button class="pill-tab pill-tab--selected" type="button">Menu hours</button>
+                      <button class="pill-tab pill-tab--default" type="button">Special hours</button>
+                    </div>
+                    <div class="menu-hours-grid">
+                      <nav class="menu-hours-menu-list" aria-label="Aloha Hibachi menus">
+                        <button class="menu-hours-menu-list__item menu-hours-menu-list__item--selected" type="button">All day menu</button>
+                        <button class="menu-hours-menu-list__item" type="button">Weekend menu</button>
+                        <button class="menu-hours-menu-list__item" type="button">Drink menu</button>
+                      </nav>
+                      <table class="menu-hours-table">
+                        <thead>
+                          <tr>
+                            <th style="width:230px">Location</th>
+                            <th><span class="sr-only">Publish status</span></th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                            <th>Sun</th>
+                            <th class="menu-hours-table__actions"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="menu-hours-table__location">Koreatown</div>
+                              <div class="menu-hours-table__address">631 S Western Ave</div>
+                            </td>
+                            <td><span class="status-badge status-badge--positive status-badge--icon-only menu-hours-status-badge" aria-label="Published" data-tooltip="Koreatown published successfully at 2:48 PM."><span class="material-symbols-outlined status-badge__icon" aria-hidden="true">check_circle</span></span></td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-10pm</td>
+                            <td>12-10pm</td>
+                            <td>12-8pm</td>
+                            <td class="menu-hours-table__actions"><button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="menu-hours-table__location">Culver City</div>
+                              <div class="menu-hours-table__address">4135 Sepulveda Blvd</div>
+                            </td>
+                            <td><span class="status-badge status-badge--positive status-badge--icon-only menu-hours-status-badge" aria-label="Published" data-tooltip="Culver City published successfully at 2:48 PM."><span class="material-symbols-outlined status-badge__icon" aria-hidden="true">check_circle</span></span></td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-10pm</td>
+                            <td>12-10pm</td>
+                            <td>12-8pm</td>
+                            <td class="menu-hours-table__actions"><button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="menu-hours-table__location">Pasadena</div>
+                              <div class="menu-hours-table__address">280 E Colorado Blvd</div>
+                            </td>
+                            <td><span class="status-badge status-badge--positive status-badge--icon-only menu-hours-status-badge" aria-label="Published" data-tooltip="Pasadena published successfully at 2:48 PM."><span class="material-symbols-outlined status-badge__icon" aria-hidden="true">check_circle</span></span></td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-10pm</td>
+                            <td>12-10pm</td>
+                            <td>12-8pm</td>
+                            <td class="menu-hours-table__actions"><button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="menu-hours-table__location">Downtown LA</div>
+                              <div class="menu-hours-table__address">789 S Alameda St</div>
+                            </td>
+                            <td><span class="status-badge status-badge--positive status-badge--icon-only menu-hours-status-badge" aria-label="Published" data-tooltip="Downtown LA published successfully at 2:48 PM."><span class="material-symbols-outlined status-badge__icon" aria-hidden="true">check_circle</span></span></td>
+                            <td>11am-8pm</td>
+                            <td>11am-8pm</td>
+                            <td>11am-8pm</td>
+                            <td>11am-8pm</td>
+                            <td>11am-9pm</td>
+                            <td>12-9pm</td>
+                            <td>Closed</td>
+                            <td class="menu-hours-table__actions"><button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </section>
+
+            <section class="menu-hours-brand" aria-labelledby="menu-hours-alpha-title">
+              <div class="menu-hours-brand__header">
+                <img class="menu-hours-brand__logo" src="assets/logo-alpha-bowls.png" alt="">
+                <h2 class="menu-hours-brand__title" id="menu-hours-alpha-title">alpha bowls</h2>
+              </div>
+              <article class="menu-hours-card menu-hours-card--collapsed">
+                <div class="menu-hours-card__summary">
+                  <button class="menu-hours-card__summary-btn" type="button" aria-label="Expand alpha bowls hours" aria-expanded="false" data-menu-hours-toggle>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                  </button>
+                  <div class="menu-hours-card__title">
+                    <div class="menu-hours-card__name">alpha bowls standard hours</div>
+                    <div class="menu-hours-card__meta">2 menus · 3 locations</div>
+                  </div>
+                  <span class="status-badge status-badge--positive">
+                    <span class="status-badge__text">Published</span>
+                  </span>
+                  <button class="btn btn--secondary" type="button">
+                    <span>Edit hours</span>
+                    <span class="btn__icon btn__icon--trailing">
+                      <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
+                    </span>
+                  </button>
+                  <button class="btn btn--icon-only" type="button" aria-label="More actions">
+                    <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i>
+                  </button>
+                </div>
+                <div class="menu-hours-card__body">
+                  <div class="menu-hours-panel">
+                    <div class="menu-hours-panel__tabs">
+                      <button class="pill-tab pill-tab--selected" type="button">Menu hours</button>
+                      <button class="pill-tab pill-tab--default" type="button">Special hours</button>
+                    </div>
+                    <div class="menu-hours-grid">
+                      <nav class="menu-hours-menu-list" aria-label="alpha bowls menus">
+                        <button class="menu-hours-menu-list__item menu-hours-menu-list__item--selected" type="button">All day menu</button>
+                        <button class="menu-hours-menu-list__item" type="button">Drink menu</button>
+                      </nav>
+                      <table class="menu-hours-table">
+                        <thead>
+                          <tr>
+                            <th style="width:230px">Location</th>
+                            <th><span class="sr-only">Publish status</span></th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                            <th>Sun</th>
+                            <th class="menu-hours-table__actions"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="menu-hours-table__location">West Hollywood</div>
+                              <div class="menu-hours-table__address">1234 N La Brea Ave</div>
+                            </td>
+                            <td><span class="status-badge status-badge--positive status-badge--icon-only menu-hours-status-badge" aria-label="Published" data-tooltip="West Hollywood published successfully at 2:48 PM."><span class="material-symbols-outlined status-badge__icon" aria-hidden="true">check_circle</span></span></td>
+                            <td>8am-8pm</td>
+                            <td>8am-8pm</td>
+                            <td>8am-8pm</td>
+                            <td>8am-8pm</td>
+                            <td>8am-9pm</td>
+                            <td>9am-9pm</td>
+                            <td>9am-6pm</td>
+                            <td class="menu-hours-table__actions"><button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="menu-hours-table__location">Santa Monica</div>
+                              <div class="menu-hours-table__address">412 Ocean Ave</div>
+                            </td>
+                            <td><span class="status-badge status-badge--positive status-badge--icon-only menu-hours-status-badge" aria-label="Published" data-tooltip="Santa Monica published successfully at 2:48 PM."><span class="material-symbols-outlined status-badge__icon" aria-hidden="true">check_circle</span></span></td>
+                            <td>8am-8pm</td>
+                            <td>8am-8pm</td>
+                            <td>8am-8pm</td>
+                            <td>8am-8pm</td>
+                            <td>8am-9pm</td>
+                            <td>9am-9pm</td>
+                            <td>9am-6pm</td>
+                            <td class="menu-hours-table__actions"><button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </section>
+            <section class="menu-hours-brand" aria-labelledby="menu-hours-big-daddys-title">
+              <div class="menu-hours-brand__header">
+                <img class="menu-hours-brand__logo" src="assets/logo-big-daddys.png" alt="">
+                <h2 class="menu-hours-brand__title" id="menu-hours-big-daddys-title">Big Daddy's</h2>
+              </div>
+              <article class="menu-hours-card menu-hours-card--collapsed">
+                <div class="menu-hours-card__summary">
+                  <button class="menu-hours-card__summary-btn" type="button" aria-label="Expand Big Daddy's hours" aria-expanded="false" data-menu-hours-toggle>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                  </button>
+                  <div class="menu-hours-card__title">
+                    <div class="menu-hours-card__name">Big Daddy's main hours</div>
+                    <div class="menu-hours-card__meta">2 menus · 3 locations</div>
+                  </div>
+                  <span class="status-badge status-badge--negative">
+                    <span class="status-badge__text">Publish failed</span>
+                  </span>
+                  <button class="btn btn--secondary" type="button">View issues</button>
+                  <button class="btn btn--icon-only" type="button" aria-label="More actions">
+                    <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i>
+                  </button>
+                </div>
+                <div class="menu-hours-card__body">
+                  <div class="menu-hours-panel">
+                    <div class="menu-hours-panel__tabs">
+                      <button class="pill-tab pill-tab--selected" type="button">Menu hours</button>
+                      <button class="pill-tab pill-tab--default" type="button">Special hours</button>
+                    </div>
+                    <div class="menu-hours-grid">
+                      <nav class="menu-hours-menu-list" aria-label="Big Daddy's menus">
+                        <button class="menu-hours-menu-list__item menu-hours-menu-list__item--selected" type="button">All day menu <span class="status-badge status-badge--negative status-badge--icon-only menu-hours-status-badge" aria-label="Publish failed" data-tooltip="1 location failed to publish for All day menu."><span class="material-symbols-outlined status-badge__icon" aria-hidden="true">error</span></span></button>
+                        <button class="menu-hours-menu-list__item" type="button">Dinner menu</button>
+                      </nav>
+                      <table class="menu-hours-table">
+                        <thead>
+                          <tr>
+                            <th style="width:230px">Location</th>
+                            <th><span class="sr-only">Publish status</span></th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                            <th>Sun</th>
+                            <th class="menu-hours-table__actions"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="menu-hours-table__location">Long Beach</div>
+                              <div class="menu-hours-table__address">215 Pine Ave</div>
+                            </td>
+                            <td><span class="status-badge status-badge--negative status-badge--icon-only menu-hours-status-badge" aria-label="Publish failed" data-tooltip="Long Beach failed to publish. Store hours are missing for this channel."><span class="material-symbols-outlined status-badge__icon" aria-hidden="true">error</span></span></td>
+                            <td>10am-9pm</td>
+                            <td>10am-9pm</td>
+                            <td>10am-9pm</td>
+                            <td>10am-9pm</td>
+                            <td>10am-10pm</td>
+                            <td>10am-10pm</td>
+                            <td>11am-8pm</td>
+                            <td class="menu-hours-table__actions"><button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="menu-hours-table__location">Inglewood</div>
+                              <div class="menu-hours-table__address">830 Market St</div>
+                            </td>
+                            <td><span class="status-badge status-badge--positive status-badge--icon-only menu-hours-status-badge" aria-label="Published" data-tooltip="Inglewood published successfully at 2:48 PM."><span class="material-symbols-outlined status-badge__icon" aria-hidden="true">check_circle</span></span></td>
+                            <td>10am-9pm</td>
+                            <td>10am-9pm</td>
+                            <td>10am-9pm</td>
+                            <td>10am-9pm</td>
+                            <td>10am-10pm</td>
+                            <td>10am-10pm</td>
+                            <td>11am-8pm</td>
+                            <td class="menu-hours-table__actions"><button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </section>
+
+            <section class="menu-hours-brand" aria-labelledby="menu-hours-farmstand-title">
+              <div class="menu-hours-brand__header">
+                <span class="menu-hours-brand__avatar" aria-hidden="true">F</span>
+                <h2 class="menu-hours-brand__title" id="menu-hours-farmstand-title">Farmstand</h2>
+              </div>
+              <article class="menu-hours-card menu-hours-card--collapsed">
+                <div class="menu-hours-card__summary">
+                  <button class="menu-hours-card__summary-btn" type="button" aria-label="Expand Farmstand hours" aria-expanded="false" data-menu-hours-toggle>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                  </button>
+                  <div class="menu-hours-card__title">
+                    <div class="menu-hours-card__name">Farmstand seasonal hours</div>
+                    <div class="menu-hours-card__meta">3 menus · 2 locations</div>
+                  </div>
+                  <span class="status-badge status-badge--notice">
+                    <span class="status-badge__text">Missing settings</span>
+                  </span>
+                  <button class="btn btn--secondary" type="button">Review settings</button>
+                  <button class="btn btn--icon-only" type="button" aria-label="More actions">
+                    <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i>
+                  </button>
+                </div>
+                <div class="menu-hours-card__body">
+                  <div class="menu-hours-panel">
+                    <div class="menu-hours-panel__tabs">
+                      <button class="pill-tab pill-tab--selected" type="button">Menu hours</button>
+                      <button class="pill-tab pill-tab--default" type="button">Special hours</button>
+                    </div>
+                    <div class="menu-hours-grid">
+                      <nav class="menu-hours-menu-list" aria-label="Farmstand menus">
+                        <button class="menu-hours-menu-list__item menu-hours-menu-list__item--selected" type="button">All day menu</button>
+                        <button class="menu-hours-menu-list__item" type="button">Weekend brunch <span class="status-badge status-badge--notice status-badge--icon-only menu-hours-status-badge" aria-label="Missing settings" data-tooltip="Weekend brunch has missing settings before it can be published."><span class="material-symbols-outlined status-badge__icon" aria-hidden="true">error</span></span></button>
+                        <button class="menu-hours-menu-list__item" type="button">Drink menu</button>
+                      </nav>
+                      <table class="menu-hours-table">
+                        <thead>
+                          <tr>
+                            <th style="width:230px">Location</th>
+                            <th><span class="sr-only">Publish status</span></th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                            <th>Sun</th>
+                            <th class="menu-hours-table__actions"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="menu-hours-table__location">Silver Lake</div>
+                              <div class="menu-hours-table__address">1842 Sunset Blvd</div>
+                            </td>
+                            <td><span class="status-badge status-badge--notice status-badge--icon-only menu-hours-status-badge" aria-label="Missing settings" data-tooltip="Silver Lake is missing a menu hours setting. Edit hours before publishing."><span class="material-symbols-outlined status-badge__icon" aria-hidden="true">error</span></span></td>
+                            <td>9am-7pm</td>
+                            <td>9am-7pm</td>
+                            <td>9am-7pm</td>
+                            <td>9am-7pm</td>
+                            <td>9am-8pm</td>
+                            <td>9am-8pm</td>
+                            <td>9am-6pm</td>
+                            <td class="menu-hours-table__actions"><button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="menu-hours-table__location">Pasadena</div>
+                              <div class="menu-hours-table__address">91 N Fair Oaks Ave</div>
+                            </td>
+                            <td><span class="status-badge status-badge--positive status-badge--icon-only menu-hours-status-badge" aria-label="Published" data-tooltip="Pasadena published successfully at 2:48 PM."><span class="material-symbols-outlined status-badge__icon" aria-hidden="true">check_circle</span></span></td>
+                            <td>9am-7pm</td>
+                            <td>9am-7pm</td>
+                            <td>9am-7pm</td>
+                            <td>9am-7pm</td>
+                            <td>9am-8pm</td>
+                            <td>9am-8pm</td>
+                            <td>9am-6pm</td>
+                            <td class="menu-hours-table__actions"><button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </section>
+
+            <section class="menu-hours-brand" aria-labelledby="menu-hours-fattys-title">
+              <div class="menu-hours-brand__header">
+                <img class="menu-hours-brand__logo" src="assets/logo-fattys-teriyaki.png" alt="">
+                <h2 class="menu-hours-brand__title" id="menu-hours-fattys-title">Fatty's Teriyaki</h2>
+              </div>
+              <article class="menu-hours-card menu-hours-card--collapsed">
+                <div class="menu-hours-card__summary">
+                  <button class="menu-hours-card__summary-btn" type="button" aria-label="Expand Fatty's Teriyaki hours" aria-expanded="false" data-menu-hours-toggle>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                  </button>
+                  <div class="menu-hours-card__title">
+                    <div class="menu-hours-card__name">Fatty's Teriyaki store hours</div>
+                    <div class="menu-hours-card__meta">2 menus · 2 locations</div>
+                  </div>
+                  <span class="status-badge status-badge--positive">
+                    <span class="status-badge__text">Published</span>
+                  </span>
+                  <button class="btn btn--secondary" type="button">
+                    <span>Edit hours</span>
+                    <span class="btn__icon btn__icon--trailing">
+                      <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
+                    </span>
+                  </button>
+                  <button class="btn btn--icon-only" type="button" aria-label="More actions">
+                    <i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i>
+                  </button>
+                </div>
+                <div class="menu-hours-card__body">
+                  <div class="menu-hours-panel">
+                    <div class="menu-hours-panel__tabs">
+                      <button class="pill-tab pill-tab--selected" type="button">Menu hours</button>
+                      <button class="pill-tab pill-tab--default" type="button">Special hours</button>
+                    </div>
+                    <div class="menu-hours-grid">
+                      <nav class="menu-hours-menu-list" aria-label="Fatty's Teriyaki menus">
+                        <button class="menu-hours-menu-list__item menu-hours-menu-list__item--selected" type="button">All day menu</button>
+                        <button class="menu-hours-menu-list__item" type="button">Drink menu</button>
+                      </nav>
+                      <table class="menu-hours-table">
+                        <thead>
+                          <tr>
+                            <th style="width:230px">Location</th>
+                            <th><span class="sr-only">Publish status</span></th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                            <th>Sun</th>
+                            <th class="menu-hours-table__actions"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="menu-hours-table__location">Echo Park</div>
+                              <div class="menu-hours-table__address">1565 Sunset Blvd</div>
+                            </td>
+                            <td><span class="status-badge status-badge--positive status-badge--icon-only menu-hours-status-badge" aria-label="Published" data-tooltip="Echo Park published successfully at 2:48 PM."><span class="material-symbols-outlined status-badge__icon" aria-hidden="true">check_circle</span></span></td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-10pm</td>
+                            <td>12-10pm</td>
+                            <td>12-8pm</td>
+                            <td class="menu-hours-table__actions"><button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="menu-hours-table__location">Arts District</div>
+                              <div class="menu-hours-table__address">725 Traction Ave</div>
+                            </td>
+                            <td><span class="status-badge status-badge--positive status-badge--icon-only menu-hours-status-badge" aria-label="Published" data-tooltip="Arts District published successfully at 2:48 PM."><span class="material-symbols-outlined status-badge__icon" aria-hidden="true">check_circle</span></span></td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-9pm</td>
+                            <td>11am-10pm</td>
+                            <td>12-10pm</td>
+                            <td>12-8pm</td>
+                            <td class="menu-hours-table__actions"><button class="row-action-btn" aria-label="Actions"><i data-lucide="ellipsis-vertical" class="lucide-icon" style="width:16px;height:16px"></i></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </section>
+          </div>
+  <!-- ── Menu Hours Publish Modal ── -->
+  <div class="modal-scrim" id="menuHoursPublishScrim"></div>
+  <div class="menu-hours-publish-modal" id="menuHoursPublishModal" role="dialog" aria-modal="true" aria-labelledby="menuHoursPublishTitle" aria-hidden="true">
+    <div class="menu-hours-publish-modal__header">
+      <h2 class="menu-hours-publish-modal__title" id="menuHoursPublishTitle">Edit menu hours</h2>
+      <button class="menu-hours-publish-modal__close" id="menuHoursPublishClose" type="button" aria-label="Close">
+        <img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true">
+      </button>
+    </div>
+    <div class="menu-hours-publish-modal__body">
+      <div class="menu-hours-publish-meta" aria-label="Menu hours publish details">
+        <div class="menu-hours-publish-meta__item">
+          <span class="menu-hours-publish-meta__label">Brand</span>
+          <span class="menu-hours-publish-meta__value" id="menuHoursPublishBrand">Bangkok Bowls</span>
+        </div>
+        <div class="menu-hours-publish-meta__item">
+          <span class="menu-hours-publish-meta__label">Menu group</span>
+          <span class="menu-hours-publish-meta__value" id="menuHoursPublishGroup">2 menu groups</span>
+        </div>
+        <div class="menu-hours-publish-meta__item">
+          <span class="menu-hours-publish-meta__label">Location</span>
+          <span class="menu-hours-publish-meta__value" id="menuHoursPublishLocation">98 Ossington Avenue, Toronto ON, M5V0J9</span>
+        </div>
+        <div class="menu-hours-publish-meta__item">
+          <span class="menu-hours-publish-meta__label">Menu</span>
+          <span class="menu-hours-publish-meta__value" id="menuHoursPublishMenu">3 menus</span>
+        </div>
+      </div>
+
+      <div class="menu-hours-publish-banner" role="status">
+        <img class="banner-status-icon banner-status-icon--notice menu-hours-publish-banner__icon" src="assets/Icons/warning.svg" alt="" aria-hidden="true">
+        <span class="menu-hours-publish-banner__text">Publishing will overwrite existing hours.</span>
+        <button class="btn btn--secondary menu-hours-publish-banner__action" type="button">View current menu hours</button>
+      </div>
+
+      <div class="menu-hours-editor-grid" role="table" aria-label="Weekly menu hours">
+        <div class="menu-hours-editor-row menu-hours-editor-row--closed" role="row">
+          <div class="menu-hours-editor-row__day" role="cell">Monday</div>
+          <button class="menu-hours-editor-toggle" type="button" role="switch" aria-checked="false" aria-label="Monday disabled"><span></span></button>
+          <div class="menu-hours-editor-slots" role="cell">
+            <span class="menu-hours-editor-closed">Closed</span>
+          </div>
+          <span class="menu-hours-editor-spacer"></span>
+          <div class="menu-hours-editor-actions">
+            <button class="menu-hours-editor-icon-btn" type="button" aria-label="Add Monday hours"><img src="assets/Icons/add.svg" alt="" aria-hidden="true"></button>
+            <button class="menu-hours-editor-icon-btn" type="button" aria-label="Copy Monday hours"><img src="assets/Icons/copy:duplicate.svg" alt="" aria-hidden="true"></button>
+          </div>
+        </div>
+        <div class="menu-hours-editor-row" role="row">
+          <div class="menu-hours-editor-row__day" role="cell">Tuesday</div>
+          <button class="menu-hours-editor-toggle" type="button" role="switch" aria-checked="true" aria-label="Tuesday enabled"><span></span></button>
+          <div class="menu-hours-editor-slots" role="cell">
+            <div class="menu-hours-editor-slot">
+              <input class="menu-hours-editor-time" type="text" value="8:00 am" aria-label="Tuesday start time">
+              <span class="menu-hours-editor-dash">–</span>
+              <input class="menu-hours-editor-time" type="text" value="10:00 am" aria-label="Tuesday end time">
+              <button class="menu-hours-editor-icon-btn" type="button" aria-label="Remove Tuesday hours"><img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true"></button>
+            </div>
+            <div class="menu-hours-editor-slot">
+              <input class="menu-hours-editor-time" type="text" value="10:30 am" aria-label="Tuesday second start time">
+              <span class="menu-hours-editor-dash">–</span>
+              <input class="menu-hours-editor-time" type="text" value="11:00 am" aria-label="Tuesday second end time">
+              <button class="menu-hours-editor-icon-btn" type="button" aria-label="Remove Tuesday second hours"><img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true"></button>
+            </div>
+          </div>
+          <span class="menu-hours-editor-spacer"></span>
+          <div class="menu-hours-editor-actions">
+            <button class="menu-hours-editor-icon-btn" type="button" aria-label="Add Tuesday hours"><img src="assets/Icons/add.svg" alt="" aria-hidden="true"></button>
+            <button class="menu-hours-editor-icon-btn" type="button" aria-label="Copy Tuesday hours"><img src="assets/Icons/copy:duplicate.svg" alt="" aria-hidden="true"></button>
+          </div>
+        </div>
+        <div class="menu-hours-editor-row" role="row">
+          <div class="menu-hours-editor-row__day" role="cell">Wednesday</div>
+          <button class="menu-hours-editor-toggle" type="button" role="switch" aria-checked="true" aria-label="Wednesday enabled"><span></span></button>
+          <div class="menu-hours-editor-slots" role="cell">
+            <div class="menu-hours-editor-slot">
+              <input class="menu-hours-editor-time" type="text" placeholder="Open" aria-label="Wednesday start time">
+              <span class="menu-hours-editor-dash">–</span>
+              <input class="menu-hours-editor-time" type="text" placeholder="Close" aria-label="Wednesday end time">
+              <button class="menu-hours-editor-icon-btn" type="button" aria-label="Remove Wednesday hours"><img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true"></button>
+            </div>
+          </div>
+          <span class="menu-hours-editor-spacer"></span>
+          <div class="menu-hours-editor-actions">
+            <button class="menu-hours-editor-icon-btn" type="button" aria-label="Add Wednesday hours"><img src="assets/Icons/add.svg" alt="" aria-hidden="true"></button>
+            <button class="menu-hours-editor-icon-btn" type="button" aria-label="Copy Wednesday hours"><img src="assets/Icons/copy:duplicate.svg" alt="" aria-hidden="true"></button>
+          </div>
+        </div>
+        <div class="menu-hours-editor-row" role="row">
+          <div class="menu-hours-editor-row__day" role="cell">Thursday</div>
+          <button class="menu-hours-editor-toggle" type="button" role="switch" aria-checked="true" aria-label="Thursday enabled"><span></span></button>
+          <div class="menu-hours-editor-slots" role="cell">
+            <div class="menu-hours-editor-slot">
+              <input class="menu-hours-editor-time" type="text" placeholder="Open" aria-label="Thursday start time">
+              <span class="menu-hours-editor-dash">–</span>
+              <input class="menu-hours-editor-time" type="text" placeholder="Close" aria-label="Thursday end time">
+              <button class="menu-hours-editor-icon-btn" type="button" aria-label="Remove Thursday hours"><img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true"></button>
+            </div>
+          </div>
+          <span class="menu-hours-editor-spacer"></span>
+          <div class="menu-hours-editor-actions">
+            <button class="menu-hours-editor-icon-btn" type="button" aria-label="Add Thursday hours"><img src="assets/Icons/add.svg" alt="" aria-hidden="true"></button>
+            <button class="menu-hours-editor-icon-btn" type="button" aria-label="Copy Thursday hours"><img src="assets/Icons/copy:duplicate.svg" alt="" aria-hidden="true"></button>
+          </div>
+        </div>
+        <div class="menu-hours-editor-row" role="row">
+          <div class="menu-hours-editor-row__day" role="cell">Friday</div>
+          <button class="menu-hours-editor-toggle" type="button" role="switch" aria-checked="true" aria-label="Friday enabled"><span></span></button>
+          <div class="menu-hours-editor-slots" role="cell">
+            <div class="menu-hours-editor-slot">
+              <input class="menu-hours-editor-time" type="text" placeholder="Open" aria-label="Friday start time">
+              <span class="menu-hours-editor-dash">–</span>
+              <input class="menu-hours-editor-time" type="text" placeholder="Close" aria-label="Friday end time">
+              <button class="menu-hours-editor-icon-btn" type="button" aria-label="Remove Friday hours"><img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true"></button>
+            </div>
+          </div>
+          <span class="menu-hours-editor-spacer"></span>
+          <div class="menu-hours-editor-actions">
+            <button class="menu-hours-editor-icon-btn" type="button" aria-label="Add Friday hours"><img src="assets/Icons/add.svg" alt="" aria-hidden="true"></button>
+            <button class="menu-hours-editor-icon-btn" type="button" aria-label="Copy Friday hours"><img src="assets/Icons/copy:duplicate.svg" alt="" aria-hidden="true"></button>
+          </div>
+        </div>
+        <div class="menu-hours-editor-row" role="row">
+          <div class="menu-hours-editor-row__day" role="cell">Saturday</div>
+          <button class="menu-hours-editor-toggle" type="button" role="switch" aria-checked="true" aria-label="Saturday enabled"><span></span></button>
+          <div class="menu-hours-editor-slots" role="cell">
+            <div class="menu-hours-editor-slot">
+              <input class="menu-hours-editor-time" type="text" placeholder="Open" aria-label="Saturday start time">
+              <span class="menu-hours-editor-dash">–</span>
+              <input class="menu-hours-editor-time" type="text" placeholder="Close" aria-label="Saturday end time">
+              <button class="menu-hours-editor-icon-btn" type="button" aria-label="Remove Saturday hours"><img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true"></button>
+            </div>
+          </div>
+          <span class="menu-hours-editor-spacer"></span>
+          <div class="menu-hours-editor-actions">
+            <button class="menu-hours-editor-icon-btn" type="button" aria-label="Add Saturday hours"><img src="assets/Icons/add.svg" alt="" aria-hidden="true"></button>
+            <button class="menu-hours-editor-icon-btn" type="button" aria-label="Copy Saturday hours"><img src="assets/Icons/copy:duplicate.svg" alt="" aria-hidden="true"></button>
+          </div>
+        </div>
+        <div class="menu-hours-editor-row menu-hours-editor-row--closed" role="row">
+          <div class="menu-hours-editor-row__day" role="cell">Sunday</div>
+          <button class="menu-hours-editor-toggle" type="button" role="switch" aria-checked="false" aria-label="Sunday disabled"><span></span></button>
+          <div class="menu-hours-editor-slots" role="cell">
+            <span class="menu-hours-editor-closed">Closed</span>
+          </div>
+          <span class="menu-hours-editor-spacer"></span>
+          <div class="menu-hours-editor-actions">
+            <button class="menu-hours-editor-icon-btn" type="button" aria-label="Add Sunday hours"><img src="assets/Icons/add.svg" alt="" aria-hidden="true"></button>
+            <button class="menu-hours-editor-icon-btn" type="button" aria-label="Copy Sunday hours"><img src="assets/Icons/copy:duplicate.svg" alt="" aria-hidden="true"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-hours-publish-modal__footer">
+      <button class="btn btn--secondary" type="button" disabled>Previous</button>
+      <button class="btn btn--primary" id="menuHoursPublishSubmit" type="button">Publish hours</button>
+    </div>
+  </div>
+
+
+        </div><!-- /page-menu-hours -->
+
+
+        <div id="page-pricing-rules" class="library-placeholder-page" style="display:none">
+          <div class="sku-page-header">
+            <h1 class="sku-page-header__title">Pricing rules</h1>
+            <div class="sku-page-header__actions">
+              <button class="btn btn--secondary" type="button">
+                <span class="btn__icon btn__icon--leading">
+                  <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
+                </span>
+                <span>Add pricing rule</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="info-banner">
+            <div class="info-banner__illustration">
+              <img src="assets/illus-edit-menu.svg" alt="Pricing rules illustration">
+            </div>
+            <div class="info-banner__content">
+              <div class="info-banner__text">
+                <p class="info-banner__title">Pricing rules will help you manage reusable price adjustments and rule-based pricing across your menus.</p>
+              </div>
+              <div class="info-banner__actions">
+                <button class="btn btn--secondary" type="button">
+                  <span>Learn more</span>
+                  <span class="btn__icon btn__icon--trailing">
+                    <i data-lucide="external-link" class="lucide-icon" style="width:14px;height:14px"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-bar">
+            <div class="filter-bar__filters">
+              <button class="filter-btn" type="button">
+                <span>Filter</span>
+                <span class="filter-btn__arrow">
+                  <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
+                </span>
+              </button>
+              <button class="filter-btn" type="button">
+                <span>Filter</span>
+                <span class="filter-btn__arrow">
+                  <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
+                </span>
+              </button>
+            </div>
+            <div class="filter-bar__search-area">
+              <div class="search-input">
+                <i data-lucide="search" class="lucide-icon search-input__icon" style="width:14px;height:14px;color:var(--color-text-weak)"></i>
+                <input class="search-input__field" type="text" placeholder="Search...">
+              </div>
+            </div>
+          </div>
+
+          <div class="library-placeholder-page__body" aria-hidden="true"></div>
+        </div>
+
+        <div id="page-tax-rules" class="library-placeholder-page" style="display:none">
+          <div class="sku-page-header">
+            <h1 class="sku-page-header__title">Tax rates</h1>
+            <div class="sku-page-header__actions">
+              <button class="btn btn--secondary" type="button">
+                <span class="btn__icon btn__icon--leading">
+                  <i data-lucide="plus" class="lucide-icon" style="width:14px;height:14px"></i>
+                </span>
+                <span>Add tax rate</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="info-banner">
+            <div class="info-banner__illustration">
+              <img src="assets/illus-edit-menu.svg" alt="Tax rates illustration">
+            </div>
+            <div class="info-banner__content">
+              <div class="info-banner__text">
+                <p class="info-banner__title">Tax rates will help you manage reusable tax settings across locations, menus, and sales channels.</p>
+              </div>
+              <div class="info-banner__actions">
+                <button class="btn btn--secondary" type="button">
+                  <span>Learn more</span>
+                  <span class="btn__icon btn__icon--trailing">
+                    <i data-lucide="external-link" class="lucide-icon" style="width:14px;height:14px"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-bar">
+            <div class="filter-bar__filters">
+              <button class="filter-btn" type="button">
+                <span>Filter</span>
+                <span class="filter-btn__arrow">
+                  <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
+                </span>
+              </button>
+              <button class="filter-btn" type="button">
+                <span>Filter</span>
+                <span class="filter-btn__arrow">
+                  <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
+                </span>
+              </button>
+            </div>
+            <div class="filter-bar__search-area">
+              <div class="search-input">
+                <i data-lucide="search" class="lucide-icon search-input__icon" style="width:14px;height:14px;color:var(--color-text-weak)"></i>
+                <input class="search-input__field" type="text" placeholder="Search...">
+              </div>
+            </div>
+          </div>
+
+          <div class="library-placeholder-page__body" aria-hidden="true"></div>
+        </div>
+        <div id="page-archived-menus" style="display:none"></div>
+
+        <!-- ===== ACTIVITY PAGE ===== -->
+        <div id="page-activity" style="display:none">
+          <div class="page-nav activity-log-page">
+            <div class="page-header">
+              <div class="page-header__left">
+                <div class="page-header__title-row">
+                  <h1 class="page-header__title">Activity log</h1>
                 </div>
               </div>
             </div>
+
+            <div class="pill-tabs" role="tablist" aria-label="Activity log views">
+              <button class="pill-tab pill-tab--selected" type="button" role="tab" aria-selected="true" data-activity-tab="all">All</button>
+              <button class="pill-tab pill-tab--default" type="button" role="tab" aria-selected="false" data-activity-tab="publish">Publish history</button>
+              <button class="pill-tab pill-tab--default" type="button" role="tab" aria-selected="false" data-activity-tab="edit">Edit history</button>
+            </div>
+
+            <div class="activity-log">
+              <section class="activity-section" data-activity-ongoing-section>
+                <div class="activity-section__header">
+                  <h2 class="activity-section__title">Ongoing publishes</h2>
+                  <div class="activity-section__filters">
+                    <button class="filter-btn filter-btn--applied" type="button">
+                      <span>All brands</span>
+                      <span class="filter-btn__count">3</span>
+                    </button>
+                    <button class="filter-btn" type="button">
+                      <span>Status</span>
+                      <span class="filter-btn__arrow"><i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i></span>
+                    </button>
+                    <button class="filter-btn" type="button">
+                      <span>Updated by</span>
+                      <span class="filter-btn__arrow"><i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i></span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="activity-ongoing-list" data-activity-ongoing="active">
+                  <article class="activity-ongoing-card" tabindex="0" data-activity-publish-detail="menu" data-activity-brand="Breakfast Beauties" data-activity-icon="assets/Icons/menu.svg">
+                    <span class="activity-thumb"><i data-lucide="book-open" class="lucide-icon"></i></span>
+                    <div class="activity-copy">
+                      <p class="activity-copy__title">Publish menu: [Brand name] menu</p>
+                      <p class="activity-copy__meta">Hui Tan • Sending menu to 5 locations and 3 channels...</p>
+                    </div>
+                    <div class="activity-progress">
+                      <div class="activity-progress__track"><span class="activity-progress__bar" style="width:52%"></span></div>
+                      <span class="activity-progress__meta">13/25 published • <span class="activity-progress__failed">2 failed</span></span>
+                    </div>
+                    <button class="activity-link-button" type="button" data-activity-publish-detail-trigger>
+                      <span>View details</span><img src="assets/Icons/arrow_right.svg" alt="" aria-hidden="true">
+                    </button>
+                  </article>
+
+                  <article class="activity-ongoing-card" tabindex="0" data-activity-publish-detail="availability" data-activity-brand="Aloha Hibachi" data-activity-icon="assets/Icons/mark_unavailable.svg">
+                    <span class="activity-thumb"><i data-lucide="circle-check" class="lucide-icon"></i></span>
+                    <div class="activity-copy">
+                      <p class="activity-copy__title">Publish item availability: [6 Piece Nuggets Boxed Lunch]</p>
+                      <p class="activity-copy__meta">Hui Tan • #1 in line</p>
+                    </div>
+                    <div class="activity-progress">
+                      <div class="activity-progress__track"><span class="activity-progress__bar activity-progress__bar--empty"></span></div>
+                      <span class="activity-progress__meta">25 pending</span>
+                    </div>
+                    <button class="activity-link-button" type="button" data-activity-publish-detail-trigger>
+                      <span>View details</span><img src="assets/Icons/arrow_right.svg" alt="" aria-hidden="true">
+                    </button>
+                  </article>
+
+                  <article class="activity-ongoing-card" tabindex="0" data-activity-publish-detail="menu-hours" data-activity-brand="alpha bowls" data-activity-icon="assets/Icons/hours.svg">
+                    <span class="activity-thumb"><i data-lucide="clock" class="lucide-icon"></i></span>
+                    <div class="activity-copy">
+                      <p class="activity-copy__title">Publish menu hour: [Brand name] [Menu name]</p>
+                      <p class="activity-copy__meta">Hui Tan • #2 in line</p>
+                    </div>
+                    <div class="activity-progress">
+                      <div class="activity-progress__track"><span class="activity-progress__bar activity-progress__bar--empty"></span></div>
+                      <span class="activity-progress__meta">25 pending</span>
+                    </div>
+                    <button class="activity-link-button" type="button" data-activity-publish-detail-trigger>
+                      <span>View details</span><img src="assets/Icons/arrow_right.svg" alt="" aria-hidden="true">
+                    </button>
+                  </article>
+                </div>
+
+                <div class="activity-empty-card" data-activity-ongoing="empty" hidden>
+                  <div>
+                    <p class="activity-empty-card__title">No active publishes</p>
+                    <p class="activity-empty-card__body">Active publishes will appear here while updates are being sent to channels.</p>
+                  </div>
+                </div>
+              </section>
+
+              <section class="activity-section">
+                <div class="activity-section__header">
+                  <h2 class="activity-section__title">Past</h2>
+                  <div class="activity-section__filters">
+                    <button class="filter-btn filter-btn--applied" type="button"><span>Brand name</span></button>
+                    <button class="filter-btn filter-btn--applied" type="button"><span>May 20 - May 27, 2026</span></button>
+                    <button class="filter-btn" type="button"><span>Location</span><span class="filter-btn__arrow"><i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i></span></button>
+                    <button class="filter-btn" type="button"><span>Channel</span><span class="filter-btn__arrow"><i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i></span></button>
+                    <button class="filter-btn" type="button"><span>Action</span><span class="filter-btn__arrow"><i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i></span></button>
+                    <button class="filter-btn" type="button"><span>Updated by</span><span class="filter-btn__arrow"><i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i></span></button>
+                  </div>
+                </div>
+
+                <div class="activity-history-list" data-activity-panel="all">
+                  <div class="activity-history-row" data-activity-publish-history="menu-hours" data-activity-icon="assets/Icons/hours.svg">
+                    <span class="activity-thumb"><i data-lucide="book-open" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Publish menu hour: [Brand name] [Menu name]</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Published</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-publish-history="menu-failed" data-activity-icon="assets/Icons/menu.svg">
+                    <span class="activity-thumb"><i data-lucide="book-open" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Publish menu: [Brand name] menu</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Published with 2 failed</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-publish-history="availability" data-activity-icon="assets/Icons/mark_unavailable.svg">
+                    <span class="activity-thumb"><i data-lucide="clock" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Make item unavailable: [Item name]</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Published</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-publish-history="availability" data-activity-icon="assets/Icons/mark_available.svg">
+                    <span class="activity-thumb"><i data-lucide="book-open" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Make item available: [Item name]</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Published</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-publish-history="menu-hours" data-activity-icon="assets/Icons/hours.svg">
+                    <span class="activity-thumb"><i data-lucide="book-open" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Publish menu hour: [Brand name] [Menu name]</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Published</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-edit-detail data-activity-icon="assets/Icons/menu.svg">
+                    <span class="activity-thumb"><i data-lucide="book-open" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Edit menu item: [Menu item]</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Changed default price</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-edit-detail data-activity-icon="assets/Icons/menu.svg">
+                    <span class="activity-thumb"><i data-lucide="book-open" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Create menu item: [Menu item]</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-edit-detail data-activity-icon="assets/Icons/bulk_edit_items.svg">
+                    <span class="activity-thumb"><i data-lucide="book-open" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Update modifier item: [Item name]</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Changed name, +3</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-edit-detail data-activity-icon="assets/Icons/menu.svg">
+                    <span class="activity-thumb"><i data-lucide="book-open" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Bulk action: 13 menu items</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="activity-history-list" data-activity-panel="publish" hidden>
+                  <div class="activity-history-row" data-activity-publish-history="menu" data-activity-icon="assets/Icons/menu.svg">
+                    <span class="activity-thumb"><i data-lucide="book-open" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Publish menu: [Brand name] menu</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Published</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-publish-history="availability" data-activity-icon="assets/Icons/mark_unavailable.svg">
+                    <span class="activity-thumb"><i data-lucide="circle-check" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Make item unavailable: [Item name]</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Published</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-publish-history="availability" data-activity-icon="assets/Icons/mark_available.svg">
+                    <span class="activity-thumb"><i data-lucide="circle-check" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Make item available: [Item name]</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Published</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-publish-history="menu-hours" data-activity-icon="assets/Icons/hours.svg">
+                    <span class="activity-thumb"><i data-lucide="clock" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Publish menu hour: [Brand name] [Menu name]</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Published</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-publish-history="menu-failed" data-activity-icon="assets/Icons/menu.svg">
+                    <span class="activity-thumb"><i data-lucide="circle-alert" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Publish menu: [Brand name] menu</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Published with 2 failed</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="activity-history-list" data-activity-panel="edit" hidden>
+                  <div class="activity-history-row" data-activity-edit-detail data-activity-icon="assets/Icons/menu.svg">
+                    <span class="activity-thumb"><i data-lucide="book-open" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Edit menu item: [Menu item]</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Changed default price</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-edit-detail data-activity-icon="assets/Icons/bulk_edit_items.svg">
+                    <span class="activity-thumb"><i data-lucide="book-open" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Create modifier group: [Modifier group name]</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-edit-detail data-activity-icon="assets/Icons/System/side bar/tax_rate.svg">
+                    <span class="activity-thumb"><i data-lucide="local-offer" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Edit tax rate: [Tax rate name]</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Changed rate</p>
+                    </div>
+                  </div>
+                  <div class="activity-history-row" data-activity-edit-detail data-activity-icon="assets/Icons/System/side bar/price_rule.svg">
+                    <span class="activity-thumb"><i data-lucide="dollar-sign" class="lucide-icon"></i></span>
+                    <div class="activity-history-row__content">
+                      <p class="activity-history-row__title">Edit pricing rule: [Pricing rule name]</p>
+                      <p class="activity-history-row__meta">Jan 03 10:18 AM • Hui Tan • Changed default price</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="activity-detail-scrim" id="activity-detail-scrim" hidden></div>
+            <aside class="activity-detail-panel" id="activity-detail-panel" aria-hidden="true">
+              <div class="activity-detail-panel__header">
+                <div class="activity-detail-panel__title-wrap">
+                  <h2 class="activity-detail-panel__title" id="activity-detail-title">Activity details</h2>
+                </div>
+                <button class="btn btn--secondary activity-detail-panel__copy" type="button" id="activity-detail-copy">
+                  <img src="assets/Icons/link.svg" alt="" aria-hidden="true">
+                  <span>Copy link</span>
+                </button>
+                <button class="btn btn--secondary btn--icon-only activity-detail-panel__close" type="button" id="activity-detail-close" aria-label="Close activity details">
+                  <img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true">
+                </button>
+              </div>
+              <div class="activity-detail-panel__body" id="activity-detail-body">
+              </div>
+            </aside>
           </div>
         </div><!-- /page-activity -->
 
@@ -6164,7 +7287,7 @@
       <div class="reorder-modal__body">
         <div class="reorder-modal__menu-card">
           <div class="reorder-modal__menu-icon">
-            <i data-lucide="columns-3" class="lucide-icon" style="width:20px;height:20px;color:#141414"></i>
+            <img src="assets/Icons/view_column.svg" alt="" aria-hidden="true" style="width:20px;height:20px">
           </div>
           <div class="reorder-modal__menu-info">
             <span class="reorder-modal__menu-name">Menus table</span>
@@ -6181,27 +7304,28 @@
   </div>
 
   <!-- JavaScript -->
-  <script src="js/sidebar.js?v=9"></script>
+  <script src="js/sidebar.js?v=16"></script>
   <script src="js/tabs.js?v=14"></script>
-  <script src="js/table.js?v=3"></script>
-  <script src="js/filters.js?v=8"></script>
+  <script src="js/table.js?v=5"></script>
+  <script src="js/filters.js?v=10"></script>
   <script src="js/columns.js"></script>
   <script src="js/row-actions.js"></script>
-  <script src="js/sort.js?v=5"></script>
+  <script src="js/sort.js?v=7"></script>
   <script src="js/sticky-header.js?v=2"></script>
   <script src="js/tooltips.js?v=9"></script>
-  <script src="js/mg-table.js?v=3"></script>
-  <script src="js/menus-table.js?v=4"></script>
-  <script src="js/mi-table.js?v=4"></script>
+  <script src="js/mg-table.js?v=4"></script>
+  <script src="js/menus-table.js?v=5"></script>
+  <script src="js/mi-table.js?v=5"></script>
   <script src="js/cat-table.js?v=1"></script>
   <script src="js/channel-thumbnails.js?v=3"></script>
-  <script src="js/bulk-actions.js?v=1"></script>
+  <script src="js/image-fallbacks.js?v=2"></script>
+  <script src="js/bulk-actions.js?v=18"></script>
   <script src="js/toast.js?v=3"></script>
   <script src="js/add-item.js?v=23"></script>
   <script src="js/add-modifier-item.js?v=10"></script>
   <script src="js/add-category.js?v=7"></script>
-  <script src="js/add-modifier-group.js?v=10"></script>
-  <script src="js/multiselect.js?v=8"></script>
+  <script src="js/add-modifier-group.js?v=11"></script>
+  <script src="js/multiselect.js?v=9"></script>
   <script src="js/edit-menu.js?v=10"></script>
   <script>
     // Initialize Lucide icons
@@ -6219,7 +7343,7 @@
       <div class="panel-header">
         <h2>Fix issues before publish</h2>
         <button class="pp-close-btn" onclick="closePanel()" aria-label="Close">
-          <span class="ms sz16" style="color:currentColor">close</span>
+          <img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true">
         </button>
       </div>
       <div class="panel-body">
@@ -6255,12 +7379,12 @@
       <div class="panel-header">
         <h2>Publish version to stores</h2>
         <button class="pp-close-btn" onclick="closePanel()" aria-label="Close">
-          <span class="ms sz16" style="color:currentColor">close</span>
+          <img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true">
         </button>
       </div>
       <div class="panel-body">
         <div class="pp-error-banner">
-          <span class="ms sz20 filled pp-error-banner-icon" style="color:#DC2626">error</span>
+          <img class="banner-status-icon banner-status-icon--error pp-error-banner-icon" src="assets/Icons/error.svg" alt="" aria-hidden="true">
           <p class="pp-error-banner-text">There are issues with your menu. Address these issues to publish to your channels.</p>
           <button class="view-issues-btn" onclick="showIssuesPage()">View issues</button>
         </div>
@@ -6291,7 +7415,7 @@
       <div class="panel-footer">
         <div class="pub-banner">
           <span class="pub-icon">
-            <span class="ms sz24" style="color:#141414">published_with_changes</span>
+            <img src="assets/Icons/published.svg" alt="" aria-hidden="true">
           </span>
           <span class="pub-text">Publish to selected channels.</span>
           <button class="add-note-btn">
@@ -6308,12 +7432,12 @@
       <div class="panel-header" style="align-items:center;">
         <div style="display:flex;align-items:center;gap:12px;flex:1;min-width:0;">
           <button class="back-btn" onclick="showPrepubPage()" aria-label="Back">
-            <span class="ms sz16" style="color:currentColor">arrow_back</span>
+            <img class="ods-back-img" src="assets/Icons/back.svg" alt="" aria-hidden="true">
           </button>
           <h2 style="font-size:20px;line-height:22px;letter-spacing:-0.2px;">Publish issues</h2>
         </div>
         <button class="pp-close-btn" onclick="closePanel()" aria-label="Close">
-          <span class="ms sz16" style="color:currentColor">close</span>
+          <img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true">
         </button>
       </div>
       <div class="issues-body">
@@ -6322,7 +7446,7 @@
           <p class="issues-section-subtitle">Address these issues to publish to channels</p>
         </div>
         <div class="inline-banner" id="taxIssueBanner">
-          <span class="ms sz20 filled" style="color:#C5232B;flex-shrink:0;margin-top:1px;">error</span>
+          <img class="banner-status-icon banner-status-icon--error" src="assets/Icons/error.svg" alt="" aria-hidden="true">
           <div class="inline-banner-body-col">
             <p class="inline-banner-title">Your tax settings are missing or incomplete</p>
             <p class="inline-banner-desc">Please confirm that your tax settings are up to date. Update them before publishing the menu.</p>
@@ -6330,7 +7454,7 @@
           <button class="inline-banner-view-btn" onclick="openTaxModal()">View all</button>
         </div>
         <div class="inline-banner">
-          <span class="ms sz20 filled" style="color:#C5232B;flex-shrink:0;margin-top:1px;">error</span>
+          <img class="banner-status-icon banner-status-icon--error" src="assets/Icons/error.svg" alt="" aria-hidden="true">
           <div class="inline-banner-body-col">
             <p class="inline-banner-title">32 items don't have tax rates</p>
             <p class="inline-banner-desc">Please ensure these items have accurate tax rates</p>
@@ -6350,14 +7474,14 @@
   </div>
 
   <div id="queuePanel"></div>
-  <script src="js/publish-panel.js?v=8"></script>
+  <script src="js/publish-panel.js?v=36"></script>
 
   <!-- ── Tax Settings Modal ── -->
   <div class="modal-scrim" id="taxModalScrim" onclick="closeTaxModal()"></div>
   <div class="tax-modal" id="taxModal">
     <div class="tax-modal__header">
       <h2 class="tax-modal__title">Send taxes to channels?</h2>
-      <button class="pp-close-btn" onclick="closeTaxModal()"><span class="ms sz16">close</span></button>
+      <button class="pp-close-btn" onclick="closeTaxModal()"><span class="ods-close-icon" aria-hidden="true"></span></button>
     </div>
     <div class="tax-modal__body">
 
@@ -6632,40 +7756,89 @@
   </div>
 
   <!-- Edit availability -->
-  <div class="ba-modal" id="ba-availability-modal">
+  <div class="ba-modal availability-modal" id="ba-availability-modal" role="dialog" aria-modal="true" aria-labelledby="ba-availability-title">
     <div class="ba-modal__header">
       <div>
-        <h2 class="ba-modal__title">Edit availability</h2>
-        <p class="ba-modal__subtitle">Update availability for selected items</p>
+        <h2 class="ba-modal__title" id="ba-availability-title">Edit availability</h2>
+        <p class="ba-modal__subtitle" id="ba-availability-subtitle">Update availability for selected items</p>
       </div>
-      <button class="ba-modal__close" aria-label="Close"><i data-lucide="x" class="lucide-icon" style="width:18px;height:18px"></i></button>
+      <button class="ba-modal__close" type="button" aria-label="Close">
+        <img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true">
+      </button>
     </div>
     <div class="ba-modal__body">
-      <div class="ba-form-group">
-        <label class="ba-form-label">Availability status</label>
-        <div class="ba-radio-group">
-          <label class="ba-radio-item ba-radio-item--card">
-            <input type="radio" name="availability" value="available" checked>
-            <span class="ba-radio-item__content">
-              <span class="ba-radio-item__title">Available</span>
-              <span class="ba-radio-item__desc">Item is visible and available to order</span>
-            </span>
-          </label>
-          <label class="ba-radio-item ba-radio-item--card">
-            <input type="radio" name="availability" value="unavailable">
-            <span class="ba-radio-item__content">
-              <span class="ba-radio-item__title">Unavailable</span>
-              <span class="ba-radio-item__desc">Item is hidden and cannot be ordered</span>
-            </span>
-          </label>
-          <label class="ba-radio-item ba-radio-item--card">
-            <input type="radio" name="availability" value="partial">
-            <span class="ba-radio-item__content">
-              <span class="ba-radio-item__title">Partially available</span>
-              <span class="ba-radio-item__desc">Item is available at some locations only</span>
-            </span>
-          </label>
+      <div class="availability-edit-banner" role="status">
+        <img class="banner-status-icon banner-status-icon--info" src="assets/Icons/info.svg" alt="" aria-hidden="true">
+        <div>
+          <div class="availability-edit-banner__title">Update availability for selected locations.</div>
+          <div class="availability-edit-banner__desc">Availability changes will be published to the selected locations.</div>
         </div>
+      </div>
+      <div class="availability-edit-layout">
+        <section class="availability-edit-locations" aria-labelledby="ba-availability-locations-title">
+          <h3 class="availability-edit-section-title" id="ba-availability-locations-title">Location</h3>
+          <div class="availability-edit-toolbar">
+            <div class="availability-edit-search search-input">
+              <img class="search-input__icon" src="assets/Icons/System/Search.svg" alt="" aria-hidden="true">
+              <input type="search" class="search-input__field" placeholder="Search locations" id="ba-availability-search">
+            </div>
+            <button class="filter-btn availability-edit-filter" type="button" aria-expanded="false">
+              <span>Status</span>
+              <span class="filter-btn__arrow">
+                <i data-lucide="arrow-drop-down" class="lucide-icon" style="width:20px;height:20px"></i>
+              </span>
+            </button>
+          </div>
+          <label class="availability-location-row availability-location-row--select-all">
+            <span class="availability-location-main">
+              <span class="ods-checkbox">
+                <input type="checkbox" id="ba-availability-select-all">
+                <span class="ods-checkbox__box"></span>
+              </span>
+              <span class="availability-location-copy">
+                <span class="availability-location-name">Select all locations</span>
+              </span>
+            </span>
+            <span class="availability-location-count" id="ba-availability-location-count">0 selected</span>
+          </label>
+          <div class="availability-location-list" id="ba-availability-location-list"></div>
+        </section>
+
+        <section class="availability-edit-status" aria-labelledby="ba-availability-status-title">
+          <h3 class="availability-edit-section-title" id="ba-availability-status-title">Availability</h3>
+          <div class="availability-status-group" role="radiogroup" aria-labelledby="ba-availability-status-title">
+            <label class="availability-status-row">
+              <input type="radio" name="availability" value="available" checked>
+              <span class="ods-radio__control" aria-hidden="true"></span>
+              <span class="ba-radio-item__content">
+                <span class="ba-radio-item__title">Available</span>
+              </span>
+              <span class="availability-status-end availability-status-end--available" aria-hidden="true">
+                <img src="assets/Icons/mark_available.svg" class="availability__icon" alt="" aria-hidden="true">
+              </span>
+            </label>
+            <label class="availability-status-row">
+              <input type="radio" name="availability" value="unavailable-today">
+              <span class="ods-radio__control" aria-hidden="true"></span>
+              <span class="ba-radio-item__content">
+                <span class="ba-radio-item__title">Unavailable today</span>
+              </span>
+              <span class="availability-status-end availability-status-end--unavailable" aria-hidden="true">
+                <img src="assets/Icons/mark_unavailable.svg" class="availability__icon" alt="" aria-hidden="true">
+              </span>
+            </label>
+            <label class="availability-status-row">
+              <input type="radio" name="availability" value="unavailable-indefinitely">
+              <span class="ods-radio__control" aria-hidden="true"></span>
+              <span class="ba-radio-item__content">
+                <span class="ba-radio-item__title">Unavailable indefinitely</span>
+              </span>
+              <span class="availability-status-end availability-status-end--unavailable" aria-hidden="true">
+                <img src="assets/Icons/mark_unavailable.svg" class="availability__icon" alt="" aria-hidden="true">
+              </span>
+            </label>
+          </div>
+        </section>
       </div>
     </div>
     <div class="ba-modal__footer">
@@ -6717,7 +7890,7 @@
       <div class="brands-modal__header">
         <span class="brands-modal__title">All brands</span>
         <button class="brands-modal__close" id="brands-modal-close">
-          <span class="material-symbols-outlined" style="font-size:20px">close</span>
+          <span class="ods-close-icon" style="width:20px;height:20px;min-width:20px" aria-hidden="true"></span>
         </button>
       </div>
 
@@ -6763,10 +7936,10 @@
 
     <!-- Pill (collapsed) -->
     <div class="pq-pill" id="pq-pill" style="display:none">
-      <span id="pq-pill-icon" class="pq-pill__icon pq-ring pq-ring--pill"></span>
+      <span id="pq-pill-icon" class="pq-pill__icon"><img src="assets/Icons/icon-loader.svg" class="publish-progress-ring pq-pill__loader-icon" alt="" aria-hidden="true"></span>
       <span class="pq-pill__label" id="pq-pill-label">1/3 publishing</span>
-      <button class="pq-pill__close" id="pq-pill-close">
-        <span class="material-symbols-outlined" style="font-size:20px">close</span>
+      <button class="pq-pill__close" id="pq-pill-close" aria-label="Close publish status">
+        <img class="pq-close-icon" src="assets/Icons/close.svg" alt="" aria-hidden="true">
       </button>
     </div>
 
@@ -6781,8 +7954,8 @@
             <span class="material-symbols-outlined" style="font-size:16px">expand_more</span>
             Show less
           </button>
-          <button class="pq-card__close" id="pq-card-close">
-            <span class="material-symbols-outlined" style="font-size:16px">close</span>
+          <button class="pq-card__close" id="pq-card-close" aria-label="Close publish queue">
+            <img class="pq-close-icon" src="assets/Icons/close.svg" alt="" aria-hidden="true">
           </button>
         </div>
       </div>
@@ -6804,7 +7977,7 @@
     <div class="psp-header">
       <div class="psp-header__title">Publish menu: <span id="psp-brand-name">Breakfast Beauties</span></div>
       <button class="psp-close" id="psp-close">
-        <span class="material-symbols-outlined" style="font-size:20px;color:#141414">close</span>
+        <img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true">
       </button>
     </div>
 
@@ -6829,7 +8002,7 @@
         <!-- Row 1: Search + Status filter -->
         <div class="psp-search-row">
           <div class="psp-search">
-            <img src="assets/icons/Style=Filled.svg" alt="">
+            <img src="assets/Icons/System/Search.svg" alt="" aria-hidden="true">
             <input type="text" placeholder="Search" class="psp-search__input">
           </div>
           <button class="psp-status-filter" id="psp-status-filter">
@@ -6870,12 +8043,12 @@
     <div class="psp-header" style="align-items:center">
       <div style="display:flex;align-items:center;gap:12px;flex:1;min-width:0">
         <button class="psp-close" onclick="pspShowMain()" style="border:1px solid #CCC">
-          <span class="material-symbols-outlined" style="font-size:18px;color:#141414">arrow_back</span>
+          <img class="ods-back-img" src="assets/Icons/back.svg" alt="" aria-hidden="true">
         </button>
         <span class="psp-header__title" style="padding-top:0">AI publish insights</span>
       </div>
       <button class="psp-close" id="psp-issues-close" style="border:1px solid #CCC">
-        <span class="material-symbols-outlined" style="font-size:20px;color:#141414">close</span>
+        <img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true">
       </button>
     </div>
 
@@ -6895,7 +8068,7 @@
     <div class="psp-modal__header">
       <span class="psp-modal__title">Cancel publish</span>
       <button class="psp-modal__close" onclick="closeCancelModal()">
-        <span class="material-symbols-outlined" style="font-size:20px">close</span>
+        <span class="ods-close-icon" style="width:20px;height:20px;min-width:20px" aria-hidden="true"></span>
       </button>
     </div>
     <div class="psp-modal__body">
@@ -6912,10 +8085,11 @@
     <div class="psp-popover__header">
       <span class="psp-popover__title">AI publish insights</span>
       <button class="psp-popover__close" id="psp-popover-close">
-        <span class="material-symbols-outlined" style="font-size:20px">close</span>
+        <span class="ods-close-icon" style="width:20px;height:20px;min-width:20px" aria-hidden="true"></span>
       </button>
     </div>
     <div class="psp-popover__content" id="psp-popover-content"></div>
+    <div class="psp-popover__footer" id="psp-popover-footer" hidden></div>
   </div>
 
   <!-- ===== OTTER ASSISTANT CHAT PANEL ===== -->
@@ -6925,7 +8099,7 @@
       <span class="oa-title">Otter Assistant</span>
       <div class="oa-header-actions">
         <button class="oa-icon-btn oa-icon-btn--bordered"><span class="material-symbols-outlined" style="font-size:18px">open_in_full</span></button>
-        <button class="oa-icon-btn oa-icon-btn--bordered" id="oa-close"><span class="material-symbols-outlined" style="font-size:18px">close</span></button>
+        <button class="oa-icon-btn oa-icon-btn--bordered" id="oa-close"><img class="ods-close-img" src="assets/Icons/close.svg" alt="" aria-hidden="true"></button>
       </div>
     </div>
 
@@ -6959,7 +8133,9 @@
     </div>
   </div>
 
-  <script src="js/publish-queue.js?v=24"></script>
-  <script src="js/publish-status-overlay.js?v=6"></script>
+  <script src="js/activity-log.js?v=9"></script>
+  <script src="js/menu-hours.js?v=22"></script>
+  <script src="js/publish-queue.js?v=101"></script>
+  <script src="js/publish-status-overlay.js?v=14"></script>
 </body>
 </html>
