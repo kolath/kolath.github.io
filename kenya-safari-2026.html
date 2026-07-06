@@ -50,6 +50,10 @@ body.is-locked {
   overflow: hidden;
 }
 
+body.photo-modal-open {
+  overflow: hidden;
+}
+
 body::before {
   content: none;
 }
@@ -437,18 +441,19 @@ body:not(.is-locked) .passcode-gate {
   z-index: 100;
   background: var(--cream);
   border-bottom: 1px solid var(--sand-deep);
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 0;
   backdrop-filter: blur(10px);
   background: rgba(250, 248, 243, 0.92);
   box-shadow: 0 8px 20px rgba(107, 76, 42, 0.06);
 }
 
 .nav-inner {
-  max-width: 900px;
+  max-width: 1080px;
   margin: 0 auto;
   display: flex;
   gap: 0.3rem;
   overflow-x: auto;
+  padding-inline: 1.5rem;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -1642,6 +1647,128 @@ body:not(.is-locked) .passcode-gate {
   display: none;
 }
 
+.photo-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-auto-columns: calc((100% - 2.7rem) / 4);
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, auto);
+  margin-top: 2rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding-bottom: 0.8rem;
+  scroll-padding-inline: 0.15rem;
+  scroll-snap-type: x proximity;
+  scrollbar-color: rgba(142, 109, 60, 0.45) transparent;
+}
+
+.photo-button {
+  appearance: none;
+  background: var(--sand-deep);
+  border: 1px solid rgba(196, 163, 90, 0.24);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-card);
+  display: block;
+  cursor: zoom-in;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  scroll-snap-align: start;
+  width: 100%;
+}
+
+.photo-button::after {
+  background: linear-gradient(180deg, transparent 52%, rgba(37, 29, 20, 0.18));
+  content: "";
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 0.25s ease;
+}
+
+.photo-button:hover::after {
+  opacity: 1;
+}
+
+.photo-button:focus-visible {
+  box-shadow: 0 0 0 4px rgba(196, 163, 109, 0.22), var(--shadow-card);
+  outline: none;
+}
+
+.photo-button img {
+  aspect-ratio: 4 / 3;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+  width: 100%;
+}
+
+.photo-button:hover img {
+  transform: scale(1.035);
+}
+
+.photo-lightbox {
+  align-items: center;
+  background: rgba(37, 29, 20, 0.78);
+  display: none;
+  inset: 0;
+  justify-content: center;
+  padding: 1.5rem;
+  position: fixed;
+  z-index: 1200;
+}
+
+.photo-lightbox.is-open {
+  display: flex;
+}
+
+.photo-lightbox-image {
+  border-radius: 1rem;
+  box-shadow: 0 26px 70px rgba(18, 12, 6, 0.42);
+  max-height: min(82vh, 820px);
+  max-width: min(92vw, 1180px);
+  object-fit: contain;
+}
+
+.photo-lightbox-button {
+  align-items: center;
+  appearance: none;
+  background: rgba(255, 253, 249, 0.92);
+  border: 1px solid rgba(196, 163, 90, 0.28);
+  border-radius: 999px;
+  color: var(--earth);
+  cursor: pointer;
+  display: flex;
+  font-family: "Source Sans 3", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  height: 2.75rem;
+  justify-content: center;
+  position: absolute;
+  width: 2.75rem;
+}
+
+.photo-lightbox-button:hover,
+.photo-lightbox-button:focus-visible {
+  background: var(--white);
+  outline: none;
+}
+
+.photo-lightbox-close {
+  right: 1.2rem;
+  top: 1.2rem;
+}
+
+.photo-lightbox-prev,
+.photo-lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.photo-lightbox-prev { left: 1.2rem; }
+.photo-lightbox-next { right: 1.2rem; }
+
 .footer {
   color: var(--ink-muted);
   padding: 3rem 1.5rem 4rem;
@@ -1745,6 +1872,10 @@ body:not(.is-locked) .passcode-gate {
     width: 100%;
   }
 
+  .photo-grid {
+    grid-auto-columns: calc((100% - 0.9rem) / 2);
+  }
+
   .cost-total-bar {
     align-items: start;
     flex-direction: column;
@@ -1763,6 +1894,24 @@ body:not(.is-locked) .passcode-gate {
   .checklist-add-assignee,
   .checklist-add-button {
     width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .photo-grid {
+    gap: 0.65rem;
+    grid-auto-columns: calc((100% - 0.65rem) / 2);
+  }
+
+  .photo-lightbox {
+    padding: 1rem;
+  }
+
+  .photo-lightbox-prev,
+  .photo-lightbox-next {
+    bottom: 1rem;
+    top: auto;
+    transform: none;
   }
 }
 
@@ -1860,13 +2009,93 @@ body:not(.is-locked) .passcode-gate {
 
   <nav class="nav-sticky">
     <div class="nav-inner">
-      <a href="#itinerary" class="nav-link active">Itinerary</a>
+      <a href="#photos" class="nav-link active">Photos</a>
+      <a href="#itinerary" class="nav-link">Itinerary</a>
       <a href="#checklist" class="nav-link">Checklist</a>
       <a href="#costs" class="nav-link">Budget</a>
       <a href="#operator" class="nav-link">Safari Operator</a>
       <a href="#travelers" class="nav-link">Travelers</a>
     </div>
   </nav>
+
+  <section class="section" id="photos">
+    <div class="reveal">
+      <p class="section-label">Safari Album</p>
+      <h2 class="section-title">Photos from Kenya</h2>
+      <p class="section-intro">A quick gallery from the trip, pulled from the local Kenya photos folder so the page can travel with the images.</p>
+    </div>
+    <div class="photo-grid">
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260609-DSC02347.JPEG" data-photo-alt="Kenya safari photo from June 9" aria-label="Enlarge Kenya safari photo from June 9">
+        <img src="Kenya%20photos/20260609-DSC02347.JPEG" alt="Kenya safari photo from June 9" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260609-DSC02609.JPEG" data-photo-alt="Kenya safari landscape from June 9" aria-label="Enlarge Kenya safari landscape from June 9">
+        <img src="Kenya%20photos/20260609-DSC02609.JPEG" alt="Kenya safari landscape from June 9" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260610-DSC02997.JPEG" data-photo-alt="Kenya safari photo from June 10" aria-label="Enlarge Kenya safari photo from June 10">
+        <img src="Kenya%20photos/20260610-DSC02997.JPEG" alt="Kenya safari photo from June 10" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260611-DSC03570.JPEG" data-photo-alt="Kenya safari portrait from June 11" aria-label="Enlarge Kenya safari portrait from June 11">
+        <img src="Kenya%20photos/20260611-DSC03570.JPEG" alt="Kenya safari portrait from June 11" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260612-DSC03950.JPEG" data-photo-alt="Kenya safari portrait from June 12" aria-label="Enlarge Kenya safari portrait from June 12">
+        <img src="Kenya%20photos/20260612-DSC03950.JPEG" alt="Kenya safari portrait from June 12" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260612-DSC03967.JPEG" data-photo-alt="Kenya safari photo from June 12" aria-label="Enlarge Kenya safari photo from June 12">
+        <img src="Kenya%20photos/20260612-DSC03967.JPEG" alt="Kenya safari photo from June 12" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260612-DSC04050.JPEG" data-photo-alt="Kenya safari photo from June 12" aria-label="Enlarge Kenya safari photo from June 12">
+        <img src="Kenya%20photos/20260612-DSC04050.JPEG" alt="Kenya safari photo from June 12" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260613-DSC04277.JPEG" data-photo-alt="Kenya safari photo from June 13" aria-label="Enlarge Kenya safari photo from June 13">
+        <img src="Kenya%20photos/20260613-DSC04277.JPEG" alt="Kenya safari photo from June 13" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260613-DSC04654.JPEG" data-photo-alt="Kenya safari panorama from June 13" aria-label="Enlarge Kenya safari panorama from June 13">
+        <img src="Kenya%20photos/20260613-DSC04654.JPEG" alt="Kenya safari panorama from June 13" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260613-DSC04698.JPEG" data-photo-alt="Kenya safari landscape from June 13" aria-label="Enlarge Kenya safari landscape from June 13">
+        <img src="Kenya%20photos/20260613-DSC04698.JPEG" alt="Kenya safari landscape from June 13" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260613-DSC04859.JPEG" data-photo-alt="Kenya safari scene from June 13" aria-label="Enlarge Kenya safari scene from June 13">
+        <img src="Kenya%20photos/20260613-DSC04859.JPEG" alt="Kenya safari scene from June 13" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260613-DSC05033.JPEG" data-photo-alt="Kenya safari photo from June 13" aria-label="Enlarge Kenya safari photo from June 13">
+        <img src="Kenya%20photos/20260613-DSC05033.JPEG" alt="Kenya safari photo from June 13" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260614-DSC05173.JPEG" data-photo-alt="Kenya safari photo from June 14" aria-label="Enlarge Kenya safari photo from June 14">
+        <img src="Kenya%20photos/20260614-DSC05173.JPEG" alt="Kenya safari photo from June 14" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260614-DSC05276.JPEG" data-photo-alt="Kenya safari photo from June 14" aria-label="Enlarge Kenya safari photo from June 14">
+        <img src="Kenya%20photos/20260614-DSC05276.JPEG" alt="Kenya safari photo from June 14" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260614-DSC05514.JPEG" data-photo-alt="Kenya safari landscape from June 14" aria-label="Enlarge Kenya safari landscape from June 14">
+        <img src="Kenya%20photos/20260614-DSC05514.JPEG" alt="Kenya safari landscape from June 14" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260614-DSC05589.JPEG" data-photo-alt="Kenya safari landscape from June 14" aria-label="Enlarge Kenya safari landscape from June 14">
+        <img src="Kenya%20photos/20260614-DSC05589.JPEG" alt="Kenya safari landscape from June 14" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260614-DSC05614.JPEG" data-photo-alt="Kenya safari landscape from June 14" aria-label="Enlarge Kenya safari landscape from June 14">
+        <img src="Kenya%20photos/20260614-DSC05614.JPEG" alt="Kenya safari landscape from June 14" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260615-DSC06122.JPEG" data-photo-alt="Kenya safari portrait from June 15" aria-label="Enlarge Kenya safari portrait from June 15">
+        <img src="Kenya%20photos/20260615-DSC06122.JPEG" alt="Kenya safari portrait from June 15" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260615-DSC06153.JPEG" data-photo-alt="Kenya safari photo from June 15" aria-label="Enlarge Kenya safari photo from June 15">
+        <img src="Kenya%20photos/20260615-DSC06153.JPEG" alt="Kenya safari photo from June 15" loading="lazy" decoding="async">
+      </button>
+      <button class="photo-button" type="button" data-photo-src="Kenya%20photos/20260615-DSC06211.JPEG" data-photo-alt="Kenya safari landscape from June 15" aria-label="Enlarge Kenya safari landscape from June 15">
+        <img src="Kenya%20photos/20260615-DSC06211.JPEG" alt="Kenya safari landscape from June 15" loading="lazy" decoding="async">
+      </button>
+    </div>
+  </section>
+
+  <div class="photo-lightbox" id="photo-lightbox" aria-hidden="true" role="dialog" aria-label="Enlarged safari photo">
+    <button class="photo-lightbox-button photo-lightbox-close" type="button" aria-label="Close photo">&times;</button>
+    <button class="photo-lightbox-button photo-lightbox-prev" type="button" aria-label="Previous photo">&lsaquo;</button>
+    <img class="photo-lightbox-image" id="photo-lightbox-image" src="" alt="">
+    <button class="photo-lightbox-button photo-lightbox-next" type="button" aria-label="Next photo">&rsaquo;</button>
+  </div>
+
+  <div class="section-divider"><div class="divider-line"></div></div>
 
   <section class="section" id="itinerary">
     <div class="reveal">
@@ -2955,6 +3184,59 @@ function loadPasscodeGate() {
   });
 }
 
+function setupPhotoLightbox() {
+  const buttons = Array.from(document.querySelectorAll(".photo-button"));
+  const lightbox = document.getElementById("photo-lightbox");
+  const lightboxImage = document.getElementById("photo-lightbox-image");
+  const closeButton = lightbox?.querySelector(".photo-lightbox-close");
+  const prevButton = lightbox?.querySelector(".photo-lightbox-prev");
+  const nextButton = lightbox?.querySelector(".photo-lightbox-next");
+  let currentIndex = 0;
+
+  if (!buttons.length || !lightbox || !lightboxImage || !closeButton || !prevButton || !nextButton) return;
+
+  function showPhoto(index) {
+    currentIndex = (index + buttons.length) % buttons.length;
+    const photo = buttons[currentIndex];
+    lightboxImage.src = photo.dataset.photoSrc || "";
+    lightboxImage.alt = photo.dataset.photoAlt || "";
+  }
+
+  function openLightbox(index) {
+    showPhoto(index);
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.classList.add("photo-modal-open");
+    closeButton.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("photo-modal-open");
+    buttons[currentIndex]?.focus();
+  }
+
+  buttons.forEach((button, index) => {
+    button.addEventListener("click", () => openLightbox(index));
+  });
+
+  closeButton.addEventListener("click", closeLightbox);
+  prevButton.addEventListener("click", () => showPhoto(currentIndex - 1));
+  nextButton.addEventListener("click", () => showPhoto(currentIndex + 1));
+
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (!lightbox.classList.contains("is-open")) return;
+    if (event.key === "Escape") closeLightbox();
+    if (event.key === "ArrowLeft") showPhoto(currentIndex - 1);
+    if (event.key === "ArrowRight") showPhoto(currentIndex + 1);
+  });
+}
+
 function toggleCheck(item) {
   item.classList.toggle("checked");
   const box = item.querySelector(".check-box");
@@ -3490,6 +3772,7 @@ function switchItineraryTab(family) {
 
 switchItineraryTab("hui");
 applyCurrentTimelineDate();
+setupPhotoLightbox();
 initializeChecklistSync();
 loadPasscodeGate();
 </script>
